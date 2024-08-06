@@ -125,7 +125,7 @@ class _ConfirmCustomViewWidgetState extends State<ConfirmCustomViewWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Manrope',
+                                  fontFamily: 'Rubik',
                                   fontSize: 20.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
@@ -145,7 +145,7 @@ class _ConfirmCustomViewWidgetState extends State<ConfirmCustomViewWidget>
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -179,7 +179,7 @@ class _ConfirmCustomViewWidgetState extends State<ConfirmCustomViewWidget>
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Manrope',
+                                            fontFamily: 'Rubik',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             letterSpacing: 0.0,
@@ -215,7 +215,7 @@ class _ConfirmCustomViewWidgetState extends State<ConfirmCustomViewWidget>
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Manrope',
+                                            fontFamily: 'Rubik',
                                             color: Colors.white,
                                             letterSpacing: 0.0,
                                           ),

@@ -99,13 +99,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Manrope',
+                                          fontFamily: 'Rubik',
                                           letterSpacing: 0.0,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Manrope',
+                                          fontFamily: 'Rubik',
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
@@ -144,7 +144,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Manrope',
+                                        fontFamily: 'Rubik',
                                         letterSpacing: 0.0,
                                       ),
                                   validator: _model.emailTextControllerValidator
@@ -164,13 +164,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Manrope',
+                                          fontFamily: 'Rubik',
                                           letterSpacing: 0.0,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Manrope',
+                                          fontFamily: 'Rubik',
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
@@ -222,7 +222,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Manrope',
+                                        fontFamily: 'Rubik',
                                         letterSpacing: 0.0,
                                       ),
                                   validator: _model
@@ -246,7 +246,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Manrope',
+                                                fontFamily: 'Rubik',
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -296,7 +296,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Manrope',
+                                          fontFamily: 'Rubik',
                                           color: Colors.white,
                                           letterSpacing: 0.0,
                                         ),
@@ -318,7 +318,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Manrope',
+                                            fontFamily: 'Rubik',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                             letterSpacing: 0.0,
@@ -357,7 +357,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Manrope',
+                                        fontFamily: 'Rubik',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
