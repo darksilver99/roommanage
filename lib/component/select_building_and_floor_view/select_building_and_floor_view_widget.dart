@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:math';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -64,6 +65,8 @@ class _SelectBuildingAndFloorViewWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -130,10 +133,34 @@ class _SelectBuildingAndFloorViewWidgetState
                               0.0, 0.0, 0.0, 8.0),
                           child: FlutterFlowDropDown<String>(
                             controller: _model.dropDownValueController1 ??=
-                                FormFieldController<String>(null),
-                            options: ['Option 1'],
-                            onChanged: (val) =>
-                                setState(() => _model.dropDownValue1 = val),
+                                FormFieldController<String>(
+                              _model.dropDownValue1 ??= '',
+                            ),
+                            options: List<String>.from(FFAppState()
+                                .buildingList
+                                .map((e) => e.buildDoc)
+                                .toList()),
+                            optionLabels: FFAppState()
+                                .buildingList
+                                .map((e) => e.subject)
+                                .toList(),
+                            onChanged: (val) async {
+                              setState(() => _model.dropDownValue1 = val);
+                              setState(() {
+                                _model.dropDownValueController2?.reset();
+                              });
+                              _model.floorList = functions
+                                  .setFloorList(FFAppState()
+                                      .buildingList
+                                      .where((e) =>
+                                          e.buildDoc == _model.dropDownValue1)
+                                      .toList()
+                                      .first
+                                      .totalFloor)
+                                  .toList()
+                                  .cast<String>();
+                              setState(() {});
+                            },
                             width: 300.0,
                             height: 56.0,
                             textStyle: FlutterFlowTheme.of(context)
@@ -142,7 +169,7 @@ class _SelectBuildingAndFloorViewWidgetState
                                   fontFamily: 'Rubik',
                                   letterSpacing: 0.0,
                                 ),
-                            hintText: 'Please select...',
+                            hintText: 'เลือกอาคาร',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -168,7 +195,7 @@ class _SelectBuildingAndFloorViewWidgetState
                           child: FlutterFlowDropDown<String>(
                             controller: _model.dropDownValueController2 ??=
                                 FormFieldController<String>(null),
-                            options: ['Option 1'],
+                            options: _model.floorList,
                             onChanged: (val) =>
                                 setState(() => _model.dropDownValue2 = val),
                             width: 300.0,
@@ -179,7 +206,7 @@ class _SelectBuildingAndFloorViewWidgetState
                                   fontFamily: 'Rubik',
                                   letterSpacing: 0.0,
                                 ),
-                            hintText: 'Please select...',
+                            hintText: 'เลือกชั้น',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -201,10 +228,29 @@ class _SelectBuildingAndFloorViewWidgetState
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            Navigator.pop(context);
+                            context.pushNamed(
+                              'CreateRoomPage',
+                              queryParameters: {
+                                'buildingRef': serializeParam(
+                                  FFAppState()
+                                      .buildingList
+                                      .where((e) =>
+                                          e.buildDoc == _model.dropDownValue1)
+                                      .toList()
+                                      .first
+                                      .buildingRef,
+                                  ParamType.DocumentReference,
+                                ),
+                                'floor': serializeParam(
+                                  functions.stringToInt(_model.dropDownValue2!),
+                                  ParamType.int,
+                                ),
+                              }.withoutNulls,
+                            );
                           },
                           text: 'ตกลง',
                           options: FFButtonOptions(
+                            width: double.infinity,
                             height: 40.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
