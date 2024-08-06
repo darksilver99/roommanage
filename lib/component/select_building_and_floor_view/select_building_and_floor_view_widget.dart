@@ -228,25 +228,31 @@ class _SelectBuildingAndFloorViewWidgetState
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed(
-                              'CreateRoomPage',
-                              queryParameters: {
-                                'buildingRef': serializeParam(
-                                  FFAppState()
-                                      .buildingList
-                                      .where((e) =>
-                                          e.buildDoc == _model.dropDownValue1)
-                                      .toList()
-                                      .first
-                                      .buildingRef,
-                                  ParamType.DocumentReference,
-                                ),
-                                'floor': serializeParam(
-                                  functions.stringToInt(_model.dropDownValue2!),
-                                  ParamType.int,
-                                ),
-                              }.withoutNulls,
-                            );
+                            if ((_model.dropDownValue1 != null &&
+                                    _model.dropDownValue1 != '') &&
+                                (_model.dropDownValue2 != null &&
+                                    _model.dropDownValue2 != '')) {
+                              context.pushNamed(
+                                'CreateRoomPage',
+                                queryParameters: {
+                                  'buildingRef': serializeParam(
+                                    FFAppState()
+                                        .buildingList
+                                        .where((e) =>
+                                            e.buildDoc == _model.dropDownValue1)
+                                        .toList()
+                                        .first
+                                        .buildingRef,
+                                    ParamType.DocumentReference,
+                                  ),
+                                  'floor': serializeParam(
+                                    functions
+                                        .stringToInt(_model.dropDownValue2!),
+                                    ParamType.int,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            }
                           },
                           text: 'ตกลง',
                           options: FFButtonOptions(
