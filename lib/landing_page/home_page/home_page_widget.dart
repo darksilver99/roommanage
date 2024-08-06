@@ -126,8 +126,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                                     options: List<String>.from(_model
                                         .buildingDataList
-                                        .map((e) => e.buildingRef?.id)
-                                        .withoutNulls
+                                        .map((e) => e.buildDoc)
                                         .toList()),
                                     optionLabels: _model.buildingDataList
                                         .map((e) => e.subject)
