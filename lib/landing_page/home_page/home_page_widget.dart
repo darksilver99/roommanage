@@ -180,10 +180,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: FlutterFlowDropDown<int>(
                                     controller:
                                         _model.dropDownValueController2 ??=
-                                            FormFieldController<int>(
-                                      _model.dropDownValue2 ??=
-                                          _model.floorList.first,
-                                    ),
+                                            FormFieldController<int>(null),
                                     options: List<int>.from(_model.floorList),
                                     optionLabels: [''],
                                     onChanged: (val) => setState(
