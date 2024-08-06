@@ -86,11 +86,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             context,
             buildingRef: FFAppState()
                 .buildingList
-                .where((e) => e.buildDoc == _model.dropDownValue1)
+                .where((e) =>
+                    e.buildDoc ==
+                    FFAppState().currentDropdownSelected.buildingDoc)
                 .toList()
                 .first
                 .buildingRef,
-            floor: functions.stringToInt(_model.dropDownValue2!),
+            floor: functions
+                .stringToInt(FFAppState().currentDropdownSelected.floorNumber),
           );
           _model.roomList =
               _model.roomResultList2!.toList().cast<RoomListRecord>();
