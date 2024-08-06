@@ -76,7 +76,12 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
     roomList = await queryRoomListRecordOnce(
       parent: FFAppState().customerReference,
-      queryBuilder: (roomListRecord) => roomListRecord.orderBy('subject'),
+      queryBuilder: (roomListRecord) => roomListRecord
+          .where(
+            'floor_number',
+            isEqualTo: floor,
+          )
+          .orderBy('subject'),
     );
     return roomList;
   }
