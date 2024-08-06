@@ -69,6 +69,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           setState(() {});
           _model.dataCount = _model.dataCount + 1;
         }
+        if (FFAppState().currentDropdownSelected != null) {
+          setState(() {
+            _model.dropDownValueController1?.value =
+                FFAppState().currentDropdownSelected.buildingDoc;
+          });
+          await Future.delayed(const Duration(milliseconds: 100));
+          setState(() {
+            _model.dropDownValueController2?.value =
+                FFAppState().currentDropdownSelected.floorNumber;
+          });
+        }
       } else {
         _model.isHasCustomer = false;
 
@@ -127,13 +138,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     controller:
                                         _model.dropDownValueController1 ??=
                                             FormFieldController<String>(
-                                      _model.dropDownValue1 ??= FFAppState()
-                                                  .currentDropdownSelected !=
-                                              null
-                                          ? FFAppState()
-                                              .currentDropdownSelected
-                                              .buildingDoc
-                                          : null,
+                                      _model.dropDownValue1 ??= '',
                                     ),
                                     options: List<String>.from(FFAppState()
                                         .buildingList
@@ -202,15 +207,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: FlutterFlowDropDown<String>(
                                     controller:
                                         _model.dropDownValueController2 ??=
-                                            FormFieldController<String>(
-                                      _model.dropDownValue2 ??= FFAppState()
-                                                  .currentDropdownSelected !=
-                                              null
-                                          ? FFAppState()
-                                              .currentDropdownSelected
-                                              .floorNumber
-                                          : null,
-                                    ),
+                                            FormFieldController<String>(null),
                                     options: _model.floorList,
                                     onChanged: (val) async {
                                       setState(
