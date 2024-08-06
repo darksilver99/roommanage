@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:math';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'select_building_and_floor_view_widget.dart'
     show SelectBuildingAndFloorViewWidget;
 import 'package:flutter/material.dart';
@@ -15,6 +16,17 @@ import 'package:provider/provider.dart';
 
 class SelectBuildingAndFloorViewModel
     extends FlutterFlowModel<SelectBuildingAndFloorViewWidget> {
+  ///  Local state fields for this component.
+
+  List<String> floorList = [];
+  void addToFloorList(String item) => floorList.add(item);
+  void removeFromFloorList(String item) => floorList.remove(item);
+  void removeAtIndexFromFloorList(int index) => floorList.removeAt(index);
+  void insertAtIndexInFloorList(int index, String item) =>
+      floorList.insert(index, item);
+  void updateFloorListAtIndex(int index, Function(String) updateFn) =>
+      floorList[index] = updateFn(floorList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for DropDown widget.
