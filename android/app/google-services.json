@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663075340578",
+    "project_id": "room-manage-ppqolm",
+    "storage_bucket": "room-manage-ppqolm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663075340578:android:03566ec1b2043795d6e57b",
+        "android_client_info": {
+          "package_name": "com.silver.roommanage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOFFcdxJhBmVbSkzP9Y85LvGtf4vYFMfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
