@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -24,14 +25,20 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   bool isHasRoom = false;
 
-  List<int> floorList = [];
-  void addToFloorList(int item) => floorList.add(item);
-  void removeFromFloorList(int item) => floorList.remove(item);
-  void removeAtIndexFromFloorList(int index) => floorList.removeAt(index);
-  void insertAtIndexInFloorList(int index, int item) =>
-      floorList.insert(index, item);
-  void updateFloorListAtIndex(int index, Function(int) updateFn) =>
-      floorList[index] = updateFn(floorList[index]);
+  int dataCount = 0;
+
+  List<BuildingDataStruct> buildingDataList = [];
+  void addToBuildingDataList(BuildingDataStruct item) =>
+      buildingDataList.add(item);
+  void removeFromBuildingDataList(BuildingDataStruct item) =>
+      buildingDataList.remove(item);
+  void removeAtIndexFromBuildingDataList(int index) =>
+      buildingDataList.removeAt(index);
+  void insertAtIndexInBuildingDataList(int index, BuildingDataStruct item) =>
+      buildingDataList.insert(index, item);
+  void updateBuildingDataListAtIndex(
+          int index, Function(BuildingDataStruct) updateFn) =>
+      buildingDataList[index] = updateFn(buildingDataList[index]);
 
   ///  State fields for stateful widgets in this page.
 

@@ -33,33 +33,4 @@ class FFAppState extends ChangeNotifier {
   void updateTmpCustomerDataStruct(Function(TmpCustomerDataStruct) updateFn) {
     updateFn(_tmpCustomerData);
   }
-
-  List<BuildingDataStruct> _buildingDataList = [];
-  List<BuildingDataStruct> get buildingDataList => _buildingDataList;
-  set buildingDataList(List<BuildingDataStruct> value) {
-    _buildingDataList = value;
-  }
-
-  void addToBuildingDataList(BuildingDataStruct value) {
-    buildingDataList.add(value);
-  }
-
-  void removeFromBuildingDataList(BuildingDataStruct value) {
-    buildingDataList.remove(value);
-  }
-
-  void removeAtIndexFromBuildingDataList(int index) {
-    buildingDataList.removeAt(index);
-  }
-
-  void updateBuildingDataListAtIndex(
-    int index,
-    BuildingDataStruct Function(BuildingDataStruct) updateFn,
-  ) {
-    buildingDataList[index] = updateFn(_buildingDataList[index]);
-  }
-
-  void insertAtIndexInBuildingDataList(int index, BuildingDataStruct value) {
-    buildingDataList.insert(index, value);
-  }
 }
