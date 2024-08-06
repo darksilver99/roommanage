@@ -127,7 +127,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     controller:
                                         _model.dropDownValueController1 ??=
                                             FormFieldController<String>(
-                                      _model.dropDownValue1 ??= '',
+                                      _model.dropDownValue1 ??= FFAppState()
+                                                  .currentDropdownSelected !=
+                                              null
+                                          ? FFAppState()
+                                              .currentDropdownSelected
+                                              .buildingDoc
+                                          : null,
                                     ),
                                     options: List<String>.from(FFAppState()
                                         .buildingList
@@ -196,7 +202,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: FlutterFlowDropDown<String>(
                                     controller:
                                         _model.dropDownValueController2 ??=
-                                            FormFieldController<String>(null),
+                                            FormFieldController<String>(
+                                      _model.dropDownValue2 ??= FFAppState()
+                                                  .currentDropdownSelected !=
+                                              null
+                                          ? FFAppState()
+                                              .currentDropdownSelected
+                                              .floorNumber
+                                          : null,
+                                    ),
                                     options: _model.floorList,
                                     onChanged: (val) async {
                                       setState(
@@ -205,6 +219,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               _model.dropDownValue1 != '') &&
                                           (_model.dropDownValue2 != null &&
                                               _model.dropDownValue2 != '')) {
+                                        FFAppState().currentDropdownSelected =
+                                            CurrentDropdownSelectedDataStruct(
+                                          buildingDoc: _model.dropDownValue1,
+                                          floorNumber: _model.dropDownValue2,
+                                        );
                                         _model.roomResultList =
                                             await _model.getRoomListBlock(
                                           context,
