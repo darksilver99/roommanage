@@ -275,6 +275,8 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                             .text),
                                                   ),
                                                   buildingListRecordReference);
+                                          FFAppState().customerReference =
+                                              _model.insertCustomer?.reference;
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {

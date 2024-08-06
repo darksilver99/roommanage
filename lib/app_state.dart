@@ -33,4 +33,10 @@ class FFAppState extends ChangeNotifier {
   void updateTmpCustomerDataStruct(Function(TmpCustomerDataStruct) updateFn) {
     updateFn(_tmpCustomerData);
   }
+
+  DocumentReference? _customerReference;
+  DocumentReference? get customerReference => _customerReference;
+  set customerReference(DocumentReference? value) {
+    _customerReference = value;
+  }
 }
