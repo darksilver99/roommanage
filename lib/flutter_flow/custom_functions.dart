@@ -13,10 +13,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '/backend/schema/structs/index.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-List<int> setFloorList(int totalFloor) {
-  List<int> floorList = [];
+List<String> setFloorList(int totalFloor) {
+  List<String> floorList = [];
   for (var i = 1; i <= totalFloor; i++) {
-    floorList.add(i);
+    floorList.add(i.toString());
   }
   return floorList;
 }
