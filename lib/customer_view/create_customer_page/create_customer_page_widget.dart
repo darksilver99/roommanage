@@ -59,9 +59,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
               wrapWithModel(
                 model: _model.appBarViewModel,
                 updateCallback: () => setState(() {}),
-                child: AppBarViewWidget(
-                  title: 'testtest',
-                ),
+                child: AppBarViewWidget(),
               ),
               Expanded(
                 child: SingleChildScrollView(
