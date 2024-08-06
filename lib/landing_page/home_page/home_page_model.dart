@@ -75,4 +75,11 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void dispose() {
     backgroundViewModel.dispose();
   }
+
+  /// Action blocks.
+  Future getRoomListBlock(
+    BuildContext context, {
+    required DocumentReference? buildingRef,
+    required int? floor,
+  }) async {}
 }

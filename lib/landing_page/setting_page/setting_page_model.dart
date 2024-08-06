@@ -15,7 +15,7 @@ class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
 
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
-  // Stores action output result for [Action Block - ConfirmBlock] action in Button widget.
+  // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm;
 
   @override

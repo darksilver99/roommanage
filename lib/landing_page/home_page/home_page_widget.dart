@@ -134,8 +134,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     onChanged: (val) async {
                                       setState(
                                           () => _model.dropDownValue1 = val);
-                                      _model.floorList = [];
-                                      setState(() {});
                                       _model.floorList = functions
                                           .setFloorList(_model.buildingDataList
                                               .where((e) =>
@@ -147,6 +145,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           .toList()
                                           .cast<String>();
                                       setState(() {});
+                                      if ((_model.dropDownValue1 != null &&
+                                              _model.dropDownValue1 != '') &&
+                                          (_model.dropDownValue2 != null &&
+                                              _model.dropDownValue2 != '')) {
+                                        await _model.getRoomListBlock(
+                                          context,
+                                          buildingRef: _model.buildingDataList
+                                              .where((e) =>
+                                                  e.buildDoc ==
+                                                  _model.dropDownValue1)
+                                              .toList()
+                                              .first
+                                              .buildingRef,
+                                          floor: functions.stringToInt(
+                                              _model.dropDownValue2!),
+                                        );
+                                      }
                                     },
                                     width: double.infinity,
                                     height: 56.0,
