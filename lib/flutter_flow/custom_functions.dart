@@ -20,3 +20,7 @@ List<String> setFloorList(int totalFloor) {
   }
   return floorList;
 }
+
+int stringToInt(String str) {
+  return int.parse(str);
+}
