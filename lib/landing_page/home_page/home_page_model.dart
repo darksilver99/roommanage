@@ -41,13 +41,13 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           int index, Function(BuildingDataStruct) updateFn) =>
       buildingDataList[index] = updateFn(buildingDataList[index]);
 
-  List<int> floorList = [];
-  void addToFloorList(int item) => floorList.add(item);
-  void removeFromFloorList(int item) => floorList.remove(item);
+  List<String> floorList = [];
+  void addToFloorList(String item) => floorList.add(item);
+  void removeFromFloorList(String item) => floorList.remove(item);
   void removeAtIndexFromFloorList(int index) => floorList.removeAt(index);
-  void insertAtIndexInFloorList(int index, int item) =>
+  void insertAtIndexInFloorList(int index, String item) =>
       floorList.insert(index, item);
-  void updateFloorListAtIndex(int index, Function(int) updateFn) =>
+  void updateFloorListAtIndex(int index, Function(String) updateFn) =>
       floorList[index] = updateFn(floorList[index]);
 
   ///  State fields for stateful widgets in this page.
@@ -63,8 +63,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
   // State field(s) for DropDown widget.
-  int? dropDownValue2;
-  FormFieldController<int>? dropDownValueController2;
+  String? dropDownValue2;
+  FormFieldController<String>? dropDownValueController2;
 
   @override
   void initState(BuildContext context) {

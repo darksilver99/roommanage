@@ -136,9 +136,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       setState(
                                           () => _model.dropDownValue1 = val);
                                       _model.floorList = functions
-                                          .setFloorList(3)
+                                          .setFloorList(_model.buildingDataList
+                                              .where((e) =>
+                                                  _model.dropDownValue1 ==
+                                                  e.buildDoc)
+                                              .toList()
+                                              .first
+                                              .totalFloor)
                                           .toList()
-                                          .cast<int>();
+                                          .cast<String>();
                                       setState(() {});
                                     },
                                     width: double.infinity,
@@ -177,12 +183,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 0.0, 0.0, 0.0),
-                                  child: FlutterFlowDropDown<int>(
+                                  child: FlutterFlowDropDown<String>(
                                     controller:
                                         _model.dropDownValueController2 ??=
-                                            FormFieldController<int>(null),
-                                    options: List<int>.from(_model.floorList),
-                                    optionLabels: [''],
+                                            FormFieldController<String>(null),
+                                    options: [''],
                                     onChanged: (val) async {
                                       setState(
                                           () => _model.dropDownValue2 = val);
