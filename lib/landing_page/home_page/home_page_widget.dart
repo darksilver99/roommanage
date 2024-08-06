@@ -186,7 +186,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     controller:
                                         _model.dropDownValueController2 ??=
                                             FormFieldController<String>(null),
-                                    options: [''],
+                                    options: _model.floorList,
                                     onChanged: (val) async {
                                       setState(
                                           () => _model.dropDownValue2 = val);
