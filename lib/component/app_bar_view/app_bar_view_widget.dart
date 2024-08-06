@@ -10,7 +10,7 @@ export 'app_bar_view_model.dart';
 class AppBarViewWidget extends StatefulWidget {
   const AppBarViewWidget({
     super.key,
-    required this.title,
+    this.title,
   });
 
   final String? title;
@@ -50,42 +50,52 @@ class _AppBarViewWidgetState extends State<AppBarViewWidget> {
         children: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
-            child: Material(
-              color: Colors.transparent,
-              elevation: 2.0,
-              shape: const CircleBorder(),
-              child: Container(
-                width: 46.0,
-                height: 46.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
-                  child: Icon(
-                    Icons.chevron_left_rounded,
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    size: 24.0,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                context.safePop();
+              },
+              child: Material(
+                color: Colors.transparent,
+                elevation: 2.0,
+                shape: const CircleBorder(),
+                child: Container(
+                  width: 46.0,
+                  height: 46.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Icon(
+                      Icons.chevron_left_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 24.0,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-          Expanded(
-            child: AutoSizeText(
-              widget!.title!,
-              maxLines: 1,
-              minFontSize: 18.0,
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Rubik',
-                    color: FlutterFlowTheme.of(context).info,
-                    fontSize: 22.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+          if (widget!.title != null && widget!.title != '')
+            Expanded(
+              child: AutoSizeText(
+                widget!.title!,
+                maxLines: 1,
+                minFontSize: 18.0,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Rubik',
+                      color: FlutterFlowTheme.of(context).info,
+                      fontSize: 22.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
             ),
-          ),
         ],
       ),
     );

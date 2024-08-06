@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/confirm_custom_view/confirm_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';

@@ -7,5 +7,36 @@ service cloud.firestore {
       allow write: if request.auth.uid == document;
       allow delete: if request.auth.uid == document;
     }
+
+    match /customer_name/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /customer_name/{parent}/room_list/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/room_list/{document} {
+      allow read: if true;
+    }
+
+
+    match /customer_name/{parent}/building_list/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/building_list/{document} {
+      allow read: if true;
+    }
+
   }
 }
