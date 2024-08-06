@@ -17,12 +17,29 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      if (prefs.containsKey('ff_currentDropdownSelected')) {
+        try {
+          final serializedData =
+              prefs.getString('ff_currentDropdownSelected') ?? '{}';
+          _currentDropdownSelected =
+              CurrentDropdownSelectedDataStruct.fromSerializableMap(
+                  jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   TmpCustomerDataStruct _tmpCustomerData = TmpCustomerDataStruct();
   TmpCustomerDataStruct get tmpCustomerData => _tmpCustomerData;
@@ -68,4 +85,32 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInBuildingList(int index, BuildingDataStruct value) {
     buildingList.insert(index, value);
   }
+
+  CurrentDropdownSelectedDataStruct _currentDropdownSelected =
+      CurrentDropdownSelectedDataStruct();
+  CurrentDropdownSelectedDataStruct get currentDropdownSelected =>
+      _currentDropdownSelected;
+  set currentDropdownSelected(CurrentDropdownSelectedDataStruct value) {
+    _currentDropdownSelected = value;
+    prefs.setString('ff_currentDropdownSelected', value.serialize());
+  }
+
+  void updateCurrentDropdownSelectedStruct(
+      Function(CurrentDropdownSelectedDataStruct) updateFn) {
+    updateFn(_currentDropdownSelected);
+    prefs.setString(
+        'ff_currentDropdownSelected', _currentDropdownSelected.serialize());
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }
