@@ -59,9 +59,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
               wrapWithModel(
                 model: _model.appBarViewModel,
                 updateCallback: () => setState(() {}),
-                child: AppBarViewWidget(
-                  title: 'testtest',
-                ),
+                child: AppBarViewWidget(),
               ),
               Expanded(
                 child: SingleChildScrollView(
