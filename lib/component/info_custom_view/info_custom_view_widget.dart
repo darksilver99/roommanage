@@ -178,7 +178,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Manrope',
+                                  fontFamily: 'Rubik',
                                   fontSize: 20.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
@@ -198,7 +198,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -222,7 +222,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

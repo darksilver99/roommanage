@@ -181,106 +181,106 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Urbanist';
+  String get displayLargeFamily => 'Rubik';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Urbanist',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 57.0,
       );
-  String get displayMediumFamily => 'Urbanist';
+  String get displayMediumFamily => 'Rubik';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Urbanist',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 45.0,
       );
-  String get displaySmallFamily => 'Urbanist';
+  String get displaySmallFamily => 'Rubik';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Urbanist',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Urbanist';
+  String get headlineLargeFamily => 'Rubik';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Urbanist',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Urbanist';
+  String get headlineMediumFamily => 'Rubik';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Urbanist',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 28.0,
       );
-  String get headlineSmallFamily => 'Urbanist';
+  String get headlineSmallFamily => 'Rubik';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Urbanist',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'Manrope';
+  String get titleLargeFamily => 'Rubik';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Manrope';
+  String get titleMediumFamily => 'Rubik';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Manrope';
+  String get titleSmallFamily => 'Rubik';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Manrope';
+  String get labelLargeFamily => 'Rubik';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelMediumFamily => 'Manrope';
+  String get labelMediumFamily => 'Rubik';
   TextStyle get labelMedium => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
-  String get labelSmallFamily => 'Manrope';
+  String get labelSmallFamily => 'Rubik';
   TextStyle get labelSmall => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => 'Manrope';
+  String get bodyLargeFamily => 'Rubik';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.primaryText,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Manrope';
+  String get bodyMediumFamily => 'Rubik';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Manrope';
+  String get bodySmallFamily => 'Rubik';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Manrope',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,

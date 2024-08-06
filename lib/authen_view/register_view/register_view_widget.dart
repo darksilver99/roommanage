@@ -113,7 +113,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                         'สมัครสมาชิก',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
+                              fontFamily: 'Rubik',
                               fontSize: 22.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
@@ -132,12 +132,12 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           labelText: 'ชื่อ',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -170,7 +170,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
+                              fontFamily: 'Rubik',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.firstNameTextControllerValidator
@@ -189,12 +189,12 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           labelText: 'นามสกุล',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -227,7 +227,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
+                              fontFamily: 'Rubik',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.lastNameTextControllerValidator
@@ -246,12 +246,12 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           labelText: 'เบอร์โทรศัพท์',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -284,7 +284,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
+                              fontFamily: 'Rubik',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.phoneNumberTextControllerValidator
@@ -303,12 +303,12 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           labelText: 'อีเมล (ใช้สำหรับเข้าระบบ)',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -341,7 +341,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
+                              fontFamily: 'Rubik',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.emailTextControllerValidator
@@ -360,12 +360,12 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           labelText: 'รหัสผ่าน',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -411,7 +411,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
+                              fontFamily: 'Rubik',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.paswordTextControllerValidator
@@ -430,12 +430,12 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           labelText: 'ยืนยันรหัสผ่าน',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -481,7 +481,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
+                              fontFamily: 'Rubik',
                               letterSpacing: 0.0,
                             ),
                         validator: _model.password2TextControllerValidator
@@ -529,7 +529,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     color:
                                         FlutterFlowTheme.of(context).tertiary,
                                     letterSpacing: 0.0,
@@ -653,7 +653,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Manrope',
+                                    fontFamily: 'Rubik',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
