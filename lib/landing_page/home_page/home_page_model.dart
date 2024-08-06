@@ -38,6 +38,15 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void updateFloorListAtIndex(int index, Function(String) updateFn) =>
       floorList[index] = updateFn(floorList[index]);
 
+  List<RoomListRecord> roomList = [];
+  void addToRoomList(RoomListRecord item) => roomList.add(item);
+  void removeFromRoomList(RoomListRecord item) => roomList.remove(item);
+  void removeAtIndexFromRoomList(int index) => roomList.removeAt(index);
+  void insertAtIndexInRoomList(int index, RoomListRecord item) =>
+      roomList.insert(index, item);
+  void updateRoomListAtIndex(int index, Function(RoomListRecord) updateFn) =>
+      roomList[index] = updateFn(roomList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -45,6 +54,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   CustomerNameRecord? customerResult;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   List<BuildingListRecord>? buildingResult;
+  // Stores action output result for [Action Block - getRoomListBlock] action in HomePage widget.
+  List<RoomListRecord>? roomResultList2;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for DropDown widget.

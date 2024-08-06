@@ -70,15 +70,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           _model.dataCount = _model.dataCount + 1;
         }
         if (FFAppState().currentDropdownSelected != null) {
-          setState(() {
-            _model.dropDownValueController1?.value =
-                FFAppState().currentDropdownSelected.buildingDoc;
-          });
-          await Future.delayed(const Duration(milliseconds: 100));
-          setState(() {
-            _model.dropDownValueController2?.value =
-                FFAppState().currentDropdownSelected.floorNumber;
-          });
+          _model.floorList = functions
+              .setFloorList(FFAppState()
+                  .buildingList
+                  .where((e) =>
+                      e.buildDoc ==
+                      FFAppState().currentDropdownSelected.buildingDoc)
+                  .toList()
+                  .first
+                  .totalFloor)
+              .toList()
+              .cast<String>();
+          setState(() {});
+          _model.roomResultList2 = await _model.getRoomListBlock(
+            context,
+            buildingRef: FFAppState()
+                .buildingList
+                .where((e) => e.buildDoc == _model.dropDownValue1)
+                .toList()
+                .first
+                .buildingRef,
+            floor: functions.stringToInt(_model.dropDownValue2!),
+          );
+          _model.roomList =
+              _model.roomResultList2!.toList().cast<RoomListRecord>();
+          setState(() {});
         }
       } else {
         _model.isHasCustomer = false;
@@ -138,7 +154,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     controller:
                                         _model.dropDownValueController1 ??=
                                             FormFieldController<String>(
-                                      _model.dropDownValue1 ??= '',
+                                      _model.dropDownValue1 ??= FFAppState()
+                                                  .currentDropdownSelected !=
+                                              null
+                                          ? FFAppState()
+                                              .currentDropdownSelected
+                                              .buildingDoc
+                                          : null,
                                     ),
                                     options: List<String>.from(FFAppState()
                                         .buildingList
@@ -207,7 +229,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: FlutterFlowDropDown<String>(
                                     controller:
                                         _model.dropDownValueController2 ??=
-                                            FormFieldController<String>(null),
+                                            FormFieldController<String>(
+                                      _model.dropDownValue2 ??= FFAppState()
+                                                  .currentDropdownSelected !=
+                                              null
+                                          ? FFAppState()
+                                              .currentDropdownSelected
+                                              .floorNumber
+                                          : null,
+                                    ),
                                     options: _model.floorList,
                                     onChanged: (val) async {
                                       setState(
@@ -235,6 +265,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           floor: functions.stringToInt(
                                               _model.dropDownValue2!),
                                         );
+                                        _model.roomList = _model.roomResultList!
+                                            .toList()
+                                            .cast<RoomListRecord>();
+                                        setState(() {});
                                       }
 
                                       setState(() {});
@@ -279,9 +313,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 8.0, 8.0, 8.0, 0.0),
                             child: Builder(
                               builder: (context) {
-                                final roomList =
-                                    _model.roomResultList?.toList() ?? [];
-                                if (roomList.isEmpty) {
+                                final roomListView = _model.roomList.toList();
+                                if (roomListView.isEmpty) {
                                   return NoRoomViewWidget();
                                 }
 
@@ -300,10 +333,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     childAspectRatio: 0.8,
                                   ),
                                   scrollDirection: Axis.vertical,
-                                  itemCount: roomList.length,
-                                  itemBuilder: (context, roomListIndex) {
-                                    final roomListItem =
-                                        roomList[roomListIndex];
+                                  itemCount: roomListView.length,
+                                  itemBuilder: (context, roomListViewIndex) {
+                                    final roomListViewItem =
+                                        roomListView[roomListViewIndex];
                                     return Material(
                                       color: Colors.transparent,
                                       elevation: 3.0,
@@ -338,7 +371,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      'ห้อง ${roomListItem.subject}',
+                                                      'ห้อง ${roomListViewItem.subject}',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
