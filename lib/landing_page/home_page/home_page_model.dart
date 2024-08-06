@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -40,6 +41,15 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           int index, Function(BuildingDataStruct) updateFn) =>
       buildingDataList[index] = updateFn(buildingDataList[index]);
 
+  List<int> floorList = [];
+  void addToFloorList(int item) => floorList.add(item);
+  void removeFromFloorList(int item) => floorList.remove(item);
+  void removeAtIndexFromFloorList(int index) => floorList.removeAt(index);
+  void insertAtIndexInFloorList(int index, int item) =>
+      floorList.insert(index, item);
+  void updateFloorListAtIndex(int index, Function(int) updateFn) =>
+      floorList[index] = updateFn(floorList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -53,8 +63,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
   // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
+  int? dropDownValue2;
+  FormFieldController<int>? dropDownValueController2;
 
   @override
   void initState(BuildContext context) {
