@@ -109,11 +109,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     controller:
                                         _model.dropDownValueController1 ??=
                                             FormFieldController<String>(
-                                      _model.dropDownValue1 ??= _model
-                                          .buildingResult
-                                          ?.first
-                                          ?.parentReference
-                                          .id,
+                                      _model.dropDownValue1 ??= '',
                                     ),
                                     options: List<String>.from(_model
                                         .buildingResult!
