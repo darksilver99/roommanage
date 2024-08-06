@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'register_view_model.dart';
 export 'register_view_model.dart';
 
@@ -62,7 +64,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(16.0),
@@ -74,7 +76,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -97,7 +99,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
               child: Form(
                 key: _model.formKey,
                 autovalidateMode: AutovalidateMode.disabled,
@@ -106,7 +108,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Text(
                         'สมัครสมาชิก',
                         textAlign: TextAlign.center,
@@ -120,7 +122,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: TextFormField(
                         controller: _model.firstNameTextController,
                         focusNode: _model.firstNameFocusNode,
@@ -177,7 +179,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: TextFormField(
                         controller: _model.lastNameTextController,
                         focusNode: _model.lastNameFocusNode,
@@ -234,7 +236,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: TextFormField(
                         controller: _model.phoneNumberTextController,
                         focusNode: _model.phoneNumberFocusNode,
@@ -291,7 +293,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: TextFormField(
                         controller: _model.emailTextController,
                         focusNode: _model.emailFocusNode,
@@ -348,7 +350,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: TextFormField(
                         controller: _model.paswordTextController,
                         focusNode: _model.paswordFocusNode,
@@ -418,7 +420,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: TextFormField(
                         controller: _model.password2TextController,
                         focusNode: _model.password2FocusNode,
@@ -488,7 +490,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -546,65 +548,107 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                               !_model.formKey.currentState!.validate()) {
                             return;
                           }
-                          GoRouter.of(context).prepareAuthEvent();
-                          if (_model.paswordTextController.text !=
+                          if (_model.paswordTextController.text ==
                               _model.password2TextController.text) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  'Passwords don\'t match!',
-                                ),
-                              ),
-                            );
-                            return;
-                          }
+                            if (_model.checkboxValue!) {
+                              GoRouter.of(context).prepareAuthEvent();
+                              if (_model.paswordTextController.text !=
+                                  _model.password2TextController.text) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Passwords don\'t match!',
+                                    ),
+                                  ),
+                                );
+                                return;
+                              }
 
-                          final user = await authManager.createAccountWithEmail(
-                            context,
-                            _model.emailTextController.text,
-                            _model.paswordTextController.text,
-                          );
-                          if (user == null) {
-                            return;
-                          }
-
-                          await UsersRecord.collection
-                              .doc(user.uid)
-                              .update(createUsersRecordData(
-                                email: _model.emailTextController.text,
-                                createdTime: getCurrentTimestamp,
-                                phoneNumber:
-                                    _model.phoneNumberTextController.text,
-                                firstName: _model.firstNameTextController.text,
-                                lastName: _model.lastNameTextController.text,
-                              ));
-
-                          await showDialog(
-                            context: context,
-                            builder: (dialogContext) {
-                              return Dialog(
-                                elevation: 0,
-                                insetPadding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
-                                    .resolve(Directionality.of(context)),
-                                child: const InfoCustomViewWidget(
-                                  title: 'สมัครสมาชิกเรียบร้อยแล้ว',
-                                  status: 'success',
-                                ),
+                              final user =
+                                  await authManager.createAccountWithEmail(
+                                context,
+                                _model.emailTextController.text,
+                                _model.paswordTextController.text,
                               );
-                            },
-                          ).then((value) => setState(() {}));
+                              if (user == null) {
+                                return;
+                              }
 
-                          context.goNamedAuth('HomePage', context.mounted);
+                              await UsersRecord.collection
+                                  .doc(user.uid)
+                                  .update(createUsersRecordData(
+                                    email: _model.emailTextController.text,
+                                    createdTime: getCurrentTimestamp,
+                                    phoneNumber:
+                                        _model.phoneNumberTextController.text,
+                                    firstName:
+                                        _model.firstNameTextController.text,
+                                    lastName:
+                                        _model.lastNameTextController.text,
+                                  ));
+
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: InfoCustomViewWidget(
+                                      title: 'สมัครสมาชิกเรียบร้อยแล้ว',
+                                      status: 'success',
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+
+                              context.goNamedAuth('HomePage', context.mounted);
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: InfoCustomViewWidget(
+                                      title: 'กรุณายอมรับนโยบายความเป็นส่วนตัว',
+                                      status: 'error',
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            }
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: InfoCustomViewWidget(
+                                    title: 'รหัสผ่านไม่ตรงกัน',
+                                    status: 'error',
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          }
                         },
                         text: 'สมัครสมาชิก',
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -614,7 +658,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

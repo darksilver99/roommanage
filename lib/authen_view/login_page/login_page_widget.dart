@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
@@ -50,7 +52,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
           wrapWithModel(
             model: _model.backgroundViewModel,
             updateCallback: () => setState(() {}),
-            child: const BackgroundViewWidget(),
+            child: BackgroundViewWidget(),
           ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(
@@ -68,7 +70,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -79,13 +81,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         key: _model.formKey,
                         autovalidateMode: AutovalidateMode.always,
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 32.0, 16.0, 32.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: TextFormField(
                                   controller: _model.emailTextController,
@@ -150,7 +152,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 4.0),
                                 child: TextFormField(
                                   controller: _model.passwordTextController,
@@ -229,7 +231,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -238,7 +240,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     Expanded(
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.0, 0.0),
                                         child: Text(
                                           'ลืมรหัสผ่าน ?',
                                           style: FlutterFlowTheme.of(context)
@@ -254,7 +256,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -279,16 +281,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         'HomePage', context.mounted);
                                   },
                                   text: 'เข้าสู่ระบบ',
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.login_rounded,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -299,7 +301,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -344,7 +346,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
                                                         context),
-                                                child: const RegisterViewWidget(),
+                                                child: RegisterViewWidget(),
                                               );
                                             },
                                           ).then(

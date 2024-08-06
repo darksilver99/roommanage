@@ -2,8 +2,12 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'info_custom_view_model.dart';
 export 'info_custom_view_model.dart';
 
@@ -44,36 +48,36 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          FadeEffect(
+          ScaleEffect(
             curve: Curves.easeInOut,
-            delay: 100.0.ms,
-            duration: 200.0.ms,
-            begin: 0.0,
-            end: 1.0,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(-5.0, -5.0),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
       'iconOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          FadeEffect(
+          ScaleEffect(
             curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 150.0.ms,
-            begin: 0.0,
-            end: 1.0,
+            delay: 0.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(-5.0, -5.0),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
       'iconOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          FadeEffect(
+          ScaleEffect(
             curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 150.0.ms,
-            begin: 0.0,
-            end: 1.0,
+            delay: 0.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(-5.0, -5.0),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -94,7 +98,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 0.0),
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
@@ -105,7 +109,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -129,17 +133,17 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 32.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 32.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        if (widget.status != null && widget.status != '')
+                        if (widget!.status != null && widget!.status != '')
                           Builder(
                             builder: (context) {
-                              if (widget.status == 'success') {
+                              if (widget!.status == 'success') {
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Icon(
                                     Icons.check_circle_rounded,
@@ -150,7 +154,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                                 );
                               } else {
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Icon(
                                     Icons.info_rounded,
@@ -163,11 +167,11 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                             },
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget.title,
+                              widget!.title,
                               '-',
                             ),
                             textAlign: TextAlign.center,
@@ -181,13 +185,13 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                                 ),
                           ),
                         ),
-                        if (widget.detail != null && widget.detail != '')
+                        if (widget!.detail != null && widget!.detail != '')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.detail,
+                                widget!.detail,
                                 '-',
                               ),
                               textAlign: TextAlign.center,
@@ -201,7 +205,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -210,9 +214,9 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                             text: 'ตกลง',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -223,7 +227,7 @@ class _InfoCustomViewWidgetState extends State<InfoCustomViewWidget>
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

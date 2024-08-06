@@ -8,7 +8,6 @@ export '../base_auth_user_provider.dart';
 class RoomManageFirebaseUser extends BaseAuthUser {
   RoomManageFirebaseUser(this.user);
   User? user;
-  @override
   bool get loggedIn => user != null;
 
   @override
