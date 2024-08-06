@@ -29,19 +29,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   int dataCount = 0;
 
-  List<BuildingDataStruct> buildingDataList = [];
-  void addToBuildingDataList(BuildingDataStruct item) =>
-      buildingDataList.add(item);
-  void removeFromBuildingDataList(BuildingDataStruct item) =>
-      buildingDataList.remove(item);
-  void removeAtIndexFromBuildingDataList(int index) =>
-      buildingDataList.removeAt(index);
-  void insertAtIndexInBuildingDataList(int index, BuildingDataStruct item) =>
-      buildingDataList.insert(index, item);
-  void updateBuildingDataListAtIndex(
-          int index, Function(BuildingDataStruct) updateFn) =>
-      buildingDataList[index] = updateFn(buildingDataList[index]);
-
   List<String> floorList = [];
   void addToFloorList(String item) => floorList.add(item);
   void removeFromFloorList(String item) => floorList.remove(item);

@@ -57,15 +57,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               )
               .orderBy('create_date'),
         );
-        _model.buildingDataList = [];
+        FFAppState().buildingList = [];
         while (_model.dataCount < _model.buildingResult!.length) {
-          _model.addToBuildingDataList(BuildingDataStruct(
+          FFAppState().addToBuildingList(BuildingDataStruct(
             subject: _model.buildingResult?[_model.dataCount]?.subject,
             totalFloor: _model.buildingResult?[_model.dataCount]?.totalFloor,
             buildingRef: _model.buildingResult?[_model.dataCount]?.reference,
             buildDoc:
                 'customer_name/${_model.buildingResult?[_model.dataCount]?.parentReference.id}/building_list/${_model.buildingResult?[_model.dataCount]?.reference.id}',
           ));
+          setState(() {});
           _model.dataCount = _model.dataCount + 1;
         }
       } else {
@@ -93,31 +94,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          print('FloatingActionButton pressed ...');
-        },
-        backgroundColor: FlutterFlowTheme.of(context).primary,
-        elevation: 8.0,
-        label: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Icon(
-              Icons.add_rounded,
-              color: FlutterFlowTheme.of(context).info,
-              size: 24.0,
-            ),
-            Text(
-              'เพิ่มห้อง',
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Rubik',
-                    color: FlutterFlowTheme.of(context).info,
-                    letterSpacing: 0.0,
-                  ),
-            ),
-          ],
-        ),
-      ),
       body: Stack(
         children: [
           wrapWithModel(
@@ -153,12 +129,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             FormFieldController<String>(
                                       _model.dropDownValue1 ??= '',
                                     ),
-                                    options: List<String>.from(_model
-                                        .buildingDataList
-                                        .map((e) => e.buildDoc)
-                                        .toList()),
-                                    optionLabels: _model.buildingDataList
+                                    options: List<String>.from(FFAppState()
+                                        .buildingList
                                         .map((e) => e.subject)
+                                        .toList()),
+                                    optionLabels: FFAppState()
+                                        .buildingList
+                                        .map((e) => e.buildDoc)
                                         .toList(),
                                     onChanged: (val) async {
                                       setState(
@@ -168,10 +145,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ?.reset();
                                       });
                                       _model.floorList = functions
-                                          .setFloorList(_model.buildingDataList
+                                          .setFloorList(FFAppState()
+                                              .buildingList
                                               .where((e) =>
-                                                  _model.dropDownValue1 ==
-                                                  e.buildDoc)
+                                                  e.buildDoc ==
+                                                  _model.dropDownValue1)
                                               .toList()
                                               .first
                                               .totalFloor)
@@ -230,7 +208,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         _model.roomResultList =
                                             await _model.getRoomListBlock(
                                           context,
-                                          buildingRef: _model.buildingDataList
+                                          buildingRef: FFAppState()
+                                              .buildingList
                                               .where((e) =>
                                                   e.buildDoc ==
                                                   _model.dropDownValue1)
