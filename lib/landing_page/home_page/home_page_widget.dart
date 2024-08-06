@@ -54,12 +54,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               )
               .orderBy('create_date'),
         );
-        while (_model.dataCount <= _model.buildingResult!.length) {
+        while (_model.dataCount < _model.buildingResult!.length) {
           _model.addToBuildingDataList(BuildingDataStruct(
             subject: _model.buildingResult?[_model.dataCount]?.subject,
             totalFloor: _model.buildingResult?[_model.dataCount]?.totalFloor,
             buildingRef: _model.buildingResult?[_model.dataCount]?.reference,
-            buildDoc: _model.buildingResult?[_model.dataCount]?.reference.id,
+            buildDoc:
+                '${_model.buildingResult?[_model.dataCount]?.parentReference.id}/${_model.buildingResult?[_model.dataCount]?.reference.id}',
           ));
           _model.dataCount = _model.dataCount + 1;
         }
