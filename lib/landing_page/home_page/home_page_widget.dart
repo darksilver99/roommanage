@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -53,6 +54,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               )
               .orderBy('create_date'),
         );
+        while (_model.dataCount <= _model.buildingResult!.length) {
+          _model.addToBuildingDataList(BuildingDataStruct(
+            subject: _model.buildingResult?[_model.dataCount]?.subject,
+            totalFloor: _model.buildingResult?[_model.dataCount]?.totalFloor,
+            buildingRef: _model.buildingResult?[_model.dataCount]?.reference,
+            buildDoc: _model.buildingResult?[_model.dataCount]?.reference.id,
+          ));
+          _model.dataCount = _model.dataCount + 1;
+        }
       } else {
         _model.isHasCustomer = false;
 
@@ -112,10 +122,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       _model.dropDownValue1 ??= '',
                                     ),
                                     options: List<String>.from(_model
-                                        .buildingResult!
-                                        .map((e) => e.parentReference.id)
+                                        .buildingDataList
+                                        .map((e) => e.buildingRef?.id)
+                                        .withoutNulls
                                         .toList()),
-                                    optionLabels: _model.buildingResult!
+                                    optionLabels: _model.buildingDataList
                                         .map((e) => e.subject)
                                         .toList(),
                                     onChanged: (val) async {

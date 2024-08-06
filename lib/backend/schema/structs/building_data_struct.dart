@@ -13,12 +13,12 @@ class BuildingDataStruct extends FFFirebaseStruct {
     String? subject,
     int? totalFloor,
     DocumentReference? buildingRef,
-    String? buildingPath,
+    String? buildDoc,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _subject = subject,
         _totalFloor = totalFloor,
         _buildingRef = buildingRef,
-        _buildingPath = buildingPath,
+        _buildDoc = buildDoc,
         super(firestoreUtilData);
 
   // "subject" field.
@@ -44,19 +44,19 @@ class BuildingDataStruct extends FFFirebaseStruct {
 
   bool hasBuildingRef() => _buildingRef != null;
 
-  // "building_path" field.
-  String? _buildingPath;
-  String get buildingPath => _buildingPath ?? '';
-  set buildingPath(String? val) => _buildingPath = val;
+  // "build_doc" field.
+  String? _buildDoc;
+  String get buildDoc => _buildDoc ?? '';
+  set buildDoc(String? val) => _buildDoc = val;
 
-  bool hasBuildingPath() => _buildingPath != null;
+  bool hasBuildDoc() => _buildDoc != null;
 
   static BuildingDataStruct fromMap(Map<String, dynamic> data) =>
       BuildingDataStruct(
         subject: data['subject'] as String?,
         totalFloor: castToType<int>(data['total_floor']),
         buildingRef: data['building_ref'] as DocumentReference?,
-        buildingPath: data['building_path'] as String?,
+        buildDoc: data['build_doc'] as String?,
       );
 
   static BuildingDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -67,7 +67,7 @@ class BuildingDataStruct extends FFFirebaseStruct {
         'subject': _subject,
         'total_floor': _totalFloor,
         'building_ref': _buildingRef,
-        'building_path': _buildingPath,
+        'build_doc': _buildDoc,
       }.withoutNulls;
 
   @override
@@ -84,8 +84,8 @@ class BuildingDataStruct extends FFFirebaseStruct {
           _buildingRef,
           ParamType.DocumentReference,
         ),
-        'building_path': serializeParam(
-          _buildingPath,
+        'build_doc': serializeParam(
+          _buildDoc,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -108,8 +108,8 @@ class BuildingDataStruct extends FFFirebaseStruct {
           false,
           collectionNamePath: ['customer_name', 'building_list'],
         ),
-        buildingPath: deserializeParam(
-          data['building_path'],
+        buildDoc: deserializeParam(
+          data['build_doc'],
           ParamType.String,
           false,
         ),
@@ -124,19 +124,19 @@ class BuildingDataStruct extends FFFirebaseStruct {
         subject == other.subject &&
         totalFloor == other.totalFloor &&
         buildingRef == other.buildingRef &&
-        buildingPath == other.buildingPath;
+        buildDoc == other.buildDoc;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([subject, totalFloor, buildingRef, buildingPath]);
+  int get hashCode =>
+      const ListEquality().hash([subject, totalFloor, buildingRef, buildDoc]);
 }
 
 BuildingDataStruct createBuildingDataStruct({
   String? subject,
   int? totalFloor,
   DocumentReference? buildingRef,
-  String? buildingPath,
+  String? buildDoc,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -146,7 +146,7 @@ BuildingDataStruct createBuildingDataStruct({
       subject: subject,
       totalFloor: totalFloor,
       buildingRef: buildingRef,
-      buildingPath: buildingPath,
+      buildDoc: buildDoc,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
