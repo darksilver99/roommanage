@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -201,39 +202,91 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                   .validate()) {
                                             return;
                                           }
+                                          _model.totalRoom =
+                                              await queryRoomListRecordCount(
+                                            parent:
+                                                FFAppState().customerReference,
+                                            queryBuilder: (roomListRecord) =>
+                                                roomListRecord
+                                                    .where(
+                                                      'building_ref',
+                                                      isEqualTo:
+                                                          widget!.buildingRef,
+                                                    )
+                                                    .where(
+                                                      'floor_number',
+                                                      isEqualTo: widget!.floor,
+                                                    )
+                                                    .where(
+                                                      'subject',
+                                                      isEqualTo: _model
+                                                          .textController.text,
+                                                    ),
+                                          );
+                                          if (_model.totalRoom! > 0) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: InfoCustomViewWidget(
+                                                    title: 'เลขที่ห้องซ้ำ',
+                                                    detail:
+                                                        'กรุณาตรวจสอบเลขที่ห้อง เนื่องจาก อาคารนี้ตึกนี้มีเลขที่ห้องนี้อยู่แล้ว',
+                                                    status: 'error',
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+                                          } else {
+                                            await RoomListRecord.createDoc(
+                                                    FFAppState()
+                                                        .customerReference!)
+                                                .set(createRoomListRecordData(
+                                              createDate: getCurrentTimestamp,
+                                              createBy: currentUserReference,
+                                              subject:
+                                                  _model.textController.text,
+                                              status: 1,
+                                              buildingRef: widget!.buildingRef,
+                                              floorNumber: widget!.floor,
+                                            ));
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: InfoCustomViewWidget(
+                                                    title:
+                                                        'สร้างห้องสำเร็จแล้ว',
+                                                    status: 'success',
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
 
-                                          await RoomListRecord.createDoc(
-                                                  FFAppState()
-                                                      .customerReference!)
-                                              .set(createRoomListRecordData(
-                                            createDate: getCurrentTimestamp,
-                                            createBy: currentUserReference,
-                                            subject: _model.textController.text,
-                                            status: 1,
-                                            buildingRef: widget!.buildingRef,
-                                            floorNumber: widget!.floor,
-                                          ));
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: InfoCustomViewWidget(
-                                                  title: 'สร้างห้องสำเร็จแล้ว',
-                                                  status: 'success',
-                                                ),
-                                              );
-                                            },
-                                          ).then((value) => setState(() {}));
+                                            context.goNamed('HomePage');
+                                          }
 
-                                          context.goNamed('HomePage');
+                                          setState(() {});
                                         },
                                         text: 'ยืนยัน',
                                         icon: FaIcon(
