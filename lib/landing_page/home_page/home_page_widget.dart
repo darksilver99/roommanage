@@ -183,8 +183,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             FormFieldController<int>(null),
                                     options: List<int>.from(_model.floorList),
                                     optionLabels: [''],
-                                    onChanged: (val) => setState(
-                                        () => _model.dropDownValue2 = val),
+                                    onChanged: (val) async {
+                                      setState(
+                                          () => _model.dropDownValue2 = val);
+                                      setState(() {});
+                                    },
                                     width: double.infinity,
                                     height: 56.0,
                                     textStyle: FlutterFlowTheme.of(context)
