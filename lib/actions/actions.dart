@@ -1,4 +1,7 @@
+import '/backend/backend.dart';
 import '/component/confirm_custom_view/confirm_custom_view_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 
 Future<bool?> confirmBlock(
@@ -16,7 +19,7 @@ Future<bool?> confirmBlock(
         insetPadding: EdgeInsets.zero,
         backgroundColor: Colors.transparent,
         alignment:
-            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
         child: ConfirmCustomViewWidget(
           title: title!,
           detail: detail,

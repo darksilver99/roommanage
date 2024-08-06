@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'app_bar_view_model.dart';
 export 'app_bar_view_model.dart';
 
@@ -42,12 +44,12 @@ class _AppBarViewWidgetState extends State<AppBarViewWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
             child: Material(
               color: Colors.transparent,
               elevation: 2.0,
@@ -55,12 +57,12 @@ class _AppBarViewWidgetState extends State<AppBarViewWidget> {
               child: Container(
                 width: 46.0,
                 height: 46.0,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
                 child: Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Icon(
                     Icons.chevron_left_rounded,
                     color: FlutterFlowTheme.of(context).secondaryText,
@@ -72,7 +74,7 @@ class _AppBarViewWidgetState extends State<AppBarViewWidget> {
           ),
           Expanded(
             child: AutoSizeText(
-              widget.title!,
+              widget!.title!,
               maxLines: 1,
               minFontSize: 18.0,
               style: FlutterFlowTheme.of(context).bodyMedium.override(

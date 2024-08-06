@@ -2,7 +2,10 @@ import '/component/app_bar_view/app_bar_view_widget.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'test_page_model.dart';
 export 'test_page_model.dart';
 
@@ -41,7 +44,7 @@ class _TestPageWidgetState extends State<TestPageWidget> {
           wrapWithModel(
             model: _model.backgroundViewModel,
             updateCallback: () => setState(() {}),
-            child: const BackgroundViewWidget(),
+            child: BackgroundViewWidget(),
           ),
           Column(
             mainAxisSize: MainAxisSize.max,
@@ -49,7 +52,7 @@ class _TestPageWidgetState extends State<TestPageWidget> {
               wrapWithModel(
                 model: _model.appBarViewModel,
                 updateCallback: () => setState(() {}),
-                child: const AppBarViewWidget(
+                child: AppBarViewWidget(
                   title: 'testtest',
                 ),
               ),
