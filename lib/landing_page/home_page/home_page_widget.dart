@@ -134,6 +134,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     onChanged: (val) async {
                                       setState(
                                           () => _model.dropDownValue1 = val);
+                                      _model.floorList = [];
+                                      setState(() {});
                                       _model.floorList = functions
                                           .setFloorList(_model.buildingDataList
                                               .where((e) =>
