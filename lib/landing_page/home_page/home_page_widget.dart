@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             totalFloor: _model.buildingResult?[_model.dataCount]?.totalFloor,
             buildingRef: _model.buildingResult?[_model.dataCount]?.reference,
             buildDoc:
-                'customer_name/${_model.buildingResult?[_model.dataCount]?.parentReference.id}/building_list${_model.buildingResult?[_model.dataCount]?.reference.id}',
+                'customer_name/${_model.buildingResult?[_model.dataCount]?.parentReference.id}/building_list/${_model.buildingResult?[_model.dataCount]?.reference.id}',
           ));
           _model.dataCount = _model.dataCount + 1;
         }
@@ -134,6 +135,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     onChanged: (val) async {
                                       setState(
                                           () => _model.dropDownValue1 = val);
+                                      _model.floorList = functions
+                                          .setFloorList(3)
+                                          .toList()
+                                          .cast<int>();
                                       setState(() {});
                                     },
                                     width: double.infinity,
@@ -172,11 +177,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 0.0, 0.0, 0.0),
-                                  child: FlutterFlowDropDown<String>(
+                                  child: FlutterFlowDropDown<int>(
                                     controller:
                                         _model.dropDownValueController2 ??=
-                                            FormFieldController<String>(null),
-                                    options: ['ชั้น 1'],
+                                            FormFieldController<int>(
+                                      _model.dropDownValue2 ??=
+                                          _model.floorList.first,
+                                    ),
+                                    options: List<int>.from(_model.floorList),
+                                    optionLabels: [''],
                                     onChanged: (val) => setState(
                                         () => _model.dropDownValue2 = val),
                                     width: double.infinity,
