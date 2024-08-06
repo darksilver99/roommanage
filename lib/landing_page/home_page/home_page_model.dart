@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
+import '/component/no_room_view/no_room_view_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -65,6 +66,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue2;
   FormFieldController<String>? dropDownValueController2;
+  // Stores action output result for [Action Block - getRoomListBlock] action in DropDown widget.
+  List<RoomListRecord>? roomResultList;
 
   @override
   void initState(BuildContext context) {
@@ -77,9 +80,17 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   }
 
   /// Action blocks.
-  Future getRoomListBlock(
+  Future<List<RoomListRecord>?> getRoomListBlock(
     BuildContext context, {
     required DocumentReference? buildingRef,
     required int? floor,
-  }) async {}
+  }) async {
+    List<RoomListRecord>? roomList;
+
+    roomList = await queryRoomListRecordOnce(
+      parent: FFAppState().customerReference,
+      queryBuilder: (roomListRecord) => roomListRecord.orderBy('subject'),
+    );
+    return roomList;
+  }
 }
