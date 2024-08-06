@@ -1,3 +1,4 @@
+import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -82,7 +83,7 @@ class _NoRoomViewWidgetState extends State<NoRoomViewWidget> {
                             backgroundColor: Colors.transparent,
                             alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: NoRoomViewWidget(),
+                            child: SelectBuildingAndFloorViewWidget(),
                           );
                         },
                       ).then((value) => setState(() {}));
