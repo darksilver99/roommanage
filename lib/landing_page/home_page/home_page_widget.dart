@@ -93,6 +93,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          print('FloatingActionButton pressed ...');
+        },
+        backgroundColor: FlutterFlowTheme.of(context).primary,
+        elevation: 8.0,
+        label: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Icon(
+              Icons.add_rounded,
+              color: FlutterFlowTheme.of(context).info,
+              size: 24.0,
+            ),
+            Text(
+              'เพิ่มห้อง',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Rubik',
+                    color: FlutterFlowTheme.of(context).info,
+                    letterSpacing: 0.0,
+                  ),
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           wrapWithModel(
