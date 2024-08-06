@@ -131,11 +131,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                                     options: List<String>.from(FFAppState()
                                         .buildingList
-                                        .map((e) => e.subject)
+                                        .map((e) => e.buildDoc)
                                         .toList()),
                                     optionLabels: FFAppState()
                                         .buildingList
-                                        .map((e) => e.buildDoc)
+                                        .map((e) => e.subject)
                                         .toList(),
                                     onChanged: (val) async {
                                       setState(
