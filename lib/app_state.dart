@@ -39,4 +39,33 @@ class FFAppState extends ChangeNotifier {
   set customerReference(DocumentReference? value) {
     _customerReference = value;
   }
+
+  List<BuildingDataStruct> _buildingList = [];
+  List<BuildingDataStruct> get buildingList => _buildingList;
+  set buildingList(List<BuildingDataStruct> value) {
+    _buildingList = value;
+  }
+
+  void addToBuildingList(BuildingDataStruct value) {
+    buildingList.add(value);
+  }
+
+  void removeFromBuildingList(BuildingDataStruct value) {
+    buildingList.remove(value);
+  }
+
+  void removeAtIndexFromBuildingList(int index) {
+    buildingList.removeAt(index);
+  }
+
+  void updateBuildingListAtIndex(
+    int index,
+    BuildingDataStruct Function(BuildingDataStruct) updateFn,
+  ) {
+    buildingList[index] = updateFn(_buildingList[index]);
+  }
+
+  void insertAtIndexInBuildingList(int index, BuildingDataStruct value) {
+    buildingList.insert(index, value);
+  }
 }
