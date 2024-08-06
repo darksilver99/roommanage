@@ -10,3 +10,5 @@ export '/customer_view/create_building_page/create_building_page_widget.dart'
     show CreateBuildingPageWidget;
 export '/customer_view/create_floor_page/create_floor_page_widget.dart'
     show CreateFloorPageWidget;
+export '/room_view/create_room_page/create_room_page_widget.dart'
+    show CreateRoomPageWidget;

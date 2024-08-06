@@ -126,6 +126,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CreateFloorPage',
           path: '/createFloorPage',
           builder: (context, params) => CreateFloorPageWidget(),
+        ),
+        FFRoute(
+          name: 'CreateRoomPage',
+          path: '/createRoomPage',
+          builder: (context, params) => CreateRoomPageWidget(
+            buildingRef: params.getParam(
+              'buildingRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['customer_name', 'building_list'],
+            ),
+            floor: params.getParam(
+              'floor',
+              ParamType.int,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
