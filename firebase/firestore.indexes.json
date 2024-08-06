@@ -23,6 +23,10 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "building_ref",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "subject",
           "order": "ASCENDING"
         }
