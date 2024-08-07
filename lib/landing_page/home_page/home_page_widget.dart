@@ -131,7 +131,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 },
               );
             },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
             elevation: 8.0,
             label: Row(
               mainAxisSize: MainAxisSize.max,
