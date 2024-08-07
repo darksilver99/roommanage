@@ -884,10 +884,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .end,
                                                           children: [
                                                             if (roomListViewItem
-                                                                    .endDate !=
+                                                                    .guestRef !=
                                                                 null)
                                                               Text(
-                                                                'พักถึงวันที่ ${functions.dateTh(roomListViewItem.endDate)}',
+                                                                roomListViewItem
+                                                                        .isDaily
+                                                                    ? 'รายวัน'
+                                                                    : 'รายเดือน',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
