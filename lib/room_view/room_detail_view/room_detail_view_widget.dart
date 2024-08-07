@@ -487,7 +487,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                               },
                                               text: 'เปิดห้องพัก',
                                               options: FFButtonOptions(
-                                                height: 40.0,
+                                                height: 50.0,
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
