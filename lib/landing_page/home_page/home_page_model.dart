@@ -38,6 +38,15 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void updateRoomListAtIndex(int index, Function(RoomListRecord) updateFn) =>
       roomList[index] = updateFn(roomList[index]);
 
+  List<RoomListRecord> tmpRoomList = [];
+  void addToTmpRoomList(RoomListRecord item) => tmpRoomList.add(item);
+  void removeFromTmpRoomList(RoomListRecord item) => tmpRoomList.remove(item);
+  void removeAtIndexFromTmpRoomList(int index) => tmpRoomList.removeAt(index);
+  void insertAtIndexInTmpRoomList(int index, RoomListRecord item) =>
+      tmpRoomList.insert(index, item);
+  void updateTmpRoomListAtIndex(int index, Function(RoomListRecord) updateFn) =>
+      tmpRoomList[index] = updateFn(tmpRoomList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -45,8 +54,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   CustomerNameRecord? customerResult;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   List<BuildingListRecord>? buildingResult;
-  // Stores action output result for [Action Block - getRoomListBlock] action in HomePage widget.
-  List<RoomListRecord>? roomResultList;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for Checkbox widget.
@@ -57,12 +64,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   bool? checkboxValue3;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? isSearch;
-  // Stores action output result for [Action Block - getRoomListBlock] action in Button widget.
-  List<RoomListRecord>? roomResultList2;
   // Stores action output result for [Bottom Sheet - RoomDetailView] action in Container widget.
   String? isUpdate;
-  // Stores action output result for [Action Block - getRoomListBlock] action in Container widget.
-  List<RoomListRecord>? roomResultList3;
 
   @override
   void initState(BuildContext context) {
@@ -75,7 +78,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   }
 
   /// Action blocks.
-  Future<List<RoomListRecord>?> getRoomListBlock(
+  Future getRoomListBlock(
     BuildContext context, {
     required DocumentReference? buildingRef,
     required int? floor,
@@ -95,6 +98,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           )
           .orderBy('subject'),
     );
-    return roomList;
+    roomList = roomList!.toList().cast<RoomListRecord>();
+    tmpRoomList = roomList!.toList().cast<RoomListRecord>();
   }
 }

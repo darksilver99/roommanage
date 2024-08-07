@@ -71,7 +71,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         }
         if (FFAppState().currentDropdownSelected.buildingDoc != null &&
             FFAppState().currentDropdownSelected.buildingDoc != '') {
-          _model.roomResultList = await _model.getRoomListBlock(
+          await _model.getRoomListBlock(
             context,
             buildingRef: FFAppState()
                 .buildingList
@@ -84,9 +84,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             floor: functions
                 .stringToInt(FFAppState().currentDropdownSelected.floorNumber),
           );
-          _model.roomList =
-              _model.roomResultList!.toList().cast<RoomListRecord>();
-          setState(() {});
         }
       } else {
         _model.isHasCustomer = false;
@@ -156,7 +153,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Text(
-                                              '${FFAppState().buildingList.where((e) => e.buildDoc == FFAppState().currentDropdownSelected.buildingDoc).toList().first.subject} ชั้น ${FFAppState().currentDropdownSelected.floorNumber} ห้องทั้งหมด ${_model.roomList.length.toString()}',
+                                              '${FFAppState().buildingList.where((e) => e.buildDoc == FFAppState().currentDropdownSelected.buildingDoc).toList().first.subject} ชั้น ${FFAppState().currentDropdownSelected.floorNumber} จำนวน ${_model.roomList.length.toString()} ห้อง',
                                               textAlign: TextAlign.center,
                                               maxLines: 2,
                                               style: FlutterFlowTheme.of(
@@ -239,7 +236,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       unselectedWidgetColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .info,
                                                     ),
                                                     child: Checkbox(
                                                       value: _model
@@ -256,7 +253,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .secondaryText,
+                                                                .info,
                                                       ),
                                                       activeColor:
                                                           FlutterFlowTheme.of(
@@ -275,6 +272,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .info,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -304,7 +304,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       unselectedWidgetColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .info,
                                                     ),
                                                     child: Checkbox(
                                                       value: _model
@@ -321,7 +321,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .secondaryText,
+                                                                .info,
                                                       ),
                                                       activeColor:
                                                           FlutterFlowTheme.of(
@@ -340,6 +340,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .info,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -369,7 +372,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       unselectedWidgetColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .info,
                                                     ),
                                                     child: Checkbox(
                                                       value: _model
@@ -386,7 +389,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .secondaryText,
+                                                                .info,
                                                       ),
                                                       activeColor:
                                                           FlutterFlowTheme.of(
@@ -405,6 +408,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .info,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -444,8 +450,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     if ((_model.isSearch != null &&
                                             _model.isSearch != '') &&
                                         (_model.isSearch == 'search')) {
-                                      _model.roomResultList2 =
-                                          await _model.getRoomListBlock(
+                                      await _model.getRoomListBlock(
                                         context,
                                         buildingRef: FFAppState()
                                             .buildingList
@@ -462,10 +467,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 .currentDropdownSelected
                                                 .floorNumber),
                                       );
-                                      _model.roomList = _model.roomResultList2!
-                                          .toList()
-                                          .cast<RoomListRecord>();
-                                      setState(() {});
                                     }
 
                                     setState(() {});
@@ -483,6 +484,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         .override(
                                           fontFamily: 'Rubik',
                                           color: Colors.white,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
@@ -554,8 +556,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         if ((_model.isUpdate != null &&
                                                 _model.isUpdate != '') &&
                                             (_model.isUpdate == 'update')) {
-                                          _model.roomResultList3 =
-                                              await _model.getRoomListBlock(
+                                          await _model.getRoomListBlock(
                                             context,
                                             buildingRef: FFAppState()
                                                 .buildingList
@@ -572,11 +573,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     .currentDropdownSelected
                                                     .floorNumber),
                                           );
-                                          _model.roomList = _model
-                                              .roomResultList3!
-                                              .toList()
-                                              .cast<RoomListRecord>();
-                                          setState(() {});
                                         }
 
                                         setState(() {});
@@ -643,73 +639,75 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .circle_rounded,
-                                                              color: () {
-                                                                if (roomListViewItem
-                                                                        .status ==
-                                                                    0) {
-                                                                  return FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary;
-                                                                } else if (roomListViewItem
-                                                                        .status ==
-                                                                    1) {
-                                                                  return FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .error;
-                                                                } else {
-                                                                  return FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .warning;
-                                                                }
-                                                              }(),
-                                                              size: 12.0,
-                                                            ),
-                                                          ),
-                                                          Flexible(
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                functions.getStatusText(
-                                                                    roomListViewItem
-                                                                        .status,
-                                                                    FFAppState()
-                                                                        .roomStatusList
-                                                                        .toList()),
-                                                                '-',
+                                                      Expanded(
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          4.0,
+                                                                          0.0),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .circle_rounded,
+                                                                color: () {
+                                                                  if (roomListViewItem
+                                                                          .status ==
+                                                                      0) {
+                                                                    return FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary;
+                                                                  } else if (roomListViewItem
+                                                                          .status ==
+                                                                      1) {
+                                                                    return FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error;
+                                                                  } else {
+                                                                    return FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .warning;
+                                                                  }
+                                                                }(),
+                                                                size: 12.0,
                                                               ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Rubik',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                            Flexible(
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  functions.getStatusText(
+                                                                      roomListViewItem
+                                                                          .status,
+                                                                      FFAppState()
+                                                                          .roomStatusList
+                                                                          .toList()),
+                                                                  '-',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Rubik',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                       if (roomListViewItem
                                                               .status ==
@@ -717,7 +715,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Text(
                                                           'พักถึงวันที่ 12 พ.ค 2564',
                                                           textAlign:
-                                                              TextAlign.start,
+                                                              TextAlign.center,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
