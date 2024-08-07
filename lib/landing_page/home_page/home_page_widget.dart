@@ -186,6 +186,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         _model.dropDownValueController2
                                             ?.reset();
                                       });
+                                      FFAppState().currentDropdownSelected =
+                                          CurrentDropdownSelectedDataStruct();
                                       _model.floorList = functions
                                           .setFloorList(FFAppState()
                                               .buildingList
