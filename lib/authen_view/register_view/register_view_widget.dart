@@ -602,7 +602,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
 
                               context.goNamedAuth('HomePage', context.mounted);
                             } else {
@@ -621,7 +621,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                                     ),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
                             }
                           } else {
                             await showDialog(
@@ -639,7 +639,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                                   ),
                                 );
                               },
-                            ).then((value) => setState(() {}));
+                            );
                           }
                         },
                         text: 'สมัครสมาชิก',
