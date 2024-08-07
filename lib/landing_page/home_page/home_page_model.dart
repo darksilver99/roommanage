@@ -108,7 +108,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     List<RoomListRecord>? filterListResult;
 
     filterListResult = await actions.filterRoomList(
-      tmpRoomList.toList(),
+      roomList.toList(),
       FFAppState().statusSelectedList.toList(),
     );
     roomList = filterListResult!.toList().cast<RoomListRecord>();
