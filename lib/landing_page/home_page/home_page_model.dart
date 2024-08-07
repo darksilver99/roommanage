@@ -3,11 +3,11 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
-import '/component/room_detail_view/room_detail_view_widget.dart';
 import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/room_detail_view/room_detail_view_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,12 +46,16 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   List<BuildingListRecord>? buildingResult;
   // Stores action output result for [Action Block - getRoomListBlock] action in HomePage widget.
-  List<RoomListRecord>? roomResultList2;
+  List<RoomListRecord>? roomResultList;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? isSearch;
   // Stores action output result for [Action Block - getRoomListBlock] action in Button widget.
+  List<RoomListRecord>? roomResultList2;
+  // Stores action output result for [Bottom Sheet - RoomDetailView] action in Container widget.
+  String? isUpdate;
+  // Stores action output result for [Action Block - getRoomListBlock] action in Container widget.
   List<RoomListRecord>? roomResultList3;
 
   @override

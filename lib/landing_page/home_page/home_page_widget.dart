@@ -3,11 +3,11 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
-import '/component/room_detail_view/room_detail_view_widget.dart';
 import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/room_detail_view/room_detail_view_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -71,7 +71,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         }
         if (FFAppState().currentDropdownSelected.buildingDoc != null &&
             FFAppState().currentDropdownSelected.buildingDoc != '') {
-          _model.roomResultList2 = await _model.getRoomListBlock(
+          _model.roomResultList = await _model.getRoomListBlock(
             context,
             buildingRef: FFAppState()
                 .buildingList
@@ -85,7 +85,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 .stringToInt(FFAppState().currentDropdownSelected.floorNumber),
           );
           _model.roomList =
-              _model.roomResultList2!.toList().cast<RoomListRecord>();
+              _model.roomResultList!.toList().cast<RoomListRecord>();
           setState(() {});
         }
       } else {
@@ -219,7 +219,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     if ((_model.isSearch != null &&
                                             _model.isSearch != '') &&
                                         (_model.isSearch == 'search')) {
-                                      _model.roomResultList3 =
+                                      _model.roomResultList2 =
                                           await _model.getRoomListBlock(
                                         context,
                                         buildingRef: FFAppState()
@@ -237,7 +237,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 .currentDropdownSelected
                                                 .floorNumber),
                                       );
-                                      _model.roomList = _model.roomResultList3!
+                                      _model.roomList = _model.roomResultList2!
                                           .toList()
                                           .cast<RoomListRecord>();
                                       setState(() {});
@@ -318,10 +318,43 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             return Padding(
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
-                                              child: RoomDetailViewWidget(),
+                                              child: RoomDetailViewWidget(
+                                                roomDocument: roomListViewItem,
+                                              ),
                                             );
                                           },
-                                        ).then((value) => safeSetState(() {}));
+                                        ).then((value) => safeSetState(
+                                            () => _model.isUpdate = value));
+
+                                        if ((_model.isUpdate != null &&
+                                                _model.isUpdate != '') &&
+                                            (_model.isUpdate == 'update')) {
+                                          _model.roomResultList3 =
+                                              await _model.getRoomListBlock(
+                                            context,
+                                            buildingRef: FFAppState()
+                                                .buildingList
+                                                .where((e) =>
+                                                    e.buildDoc ==
+                                                    FFAppState()
+                                                        .currentDropdownSelected
+                                                        .buildingDoc)
+                                                .toList()
+                                                .first
+                                                .buildingRef,
+                                            floor: functions.stringToInt(
+                                                FFAppState()
+                                                    .currentDropdownSelected
+                                                    .floorNumber),
+                                          );
+                                          _model.roomList = _model
+                                              .roomResultList3!
+                                              .toList()
+                                              .cast<RoomListRecord>();
+                                          setState(() {});
+                                        }
+
+                                        setState(() {});
                                       },
                                       child: Material(
                                         color: Colors.transparent,
