@@ -251,7 +251,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       child: Checkbox(
                                                         value: _model
                                                                 .checkboxValue1 ??=
-                                                            true,
+                                                            FFAppState()
+                                                                .statusSelectedList[
+                                                                    0]
+                                                                .isSelected,
                                                         onChanged:
                                                             (newValue) async {
                                                           setState(() => _model
@@ -346,7 +349,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       child: Checkbox(
                                                         value: _model
                                                                 .checkboxValue2 ??=
-                                                            true,
+                                                            FFAppState()
+                                                                .statusSelectedList[
+                                                                    1]
+                                                                .isSelected,
                                                         onChanged:
                                                             (newValue) async {
                                                           setState(() => _model
@@ -441,7 +447,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       child: Checkbox(
                                                         value: _model
                                                                 .checkboxValue3 ??=
-                                                            true,
+                                                            FFAppState()
+                                                                .statusSelectedList[
+                                                                    2]
+                                                                .isSelected,
                                                         onChanged:
                                                             (newValue) async {
                                                           setState(() => _model
