@@ -241,7 +241,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                   child: InfoCustomViewWidget(
                                                     title: 'เลขที่ห้องซ้ำ',
                                                     detail:
-                                                        'กรุณาตรวจสอบเลขที่ห้อง เนื่องจาก อาคารนี้ตึกนี้มีเลขที่ห้องนี้อยู่แล้ว',
+                                                        'กรุณาตรวจสอบเลขที่ห้อง เนื่องจากอาคารนี้มีเลขที่ห้องนี้อยู่แล้ว',
                                                     status: 'error',
                                                   ),
                                                 );

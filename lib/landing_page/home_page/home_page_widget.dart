@@ -182,12 +182,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     onChanged: (val) async {
                                       setState(
                                           () => _model.dropDownValue1 = val);
+                                      FFAppState().currentDropdownSelected =
+                                          CurrentDropdownSelectedDataStruct();
                                       setState(() {
                                         _model.dropDownValueController2
                                             ?.reset();
                                       });
-                                      FFAppState().currentDropdownSelected =
-                                          CurrentDropdownSelectedDataStruct();
                                       _model.floorList = functions
                                           .setFloorList(FFAppState()
                                               .buildingList
