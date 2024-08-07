@@ -548,6 +548,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     if ((_model.isSearch != null &&
                                             _model.isSearch != '') &&
                                         (_model.isSearch == 'search')) {
+                                      FFAppState()
+                                          .updateStatusSelectedListAtIndex(
+                                        0,
+                                        (e) => e..isSelected = true,
+                                      );
+                                      FFAppState()
+                                          .updateStatusSelectedListAtIndex(
+                                        1,
+                                        (e) => e..isSelected = true,
+                                      );
+                                      FFAppState()
+                                          .updateStatusSelectedListAtIndex(
+                                        2,
+                                        (e) => e..isSelected = true,
+                                      );
                                       setState(() {
                                         _model.checkboxValue1 = true;
                                       });
