@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -83,6 +84,8 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
     return null;
   }
 
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue;
   DateTime? datePicked1;
   DateTime? datePicked2;
   // Stores action output result for [Validate Form] action in Button widget.
