@@ -256,6 +256,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           setState(() => _model
                                                                   .checkboxValue1 =
                                                               newValue!);
+                                                          if (newValue!) {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              0,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue1,
+                                                            );
+                                                          } else {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              0,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue1,
+                                                            );
+                                                          }
                                                         },
                                                         side: BorderSide(
                                                           width: 2,
@@ -324,6 +343,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           setState(() => _model
                                                                   .checkboxValue2 =
                                                               newValue!);
+                                                          if (newValue!) {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              1,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue2,
+                                                            );
+                                                          } else {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              1,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue2,
+                                                            );
+                                                          }
                                                         },
                                                         side: BorderSide(
                                                           width: 2,
@@ -392,6 +430,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           setState(() => _model
                                                                   .checkboxValue3 =
                                                               newValue!);
+                                                          if (newValue!) {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              2,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue3,
+                                                            );
+                                                          } else {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              2,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue3,
+                                                            );
+                                                          }
                                                         },
                                                         side: BorderSide(
                                                           width: 2,

@@ -137,6 +137,43 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInRoomStatusList(int index, StatusDataStruct value) {
     roomStatusList.insert(index, value);
   }
+
+  List<StatusSelectedDataStruct> _statusSelectedList = [
+    StatusSelectedDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"0\",\"isSelected\":\"true\"}')),
+    StatusSelectedDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"1\",\"isSelected\":\"true\"}')),
+    StatusSelectedDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"3\",\"isSelected\":\"true\"}'))
+  ];
+  List<StatusSelectedDataStruct> get statusSelectedList => _statusSelectedList;
+  set statusSelectedList(List<StatusSelectedDataStruct> value) {
+    _statusSelectedList = value;
+  }
+
+  void addToStatusSelectedList(StatusSelectedDataStruct value) {
+    statusSelectedList.add(value);
+  }
+
+  void removeFromStatusSelectedList(StatusSelectedDataStruct value) {
+    statusSelectedList.remove(value);
+  }
+
+  void removeAtIndexFromStatusSelectedList(int index) {
+    statusSelectedList.removeAt(index);
+  }
+
+  void updateStatusSelectedListAtIndex(
+    int index,
+    StatusSelectedDataStruct Function(StatusSelectedDataStruct) updateFn,
+  ) {
+    statusSelectedList[index] = updateFn(_statusSelectedList[index]);
+  }
+
+  void insertAtIndexInStatusSelectedList(
+      int index, StatusSelectedDataStruct value) {
+    statusSelectedList.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {
