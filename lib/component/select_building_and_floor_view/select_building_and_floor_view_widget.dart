@@ -15,7 +15,12 @@ import 'select_building_and_floor_view_model.dart';
 export 'select_building_and_floor_view_model.dart';
 
 class SelectBuildingAndFloorViewWidget extends StatefulWidget {
-  const SelectBuildingAndFloorViewWidget({super.key});
+  const SelectBuildingAndFloorViewWidget({
+    super.key,
+    bool? isCreate,
+  }) : this.isCreate = isCreate ?? false;
+
+  final bool isCreate;
 
   @override
   State<SelectBuildingAndFloorViewWidget> createState() =>
@@ -161,7 +166,7 @@ class _SelectBuildingAndFloorViewWidgetState
                                   .cast<String>();
                               setState(() {});
                             },
-                            width: 300.0,
+                            width: double.infinity,
                             height: 56.0,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -198,7 +203,7 @@ class _SelectBuildingAndFloorViewWidgetState
                             options: _model.floorList,
                             onChanged: (val) =>
                                 setState(() => _model.dropDownValue2 = val),
-                            width: 300.0,
+                            width: double.infinity,
                             height: 56.0,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -232,32 +237,37 @@ class _SelectBuildingAndFloorViewWidgetState
                                     _model.dropDownValue1 != '') &&
                                 (_model.dropDownValue2 != null &&
                                     _model.dropDownValue2 != '')) {
-                              context.pushNamed(
-                                'CreateRoomPage',
-                                queryParameters: {
-                                  'buildingRef': serializeParam(
-                                    FFAppState()
-                                        .buildingList
-                                        .where((e) =>
-                                            e.buildDoc == _model.dropDownValue1)
-                                        .toList()
-                                        .first
-                                        .buildingRef,
-                                    ParamType.DocumentReference,
-                                  ),
-                                  'floor': serializeParam(
-                                    functions
-                                        .stringToInt(_model.dropDownValue2!),
-                                    ParamType.int,
-                                  ),
-                                }.withoutNulls,
-                              );
+                              if (widget!.isCreate) {
+                                context.pushNamed(
+                                  'CreateRoomPage',
+                                  queryParameters: {
+                                    'buildingRef': serializeParam(
+                                      FFAppState()
+                                          .buildingList
+                                          .where((e) =>
+                                              e.buildDoc ==
+                                              _model.dropDownValue1)
+                                          .toList()
+                                          .first
+                                          .buildingRef,
+                                      ParamType.DocumentReference,
+                                    ),
+                                    'floor': serializeParam(
+                                      functions
+                                          .stringToInt(_model.dropDownValue2!),
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              } else {
+                                Navigator.pop(context, 'search');
+                              }
                             }
                           },
                           text: 'ตกลง',
                           options: FFButtonOptions(
                             width: double.infinity,
-                            height: 40.0,
+                            height: 50.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -268,7 +278,9 @@ class _SelectBuildingAndFloorViewWidgetState
                                 .override(
                                   fontFamily: 'Rubik',
                                   color: Colors.white,
+                                  fontSize: 22.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                             elevation: 3.0,
                             borderSide: BorderSide(

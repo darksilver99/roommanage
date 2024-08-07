@@ -83,7 +83,9 @@ class _NoRoomViewWidgetState extends State<NoRoomViewWidget> {
                             backgroundColor: Colors.transparent,
                             alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: SelectBuildingAndFloorViewWidget(),
+                            child: SelectBuildingAndFloorViewWidget(
+                              isCreate: true,
+                            ),
                           );
                         },
                       );

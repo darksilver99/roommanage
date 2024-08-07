@@ -3,11 +3,10 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -71,18 +70,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         }
         if (FFAppState().currentDropdownSelected.buildingDoc != null &&
             FFAppState().currentDropdownSelected.buildingDoc != '') {
-          _model.floorList = functions
-              .setFloorList(FFAppState()
-                  .buildingList
-                  .where((e) =>
-                      e.buildDoc ==
-                      FFAppState().currentDropdownSelected.buildingDoc)
-                  .toList()
-                  .first
-                  .totalFloor)
-              .toList()
-              .cast<String>();
-          setState(() {});
           _model.roomResultList2 = await _model.getRoomListBlock(
             context,
             buildingRef: FFAppState()
@@ -150,173 +137,132 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 4.0, 0.0),
-                                  child: FlutterFlowDropDown<String>(
-                                    controller:
-                                        _model.dropDownValueController1 ??=
-                                            FormFieldController<String>(
-                                      _model.dropDownValue1 ??= FFAppState()
-                                                      .currentDropdownSelected
-                                                      .buildingDoc !=
-                                                  null &&
-                                              FFAppState()
-                                                      .currentDropdownSelected
-                                                      .buildingDoc !=
-                                                  ''
-                                          ? FFAppState()
-                                              .currentDropdownSelected
-                                              .buildingDoc
-                                          : null,
-                                    ),
-                                    options: List<String>.from(FFAppState()
-                                        .buildingList
-                                        .map((e) => e.buildDoc)
-                                        .toList()),
-                                    optionLabels: FFAppState()
-                                        .buildingList
-                                        .map((e) => e.subject)
-                                        .toList(),
-                                    onChanged: (val) async {
-                                      setState(
-                                          () => _model.dropDownValue1 = val);
-                                      FFAppState().currentDropdownSelected =
-                                          CurrentDropdownSelectedDataStruct();
-                                      setState(() {
-                                        _model.dropDownValueController2
-                                            ?.reset();
-                                      });
-                                      _model.floorList = functions
-                                          .setFloorList(FFAppState()
-                                              .buildingList
-                                              .where((e) =>
-                                                  e.buildDoc ==
-                                                  _model.dropDownValue1)
-                                              .toList()
-                                              .first
-                                              .totalFloor)
-                                          .toList()
-                                          .cast<String>();
-                                      setState(() {});
-                                    },
-                                    width: double.infinity,
-                                    height: 56.0,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          letterSpacing: 0.0,
+                                child: Builder(
+                                  builder: (context) {
+                                    if (FFAppState()
+                                                .currentDropdownSelected
+                                                .buildingDoc !=
+                                            null &&
+                                        FFAppState()
+                                                .currentDropdownSelected
+                                                .buildingDoc !=
+                                            '') {
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: Text(
+                                          'อาคาร ${FFAppState().buildingList.where((e) => e.buildDoc == FFAppState().currentDropdownSelected.buildingDoc).toList().first.subject} ชั้น ${FFAppState().currentDropdownSelected.floorNumber}',
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
-                                    hintText: 'เลือกอาคาร',
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    elevation: 2.0,
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    borderWidth: 2.0,
-                                    borderRadius: 8.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 16.0, 4.0),
-                                    hidesUnderline: true,
-                                    isOverButton: true,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
-                                  ),
+                                      );
+                                    } else {
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: Text(
+                                          '',
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 ),
                               ),
-                              Expanded(
-                                flex: 3,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 0.0, 0.0, 0.0),
-                                  child: FlutterFlowDropDown<String>(
-                                    controller:
-                                        _model.dropDownValueController2 ??=
-                                            FormFieldController<String>(
-                                      _model.dropDownValue2 ??= FFAppState()
-                                                      .currentDropdownSelected
-                                                      .buildingDoc !=
-                                                  null &&
-                                              FFAppState()
-                                                      .currentDropdownSelected
-                                                      .buildingDoc !=
-                                                  ''
-                                          ? FFAppState()
-                                              .currentDropdownSelected
-                                              .floorNumber
-                                          : null,
-                                    ),
-                                    options: _model.floorList,
-                                    onChanged: (val) async {
-                                      setState(
-                                          () => _model.dropDownValue2 = val);
-                                      if ((_model.dropDownValue1 != null &&
-                                              _model.dropDownValue1 != '') &&
-                                          (_model.dropDownValue2 != null &&
-                                              _model.dropDownValue2 != '')) {
-                                        FFAppState().currentDropdownSelected =
-                                            CurrentDropdownSelectedDataStruct(
-                                          buildingDoc: _model.dropDownValue1,
-                                          floorNumber: _model.dropDownValue2,
+                              Builder(
+                                builder: (context) => FFButtonWidget(
+                                  onPressed: () async {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child:
+                                              SelectBuildingAndFloorViewWidget(
+                                            isCreate: false,
+                                          ),
                                         );
-                                        _model.roomResultList =
-                                            await _model.getRoomListBlock(
-                                          context,
-                                          buildingRef: FFAppState()
-                                              .buildingList
-                                              .where((e) =>
-                                                  e.buildDoc ==
-                                                  _model.dropDownValue1)
-                                              .toList()
-                                              .first
-                                              .buildingRef,
-                                          floor: functions.stringToInt(
-                                              _model.dropDownValue2!),
-                                        );
-                                        _model.roomList = _model.roomResultList!
-                                            .toList()
-                                            .cast<RoomListRecord>();
-                                        setState(() {});
-                                      }
+                                      },
+                                    ).then((value) => safeSetState(
+                                        () => _model.isSearch = value));
 
+                                    if ((_model.isSearch != null &&
+                                            _model.isSearch != '') &&
+                                        (_model.isSearch == 'search')) {
+                                      _model.roomResultList3 =
+                                          await _model.getRoomListBlock(
+                                        context,
+                                        buildingRef: FFAppState()
+                                            .buildingList
+                                            .where((e) =>
+                                                e.buildDoc ==
+                                                FFAppState()
+                                                    .currentDropdownSelected
+                                                    .buildingDoc)
+                                            .toList()
+                                            .first
+                                            .buildingRef,
+                                        floor: functions.stringToInt(
+                                            FFAppState()
+                                                .currentDropdownSelected
+                                                .floorNumber),
+                                      );
+                                      _model.roomList = _model.roomResultList3!
+                                          .toList()
+                                          .cast<RoomListRecord>();
                                       setState(() {});
-                                    },
-                                    width: double.infinity,
-                                    height: 56.0,
+                                    }
+
+                                    setState(() {});
+                                  },
+                                  text: 'เลือกอาคาร/ชั้น',
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Rubik',
+                                          color: Colors.white,
                                           letterSpacing: 0.0,
                                         ),
-                                    hintText: 'เลือกชั้น',
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
                                     ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    elevation: 2.0,
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    borderWidth: 2.0,
-                                    borderRadius: 8.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 16.0, 4.0),
-                                    hidesUnderline: true,
-                                    isOverButton: true,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                               ),
