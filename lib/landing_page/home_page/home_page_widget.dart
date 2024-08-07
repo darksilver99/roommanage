@@ -83,6 +83,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 .buildingRef,
             floor: functions
                 .stringToInt(FFAppState().currentDropdownSelected.floorNumber),
+            statusSelectedList: FFAppState().statusSelectedList,
           );
         }
       } else {
@@ -265,6 +266,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     _model
                                                                         .checkboxValue1,
                                                             );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            setState(() {});
                                                           } else {
                                                             FFAppState()
                                                                 .updateStatusSelectedListAtIndex(
@@ -274,6 +279,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     _model
                                                                         .checkboxValue1,
                                                             );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            setState(() {});
                                                           }
                                                         },
                                                         side: BorderSide(
@@ -352,6 +361,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     _model
                                                                         .checkboxValue2,
                                                             );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            setState(() {});
                                                           } else {
                                                             FFAppState()
                                                                 .updateStatusSelectedListAtIndex(
@@ -361,6 +374,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     _model
                                                                         .checkboxValue2,
                                                             );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            setState(() {});
                                                           }
                                                         },
                                                         side: BorderSide(
@@ -439,6 +456,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     _model
                                                                         .checkboxValue3,
                                                             );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            setState(() {});
                                                           } else {
                                                             FFAppState()
                                                                 .updateStatusSelectedListAtIndex(
@@ -448,6 +469,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     _model
                                                                         .checkboxValue3,
                                                             );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            setState(() {});
                                                           }
                                                         },
                                                         side: BorderSide(
@@ -531,6 +556,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             FFAppState()
                                                 .currentDropdownSelected
                                                 .floorNumber),
+                                        statusSelectedList:
+                                            FFAppState().statusSelectedList,
                                       );
                                     }
 
@@ -637,6 +664,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 FFAppState()
                                                     .currentDropdownSelected
                                                     .floorNumber),
+                                            statusSelectedList:
+                                                FFAppState().statusSelectedList,
                                           );
                                         }
 

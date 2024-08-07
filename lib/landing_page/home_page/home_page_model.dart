@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/room_view/room_detail_view/room_detail_view_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -82,6 +83,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     BuildContext context, {
     required DocumentReference? buildingRef,
     required int? floor,
+    required List<StatusSelectedDataStruct>? statusSelectedList,
   }) async {
     List<RoomListRecord>? roomListResult;
 
@@ -102,8 +104,13 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     tmpRoomList = roomListResult!.toList().cast<RoomListRecord>();
   }
 
-  Future getRoomListByStatusBlock(
-    BuildContext context, {
-    required int? status,
-  }) async {}
+  Future updateRoomListBlock(BuildContext context) async {
+    List<RoomListRecord>? filterListResult;
+
+    filterListResult = await actions.filterRoomList(
+      tmpRoomList.toList(),
+      FFAppState().statusSelectedList.toList(),
+    );
+    roomList = filterListResult!.toList().cast<RoomListRecord>();
+  }
 }
