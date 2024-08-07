@@ -50,7 +50,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final formKey = GlobalKey<FormState>();
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
   CustomerNameRecord? customerResult;
   // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
