@@ -92,7 +92,7 @@ class GuestListRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('guest_list');
+      FirebaseFirestore.instance.collection('${FFAppState().tmpRoomRef!.path}/guest_list');
 
   static Stream<GuestListRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => GuestListRecord.fromSnapshot(s));
