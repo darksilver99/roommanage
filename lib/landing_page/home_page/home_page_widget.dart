@@ -540,6 +540,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     if ((_model.isSearch != null &&
                                             _model.isSearch != '') &&
                                         (_model.isSearch == 'search')) {
+                                      setState(() {
+                                        _model.checkboxValue1 = true;
+                                      });
+                                      setState(() {
+                                        _model.checkboxValue2 = true;
+                                      });
+                                      setState(() {
+                                        _model.checkboxValue3 = true;
+                                      });
                                       await _model.getRoomListBlock(
                                         context,
                                         buildingRef: FFAppState()
