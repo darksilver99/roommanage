@@ -144,7 +144,7 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFDFDFDF),
         selectedItemColor: FlutterFlowTheme.of(context).tertiary,
         unselectedItemColor: Color(0xFFADA8D3),
         selectedBackgroundColor: Color(0x00000000),
@@ -153,7 +153,7 @@ class _NavBarPageState extends State<NavBarPage> {
         margin: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
         padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
         width: double.infinity,
-        elevation: 3.0,
+        elevation: 0.0,
         items: [
           FloatingNavbarItem(
             customWidget: Column(
