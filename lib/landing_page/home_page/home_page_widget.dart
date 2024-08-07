@@ -110,6 +110,52 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      floatingActionButton: Builder(
+        builder: (context) => Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 128.0),
+          child: FloatingActionButton.extended(
+            onPressed: () async {
+              await showDialog(
+                context: context,
+                builder: (dialogContext) {
+                  return Dialog(
+                    elevation: 0,
+                    insetPadding: EdgeInsets.zero,
+                    backgroundColor: Colors.transparent,
+                    alignment: AlignmentDirectional(0.0, 0.0)
+                        .resolve(Directionality.of(context)),
+                    child: SelectBuildingAndFloorViewWidget(
+                      isCreate: true,
+                    ),
+                  );
+                },
+              );
+            },
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            elevation: 8.0,
+            label: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Icon(
+                  Icons.add_rounded,
+                  color: FlutterFlowTheme.of(context).info,
+                  size: 24.0,
+                ),
+                Text(
+                  'เพิ่มห้อง',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Rubik',
+                        color: FlutterFlowTheme.of(context).info,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           wrapWithModel(
