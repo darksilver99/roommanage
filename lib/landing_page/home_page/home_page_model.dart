@@ -83,7 +83,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     BuildContext context, {
     required DocumentReference? buildingRef,
     required int? floor,
-    required List<StatusSelectedDataStruct>? statusSelectedList,
   }) async {
     List<RoomListRecord>? roomListResult;
 
@@ -108,7 +107,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     List<RoomListRecord>? filterListResult;
 
     filterListResult = await actions.filterRoomList(
-      roomList.toList(),
+      tmpRoomList.toList(),
       FFAppState().statusSelectedList.toList(),
     );
     roomList = filterListResult!.toList().cast<RoomListRecord>();

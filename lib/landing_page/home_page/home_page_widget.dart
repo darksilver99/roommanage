@@ -83,7 +83,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 .buildingRef,
             floor: functions
                 .stringToInt(FFAppState().currentDropdownSelected.floorNumber),
-            statusSelectedList: FFAppState().statusSelectedList,
           );
         }
       } else {
@@ -574,8 +573,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             FFAppState()
                                                 .currentDropdownSelected
                                                 .floorNumber),
-                                        statusSelectedList:
-                                            FFAppState().statusSelectedList,
                                       );
 
                                       setState(() {});
@@ -684,8 +681,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 FFAppState()
                                                     .currentDropdownSelected
                                                     .floorNumber),
-                                            statusSelectedList:
-                                                FFAppState().statusSelectedList,
                                           );
 
                                           setState(() {});
