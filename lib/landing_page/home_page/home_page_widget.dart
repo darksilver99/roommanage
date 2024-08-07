@@ -112,7 +112,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       floatingActionButton: Builder(
         builder: (context) => Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 128.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 86.0),
           child: FloatingActionButton.extended(
             onPressed: () async {
               await showDialog(
