@@ -154,7 +154,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Text(
-                                              '${FFAppState().buildingList.where((e) => e.buildDoc == FFAppState().currentDropdownSelected.buildingDoc).toList().first.subject} ชั้น ${FFAppState().currentDropdownSelected.floorNumber} จำนวน ${_model.roomList.length.toString()} ห้อง',
+                                              '${FFAppState().buildingList.where((e) => e.buildDoc == FFAppState().currentDropdownSelected.buildingDoc).toList().first.subject} ชั้น ${FFAppState().currentDropdownSelected.floorNumber} จำนวน ${_model.tmpRoomList.length.toString()} ห้อง',
                                               textAlign: TextAlign.center,
                                               maxLines: 2,
                                               style: FlutterFlowTheme.of(

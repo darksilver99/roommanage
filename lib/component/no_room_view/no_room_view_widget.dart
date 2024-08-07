@@ -1,7 +1,5 @@
-import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -70,48 +68,6 @@ class _NoRoomViewWidgetState extends State<NoRoomViewWidget> {
                         fontSize: 24.0,
                         letterSpacing: 0.0,
                       ),
-                ),
-                Builder(
-                  builder: (context) => FFButtonWidget(
-                    onPressed: () async {
-                      await showDialog(
-                        context: context,
-                        builder: (dialogContext) {
-                          return Dialog(
-                            elevation: 0,
-                            insetPadding: EdgeInsets.zero,
-                            backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
-                                .resolve(Directionality.of(context)),
-                            child: SelectBuildingAndFloorViewWidget(
-                              isCreate: true,
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    text: 'เพิ่มห้อง',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Rubik',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
                 ),
               ],
             ),

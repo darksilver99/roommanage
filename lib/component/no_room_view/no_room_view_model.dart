@@ -1,7 +1,5 @@
-import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'no_room_view_widget.dart' show NoRoomViewWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
