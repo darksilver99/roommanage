@@ -757,8 +757,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           width: double.infinity,
                                           height: double.infinity,
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                            color: Color(0xFFF1F1F1),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
