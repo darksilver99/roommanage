@@ -61,6 +61,11 @@ class RoomListRecord extends FirestoreRecord {
   int get floorNumber => _floorNumber ?? 0;
   bool hasFloorNumber() => _floorNumber != null;
 
+  // "end_date" field.
+  DateTime? _endDate;
+  DateTime? get endDate => _endDate;
+  bool hasEndDate() => _endDate != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -73,6 +78,7 @@ class RoomListRecord extends FirestoreRecord {
     _detail = snapshotData['detail'] as String?;
     _buildingRef = snapshotData['building_ref'] as DocumentReference?;
     _floorNumber = castToType<int>(snapshotData['floor_number']);
+    _endDate = snapshotData['end_date'] as DateTime?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -124,6 +130,7 @@ Map<String, dynamic> createRoomListRecordData({
   String? detail,
   DocumentReference? buildingRef,
   int? floorNumber,
+  DateTime? endDate,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -136,6 +143,7 @@ Map<String, dynamic> createRoomListRecordData({
       'detail': detail,
       'building_ref': buildingRef,
       'floor_number': floorNumber,
+      'end_date': endDate,
     }.withoutNulls,
   );
 
@@ -155,7 +163,8 @@ class RoomListRecordDocumentEquality implements Equality<RoomListRecord> {
         e1?.subject == e2?.subject &&
         e1?.detail == e2?.detail &&
         e1?.buildingRef == e2?.buildingRef &&
-        e1?.floorNumber == e2?.floorNumber;
+        e1?.floorNumber == e2?.floorNumber &&
+        e1?.endDate == e2?.endDate;
   }
 
   @override
@@ -168,7 +177,8 @@ class RoomListRecordDocumentEquality implements Equality<RoomListRecord> {
         e?.subject,
         e?.detail,
         e?.buildingRef,
-        e?.floorNumber
+        e?.floorNumber,
+        e?.endDate
       ]);
 
   @override

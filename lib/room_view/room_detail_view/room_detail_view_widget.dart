@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -483,21 +484,21 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                             },
                                                           ).then((value) =>
                                                               safeSetState(() =>
-                                                                  _model.isUpdate =
+                                                                  _model.checkInData =
                                                                       value));
 
-                                                          if ((_model.isUpdate !=
-                                                                      null &&
-                                                                  _model.isUpdate !=
-                                                                      '') &&
-                                                              (_model.isUpdate ==
-                                                                  'update')) {
+                                                          if (_model.checkInData
+                                                                  ?.isUpdate ==
+                                                              'update') {
                                                             await widget!
                                                                 .roomDocument!
                                                                 .reference
                                                                 .update(
                                                                     createRoomListRecordData(
                                                               status: 1,
+                                                              endDate: _model
+                                                                  .checkInData
+                                                                  ?.endDate,
                                                             ));
                                                             Navigator.pop(
                                                                 context,

@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,7 +25,7 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm3;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
-  String? isUpdate;
+  CheckInDataStruct? checkInData;
 
   @override
   void initState(BuildContext context) {}

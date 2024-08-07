@@ -1,9 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -162,7 +164,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: FlutterFlowTheme.of(context).warning,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -609,6 +611,9 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    await actions.hideKeyBoard(
+                                      context,
+                                    );
                                     final _datePicked1Date =
                                         await showDatePicker(
                                       context: context,
@@ -767,6 +772,9 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      await actions.hideKeyBoard(
+                                        context,
+                                      );
                                       final _datePicked2Date =
                                           await showDatePicker(
                                         context: context,
@@ -965,8 +973,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                               _model.textController4.text,
                                           totalGuest: int.tryParse(
                                               _model.textController5.text),
+                                          isDaily: _model.checkboxValue,
                                         ));
-                                    Navigator.pop(context, 'update');
+                                    Navigator.pop(
+                                        context,
+                                        CheckInDataStruct(
+                                          isUpdate: 'update',
+                                          endDate: _model.endDate,
+                                        ));
                                   } else {
                                     await showDialog(
                                       context: context,
