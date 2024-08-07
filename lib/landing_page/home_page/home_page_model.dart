@@ -112,4 +112,19 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     );
     roomList = filterListResult!.toList().cast<RoomListRecord>();
   }
+
+  Future resetSelectedBlock(BuildContext context) async {
+    FFAppState().updateStatusSelectedListAtIndex(
+      0,
+      (e) => e..isSelected = true,
+    );
+    FFAppState().updateStatusSelectedListAtIndex(
+      1,
+      (e) => e..isSelected = true,
+    );
+    FFAppState().updateStatusSelectedListAtIndex(
+      2,
+      (e) => e..isSelected = true,
+    );
+  }
 }
