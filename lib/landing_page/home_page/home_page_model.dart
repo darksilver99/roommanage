@@ -101,4 +101,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     roomList = roomListResult!.toList().cast<RoomListRecord>();
     tmpRoomList = roomListResult!.toList().cast<RoomListRecord>();
   }
+
+  Future getRoomListByStatusBlock(
+    BuildContext context, {
+    required int? status,
+  }) async {}
 }
