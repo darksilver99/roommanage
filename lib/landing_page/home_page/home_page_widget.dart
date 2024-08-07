@@ -762,59 +762,90 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .circle_rounded,
+                                                              color: () {
+                                                                if (roomListViewItem
+                                                                        .status ==
+                                                                    0) {
+                                                                  return FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary;
+                                                                } else if (roomListViewItem
+                                                                        .status ==
+                                                                    1) {
+                                                                  return FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error;
+                                                                } else {
+                                                                  return FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .warning;
+                                                                }
+                                                              }(),
+                                                              size: 12.0,
+                                                            ),
+                                                          ),
+                                                          Flexible(
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                functions.getStatusText(
+                                                                    roomListViewItem
+                                                                        .status,
+                                                                    FFAppState()
+                                                                        .roomStatusList
+                                                                        .toList()),
+                                                                '-',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Rubik',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                       Expanded(
-                                                        child: Row(
+                                                        child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .start,
+                                                                  .end,
                                                           children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0),
-                                                              child: Icon(
-                                                                Icons
-                                                                    .circle_rounded,
-                                                                color: () {
-                                                                  if (roomListViewItem
-                                                                          .status ==
-                                                                      0) {
-                                                                    return FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondary;
-                                                                  } else if (roomListViewItem
-                                                                          .status ==
-                                                                      1) {
-                                                                    return FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error;
-                                                                  } else {
-                                                                    return FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .warning;
-                                                                  }
-                                                                }(),
-                                                                size: 12.0,
-                                                              ),
-                                                            ),
-                                                            Flexible(
-                                                              child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  functions.getStatusText(
-                                                                      roomListViewItem
-                                                                          .status,
-                                                                      FFAppState()
-                                                                          .roomStatusList
-                                                                          .toList()),
-                                                                  '-',
-                                                                ),
+                                                            if (roomListViewItem
+                                                                    .status ==
+                                                                1)
+                                                              Text(
+                                                                'พักถึงวันที่ 12 พ.ค 2564',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -825,33 +856,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .bold,
+                                                                              .normal,
                                                                     ),
                                                               ),
-                                                            ),
                                                           ],
                                                         ),
                                                       ),
-                                                      if (roomListViewItem
-                                                              .status ==
-                                                          1)
-                                                        Text(
-                                                          'พักถึงวันที่ 12 พ.ค 2564',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Rubik',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                        ),
                                                     ],
                                                   ),
                                                 ),
