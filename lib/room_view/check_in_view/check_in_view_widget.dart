@@ -921,48 +921,72 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 }
                                 _shouldSetState = true;
                                 if (_model.isValid!) {
-                                  if (_model.checkboxValue!) {
-                                    if (!(_model.endDate != null)) {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: InfoCustomViewWidget(
-                                              title: 'กรุณาเลือกวันที่ออก',
-                                              status: 'warning',
-                                            ),
-                                          );
-                                        },
-                                      );
+                                  if (_model.startDate != null) {
+                                    if (_model.checkboxValue!) {
+                                      if (!(_model.endDate != null)) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: InfoCustomViewWidget(
+                                                title: 'กรุณาเลือกวันที่ออก',
+                                                status: 'warning',
+                                              ),
+                                            );
+                                          },
+                                        );
 
-                                      if (_shouldSetState) setState(() {});
-                                      return;
+                                        if (_shouldSetState) setState(() {});
+                                        return;
+                                      }
                                     }
-                                  }
 
-                                  await GuestListRecord.collection
-                                      .doc()
-                                      .set(createGuestListRecordData(
-                                        createDate: getCurrentTimestamp,
-                                        status: 1,
-                                        startDate: _model.startDate,
-                                        endDate: _model.endDate,
-                                        preName: _model.textController1.text,
-                                        firstName: _model.textController2.text,
-                                        lastName: _model.textController3.text,
-                                        idCardNumber:
-                                            _model.textController4.text,
-                                        totalGuest: int.tryParse(
-                                            _model.textController5.text),
-                                      ));
-                                  Navigator.pop(context, 'update');
+                                    await GuestListRecord.collection
+                                        .doc()
+                                        .set(createGuestListRecordData(
+                                          createDate: getCurrentTimestamp,
+                                          status: 1,
+                                          startDate: _model.startDate,
+                                          endDate: _model.endDate,
+                                          preName: _model.textController1.text,
+                                          firstName:
+                                              _model.textController2.text,
+                                          lastName: _model.textController3.text,
+                                          idCardNumber:
+                                              _model.textController4.text,
+                                          totalGuest: int.tryParse(
+                                              _model.textController5.text),
+                                        ));
+                                    Navigator.pop(context, 'update');
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: InfoCustomViewWidget(
+                                            title: 'กรุณาเลือกวันที่เข้า',
+                                            status: 'warning',
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 }
                                 if (_shouldSetState) setState(() {});
                               },
