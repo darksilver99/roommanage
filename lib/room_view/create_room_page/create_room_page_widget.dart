@@ -282,8 +282,6 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                 );
                                               },
                                             );
-
-                                            context.goNamed('HomePage');
                                           }
 
                                           setState(() {});
