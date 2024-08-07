@@ -49,6 +49,12 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   List<RoomListRecord>? roomResultList;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue1;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue2;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue3;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? isSearch;
   // Stores action output result for [Action Block - getRoomListBlock] action in Button widget.
