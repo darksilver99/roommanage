@@ -296,7 +296,7 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
 
                                           context.goNamed('HomePage');
 

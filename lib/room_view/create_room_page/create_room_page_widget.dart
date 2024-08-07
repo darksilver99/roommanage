@@ -246,7 +246,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
                                           } else {
                                             await RoomListRecord.createDoc(
                                                     FFAppState()
@@ -281,7 +281,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
 
                                             context.goNamed('HomePage');
                                           }

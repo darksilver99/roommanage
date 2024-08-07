@@ -35,3 +35,9 @@ Future<bool?> confirmBlock(
 
   return false;
 }
+
+Future clearPref(BuildContext context) async {
+  FFAppState().customerReference = null;
+  FFAppState().currentDropdownSelected = CurrentDropdownSelectedDataStruct();
+  FFAppState().buildingList = [];
+}

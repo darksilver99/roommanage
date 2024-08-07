@@ -86,7 +86,7 @@ class _NoRoomViewWidgetState extends State<NoRoomViewWidget> {
                             child: SelectBuildingAndFloorViewWidget(),
                           );
                         },
-                      ).then((value) => setState(() {}));
+                      );
                     },
                     text: 'เพิ่มห้อง',
                     options: FFButtonOptions(
