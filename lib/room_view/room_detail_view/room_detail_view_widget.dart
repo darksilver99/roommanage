@@ -499,6 +499,10 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                               endDate: _model
                                                                   .checkInData
                                                                   ?.endDate,
+                                                              isDaily: _model
+                                                                      .checkInData
+                                                                      ?.endDate !=
+                                                                  null,
                                                             ));
                                                             Navigator.pop(
                                                                 context,
