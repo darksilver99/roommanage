@@ -26,6 +26,8 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   bool? isConfirm3;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   CheckInDataStruct? checkInData;
+  // Stores action output result for [Action Block - confirmBlock] action in Button widget.
+  bool? isConfirm4;
 
   @override
   void initState(BuildContext context) {}
