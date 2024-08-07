@@ -884,10 +884,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .end,
                                                           children: [
                                                             if (roomListViewItem
-                                                                    .status ==
-                                                                1)
+                                                                    .endDate !=
+                                                                null)
                                                               Text(
-                                                                'พักถึงวันที่ 12 พ.ค 2564',
+                                                                'พักถึงวันที่ ${functions.dateTh(roomListViewItem.endDate)}',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
