@@ -69,7 +69,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           setState(() {});
           _model.dataCount = _model.dataCount + 1;
         }
-        if (FFAppState().currentDropdownSelected != null) {
+        if (FFAppState().currentDropdownSelected.buildingDoc != null &&
+            FFAppState().currentDropdownSelected.buildingDoc != '') {
           _model.floorList = functions
               .setFloorList(FFAppState()
                   .buildingList
@@ -158,8 +159,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         _model.dropDownValueController1 ??=
                                             FormFieldController<String>(
                                       _model.dropDownValue1 ??= FFAppState()
-                                                  .currentDropdownSelected !=
-                                              null
+                                                      .currentDropdownSelected
+                                                      .buildingDoc !=
+                                                  null &&
+                                              FFAppState()
+                                                      .currentDropdownSelected
+                                                      .buildingDoc !=
+                                                  ''
                                           ? FFAppState()
                                               .currentDropdownSelected
                                               .buildingDoc
@@ -234,8 +240,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         _model.dropDownValueController2 ??=
                                             FormFieldController<String>(
                                       _model.dropDownValue2 ??= FFAppState()
-                                                  .currentDropdownSelected !=
-                                              null
+                                                      .currentDropdownSelected
+                                                      .buildingDoc !=
+                                                  null &&
+                                              FFAppState()
+                                                      .currentDropdownSelected
+                                                      .buildingDoc !=
+                                                  ''
                                           ? FFAppState()
                                               .currentDropdownSelected
                                               .floorNumber
