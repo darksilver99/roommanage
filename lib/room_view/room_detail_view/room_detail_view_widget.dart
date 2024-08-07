@@ -109,7 +109,8 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            8.0, 16.0, 8.0, 32.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
