@@ -17,6 +17,8 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
+  bool? isConfirm2;
+  // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm;
 
   @override
