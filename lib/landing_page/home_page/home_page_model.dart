@@ -83,9 +83,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     required DocumentReference? buildingRef,
     required int? floor,
   }) async {
-    List<RoomListRecord>? roomList;
+    List<RoomListRecord>? roomListResult;
 
-    roomList = await queryRoomListRecordOnce(
+    roomListResult = await queryRoomListRecordOnce(
       parent: FFAppState().customerReference,
       queryBuilder: (roomListRecord) => roomListRecord
           .where(
@@ -98,7 +98,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           )
           .orderBy('subject'),
     );
-    roomList = roomList!.toList().cast<RoomListRecord>();
-    tmpRoomList = roomList!.toList().cast<RoomListRecord>();
+    roomList = roomListResult!.toList().cast<RoomListRecord>();
+    tmpRoomList = roomListResult!.toList().cast<RoomListRecord>();
   }
 }
