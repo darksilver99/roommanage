@@ -625,7 +625,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     0,
                                     0,
                                     0,
-                                    16.0,
+                                    64.0,
                                   ),
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
