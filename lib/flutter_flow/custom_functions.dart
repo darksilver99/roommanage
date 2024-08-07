@@ -36,3 +36,12 @@ String? getStatusText(
   }
   return '-';
 }
+
+String? dateTh(DateTime? date) {
+  if (date == null) {
+    return null;
+  }
+  final DateFormat formatter = DateFormat('d MMMM yyyy', 'th_TH');
+  final buddhistYear = date.year + 543;
+  return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
+}
