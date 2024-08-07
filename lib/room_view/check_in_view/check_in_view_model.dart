@@ -92,6 +92,8 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
   DateTime? datePicked2;
   // Stores action output result for [Validate Form] action in Button widget.
   bool? isValid;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  GuestListRecord? insertedGuest;
 
   @override
   void initState(BuildContext context) {

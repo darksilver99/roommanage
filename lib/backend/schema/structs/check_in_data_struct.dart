@@ -12,9 +12,11 @@ class CheckInDataStruct extends FFFirebaseStruct {
   CheckInDataStruct({
     String? isUpdate,
     DateTime? endDate,
+    DocumentReference? guestRef,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _isUpdate = isUpdate,
         _endDate = endDate,
+        _guestRef = guestRef,
         super(firestoreUtilData);
 
   // "isUpdate" field.
@@ -31,10 +33,18 @@ class CheckInDataStruct extends FFFirebaseStruct {
 
   bool hasEndDate() => _endDate != null;
 
+  // "guestRef" field.
+  DocumentReference? _guestRef;
+  DocumentReference? get guestRef => _guestRef;
+  set guestRef(DocumentReference? val) => _guestRef = val;
+
+  bool hasGuestRef() => _guestRef != null;
+
   static CheckInDataStruct fromMap(Map<String, dynamic> data) =>
       CheckInDataStruct(
         isUpdate: data['isUpdate'] as String?,
         endDate: data['endDate'] as DateTime?,
+        guestRef: data['guestRef'] as DocumentReference?,
       );
 
   static CheckInDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -44,6 +54,7 @@ class CheckInDataStruct extends FFFirebaseStruct {
   Map<String, dynamic> toMap() => {
         'isUpdate': _isUpdate,
         'endDate': _endDate,
+        'guestRef': _guestRef,
       }.withoutNulls;
 
   @override
@@ -55,6 +66,10 @@ class CheckInDataStruct extends FFFirebaseStruct {
         'endDate': serializeParam(
           _endDate,
           ParamType.DateTime,
+        ),
+        'guestRef': serializeParam(
+          _guestRef,
+          ParamType.DocumentReference,
         ),
       }.withoutNulls;
 
@@ -70,6 +85,12 @@ class CheckInDataStruct extends FFFirebaseStruct {
           ParamType.DateTime,
           false,
         ),
+        guestRef: deserializeParam(
+          data['guestRef'],
+          ParamType.DocumentReference,
+          false,
+          collectionNamePath: ['guest_list'],
+        ),
       );
 
   @override
@@ -79,16 +100,18 @@ class CheckInDataStruct extends FFFirebaseStruct {
   bool operator ==(Object other) {
     return other is CheckInDataStruct &&
         isUpdate == other.isUpdate &&
-        endDate == other.endDate;
+        endDate == other.endDate &&
+        guestRef == other.guestRef;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([isUpdate, endDate]);
+  int get hashCode => const ListEquality().hash([isUpdate, endDate, guestRef]);
 }
 
 CheckInDataStruct createCheckInDataStruct({
   String? isUpdate,
   DateTime? endDate,
+  DocumentReference? guestRef,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -97,6 +120,7 @@ CheckInDataStruct createCheckInDataStruct({
     CheckInDataStruct(
       isUpdate: isUpdate,
       endDate: endDate,
+      guestRef: guestRef,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

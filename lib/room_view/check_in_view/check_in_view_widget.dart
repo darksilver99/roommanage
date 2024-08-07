@@ -963,28 +963,50 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       }
                                     }
 
-                                    await GuestListRecord.collection
-                                        .doc()
+                                    var guestListRecordReference =
+                                        GuestListRecord.collection.doc();
+                                    await guestListRecordReference
                                         .set(createGuestListRecordData(
-                                          createDate: getCurrentTimestamp,
-                                          status: 1,
-                                          startDate: _model.startDate,
-                                          endDate: _model.endDate,
-                                          preName: _model.textController1.text,
-                                          firstName:
-                                              _model.textController2.text,
-                                          lastName: _model.textController3.text,
-                                          idCardNumber:
-                                              _model.textController4.text,
-                                          totalGuest: int.tryParse(
-                                              _model.textController5.text),
-                                          isDaily: _model.checkboxValue,
-                                        ));
+                                      createDate: getCurrentTimestamp,
+                                      status: 1,
+                                      startDate: _model.startDate,
+                                      endDate: _model.endDate,
+                                      preName: _model.textController1.text,
+                                      firstName: _model.textController2.text,
+                                      lastName: _model.textController3.text,
+                                      idCardNumber: _model.textController4.text,
+                                      totalGuest: int.tryParse(
+                                          _model.textController5.text),
+                                      isDaily: _model.checkboxValue,
+                                    ));
+                                    _model.insertedGuest =
+                                        GuestListRecord.getDocumentFromData(
+                                            createGuestListRecordData(
+                                              createDate: getCurrentTimestamp,
+                                              status: 1,
+                                              startDate: _model.startDate,
+                                              endDate: _model.endDate,
+                                              preName:
+                                                  _model.textController1.text,
+                                              firstName:
+                                                  _model.textController2.text,
+                                              lastName:
+                                                  _model.textController3.text,
+                                              idCardNumber:
+                                                  _model.textController4.text,
+                                              totalGuest: int.tryParse(
+                                                  _model.textController5.text),
+                                              isDaily: _model.checkboxValue,
+                                            ),
+                                            guestListRecordReference);
+                                    _shouldSetState = true;
                                     Navigator.pop(
                                         context,
                                         CheckInDataStruct(
                                           isUpdate: 'update',
                                           endDate: _model.endDate,
+                                          guestRef:
+                                              _model.insertedGuest?.reference,
                                         ));
                                   } else {
                                     await showDialog(
