@@ -257,7 +257,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                               createBy: currentUserReference,
                                               subject:
                                                   _model.textController.text,
-                                              status: 1,
+                                              status: 0,
                                               buildingRef: widget!.buildingRef,
                                               floorNumber: widget!.floor,
                                             ));

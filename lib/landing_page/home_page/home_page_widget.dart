@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
+import '/component/room_detail_view/room_detail_view_widget.dart';
 import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -151,7 +152,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 0.0),
                                         child: Text(
-                                          'อาคาร ${FFAppState().buildingList.where((e) => e.buildDoc == FFAppState().currentDropdownSelected.buildingDoc).toList().first.subject} ชั้น ${FFAppState().currentDropdownSelected.floorNumber}',
+                                          '${FFAppState().buildingList.where((e) => e.buildDoc == FFAppState().currentDropdownSelected.buildingDoc).toList().first.subject} ชั้น ${FFAppState().currentDropdownSelected.floorNumber}',
+                                          textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -172,6 +174,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             0.0, 0.0, 8.0, 0.0),
                                         child: Text(
                                           '',
+                                          textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -299,149 +302,215 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   itemBuilder: (context, roomListViewIndex) {
                                     final roomListViewItem =
                                         roomListView[roomListViewIndex];
-                                    return Material(
-                                      color: Colors.transparent,
-                                      elevation: 3.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          useSafeArea: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: RoomDetailViewWidget(),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 3.0,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Expanded(
-                                                flex: 1,
-                                                child: Column(
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        'ห้อง ${roomListViewItem.subject}',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Rubik',
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .circle_rounded,
+                                                              color: () {
+                                                                if (roomListViewItem
+                                                                        .status ==
+                                                                    0) {
+                                                                  return FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary;
+                                                                } else if (roomListViewItem
+                                                                        .status ==
+                                                                    1) {
+                                                                  return FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error;
+                                                                } else {
+                                                                  return FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .warning;
+                                                                }
+                                                              }(),
+                                                              size: 12.0,
+                                                            ),
+                                                          ),
+                                                          Flexible(
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                functions.getStatusText(
+                                                                    roomListViewItem
+                                                                        .status,
+                                                                    FFAppState()
+                                                                        .roomStatusList
+                                                                        .toList()),
+                                                                '-',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Rubik',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      if (roomListViewItem
+                                                              .status ==
+                                                          1)
+                                                        Text(
+                                                          'พักถึงวันที่ 12 พ.ค 2564',
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      'ห้อง ${roomListViewItem.subject}',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Rubik',
-                                                            fontSize: 16.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                flex: 2,
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0),
-                                                          child: Icon(
-                                                            Icons
-                                                                .circle_rounded,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            size: 16.0,
-                                                          ),
-                                                        ),
-                                                        Flexible(
-                                                          child: Text(
-                                                            'ไม่ว่าง',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
+                                                    Expanded(
+                                                      child: Text(
+                                                        'ดูรายละเอียด',
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiary,
+                                                                  fontSize:
+                                                                      10.0,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
                                                                 ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                      'พักถึงวันที่ 12 พ.ค 2564',
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Rubik',
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      'ดูรายละเอียด',
-                                                      textAlign: TextAlign.end,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Rubik',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .tertiary,
-                                                            fontSize: 10.0,
-                                                            letterSpacing: 0.0,
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

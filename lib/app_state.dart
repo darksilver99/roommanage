@@ -101,6 +101,42 @@ class FFAppState extends ChangeNotifier {
     prefs.setString(
         'ff_currentDropdownSelected', _currentDropdownSelected.serialize());
   }
+
+  List<StatusDataStruct> _roomStatusList = [
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"0\",\"subject\":\"ว่าง\"}')),
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"1\",\"subject\":\"ไม่ว่าง\"}')),
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"3\",\"subject\":\"ปิดปรับปรุง\"}'))
+  ];
+  List<StatusDataStruct> get roomStatusList => _roomStatusList;
+  set roomStatusList(List<StatusDataStruct> value) {
+    _roomStatusList = value;
+  }
+
+  void addToRoomStatusList(StatusDataStruct value) {
+    roomStatusList.add(value);
+  }
+
+  void removeFromRoomStatusList(StatusDataStruct value) {
+    roomStatusList.remove(value);
+  }
+
+  void removeAtIndexFromRoomStatusList(int index) {
+    roomStatusList.removeAt(index);
+  }
+
+  void updateRoomStatusListAtIndex(
+    int index,
+    StatusDataStruct Function(StatusDataStruct) updateFn,
+  ) {
+    roomStatusList[index] = updateFn(_roomStatusList[index]);
+  }
+
+  void insertAtIndexInRoomStatusList(int index, StatusDataStruct value) {
+    roomStatusList.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

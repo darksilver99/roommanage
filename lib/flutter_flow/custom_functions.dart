@@ -24,3 +24,15 @@ List<String> setFloorList(int totalFloor) {
 int stringToInt(String str) {
   return int.parse(str);
 }
+
+String? getStatusText(
+  int status,
+  List<StatusDataStruct> statusList,
+) {
+  for (var dataStatus in statusList) {
+    if (dataStatus.status == status) {
+      return dataStatus.subject;
+    }
+  }
+  return '-';
+}

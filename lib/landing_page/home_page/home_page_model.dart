@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
+import '/component/room_detail_view/room_detail_view_widget.dart';
 import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
