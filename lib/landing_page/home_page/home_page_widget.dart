@@ -568,6 +568,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         statusSelectedList:
                                             FFAppState().statusSelectedList,
                                       );
+
+                                      setState(() {});
                                     }
 
                                     setState(() {});
@@ -676,6 +678,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             statusSelectedList:
                                                 FFAppState().statusSelectedList,
                                           );
+
+                                          setState(() {});
                                         }
 
                                         setState(() {});
