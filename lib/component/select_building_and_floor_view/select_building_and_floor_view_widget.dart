@@ -296,6 +296,75 @@ class _SelectBuildingAndFloorViewWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
+                        Divider(
+                          height: 32.0,
+                          thickness: 1.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            if ((_model.dropDownValue1 != null &&
+                                    _model.dropDownValue1 != '') &&
+                                (_model.dropDownValue2 != null &&
+                                    _model.dropDownValue2 != '')) {
+                              FFAppState().currentDropdownSelected =
+                                  CurrentDropdownSelectedDataStruct(
+                                buildingDoc: _model.dropDownValue1,
+                                floorNumber: _model.dropDownValue2,
+                              );
+                              if (widget!.isCreate) {
+                                context.pushNamed(
+                                  'CreateRoomPage',
+                                  queryParameters: {
+                                    'buildingRef': serializeParam(
+                                      FFAppState()
+                                          .buildingList
+                                          .where((e) =>
+                                              e.buildDoc ==
+                                              _model.dropDownValue1)
+                                          .toList()
+                                          .first
+                                          .buildingRef,
+                                      ParamType.DocumentReference,
+                                    ),
+                                    'floor': serializeParam(
+                                      functions
+                                          .stringToInt(_model.dropDownValue2!),
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              } else {
+                                Navigator.pop(context, 'search');
+                              }
+                            }
+                          },
+                          text: 'แสดงห้องว่างทั้งหมด',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 50.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).warning,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color: Colors.white,
+                                  fontSize: 22.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
                       ],
                     ),
                   ),
