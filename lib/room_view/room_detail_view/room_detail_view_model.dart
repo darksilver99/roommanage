@@ -4,6 +4,7 @@ import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/check_in_view/check_in_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'room_detail_view_widget.dart' show RoomDetailViewWidget;
@@ -20,6 +21,10 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   bool? isConfirm2;
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm;
+  // Stores action output result for [Action Block - confirmBlock] action in Button widget.
+  bool? isConfirm3;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  String? isUpdate;
 
   @override
   void initState(BuildContext context) {}

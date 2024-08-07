@@ -4,6 +4,7 @@ import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/check_in_view/check_in_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -313,92 +314,252 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             ),
                                           );
                                         } else {
-                                          return Builder(
-                                            builder: (context) =>
-                                                FFButtonWidget(
-                                              onPressed: () async {
-                                                if (widget!
-                                                        .roomDocument?.status !=
-                                                    0) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder: (dialogContext) {
-                                                      return Dialog(
-                                                        elevation: 0,
-                                                        insetPadding:
-                                                            EdgeInsets.zero,
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                        child:
-                                                            InfoCustomViewWidget(
-                                                          title:
-                                                              'ยังมีผู้เข้าพักในห้องนี้ กรุณาเปลี่ยนสถานะเป็นห้องว่างก่อน',
-                                                          status: 'warning',
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                } else {
-                                                  _model.isConfirm =
-                                                      await action_blocks
-                                                          .confirmBlock(
-                                                    context,
-                                                    title:
-                                                        'ต้องการปิดปรับปรุงห้องนี้?',
-                                                  );
-                                                  if (_model.isConfirm!) {
-                                                    await widget!
-                                                        .roomDocument!.reference
-                                                        .update(
-                                                            createRoomListRecordData(
-                                                      status: 3,
-                                                    ));
-                                                    Navigator.pop(
-                                                        context, 'update');
-                                                  }
-                                                }
+                                          return Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                flex: 3,
+                                                child: Builder(
+                                                  builder: (context) => Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                4.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        if (widget!.roomDocument
+                                                                ?.status !=
+                                                            0) {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Dialog(
+                                                                elevation: 0,
+                                                                insetPadding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                alignment: AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                                child:
+                                                                    InfoCustomViewWidget(
+                                                                  title:
+                                                                      'ยังมีผู้เข้าพักในห้องนี้ กรุณาเปลี่ยนสถานะเป็นห้องว่างก่อน',
+                                                                  status:
+                                                                      'warning',
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        } else {
+                                                          _model.isConfirm =
+                                                              await action_blocks
+                                                                  .confirmBlock(
+                                                            context,
+                                                            title:
+                                                                'ต้องการปิดปรับปรุงห้องนี้?',
+                                                          );
+                                                          if (_model
+                                                              .isConfirm!) {
+                                                            await widget!
+                                                                .roomDocument!
+                                                                .reference
+                                                                .update(
+                                                                    createRoomListRecordData(
+                                                              status: 3,
+                                                            ));
+                                                            Navigator.pop(
+                                                                context,
+                                                                'update');
+                                                          }
+                                                        }
 
-                                                setState(() {});
-                                              },
-                                              text: 'ปิดปรับปรุงห้องพัก',
-                                              options: FFButtonOptions(
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .warning,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily: 'Rubik',
-                                                          color: Colors.white,
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                        setState(() {});
+                                                      },
+                                                      text:
+                                                          'ปิดปรับปรุงห้องพัก',
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .warning,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      16.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
                                                         ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
                                               ),
-                                            ),
+                                              Expanded(
+                                                flex: 5,
+                                                child: Builder(
+                                                  builder: (context) => Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(4.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        _model.isConfirm3 =
+                                                            await action_blocks
+                                                                .confirmBlock(
+                                                          context,
+                                                          title:
+                                                              'ต้องการเช็คอินห้องนี้?',
+                                                        );
+                                                        if (_model
+                                                            .isConfirm3!) {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Dialog(
+                                                                elevation: 0,
+                                                                insetPadding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                alignment: AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                                child:
+                                                                    CheckInViewWidget(
+                                                                  roomDocument:
+                                                                      widget!
+                                                                          .roomDocument!,
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              safeSetState(() =>
+                                                                  _model.isUpdate =
+                                                                      value));
+
+                                                          if ((_model.isUpdate !=
+                                                                      null &&
+                                                                  _model.isUpdate !=
+                                                                      '') &&
+                                                              (_model.isUpdate ==
+                                                                  'update')) {
+                                                            await widget!
+                                                                .roomDocument!
+                                                                .reference
+                                                                .update(
+                                                                    createRoomListRecordData(
+                                                              status: 1,
+                                                            ));
+                                                            Navigator.pop(
+                                                                context,
+                                                                'update');
+                                                          }
+                                                        }
+
+                                                        setState(() {});
+                                                      },
+                                                      text: 'เช็คอินห้อง',
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
+                                                                    0.0,
+                                                                    24.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           );
                                         }
                                       },
