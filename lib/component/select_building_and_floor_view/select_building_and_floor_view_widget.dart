@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -237,6 +238,11 @@ class _SelectBuildingAndFloorViewWidgetState
                                     _model.dropDownValue1 != '') &&
                                 (_model.dropDownValue2 != null &&
                                     _model.dropDownValue2 != '')) {
+                              FFAppState().currentDropdownSelected =
+                                  CurrentDropdownSelectedDataStruct(
+                                buildingDoc: _model.dropDownValue1,
+                                floorNumber: _model.dropDownValue2,
+                              );
                               if (widget!.isCreate) {
                                 context.pushNamed(
                                   'CreateRoomPage',
