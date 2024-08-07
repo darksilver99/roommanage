@@ -174,6 +174,12 @@ class FFAppState extends ChangeNotifier {
       int index, StatusSelectedDataStruct value) {
     statusSelectedList.insert(index, value);
   }
+
+  DocumentReference? _tmpRoomRef;
+  DocumentReference? get tmpRoomRef => _tmpRoomRef;
+  set tmpRoomRef(DocumentReference? value) {
+    _tmpRoomRef = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
