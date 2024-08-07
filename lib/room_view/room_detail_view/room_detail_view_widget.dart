@@ -165,7 +165,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'อาคาร ${rowBuildingListRecord.subject} ชั้น ${widget!.roomDocument?.floorNumber?.toString()}',
+                                          '${rowBuildingListRecord.subject} ชั้น ${widget!.roomDocument?.floorNumber?.toString()}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

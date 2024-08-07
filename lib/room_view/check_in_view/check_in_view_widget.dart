@@ -199,13 +199,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       .labelMedium
                                       .override(
                                         fontFamily: 'Rubik',
-                                        fontSize: 18.0,
+                                        fontSize: 20.0,
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
                                         fontFamily: 'Rubik',
+                                        fontSize: 20.0,
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
@@ -243,7 +244,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 validator: _model.textController1Validator
@@ -265,14 +266,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -310,6 +311,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Rubik',
+                                    fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textController2Validator
@@ -330,14 +332,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -375,6 +377,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Rubik',
+                                    fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textController3Validator
@@ -395,14 +398,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -440,6 +443,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Rubik',
+                                    fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textController4Validator
@@ -460,14 +464,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Rubik',
-                                      fontSize: 18.0,
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -505,6 +509,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Rubik',
+                                    fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
                               keyboardType: TextInputType.number,
