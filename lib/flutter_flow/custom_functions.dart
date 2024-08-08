@@ -45,3 +45,17 @@ String? dateTh(DateTime? date) {
   final buddhistYear = date.year + 543;
   return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
 }
+
+String getTimeDurationOnlyDay(
+  DateTime dateIn,
+  DateTime dateOut,
+) {
+  Duration duration = dateOut.difference(dateIn);
+  int days = duration.inDays;
+  StringBuffer result = StringBuffer();
+  result.write('1 วัน ');
+  if (days > 0) {
+    result.write('$days วัน ');
+  }
+  return result.toString().trim();
+}
