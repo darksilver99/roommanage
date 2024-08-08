@@ -88,10 +88,6 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
     return null;
   }
 
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue1;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue2;
   DateTime? datePicked1;
   DateTime? datePicked2;
   // Stores action output result for [Validate Form] action in Button widget.
