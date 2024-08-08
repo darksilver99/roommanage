@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/component/no_data_view/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/room_view/payment_detail_view/payment_detail_view_widget.dart';
@@ -102,6 +103,9 @@ class _GuestPaymentHistoryViewWidgetState
                     }
                     List<PaymentListRecord> listViewPaymentListRecordList =
                         snapshot.data!;
+                    if (listViewPaymentListRecordList.isEmpty) {
+                      return NoDataViewWidget();
+                    }
 
                     return ListView.builder(
                       padding: EdgeInsets.fromLTRB(
