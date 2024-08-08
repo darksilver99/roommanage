@@ -53,7 +53,6 @@ String getTimeDurationOnlyDay(
   Duration duration = dateOut.difference(dateIn);
   int days = duration.inDays;
   StringBuffer result = StringBuffer();
-  result.write('1 วัน ');
   if (days > 0) {
     result.write('$days วัน ');
   }
