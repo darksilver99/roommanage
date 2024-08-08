@@ -564,7 +564,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .alternate,
                                                       width: 3.0,
                                                     ),
                                                   ),
@@ -597,7 +597,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .alternate,
                                                       width: 3.0,
                                                     ),
                                                   ),
@@ -660,7 +660,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .alternate,
                                                       width: 3.0,
                                                     ),
                                                   ),
@@ -693,7 +693,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .alternate,
                                                       width: 3.0,
                                                     ),
                                                   ),

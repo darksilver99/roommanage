@@ -47,8 +47,11 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
     super.initState();
     _model = createModel(context, () => GuestPaymentViewModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.textController1 ??= TextEditingController();
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController2 ??= TextEditingController();
+    _model.textFieldFocusNode2 ??= FocusNode();
   }
 
   @override
@@ -104,7 +107,7 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -245,8 +248,8 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 8.0),
                                       child: TextFormField(
-                                        controller: _model.textController,
-                                        focusNode: _model.textFieldFocusNode,
+                                        controller: _model.textController1,
+                                        focusNode: _model.textFieldFocusNode1,
                                         autofocus: false,
                                         obscureText: false,
                                         decoration: InputDecoration(
@@ -258,7 +261,6 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                     fontSize: 22.0,
                                                     letterSpacing: 0.0,
                                                   ),
-                                          hintText: 'จำนวนเงิน',
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -318,12 +320,116 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                             ),
                                         keyboardType: TextInputType.number,
                                         validator: _model
-                                            .textControllerValidator
+                                            .textController1Validator
                                             .asValidator(context),
                                         inputFormatters: [
                                           FilteringTextInputFormatter.allow(
                                               RegExp('[0-9]'))
                                         ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            'หมายเหตุ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  fontSize: 22.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 0.0, 8.0),
+                                      child: TextFormField(
+                                        controller: _model.textController2,
+                                        focusNode: _model.textFieldFocusNode2,
+                                        autofocus: false,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Kanit',
+                                                    fontSize: 22.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          hintStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Kanit',
+                                                    fontSize: 22.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              fontSize: 22.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        maxLines: 3,
+                                        keyboardType: TextInputType.multiline,
+                                        validator: _model
+                                            .textController2Validator
+                                            .asValidator(context),
                                       ),
                                     ),
                                   ],
@@ -635,10 +741,12 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                   subject:
                                                       _model.choiceChipsValue,
                                                   price: double.tryParse(_model
-                                                      .textController.text),
+                                                      .textController1.text),
                                                   imageSlip:
                                                       _model.urlList?.first,
                                                   type: '1',
+                                                  detail: _model
+                                                      .textController2.text,
                                                 ));
                                             await showDialog(
                                               context: context,
