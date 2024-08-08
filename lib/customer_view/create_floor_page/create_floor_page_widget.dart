@@ -224,60 +224,81 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                   .validate()) {
                                             return;
                                           }
+                                          if (FFAppState()
+                                              .isCreateBuildingFromSetting) {
+                                            await BuildingListRecord.createDoc(
+                                                    FFAppState()
+                                                        .customerReference!)
+                                                .set(
+                                                    createBuildingListRecordData(
+                                              createDate: getCurrentTimestamp,
+                                              createBy: currentUserReference,
+                                              status: 1,
+                                              subject: FFAppState()
+                                                  .tmpCustomerData
+                                                  .buildingName,
+                                              totalFloor: int.tryParse(
+                                                  _model.textController.text),
+                                            ));
+                                          } else {
+                                            var customerNameRecordReference =
+                                                CustomerNameRecord.collection
+                                                    .doc();
+                                            await customerNameRecordReference
+                                                .set(
+                                                    createCustomerNameRecordData(
+                                              createDate: getCurrentTimestamp,
+                                              createBy: currentUserReference,
+                                              status: 1,
+                                            ));
+                                            _model.insertCustomer = CustomerNameRecord
+                                                .getDocumentFromData(
+                                                    createCustomerNameRecordData(
+                                                      createDate:
+                                                          getCurrentTimestamp,
+                                                      createBy:
+                                                          currentUserReference,
+                                                      status: 1,
+                                                    ),
+                                                    customerNameRecordReference);
+                                            FFAppState().customerReference =
+                                                _model
+                                                    .insertCustomer?.reference;
 
-                                          var customerNameRecordReference =
-                                              CustomerNameRecord.collection
-                                                  .doc();
-                                          await customerNameRecordReference
-                                              .set(createCustomerNameRecordData(
-                                            createDate: getCurrentTimestamp,
-                                            createBy: currentUserReference,
-                                            status: 1,
-                                          ));
-                                          _model.insertCustomer = CustomerNameRecord
-                                              .getDocumentFromData(
-                                                  createCustomerNameRecordData(
-                                                    createDate:
-                                                        getCurrentTimestamp,
-                                                    createBy:
-                                                        currentUserReference,
-                                                    status: 1,
-                                                  ),
-                                                  customerNameRecordReference);
+                                            var buildingListRecordReference2 =
+                                                BuildingListRecord.createDoc(
+                                                    _model.insertCustomer!
+                                                        .reference);
+                                            await buildingListRecordReference2
+                                                .set(
+                                                    createBuildingListRecordData(
+                                              createDate: getCurrentTimestamp,
+                                              createBy: currentUserReference,
+                                              status: 1,
+                                              subject: FFAppState()
+                                                  .tmpCustomerData
+                                                  .buildingName,
+                                              totalFloor: int.tryParse(
+                                                  _model.textController.text),
+                                            ));
+                                            _model.insertBuilding = BuildingListRecord
+                                                .getDocumentFromData(
+                                                    createBuildingListRecordData(
+                                                      createDate:
+                                                          getCurrentTimestamp,
+                                                      createBy:
+                                                          currentUserReference,
+                                                      status: 1,
+                                                      subject: FFAppState()
+                                                          .tmpCustomerData
+                                                          .buildingName,
+                                                      totalFloor: int.tryParse(
+                                                          _model.textController
+                                                              .text),
+                                                    ),
+                                                    buildingListRecordReference2);
+                                          }
 
-                                          var buildingListRecordReference =
-                                              BuildingListRecord.createDoc(
-                                                  _model.insertCustomer!
-                                                      .reference);
-                                          await buildingListRecordReference
-                                              .set(createBuildingListRecordData(
-                                            createDate: getCurrentTimestamp,
-                                            createBy: currentUserReference,
-                                            status: 1,
-                                            subject: FFAppState()
-                                                .tmpCustomerData
-                                                .buildingName,
-                                            totalFloor: int.tryParse(
-                                                _model.textController.text),
-                                          ));
-                                          _model.insertBuilding = BuildingListRecord
-                                              .getDocumentFromData(
-                                                  createBuildingListRecordData(
-                                                    createDate:
-                                                        getCurrentTimestamp,
-                                                    createBy:
-                                                        currentUserReference,
-                                                    status: 1,
-                                                    subject: FFAppState()
-                                                        .tmpCustomerData
-                                                        .buildingName,
-                                                    totalFloor: int.tryParse(
-                                                        _model.textController
-                                                            .text),
-                                                  ),
-                                                  buildingListRecordReference);
-                                          FFAppState().customerReference =
-                                              _model.insertCustomer?.reference;
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {

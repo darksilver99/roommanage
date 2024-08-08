@@ -93,7 +93,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            'สร้างอาคารแรกของคุณ',
+                                            'สร้างอาคาร',
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: FlutterFlowTheme.of(context)
