@@ -1,6 +1,10 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'general_setting_view_model.dart';
@@ -14,8 +18,11 @@ class GeneralSettingViewWidget extends StatefulWidget {
       _GeneralSettingViewWidgetState();
 }
 
-class _GeneralSettingViewWidgetState extends State<GeneralSettingViewWidget> {
+class _GeneralSettingViewWidgetState extends State<GeneralSettingViewWidget>
+    with TickerProviderStateMixin {
   late GeneralSettingViewModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -27,6 +34,21 @@ class _GeneralSettingViewWidgetState extends State<GeneralSettingViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => GeneralSettingViewModel());
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(-5.0, -5.0),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -286,7 +308,7 @@ class _GeneralSettingViewWidgetState extends State<GeneralSettingViewWidget> {
             ),
           ],
         ),
-      ),
+      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
     );
   }
 }
