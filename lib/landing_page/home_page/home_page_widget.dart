@@ -14,6 +14,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -70,8 +71,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     backgroundColor: Colors.transparent,
                     alignment: AlignmentDirectional(0.0, 0.0)
                         .resolve(Directionality.of(context)),
-                    child: SelectBuildingAndFloorViewWidget(
-                      isCreate: true,
+                    child: WebViewAware(
+                      child: SelectBuildingAndFloorViewWidget(
+                        isCreate: true,
+                      ),
                     ),
                   );
                 },
@@ -496,8 +499,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     backgroundColor: Colors.transparent,
                                     alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: SelectBuildingAndFloorViewWidget(
-                                      isCreate: false,
+                                    child: WebViewAware(
+                                      child: SelectBuildingAndFloorViewWidget(
+                                        isCreate: false,
+                                      ),
                                     ),
                                   );
                                 },
@@ -610,11 +615,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     useSafeArea: true,
                                     context: context,
                                     builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: RoomDetailViewWidget(
-                                          roomDocument: roomListViewItem,
+                                      return WebViewAware(
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: RoomDetailViewWidget(
+                                            roomDocument: roomListViewItem,
+                                          ),
                                         ),
                                       );
                                     },

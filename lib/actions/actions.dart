@@ -9,6 +9,7 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 Future<bool?> confirmBlock(
   BuildContext context, {
@@ -26,9 +27,11 @@ Future<bool?> confirmBlock(
         backgroundColor: Colors.transparent,
         alignment:
             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-        child: ConfirmCustomViewWidget(
-          title: title!,
-          detail: detail,
+        child: WebViewAware(
+          child: ConfirmCustomViewWidget(
+            title: title!,
+            detail: detail,
+          ),
         ),
       );
     },
@@ -64,9 +67,11 @@ Future checkAppVersion(BuildContext context) async {
           backgroundColor: Colors.transparent,
           alignment: AlignmentDirectional(0.0, 0.0)
               .resolve(Directionality.of(context)),
-          child: InfoCustomViewWidget(
-            title: 'กรุณาอัพเดทแอปพลิเคชั่นและเปิดใหม่อีกครั้ง',
-            status: 'error',
+          child: WebViewAware(
+            child: InfoCustomViewWidget(
+              title: 'กรุณาอัพเดทแอปพลิเคชั่นและเปิดใหม่อีกครั้ง',
+              status: 'error',
+            ),
           ),
         );
       },

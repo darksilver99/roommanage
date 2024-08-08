@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'setting_page_model.dart';
 export 'setting_page_model.dart';
 
@@ -40,6 +41,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -126,8 +129,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Kanit',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                            color: Color(0xFF6F7578),
                                             fontSize: 12.0,
                                             letterSpacing: 0.0,
                                           ),
@@ -223,7 +225,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          child: GeneralSettingViewWidget(),
+                                          child: WebViewAware(
+                                            child: GeneralSettingViewWidget(),
+                                          ),
                                         );
                                       },
                                     );
@@ -365,7 +369,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          child: IssueViewWidget(),
+                                          child: WebViewAware(
+                                            child: IssueViewWidget(),
+                                          ),
                                         );
                                       },
                                     );
@@ -528,7 +534,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'Version 1.0.0(1)',
+                                      FFAppState().appVersion,
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium

@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'guest_payment_view_model.dart';
 export 'guest_payment_view_model.dart';
 
@@ -762,10 +763,12 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: InfoCustomViewWidget(
-                                                    title:
-                                                        'บันทึกข้อมูลเรียบร้อยแล้ว',
-                                                    status: 'success',
+                                                  child: WebViewAware(
+                                                    child: InfoCustomViewWidget(
+                                                      title:
+                                                          'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                                      status: 'success',
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -787,10 +790,12 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: InfoCustomViewWidget(
-                                                    title:
-                                                        'กรุณาแนบรูปหลักฐานการโอนเงิน',
-                                                    status: 'error',
+                                                  child: WebViewAware(
+                                                    child: InfoCustomViewWidget(
+                                                      title:
+                                                          'กรุณาแนบรูปหลักฐานการโอนเงิน',
+                                                      status: 'error',
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -809,10 +814,12 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: InfoCustomViewWidget(
-                                                  title:
-                                                      'กรุณาเลือกประเภทการจ่าย',
-                                                  status: 'error',
+                                                child: WebViewAware(
+                                                  child: InfoCustomViewWidget(
+                                                    title:
+                                                        'กรุณาเลือกประเภทการจ่าย',
+                                                    status: 'error',
+                                                  ),
                                                 ),
                                               );
                                             },

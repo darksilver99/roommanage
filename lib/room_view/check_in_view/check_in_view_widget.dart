@@ -14,6 +14,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'check_in_view_model.dart';
 export 'check_in_view_model.dart';
 
@@ -989,9 +990,12 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: InfoCustomViewWidget(
-                                                  title: 'เลือกวันที่เข้าก่อน',
-                                                  status: 'error',
+                                                child: WebViewAware(
+                                                  child: InfoCustomViewWidget(
+                                                    title:
+                                                        'เลือกวันที่เข้าก่อน',
+                                                    status: 'error',
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -1112,9 +1116,11 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: InfoCustomViewWidget(
-                                                title: 'กรุณาเลือกวันที่ออก',
-                                                status: 'warning',
+                                              child: WebViewAware(
+                                                child: InfoCustomViewWidget(
+                                                  title: 'กรุณาเลือกวันที่ออก',
+                                                  status: 'warning',
+                                                ),
                                               ),
                                             );
                                           },
@@ -1182,9 +1188,11 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          child: InfoCustomViewWidget(
-                                            title: 'กรุณาเลือกวันที่เข้า',
-                                            status: 'warning',
+                                          child: WebViewAware(
+                                            child: InfoCustomViewWidget(
+                                              title: 'กรุณาเลือกวันที่เข้า',
+                                              status: 'warning',
+                                            ),
                                           ),
                                         );
                                       },

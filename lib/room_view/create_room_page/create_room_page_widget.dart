@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'create_room_page_model.dart';
 export 'create_room_page_model.dart';
 
@@ -239,11 +240,13 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: InfoCustomViewWidget(
-                                                    title: 'เลขที่ห้องซ้ำ',
-                                                    detail:
-                                                        'กรุณาตรวจสอบเลขที่ห้อง เนื่องจากอาคารนี้มีเลขที่ห้องนี้อยู่แล้ว',
-                                                    status: 'error',
+                                                  child: WebViewAware(
+                                                    child: InfoCustomViewWidget(
+                                                      title: 'เลขที่ห้องซ้ำ',
+                                                      detail:
+                                                          'กรุณาตรวจสอบเลขที่ห้อง เนื่องจากอาคารนี้มีเลขที่ห้องนี้อยู่แล้ว',
+                                                      status: 'error',
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -275,10 +278,12 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: InfoCustomViewWidget(
-                                                    title:
-                                                        'สร้างห้องสำเร็จแล้ว',
-                                                    status: 'success',
+                                                  child: WebViewAware(
+                                                    child: InfoCustomViewWidget(
+                                                      title:
+                                                          'สร้างห้องสำเร็จแล้ว',
+                                                      status: 'success',
+                                                    ),
                                                   ),
                                                 );
                                               },

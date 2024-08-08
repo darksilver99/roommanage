@@ -7,6 +7,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'guest_payment_history_view_model.dart';
 export 'guest_payment_history_view_model.dart';
 
@@ -138,9 +139,11 @@ class _GuestPaymentHistoryViewWidgetState
                                       backgroundColor: Colors.transparent,
                                       alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: PaymentDetailViewWidget(
-                                        paymentDocument:
-                                            listViewPaymentListRecord,
+                                      child: WebViewAware(
+                                        child: PaymentDetailViewWidget(
+                                          paymentDocument:
+                                              listViewPaymentListRecord,
+                                        ),
                                       ),
                                     );
                                   },
