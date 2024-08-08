@@ -534,14 +534,11 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (_model.isDaily) {
-                                        _model.isDaily = false;
-                                      } else {
+                                      if (!_model.isDaily) {
                                         _model.isDaily = true;
+                                        _model.endDate = null;
+                                        setState(() {});
                                       }
-
-                                      _model.endDate = null;
-                                      setState(() {});
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -635,12 +632,9 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     onTap: () async {
                                       if (_model.isDaily) {
                                         _model.isDaily = false;
-                                      } else {
-                                        _model.isDaily = true;
+                                        _model.endDate = null;
+                                        setState(() {});
                                       }
-
-                                      _model.endDate = null;
-                                      setState(() {});
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
