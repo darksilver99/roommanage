@@ -904,6 +904,9 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                         .getDocumentOnce(widget!
                                                             .roomDocument!
                                                             .guestRef!);
+                                                FFAppState().tmpGuestRef =
+                                                    _model
+                                                        .guestResult?.reference;
                                                 await showDialog(
                                                   context: context,
                                                   builder: (dialogContext) {
