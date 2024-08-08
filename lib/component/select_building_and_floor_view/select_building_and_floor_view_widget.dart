@@ -170,18 +170,19 @@ class _SelectBuildingAndFloorViewWidgetState
                               setState(() {});
                             },
                             width: double.infinity,
-                            height: 56.0,
+                            height: 60.0,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Kanit',
+                                  fontSize: 20.0,
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'เลือกอาคาร',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                              size: 15.0,
                             ),
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -207,18 +208,19 @@ class _SelectBuildingAndFloorViewWidgetState
                             onChanged: (val) =>
                                 setState(() => _model.dropDownValue2 = val),
                             width: double.infinity,
-                            height: 56.0,
+                            height: 60.0,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Kanit',
+                                  fontSize: 20.0,
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'เลือกชั้น',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                              size: 15.0,
                             ),
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
