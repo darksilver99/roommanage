@@ -88,7 +88,7 @@ class _AppBarViewWidgetState extends State<AppBarViewWidget> {
                 maxLines: 1,
                 minFontSize: 18.0,
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Rubik',
+                      fontFamily: 'Kanit',
                       color: FlutterFlowTheme.of(context).info,
                       fontSize: 22.0,
                       letterSpacing: 0.0,

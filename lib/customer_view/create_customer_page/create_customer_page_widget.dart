@@ -99,7 +99,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   fontSize: 22.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
@@ -121,14 +121,14 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Rubik',
+                                              fontFamily: 'Kanit',
                                               letterSpacing: 0.0,
                                             ),
                                         hintText: 'ชื่อที่พัก',
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Rubik',
+                                              fontFamily: 'Kanit',
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
@@ -171,7 +171,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Rubik',
+                                            fontFamily: 'Kanit',
                                             letterSpacing: 0.0,
                                           ),
                                       validator: _model.textControllerValidator
@@ -228,7 +228,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -288,7 +288,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              fontFamily: 'Rubik',
+                                              fontFamily: 'Kanit',
                                               color: Colors.white,
                                               letterSpacing: 0.0,
                                             ),

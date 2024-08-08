@@ -99,7 +99,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   fontSize: 22.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
@@ -118,14 +118,14 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Rubik',
+                                            fontFamily: 'Kanit',
                                             letterSpacing: 0.0,
                                           ),
                                       hintText: 'ชื่อตึก,อาคาร เช่น อาคาร A',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Rubik',
+                                            fontFamily: 'Kanit',
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
@@ -168,7 +168,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Rubik',
+                                          fontFamily: 'Kanit',
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textControllerValidator
@@ -188,7 +188,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -240,7 +240,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              fontFamily: 'Rubik',
+                                              fontFamily: 'Kanit',
                                               color: Colors.white,
                                               letterSpacing: 0.0,
                                             ),

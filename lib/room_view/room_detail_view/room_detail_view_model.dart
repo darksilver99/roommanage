@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/room_view/check_in_view/check_in_view_widget.dart';
+import '/room_view/guest_payment_view/guest_payment_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'room_detail_view_widget.dart' show RoomDetailViewWidget;
@@ -26,6 +27,10 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   bool? isConfirm3;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   CheckInDataStruct? checkInData;
+  // Stores action output result for [Backend Call - Read Document] action in Button widget.
+  GuestListRecord? guestResult;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  String? isUpdate;
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm4;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
