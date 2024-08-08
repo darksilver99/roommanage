@@ -527,64 +527,150 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 8.0, 0.0),
-                                  child: Transform.scale(
-                                    scaleX: 1.5,
-                                    scaleY: 1.5,
-                                    child: Theme(
-                                      data: ThemeData(
-                                        checkboxTheme: CheckboxThemeData(
-                                          visualDensity: VisualDensity.compact,
-                                          materialTapTargetSize:
-                                              MaterialTapTargetSize.shrinkWrap,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: Transform.scale(
+                                          scaleX: 1.5,
+                                          scaleY: 1.5,
+                                          child: Theme(
+                                            data: ThemeData(
+                                              checkboxTheme: CheckboxThemeData(
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                materialTapTargetSize:
+                                                    MaterialTapTargetSize
+                                                        .shrinkWrap,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              unselectedWidgetColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                            child: Checkbox(
+                                              value: _model.checkboxValue1 ??=
+                                                  _model.isDaily,
+                                              onChanged: (newValue) async {
+                                                setState(() =>
+                                                    _model.checkboxValue1 =
+                                                        newValue!);
+
+                                                if (!newValue!) {
+                                                  _model.endDate = null;
+                                                  setState(() {});
+                                                }
+                                              },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              checkColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                            ),
                                           ),
                                         ),
-                                        unselectedWidgetColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryText,
                                       ),
-                                      child: Checkbox(
-                                        value: _model.checkboxValue ??= false,
-                                        onChanged: (newValue) async {
-                                          setState(() =>
-                                              _model.checkboxValue = newValue!);
-
-                                          if (!newValue!) {
-                                            _model.endDate = null;
-                                            setState(() {});
-                                          }
-                                        },
-                                        side: BorderSide(
-                                          width: 2,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                      Expanded(
+                                        child: Text(
+                                          'รายวัน',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                fontSize: 22.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
-                                        activeColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        checkColor:
-                                            FlutterFlowTheme.of(context).info,
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
                                 Expanded(
-                                  child: Text(
-                                    'รายวัน',
-                                    maxLines: 1,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          fontSize: 22.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: Transform.scale(
+                                          scaleX: 1.5,
+                                          scaleY: 1.5,
+                                          child: Theme(
+                                            data: ThemeData(
+                                              checkboxTheme: CheckboxThemeData(
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                materialTapTargetSize:
+                                                    MaterialTapTargetSize
+                                                        .shrinkWrap,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              unselectedWidgetColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                            child: Checkbox(
+                                              value: _model.checkboxValue2 ??=
+                                                  !_model.isDaily,
+                                              onChanged: (newValue) async {
+                                                setState(() =>
+                                                    _model.checkboxValue2 =
+                                                        newValue!);
+
+                                                if (!newValue!) {
+                                                  _model.endDate = null;
+                                                  setState(() {});
+                                                }
+                                              },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              checkColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                            ),
+                                          ),
                                         ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'รายเดือน',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                fontSize: 22.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -751,7 +837,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                               ],
                             ),
                           ),
-                          if (_model.checkboxValue ?? true)
+                          if (_model.isDaily)
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
@@ -962,7 +1048,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 _shouldSetState = true;
                                 if (_model.isValid!) {
                                   if (_model.startDate != null) {
-                                    if (_model.checkboxValue!) {
+                                    if (_model.checkboxValue1!) {
                                       if (!(_model.endDate != null)) {
                                         await showDialog(
                                           context: context,
@@ -1004,7 +1090,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       idCardNumber: _model.textController4.text,
                                       totalGuest: int.tryParse(
                                           _model.textController5.text),
-                                      isDaily: _model.checkboxValue,
+                                      isDaily: _model.isDaily,
                                     ));
                                     _model.insertedGuest =
                                         GuestListRecord.getDocumentFromData(
@@ -1023,7 +1109,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                   _model.textController4.text,
                                               totalGuest: int.tryParse(
                                                   _model.textController5.text),
-                                              isDaily: _model.checkboxValue,
+                                              isDaily: _model.isDaily,
                                             ),
                                             guestListRecordReference);
                                     _shouldSetState = true;

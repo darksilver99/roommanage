@@ -23,6 +23,8 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
 
   DateTime? endDate;
 
+  bool isDaily = true;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -87,7 +89,9 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
   }
 
   // State field(s) for Checkbox widget.
-  bool? checkboxValue;
+  bool? checkboxValue1;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue2;
   DateTime? datePicked1;
   DateTime? datePicked2;
   // Stores action output result for [Validate Form] action in Button widget.
