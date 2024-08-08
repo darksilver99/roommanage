@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'room_detail_view_model.dart';
 export 'room_detail_view_model.dart';
 
@@ -577,7 +578,10 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                                           Directionality.of(
                                                                               context)),
                                                                   child:
-                                                                      GuestPaymentHistoryViewWidget(),
+                                                                      WebViewAware(
+                                                                    child:
+                                                                        GuestPaymentHistoryViewWidget(),
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -754,11 +758,14 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                                           Directionality.of(
                                                                               context)),
                                                                   child:
-                                                                      InfoCustomViewWidget(
-                                                                    title:
-                                                                        'ยังมีผู้เข้าพักในห้องนี้ กรุณาเปลี่ยนสถานะเป็นห้องว่างก่อน',
-                                                                    status:
-                                                                        'warning',
+                                                                      WebViewAware(
+                                                                    child:
+                                                                        InfoCustomViewWidget(
+                                                                      title:
+                                                                          'ยังมีผู้เข้าพักในห้องนี้ กรุณาเปลี่ยนสถานะเป็นห้องว่างก่อน',
+                                                                      status:
+                                                                          'warning',
+                                                                    ),
                                                                   ),
                                                                 );
                                                               },
@@ -885,10 +892,13 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                                           Directionality.of(
                                                                               context)),
                                                                   child:
-                                                                      CheckInViewWidget(
-                                                                    roomDocument:
-                                                                        widget!
-                                                                            .roomDocument!,
+                                                                      WebViewAware(
+                                                                    child:
+                                                                        CheckInViewWidget(
+                                                                      roomDocument:
+                                                                          widget!
+                                                                              .roomDocument!,
+                                                                    ),
                                                                   ),
                                                                 );
                                                               },
@@ -1019,12 +1029,14 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                      child:
-                                                          GuestPaymentViewWidget(
-                                                        roomDocument: widget!
-                                                            .roomDocument!,
-                                                        guestDocment:
-                                                            _model.guestResult!,
+                                                      child: WebViewAware(
+                                                        child:
+                                                            GuestPaymentViewWidget(
+                                                          roomDocument: widget!
+                                                              .roomDocument!,
+                                                          guestDocment: _model
+                                                              .guestResult!,
+                                                        ),
                                                       ),
                                                     );
                                                   },

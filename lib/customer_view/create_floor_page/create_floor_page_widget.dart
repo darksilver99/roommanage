@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'create_floor_page_model.dart';
 export 'create_floor_page_model.dart';
 
@@ -311,10 +312,12 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: InfoCustomViewWidget(
-                                                  title:
-                                                      'สร้างข้อมูลที่พักสำเร็จแล้ว',
-                                                  status: 'success',
+                                                child: WebViewAware(
+                                                  child: InfoCustomViewWidget(
+                                                    title:
+                                                        'สร้างข้อมูลที่พักสำเร็จแล้ว',
+                                                    status: 'success',
+                                                  ),
                                                 ),
                                               );
                                             },

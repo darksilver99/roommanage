@@ -1,18 +1,16 @@
-import '/backend/backend.dart';
-import '/component/no_data_view/no_data_view_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/room_view/payment_detail_view/payment_detail_view_widget.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
-import 'guest_payment_history_view_widget.dart'
-    show GuestPaymentHistoryViewWidget;
+import '/flutter_flow/flutter_flow_web_view.dart';
+import 'dart:math';
+import 'web_view_widget.dart' show WebViewWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
-class GuestPaymentHistoryViewModel
-    extends FlutterFlowModel<GuestPaymentHistoryViewWidget> {
+class WebViewModel extends FlutterFlowModel<WebViewWidget> {
   ///  Local state fields for this component.
 
   List<FFUploadedFile> tmpImageList = [];
