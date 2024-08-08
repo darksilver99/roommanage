@@ -63,7 +63,7 @@ class _NoRoomViewWidgetState extends State<NoRoomViewWidget> {
                 Text(
                   'ยังไม่มีห้อง',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Rubik',
+                        fontFamily: 'Kanit',
                         color: FlutterFlowTheme.of(context).secondaryText,
                         fontSize: 24.0,
                         letterSpacing: 0.0,

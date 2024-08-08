@@ -127,7 +127,7 @@ class _SelectBuildingAndFloorViewWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Rubik',
+                                  fontFamily: 'Kanit',
                                   fontSize: 20.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
@@ -172,7 +172,7 @@ class _SelectBuildingAndFloorViewWidgetState
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Rubik',
+                                  fontFamily: 'Kanit',
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'เลือกอาคาร',
@@ -209,7 +209,7 @@ class _SelectBuildingAndFloorViewWidgetState
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Rubik',
+                                  fontFamily: 'Kanit',
                                   letterSpacing: 0.0,
                                 ),
                             hintText: 'เลือกชั้น',
@@ -282,7 +282,7 @@ class _SelectBuildingAndFloorViewWidgetState
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Rubik',
+                                  fontFamily: 'Kanit',
                                   color: Colors.white,
                                   fontSize: 22.0,
                                   letterSpacing: 0.0,
@@ -355,7 +355,7 @@ class _SelectBuildingAndFloorViewWidgetState
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Rubik',
+                                        fontFamily: 'Kanit',
                                         color: Colors.white,
                                         fontSize: 22.0,
                                         letterSpacing: 0.0,

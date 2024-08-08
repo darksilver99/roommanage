@@ -83,7 +83,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Rubik',
+                                fontFamily: 'Kanit',
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                               ),
@@ -127,7 +127,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).error,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Rubik',
+                          fontFamily: 'Kanit',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),

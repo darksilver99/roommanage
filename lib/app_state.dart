@@ -180,6 +180,39 @@ class FFAppState extends ChangeNotifier {
   set tmpRoomRef(DocumentReference? value) {
     _tmpRoomRef = value;
   }
+
+  List<String> _paymentGuestTypeList = [
+    'จ่ายแบบรายวัน',
+    'จ่ายแบบรายเดือน',
+    'จ่ายค่ามัดจำ'
+  ];
+  List<String> get paymentGuestTypeList => _paymentGuestTypeList;
+  set paymentGuestTypeList(List<String> value) {
+    _paymentGuestTypeList = value;
+  }
+
+  void addToPaymentGuestTypeList(String value) {
+    paymentGuestTypeList.add(value);
+  }
+
+  void removeFromPaymentGuestTypeList(String value) {
+    paymentGuestTypeList.remove(value);
+  }
+
+  void removeAtIndexFromPaymentGuestTypeList(int index) {
+    paymentGuestTypeList.removeAt(index);
+  }
+
+  void updatePaymentGuestTypeListAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    paymentGuestTypeList[index] = updateFn(_paymentGuestTypeList[index]);
+  }
+
+  void insertAtIndexInPaymentGuestTypeList(int index, String value) {
+    paymentGuestTypeList.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

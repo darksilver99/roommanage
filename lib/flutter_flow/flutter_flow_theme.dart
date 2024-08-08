@@ -159,106 +159,106 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Rubik';
+  String get displayLargeFamily => 'Kanit';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 57.0,
       );
-  String get displayMediumFamily => 'Rubik';
+  String get displayMediumFamily => 'Kanit';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 45.0,
       );
-  String get displaySmallFamily => 'Rubik';
+  String get displaySmallFamily => 'Kanit';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Rubik';
+  String get headlineLargeFamily => 'Kanit';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Rubik';
+  String get headlineMediumFamily => 'Kanit';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 28.0,
       );
-  String get headlineSmallFamily => 'Rubik';
+  String get headlineSmallFamily => 'Kanit';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'Rubik';
+  String get titleLargeFamily => 'Kanit';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Rubik';
+  String get titleMediumFamily => 'Kanit';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Rubik';
+  String get titleSmallFamily => 'Kanit';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Rubik';
+  String get labelLargeFamily => 'Kanit';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelMediumFamily => 'Rubik';
+  String get labelMediumFamily => 'Kanit';
   TextStyle get labelMedium => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
-  String get labelSmallFamily => 'Rubik';
+  String get labelSmallFamily => 'Kanit';
   TextStyle get labelSmall => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => 'Rubik';
+  String get bodyLargeFamily => 'Kanit';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Rubik';
+  String get bodyMediumFamily => 'Kanit';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Rubik';
+  String get bodySmallFamily => 'Kanit';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Rubik',
+        'Kanit',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,

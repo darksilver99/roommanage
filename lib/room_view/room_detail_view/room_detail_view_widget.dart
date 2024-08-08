@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/room_view/check_in_view/check_in_view_widget.dart';
+import '/room_view/guest_payment_view/guest_payment_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -125,7 +126,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Rubik',
+                                          fontFamily: 'Kanit',
                                           fontSize: 22.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
@@ -179,7 +180,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
@@ -212,7 +213,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
@@ -261,7 +262,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -309,30 +310,25 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 8.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    'ข้อมูลผู้เข้าพัก',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Rubik',
-                                                          fontSize: 22.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                  ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'ข้อมูลผู้เข้าพัก',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        fontSize: 22.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                           Padding(
                                             padding:
@@ -357,7 +353,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Rubik',
+                                                                    'Kanit',
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -386,7 +382,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Rubik',
+                                                                    'Kanit',
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -418,7 +414,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Rubik',
+                                                                    'Kanit',
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -447,7 +443,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Rubik',
+                                                                    'Kanit',
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -480,7 +476,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Rubik',
+                                                                      'Kanit',
                                                                   fontSize:
                                                                       18.0,
                                                                   letterSpacing:
@@ -524,7 +520,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Rubik',
+                                                                    'Kanit',
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -596,7 +592,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           color: Colors.white,
                                                           fontSize: 18.0,
                                                           letterSpacing: 0.0,
@@ -715,7 +711,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                                   .titleSmall
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Rubik',
+                                                                        'Kanit',
                                                                     color: Colors
                                                                         .white,
                                                                     fontSize:
@@ -852,7 +848,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                                   .titleSmall
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Rubik',
+                                                                        'Kanit',
                                                                     color: Colors
                                                                         .white,
                                                                     fontSize:
@@ -889,75 +885,181 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                 ),
                               ),
                             if (widget!.roomDocument?.status == 1)
-                              Row(
+                              Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Expanded(
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        _model.isConfirm4 =
-                                            await action_blocks.confirmBlock(
-                                          context,
-                                          title: 'ต้องการเช็คเอาท์ห้องนี้?',
-                                        );
-                                        if (_model.isConfirm4!) {
-                                          _model.guestDocument =
-                                              await GuestListRecord
-                                                  .getDocumentOnce(widget!
-                                                      .roomDocument!.guestRef!);
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Builder(
+                                            builder: (context) =>
+                                                FFButtonWidget(
+                                              onPressed: () async {
+                                                _model.guestResult =
+                                                    await GuestListRecord
+                                                        .getDocumentOnce(widget!
+                                                            .roomDocument!
+                                                            .guestRef!);
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child:
+                                                          GuestPaymentViewWidget(
+                                                        roomDocument: widget!
+                                                            .roomDocument!,
+                                                        guestDocment:
+                                                            _model.guestResult!,
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then((value) => safeSetState(
+                                                    () => _model.isUpdate =
+                                                        value));
 
-                                          await _model.guestDocument!.reference
-                                              .update(createGuestListRecordData(
-                                            status: 3,
-                                            updateDate: getCurrentTimestamp,
-                                          ));
-
-                                          await widget!.roomDocument!.reference
-                                              .update({
-                                            ...createRoomListRecordData(
-                                              status: 0,
-                                            ),
-                                            ...mapToFirestore(
-                                              {
-                                                'end_date': FieldValue.delete(),
-                                                'is_daily': FieldValue.delete(),
-                                                'guest_ref':
-                                                    FieldValue.delete(),
+                                                setState(() {});
                                               },
+                                              text: 'เพิ่มข้อมูลการชำระเงิน',
+                                              options: FFButtonOptions(
+                                                height: 50.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .warning,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Kanit',
+                                                          color: Colors.white,
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
-                                          });
-                                          Navigator.pop(context, 'update');
-                                        }
-
-                                        setState(() {});
-                                      },
-                                      text: 'เช็คเอาท์ห้อง',
-                                      options: FFButtonOptions(
-                                        height: 50.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Rubik',
-                                              color: Colors.white,
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          ),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              _model.isConfirm4 =
+                                                  await action_blocks
+                                                      .confirmBlock(
+                                                context,
+                                                title:
+                                                    'ต้องการเช็คเอาท์ห้องนี้?',
+                                              );
+                                              if (_model.isConfirm4!) {
+                                                _model.guestDocument =
+                                                    await GuestListRecord
+                                                        .getDocumentOnce(widget!
+                                                            .roomDocument!
+                                                            .guestRef!);
+
+                                                await _model
+                                                    .guestDocument!.reference
+                                                    .update(
+                                                        createGuestListRecordData(
+                                                  status: 3,
+                                                  updateDate:
+                                                      getCurrentTimestamp,
+                                                ));
+
+                                                await widget!
+                                                    .roomDocument!.reference
+                                                    .update({
+                                                  ...createRoomListRecordData(
+                                                    status: 0,
+                                                  ),
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'end_date':
+                                                          FieldValue.delete(),
+                                                      'is_daily':
+                                                          FieldValue.delete(),
+                                                      'guest_ref':
+                                                          FieldValue.delete(),
+                                                    },
+                                                  ),
+                                                });
+                                                Navigator.pop(
+                                                    context, 'update');
+                                              }
+
+                                              setState(() {});
+                                            },
+                                            text: 'เช็คเอาท์ห้อง',
+                                            options: FFButtonOptions(
+                                              height: 50.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        color: Colors.white,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],

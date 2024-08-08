@@ -135,7 +135,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Rubik',
+                                          fontFamily: 'Kanit',
                                           fontSize: 24.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
@@ -168,7 +168,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       color: Colors.white,
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
@@ -198,14 +198,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Rubik',
+                                        fontFamily: 'Kanit',
                                         fontSize: 20.0,
                                         letterSpacing: 0.0,
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Rubik',
+                                        fontFamily: 'Kanit',
                                         fontSize: 20.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -243,7 +243,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -265,14 +265,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -310,7 +310,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Rubik',
+                                    fontFamily: 'Kanit',
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -331,14 +331,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -376,7 +376,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Rubik',
+                                    fontFamily: 'Kanit',
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -397,14 +397,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -442,7 +442,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Rubik',
+                                    fontFamily: 'Kanit',
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -463,14 +463,14 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -508,7 +508,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Rubik',
+                                    fontFamily: 'Kanit',
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -612,7 +612,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   fontSize: 22.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
@@ -708,7 +708,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   fontSize: 22.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
@@ -736,7 +736,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Rubik',
+                                            fontFamily: 'Kanit',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -770,7 +770,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .headlineLarge
                                                   .override(
-                                                    fontFamily: 'Rubik',
+                                                    fontFamily: 'Kanit',
                                                     fontSize: 32.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w600,
@@ -869,7 +869,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Rubik',
+                                                  fontFamily: 'Kanit',
                                                   fontSize: 20.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
@@ -898,7 +898,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Rubik',
+                                              fontFamily: 'Kanit',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -937,7 +937,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .headlineLarge
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           fontSize: 32.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -1065,7 +1065,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -1085,6 +1085,9 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                             builder: (context) => FFButtonWidget(
                               onPressed: () async {
                                 var _shouldSetState = false;
+                                await actions.hideKeyBoard(
+                                  context,
+                                );
                                 _model.isValid = true;
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
@@ -1202,7 +1205,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Rubik',
+                                      fontFamily: 'Kanit',
                                       color: Colors.white,
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,

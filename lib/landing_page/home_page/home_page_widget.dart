@@ -88,7 +88,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 Text(
                   'เพิ่มห้อง',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Rubik',
+                        fontFamily: 'Kanit',
                         color: FlutterFlowTheme.of(context).info,
                         fontSize: 18.0,
                         letterSpacing: 0.0,
@@ -143,7 +143,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Rubik',
+                                              fontFamily: 'Kanit',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .info,
@@ -164,7 +164,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Rubik',
+                                              fontFamily: 'Kanit',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .info,
@@ -283,7 +283,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .info,
@@ -374,7 +374,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .info,
@@ -465,7 +465,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Rubik',
+                                                          fontFamily: 'Kanit',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .info,
@@ -548,7 +548,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Rubik',
+                                    fontFamily: 'Kanit',
                                     color: Colors.white,
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
@@ -689,7 +689,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Rubik',
+                                                        fontFamily: 'Kanit',
                                                         fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -761,7 +761,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Rubik',
+                                                                      'Kanit',
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -794,7 +794,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Rubik',
+                                                                    'Kanit',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -821,7 +821,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Rubik',
+                                                        fontFamily: 'Kanit',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
