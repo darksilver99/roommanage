@@ -231,6 +231,12 @@ class FFAppState extends ChangeNotifier {
     _currentBackgroundNumber = value;
     prefs.setInt('ff_currentBackgroundNumber', value);
   }
+
+  bool _isCreateBuildingFromSetting = false;
+  bool get isCreateBuildingFromSetting => _isCreateBuildingFromSetting;
+  set isCreateBuildingFromSetting(bool value) {
+    _isCreateBuildingFromSetting = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
