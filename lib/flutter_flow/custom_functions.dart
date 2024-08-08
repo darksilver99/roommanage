@@ -46,17 +46,16 @@ String? dateTh(DateTime? date) {
   return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
 }
 
-String getTimeDurationOnlyDay(
+String? getTimeDurationOnlyDay(
   DateTime dateIn,
   DateTime dateOut,
 ) {
   Duration duration = dateOut.difference(dateIn);
   int days = duration.inDays;
   StringBuffer result = StringBuffer();
-  if (days > 0) {
-    result.write('$days วัน');
-  } else {
-    result.write('ยังไม่ถึงวันเข้าพัก');
+  if (days == 0) {
+    return null;
   }
+  result.write('$days วัน');
   return result.toString().trim();
 }
