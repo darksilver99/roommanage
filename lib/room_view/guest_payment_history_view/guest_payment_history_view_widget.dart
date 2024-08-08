@@ -151,7 +151,12 @@ class _GuestPaymentHistoryViewWidgetState
                                                 ),
                                           ),
                                           Text(
-                                            'จำนวน ${listViewPaymentListRecord.price.toString()} บาท',
+                                            'จำนวน ${formatNumber(
+                                              listViewPaymentListRecord.price,
+                                              formatType: FormatType.decimal,
+                                              decimalType:
+                                                  DecimalType.automatic,
+                                            )} บาท',
                                             maxLines: 1,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
