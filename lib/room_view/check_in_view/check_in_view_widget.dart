@@ -673,6 +673,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     }
                                     if (_model.datePicked1 != null) {
                                       _model.startDate = _model.datePicked1;
+                                      _model.endDate = null;
                                       setState(() {});
                                     }
                                   },
@@ -771,153 +772,177 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       ),
                                     ],
                                   ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await actions.hideKeyBoard(
-                                        context,
-                                      );
-                                      final _datePicked2Date =
-                                          await showDatePicker(
-                                        context: context,
-                                        initialDate: (_model.startDate ??
-                                            DateTime.now()),
-                                        firstDate: (_model.startDate ??
-                                            DateTime(1900)),
-                                        lastDate: DateTime(2050),
-                                        builder: (context, child) {
-                                          return wrapInMaterialDatePickerTheme(
-                                            context,
-                                            child!,
-                                            headerBackgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            headerForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .info,
-                                            headerTextStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineLarge
-                                                    .override(
-                                                      fontFamily: 'Rubik',
-                                                      fontSize: 32.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                            pickerBackgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            pickerForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            selectedDateTimeBackgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            selectedDateTimeForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .info,
-                                            actionButtonForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            iconSize: 24.0,
+                                  Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await actions.hideKeyBoard(
+                                          context,
+                                        );
+                                        if (_model.startDate != null) {
+                                          final _datePicked2Date =
+                                              await showDatePicker(
+                                            context: context,
+                                            initialDate: (_model.startDate ??
+                                                DateTime.now()),
+                                            firstDate: (_model.startDate ??
+                                                DateTime(1900)),
+                                            lastDate: DateTime(2050),
+                                            builder: (context, child) {
+                                              return wrapInMaterialDatePickerTheme(
+                                                context,
+                                                child!,
+                                                headerBackgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                headerForegroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                headerTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLarge
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          fontSize: 32.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                pickerBackgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                pickerForegroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                selectedDateTimeBackgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                selectedDateTimeForegroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                actionButtonForegroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                iconSize: 24.0,
+                                              );
+                                            },
                                           );
-                                        },
-                                      );
 
-                                      if (_datePicked2Date != null) {
-                                        safeSetState(() {
-                                          _model.datePicked2 = DateTime(
-                                            _datePicked2Date.year,
-                                            _datePicked2Date.month,
-                                            _datePicked2Date.day,
+                                          if (_datePicked2Date != null) {
+                                            safeSetState(() {
+                                              _model.datePicked2 = DateTime(
+                                                _datePicked2Date.year,
+                                                _datePicked2Date.month,
+                                                _datePicked2Date.day,
+                                              );
+                                            });
+                                          }
+                                          if (_model.datePicked2 != null) {
+                                            _model.endDate = _model.datePicked2;
+                                            setState(() {});
+                                          }
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: InfoCustomViewWidget(
+                                                  title: 'เลือกวันที่เข้าก่อน',
+                                                  status: 'error',
+                                                ),
+                                              );
+                                            },
                                           );
-                                        });
-                                      }
-                                      if (_model.datePicked2 != null) {
-                                        _model.endDate = _model.datePicked2;
-                                        setState(() {});
-                                      }
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      decoration: BoxDecoration(
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 50.0,
-                                            height: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(8.0),
-                                                bottomRight:
-                                                    Radius.circular(0.0),
-                                                topLeft: Radius.circular(8.0),
-                                                topRight: Radius.circular(0.0),
-                                              ),
-                                            ),
-                                            child: Icon(
-                                              Icons.calendar_month_sharp,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
-                                            ),
+                                        }
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 8.0, 0.0),
-                                            child: Container(
-                                              width: 1.0,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: 50.0,
                                               height: double.infinity,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(8.0),
+                                                  bottomRight:
+                                                      Radius.circular(0.0),
+                                                  topLeft: Radius.circular(8.0),
+                                                  topRight:
+                                                      Radius.circular(0.0),
+                                                ),
+                                              ),
+                                              child: Icon(
+                                                Icons.calendar_month_sharp,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 24.0,
                                               ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                functions
-                                                    .dateTh(_model.endDate),
-                                                '-',
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                              child: Container(
+                                                width: 1.0,
+                                                height: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                ),
                                               ),
-                                              maxLines: 1,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Rubik',
-                                                        fontSize: 20.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
                                             ),
-                                          ),
-                                        ],
+                                            Expanded(
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  functions
+                                                      .dateTh(_model.endDate),
+                                                  '-',
+                                                ),
+                                                maxLines: 1,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
