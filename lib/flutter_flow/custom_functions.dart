@@ -63,3 +63,9 @@ String? getTimeDurationOnlyDay(
   result.write('$days วัน');
   return result.toString().trim();
 }
+
+String dateTimeTh(DateTime date) {
+  final DateFormat formatter = DateFormat('d MMMM yyyy HH:mm:ss', 'th_TH');
+  final buddhistYear = date.year + 543;
+  return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
+}

@@ -6,12 +6,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/room_view/check_in_view/check_in_view_widget.dart';
+import '/room_view/guest_payment_history_view/guest_payment_history_view_widget.dart';
 import '/room_view/guest_payment_view/guest_payment_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'room_detail_view_model.dart';
@@ -42,6 +44,15 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RoomDetailViewModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (widget!.roomDocument?.guestRef != null) {
+        _model.guestResult = await GuestListRecord.getDocumentOnce(
+            widget!.roomDocument!.guestRef!);
+        FFAppState().tmpGuestRef = _model.guestResult?.reference;
+      }
+    });
   }
 
   @override
@@ -533,6 +544,100 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                     ],
                                                   ),
                                                 ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 8.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      Builder(
+                                                        builder: (context) =>
+                                                            FFButtonWidget(
+                                                          onPressed: () async {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (dialogContext) {
+                                                                return Dialog(
+                                                                  elevation: 0,
+                                                                  insetPadding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0)
+                                                                      .resolve(
+                                                                          Directionality.of(
+                                                                              context)),
+                                                                  child:
+                                                                      GuestPaymentHistoryViewWidget(),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                          text:
+                                                              'ดูประวัติการชำระเงิน',
+                                                          icon: Icon(
+                                                            Icons
+                                                                .history_rounded,
+                                                            size: 22.0,
+                                                          ),
+                                                          options:
+                                                              FFButtonOptions(
+                                                            height: 32.0,
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Kanit',
+                                                                      color: Colors
+                                                                          .white,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            elevation: 3.0,
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -899,14 +1004,6 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             builder: (context) =>
                                                 FFButtonWidget(
                                               onPressed: () async {
-                                                _model.guestResult =
-                                                    await GuestListRecord
-                                                        .getDocumentOnce(widget!
-                                                            .roomDocument!
-                                                            .guestRef!);
-                                                FFAppState().tmpGuestRef =
-                                                    _model
-                                                        .guestResult?.reference;
                                                 await showDialog(
                                                   context: context,
                                                   builder: (dialogContext) {

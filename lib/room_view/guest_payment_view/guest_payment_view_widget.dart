@@ -169,7 +169,7 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                 fontFamily: 'Kanit',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryText,
+                                                        .info,
                                                 fontSize: 22.0,
                                                 letterSpacing: 0.0,
                                               ),
