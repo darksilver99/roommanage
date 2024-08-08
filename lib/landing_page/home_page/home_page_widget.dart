@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
@@ -9,8 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/room_view/room_detail_view/room_detail_view_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,60 +35,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.customerResult = await queryCustomerNameRecordOnce(
-        queryBuilder: (customerNameRecord) => customerNameRecord.where(
-          'create_by',
-          isEqualTo: currentUserReference,
-        ),
-        singleRecord: true,
-      ).then((s) => s.firstOrNull);
-      if (_model.customerResult?.reference != null) {
-        FFAppState().customerReference = _model.customerResult?.reference;
-        _model.isHasCustomer = true;
-        _model.buildingResult = await queryBuildingListRecordOnce(
-          parent: _model.customerResult?.reference,
-          queryBuilder: (buildingListRecord) => buildingListRecord
-              .where(
-                'status',
-                isEqualTo: 1,
-              )
-              .orderBy('create_date'),
-        );
-        FFAppState().buildingList = [];
-        while (_model.dataCount < _model.buildingResult!.length) {
-          FFAppState().addToBuildingList(BuildingDataStruct(
-            subject: _model.buildingResult?[_model.dataCount]?.subject,
-            totalFloor: _model.buildingResult?[_model.dataCount]?.totalFloor,
-            buildingRef: _model.buildingResult?[_model.dataCount]?.reference,
-            buildDoc:
-                'customer_name/${_model.buildingResult?[_model.dataCount]?.parentReference.id}/building_list/${_model.buildingResult?[_model.dataCount]?.reference.id}',
-          ));
-          setState(() {});
-          _model.dataCount = _model.dataCount + 1;
-        }
-        if (FFAppState().currentDropdownSelected.buildingDoc != null &&
-            FFAppState().currentDropdownSelected.buildingDoc != '') {
-          await _model.getRoomListBlock(
-            context,
-            buildingRef: FFAppState()
-                .buildingList
-                .where((e) =>
-                    e.buildDoc ==
-                    FFAppState().currentDropdownSelected.buildingDoc)
-                .toList()
-                .first
-                .buildingRef,
-            floor: functions
-                .stringToInt(FFAppState().currentDropdownSelected.floorNumber),
-          );
-        }
-      } else {
-        _model.isHasCustomer = false;
-
-        context.pushNamed('CreateCustomerPage');
-      }
-
-      _model.isLoading = false;
+      await _model.initData(context);
       setState(() {});
     });
   }

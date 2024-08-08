@@ -50,10 +50,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
-  CustomerNameRecord? customerResult;
-  // Stores action output result for [Firestore Query - Query a collection] action in HomePage widget.
-  List<BuildingListRecord>? buildingResult;
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
   // State field(s) for Checkbox widget.
@@ -125,5 +121,64 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       2,
       (e) => e..isSelected = true,
     );
+  }
+
+  Future initData(BuildContext context) async {
+    CustomerNameRecord? customerResult;
+    List<BuildingListRecord>? buildingResult;
+
+    customerResult = await queryCustomerNameRecordOnce(
+      queryBuilder: (customerNameRecord) => customerNameRecord.where(
+        'create_by',
+        isEqualTo: currentUserReference,
+      ),
+      singleRecord: true,
+    ).then((s) => s.firstOrNull);
+    if (customerResult?.reference != null) {
+      FFAppState().customerReference = customerResult?.reference;
+      isHasCustomer = true;
+      buildingResult = await queryBuildingListRecordOnce(
+        parent: customerResult?.reference,
+        queryBuilder: (buildingListRecord) => buildingListRecord
+            .where(
+              'status',
+              isEqualTo: 1,
+            )
+            .orderBy('create_date'),
+      );
+      FFAppState().buildingList = [];
+      while (dataCount < buildingResult!.length) {
+        FFAppState().addToBuildingList(BuildingDataStruct(
+          subject: buildingResult?[dataCount]?.subject,
+          totalFloor: buildingResult?[dataCount]?.totalFloor,
+          buildingRef: buildingResult?[dataCount]?.reference,
+          buildDoc:
+              'customer_name/${buildingResult?[dataCount]?.parentReference.id}/building_list/${buildingResult?[dataCount]?.reference.id}',
+        ));
+        dataCount = dataCount + 1;
+      }
+      if (FFAppState().currentDropdownSelected.buildingDoc != null &&
+          FFAppState().currentDropdownSelected.buildingDoc != '') {
+        await getRoomListBlock(
+          context,
+          buildingRef: FFAppState()
+              .buildingList
+              .where((e) =>
+                  e.buildDoc ==
+                  FFAppState().currentDropdownSelected.buildingDoc)
+              .toList()
+              .first
+              .buildingRef,
+          floor: functions
+              .stringToInt(FFAppState().currentDropdownSelected.floorNumber),
+        );
+      }
+    } else {
+      isHasCustomer = false;
+
+      context.pushNamed('CreateCustomerPage');
+    }
+
+    isLoading = false;
   }
 }
