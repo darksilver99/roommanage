@@ -176,9 +176,10 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _paymentGuestTypeList = [
-    'จ่ายแบบรายวัน',
-    'จ่ายแบบรายเดือน',
-    'จ่ายค่ามัดจำ'
+    'จ่ายรายวัน',
+    'จ่ายรายเดือน',
+    'จ่ายค่ามัดจำ',
+    'อื่นๆ'
   ];
   List<String> get paymentGuestTypeList => _paymentGuestTypeList;
   set paymentGuestTypeList(List<String> value) {

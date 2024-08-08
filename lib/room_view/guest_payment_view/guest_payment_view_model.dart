@@ -41,10 +41,10 @@ class GuestPaymentViewModel extends FlutterFlowModel<GuestPaymentViewWidget> {
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  String? _textControllerValidator(BuildContext context, String? val) {
+  FocusNode? textFieldFocusNode1;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
+  String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -52,6 +52,10 @@ class GuestPaymentViewModel extends FlutterFlowModel<GuestPaymentViewWidget> {
     return null;
   }
 
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode2;
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // Stores action output result for [Action Block - confirmBlock] action in Icon widget.
   bool? isConfirm;
   bool isDataUploading = false;
@@ -65,12 +69,15 @@ class GuestPaymentViewModel extends FlutterFlowModel<GuestPaymentViewWidget> {
 
   @override
   void initState(BuildContext context) {
-    textControllerValidator = _textControllerValidator;
+    textController1Validator = _textController1Validator;
   }
 
   @override
   void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    textFieldFocusNode1?.dispose();
+    textController1?.dispose();
+
+    textFieldFocusNode2?.dispose();
+    textController2?.dispose();
   }
 }
