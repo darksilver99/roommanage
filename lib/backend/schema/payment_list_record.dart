@@ -80,7 +80,7 @@ class PaymentListRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('payment_list');
+      FirebaseFirestore.instance.collection('${FFAppState().tmpGuestRef!.path}/payment_list');
 
   static Stream<PaymentListRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => PaymentListRecord.fromSnapshot(s));
