@@ -145,7 +145,7 @@ class _GeneralSettingViewWidgetState extends State<GeneralSettingViewWidget>
                                           onTap: () async {
                                             FFAppState()
                                                 .currentBackgroundNumber = 1;
-                                            setState(() {});
+                                            FFAppState().update(() {});
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -200,7 +200,7 @@ class _GeneralSettingViewWidgetState extends State<GeneralSettingViewWidget>
                                           onTap: () async {
                                             FFAppState()
                                                 .currentBackgroundNumber = 2;
-                                            setState(() {});
+                                            FFAppState().update(() {});
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -252,7 +252,7 @@ class _GeneralSettingViewWidgetState extends State<GeneralSettingViewWidget>
                                           onTap: () async {
                                             FFAppState()
                                                 .currentBackgroundNumber = 3;
-                                            setState(() {});
+                                            FFAppState().update(() {});
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
