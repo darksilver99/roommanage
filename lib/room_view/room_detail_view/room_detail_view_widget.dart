@@ -494,58 +494,49 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                if (getCurrentTimestamp >=
-                                                    columnGuestListRecord
-                                                        .startDate!)
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 8.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              functions.getTimeDurationOnlyDay(
-                                                                              columnGuestListRecord
-                                                                                  .startDate!,
-                                                                              getCurrentTimestamp) !=
-                                                                          null &&
-                                                                      functions.getTimeDurationOnlyDay(
-                                                                              columnGuestListRecord
-                                                                                  .startDate!,
-                                                                              getCurrentTimestamp) !=
-                                                                          ''
-                                                                  ? functions.getTimeDurationOnlyDay(
-                                                                      columnGuestListRecord
-                                                                          .startDate!,
-                                                                      getCurrentTimestamp)
-                                                                  : 'ยังไม่ถึงวันเข้าพัก',
-                                                              '-',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  fontSize:
-                                                                      18.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 8.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            functions.getTimeDurationOnlyDay(
+                                                                            columnGuestListRecord
+                                                                                .startDate!,
+                                                                            getCurrentTimestamp) !=
+                                                                        null &&
+                                                                    functions.getTimeDurationOnlyDay(
+                                                                            columnGuestListRecord.startDate!,
+                                                                            getCurrentTimestamp) !=
+                                                                        ''
+                                                                ? 'พักมาแล้ว ${functions.getTimeDurationOnlyDay(columnGuestListRecord.startDate!, getCurrentTimestamp)}'
+                                                                : 'ยังไม่ถึงวันเข้าพัก',
+                                                            '-',
                                                           ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
+                                                ),
                                               ],
                                             ),
                                           ),

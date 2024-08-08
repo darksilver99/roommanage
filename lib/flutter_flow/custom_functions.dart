@@ -52,9 +52,13 @@ String? getTimeDurationOnlyDay(
 ) {
   Duration duration = dateOut.difference(dateIn);
   int days = duration.inDays;
+  int seconds = duration.inSeconds;
   StringBuffer result = StringBuffer();
-  if (days == 0) {
-    return null;
+  if (days <= 0) {
+    if (seconds <= 0) {
+      return null;
+    }
+    days = 1;
   }
   result.write('$days วัน');
   return result.toString().trim();
