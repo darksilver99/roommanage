@@ -562,9 +562,12 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                 setState(() =>
                                                     _model.checkboxValue1 =
                                                         newValue!);
-
-                                                if (!newValue!) {
+                                                if (newValue!) {
+                                                  _model.isDaily = true;
+                                                  setState(() {});
+                                                } else {
                                                   _model.endDate = null;
+                                                  _model.isDaily = false;
                                                   setState(() {});
                                                 }
                                               },
@@ -635,9 +638,12 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                 setState(() =>
                                                     _model.checkboxValue2 =
                                                         newValue!);
-
-                                                if (!newValue!) {
+                                                if (newValue!) {
+                                                  _model.isDaily = false;
+                                                  setState(() {});
+                                                } else {
                                                   _model.endDate = null;
+                                                  _model.isDaily = true;
                                                   setState(() {});
                                                 }
                                               },
