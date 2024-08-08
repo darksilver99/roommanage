@@ -57,6 +57,42 @@ class FFAppState extends ChangeNotifier {
     _customerReference = value;
   }
 
+  List<StatusDataStruct> _roomStatusList = [
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"0\",\"subject\":\"ว่าง\"}')),
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"1\",\"subject\":\"ไม่ว่าง\"}')),
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"3\",\"subject\":\"ปิดปรับปรุง\"}'))
+  ];
+  List<StatusDataStruct> get roomStatusList => _roomStatusList;
+  set roomStatusList(List<StatusDataStruct> value) {
+    _roomStatusList = value;
+  }
+
+  void addToRoomStatusList(StatusDataStruct value) {
+    roomStatusList.add(value);
+  }
+
+  void removeFromRoomStatusList(StatusDataStruct value) {
+    roomStatusList.remove(value);
+  }
+
+  void removeAtIndexFromRoomStatusList(int index) {
+    roomStatusList.removeAt(index);
+  }
+
+  void updateRoomStatusListAtIndex(
+    int index,
+    StatusDataStruct Function(StatusDataStruct) updateFn,
+  ) {
+    roomStatusList[index] = updateFn(_roomStatusList[index]);
+  }
+
+  void insertAtIndexInRoomStatusList(int index, StatusDataStruct value) {
+    roomStatusList.insert(index, value);
+  }
+
   List<BuildingDataStruct> _buildingList = [];
   List<BuildingDataStruct> get buildingList => _buildingList;
   set buildingList(List<BuildingDataStruct> value) {
@@ -102,42 +138,6 @@ class FFAppState extends ChangeNotifier {
         'ff_currentDropdownSelected', _currentDropdownSelected.serialize());
   }
 
-  List<StatusDataStruct> _roomStatusList = [
-    StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"0\",\"subject\":\"ว่าง\"}')),
-    StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"1\",\"subject\":\"ไม่ว่าง\"}')),
-    StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"3\",\"subject\":\"ปิดปรับปรุง\"}'))
-  ];
-  List<StatusDataStruct> get roomStatusList => _roomStatusList;
-  set roomStatusList(List<StatusDataStruct> value) {
-    _roomStatusList = value;
-  }
-
-  void addToRoomStatusList(StatusDataStruct value) {
-    roomStatusList.add(value);
-  }
-
-  void removeFromRoomStatusList(StatusDataStruct value) {
-    roomStatusList.remove(value);
-  }
-
-  void removeAtIndexFromRoomStatusList(int index) {
-    roomStatusList.removeAt(index);
-  }
-
-  void updateRoomStatusListAtIndex(
-    int index,
-    StatusDataStruct Function(StatusDataStruct) updateFn,
-  ) {
-    roomStatusList[index] = updateFn(_roomStatusList[index]);
-  }
-
-  void insertAtIndexInRoomStatusList(int index, StatusDataStruct value) {
-    roomStatusList.insert(index, value);
-  }
-
   List<StatusSelectedDataStruct> _statusSelectedList = [
     StatusSelectedDataStruct.fromSerializableMap(
         jsonDecode('{\"status\":\"0\",\"isSelected\":\"true\"}')),
@@ -175,12 +175,6 @@ class FFAppState extends ChangeNotifier {
     statusSelectedList.insert(index, value);
   }
 
-  DocumentReference? _tmpRoomRef;
-  DocumentReference? get tmpRoomRef => _tmpRoomRef;
-  set tmpRoomRef(DocumentReference? value) {
-    _tmpRoomRef = value;
-  }
-
   List<String> _paymentGuestTypeList = [
     'จ่ายแบบรายวัน',
     'จ่ายแบบรายเดือน',
@@ -212,6 +206,18 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInPaymentGuestTypeList(int index, String value) {
     paymentGuestTypeList.insert(index, value);
+  }
+
+  DocumentReference? _tmpRoomRef;
+  DocumentReference? get tmpRoomRef => _tmpRoomRef;
+  set tmpRoomRef(DocumentReference? value) {
+    _tmpRoomRef = value;
+  }
+
+  DocumentReference? _tmpGuestRef;
+  DocumentReference? get tmpGuestRef => _tmpGuestRef;
+  set tmpGuestRef(DocumentReference? value) {
+    _tmpGuestRef = value;
   }
 }
 
