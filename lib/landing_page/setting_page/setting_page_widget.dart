@@ -85,7 +85,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.asset(
-                                      'assets/images/hotel_7059832.png',
+                                      'assets/images/hotel_3009489.png',
                                       height: 80.0,
                                       fit: BoxFit.contain,
                                     ),

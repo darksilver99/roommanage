@@ -332,9 +332,9 @@ class FFRoute {
                   color: FlutterFlowTheme.of(context).info,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/hotel_7059832.png',
+                      'assets/images/hotel_3009489.png',
                       width: MediaQuery.sizeOf(context).width * 0.5,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 )
