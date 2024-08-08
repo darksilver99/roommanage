@@ -28,6 +28,8 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   CheckInDataStruct? checkInData;
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm4;
+  // Stores action output result for [Backend Call - Read Document] action in Button widget.
+  GuestListRecord? guestDocument;
 
   @override
   void initState(BuildContext context) {}

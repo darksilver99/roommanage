@@ -887,6 +887,17 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                           title: 'ต้องการเช็คเอาท์ห้องนี้?',
                                         );
                                         if (_model.isConfirm4!) {
+                                          _model.guestDocument =
+                                              await GuestListRecord
+                                                  .getDocumentOnce(widget!
+                                                      .roomDocument!.guestRef!);
+
+                                          await _model.guestDocument!.reference
+                                              .update(createGuestListRecordData(
+                                            status: 3,
+                                            updateDate: getCurrentTimestamp,
+                                          ));
+
                                           await widget!.roomDocument!.reference
                                               .update({
                                             ...createRoomListRecordData(
