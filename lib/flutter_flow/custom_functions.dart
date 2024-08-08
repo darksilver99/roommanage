@@ -54,7 +54,9 @@ String getTimeDurationOnlyDay(
   int days = duration.inDays;
   StringBuffer result = StringBuffer();
   if (days > 0) {
-    result.write('$days วัน ');
+    result.write('$days วัน');
+  } else {
+    result.write('ยังไม่ถึงวันเข้าพัก');
   }
   return result.toString().trim();
 }
