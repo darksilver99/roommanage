@@ -528,155 +528,201 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: Transform.scale(
-                                          scaleX: 1.5,
-                                          scaleY: 1.5,
-                                          child: Theme(
-                                            data: ThemeData(
-                                              checkboxTheme: CheckboxThemeData(
-                                                visualDensity:
-                                                    VisualDensity.compact,
-                                                materialTapTargetSize:
-                                                    MaterialTapTargetSize
-                                                        .shrinkWrap,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          4.0),
-                                                ),
-                                              ),
-                                              unselectedWidgetColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                            ),
-                                            child: Checkbox(
-                                              value: _model.checkboxValue1 ??=
-                                                  _model.isDaily,
-                                              onChanged: (newValue) async {
-                                                setState(() =>
-                                                    _model.checkboxValue1 =
-                                                        newValue!);
-                                                if (newValue!) {
-                                                  _model.isDaily = true;
-                                                  setState(() {});
-                                                } else {
-                                                  _model.endDate = null;
-                                                  _model.isDaily = false;
-                                                  setState(() {});
-                                                }
-                                              },
-                                              side: BorderSide(
-                                                width: 2,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                              ),
-                                              activeColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              checkColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .info,
-                                            ),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      if (_model.isDaily) {
+                                        _model.isDaily = false;
+                                      } else {
+                                        _model.isDaily = true;
+                                      }
+
+                                      _model.endDate = null;
+                                      setState(() {});
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 4.0, 0.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              if (_model.isDaily) {
+                                                return Container(
+                                                  width: 28.0,
+                                                  height: 28.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      width: 3.0,
+                                                    ),
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Icon(
+                                                      Icons.check_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      size: 22.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return Container(
+                                                  width: 28.0,
+                                                  height: 28.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      width: 3.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          'รายวัน',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                fontSize: 22.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                        Expanded(
+                                          child: Text(
+                                            'รายวัน',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  fontSize: 22.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: Transform.scale(
-                                          scaleX: 1.5,
-                                          scaleY: 1.5,
-                                          child: Theme(
-                                            data: ThemeData(
-                                              checkboxTheme: CheckboxThemeData(
-                                                visualDensity:
-                                                    VisualDensity.compact,
-                                                materialTapTargetSize:
-                                                    MaterialTapTargetSize
-                                                        .shrinkWrap,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          4.0),
-                                                ),
-                                              ),
-                                              unselectedWidgetColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                            ),
-                                            child: Checkbox(
-                                              value: _model.checkboxValue2 ??=
-                                                  !_model.isDaily,
-                                              onChanged: (newValue) async {
-                                                setState(() =>
-                                                    _model.checkboxValue2 =
-                                                        newValue!);
-                                                if (newValue!) {
-                                                  _model.isDaily = false;
-                                                  setState(() {});
-                                                } else {
-                                                  _model.endDate = null;
-                                                  _model.isDaily = true;
-                                                  setState(() {});
-                                                }
-                                              },
-                                              side: BorderSide(
-                                                width: 2,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                              ),
-                                              activeColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              checkColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .info,
-                                            ),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      if (_model.isDaily) {
+                                        _model.isDaily = false;
+                                      } else {
+                                        _model.isDaily = true;
+                                      }
+
+                                      _model.endDate = null;
+                                      setState(() {});
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 4.0, 0.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              if (!_model.isDaily) {
+                                                return Container(
+                                                  width: 28.0,
+                                                  height: 28.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      width: 3.0,
+                                                    ),
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Icon(
+                                                      Icons.check_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      size: 22.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return Container(
+                                                  width: 28.0,
+                                                  height: 28.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      width: 3.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          'รายเดือน',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                fontSize: 22.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                        Expanded(
+                                          child: Text(
+                                            'รายเดือน',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  fontSize: 22.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -1054,7 +1100,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 _shouldSetState = true;
                                 if (_model.isValid!) {
                                   if (_model.startDate != null) {
-                                    if (_model.checkboxValue1!) {
+                                    if (_model.isDaily) {
                                       if (!(_model.endDate != null)) {
                                         await showDialog(
                                           context: context,
