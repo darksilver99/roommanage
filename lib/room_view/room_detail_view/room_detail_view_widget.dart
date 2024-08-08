@@ -508,7 +508,25 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                       children: [
                                                         Expanded(
                                                           child: Text(
-                                                            'พักมาแล้ว ${functions.getTimeDurationOnlyDay(columnGuestListRecord.startDate!, getCurrentTimestamp)}',
+                                                            valueOrDefault<
+                                                                String>(
+                                                              functions.getTimeDurationOnlyDay(
+                                                                              columnGuestListRecord
+                                                                                  .startDate!,
+                                                                              getCurrentTimestamp) !=
+                                                                          null &&
+                                                                      functions.getTimeDurationOnlyDay(
+                                                                              columnGuestListRecord
+                                                                                  .startDate!,
+                                                                              getCurrentTimestamp) !=
+                                                                          ''
+                                                                  ? functions.getTimeDurationOnlyDay(
+                                                                      columnGuestListRecord
+                                                                          .startDate!,
+                                                                      getCurrentTimestamp)
+                                                                  : 'ยังไม่ถึงวันเข้าพัก',
+                                                              '-',
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
