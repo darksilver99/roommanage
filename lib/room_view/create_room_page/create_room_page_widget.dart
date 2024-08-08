@@ -114,7 +114,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Kanit',
-                                                  fontSize: 22.0,
+                                                  fontSize: 26.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -137,12 +137,14 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                             .labelMedium
                                             .override(
                                               fontFamily: 'Kanit',
+                                              fontSize: 20.0,
                                               letterSpacing: 0.0,
                                             ),
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
                                               fontFamily: 'Kanit',
+                                              fontSize: 20.0,
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
@@ -186,6 +188,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Kanit',
+                                            fontSize: 20.0,
                                             letterSpacing: 0.0,
                                           ),
                                       validator: _model.textControllerValidator
@@ -195,7 +198,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                   Builder(
                                     builder: (context) => Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 16.0),
+                                          0.0, 0.0, 0.0, 8.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           if (_model.formKey.currentState ==
@@ -303,7 +306,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                         ),
                                         options: FFButtonOptions(
                                           width: double.infinity,
-                                          height: 40.0,
+                                          height: 50.0,
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
@@ -318,7 +321,9 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                                   .override(
                                                     fontFamily: 'Kanit',
                                                     color: Colors.white,
+                                                    fontSize: 20.0,
                                                     letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(

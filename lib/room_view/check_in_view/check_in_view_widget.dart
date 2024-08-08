@@ -148,7 +148,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 8.0),
+                                0.0, 0.0, 0.0, 16.0),
                             child: FFButtonWidget(
                               onPressed: () {
                                 print('Button pressed ...');
