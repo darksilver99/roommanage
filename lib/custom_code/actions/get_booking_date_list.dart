@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<List<DateTime>?> getBookingDateList(DocumentReference roomRef) async {
+Future<List<DateTime>> getBookingDateList(DocumentReference roomRef) async {
   // Add your function code here!
-  return null;
+  return [];
 }
