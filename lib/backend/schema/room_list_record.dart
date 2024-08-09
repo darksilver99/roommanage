@@ -61,21 +61,6 @@ class RoomListRecord extends FirestoreRecord {
   int get floorNumber => _floorNumber ?? 0;
   bool hasFloorNumber() => _floorNumber != null;
 
-  // "end_date" field.
-  DateTime? _endDate;
-  DateTime? get endDate => _endDate;
-  bool hasEndDate() => _endDate != null;
-
-  // "is_daily" field.
-  bool? _isDaily;
-  bool get isDaily => _isDaily ?? false;
-  bool hasIsDaily() => _isDaily != null;
-
-  // "guest_ref" field.
-  DocumentReference? _guestRef;
-  DocumentReference? get guestRef => _guestRef;
-  bool hasGuestRef() => _guestRef != null;
-
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -88,9 +73,6 @@ class RoomListRecord extends FirestoreRecord {
     _detail = snapshotData['detail'] as String?;
     _buildingRef = snapshotData['building_ref'] as DocumentReference?;
     _floorNumber = castToType<int>(snapshotData['floor_number']);
-    _endDate = snapshotData['end_date'] as DateTime?;
-    _isDaily = snapshotData['is_daily'] as bool?;
-    _guestRef = snapshotData['guest_ref'] as DocumentReference?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -142,9 +124,6 @@ Map<String, dynamic> createRoomListRecordData({
   String? detail,
   DocumentReference? buildingRef,
   int? floorNumber,
-  DateTime? endDate,
-  bool? isDaily,
-  DocumentReference? guestRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -157,9 +136,6 @@ Map<String, dynamic> createRoomListRecordData({
       'detail': detail,
       'building_ref': buildingRef,
       'floor_number': floorNumber,
-      'end_date': endDate,
-      'is_daily': isDaily,
-      'guest_ref': guestRef,
     }.withoutNulls,
   );
 
@@ -179,10 +155,7 @@ class RoomListRecordDocumentEquality implements Equality<RoomListRecord> {
         e1?.subject == e2?.subject &&
         e1?.detail == e2?.detail &&
         e1?.buildingRef == e2?.buildingRef &&
-        e1?.floorNumber == e2?.floorNumber &&
-        e1?.endDate == e2?.endDate &&
-        e1?.isDaily == e2?.isDaily &&
-        e1?.guestRef == e2?.guestRef;
+        e1?.floorNumber == e2?.floorNumber;
   }
 
   @override
@@ -195,10 +168,7 @@ class RoomListRecordDocumentEquality implements Equality<RoomListRecord> {
         e?.subject,
         e?.detail,
         e?.buildingRef,
-        e?.floorNumber,
-        e?.endDate,
-        e?.isDaily,
-        e?.guestRef
+        e?.floorNumber
       ]);
 
   @override

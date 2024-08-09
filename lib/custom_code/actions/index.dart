@@ -6,3 +6,4 @@ export 'get_device_detail.dart' show getDeviceDetail;
 export 'set_app_version.dart' show setAppVersion;
 export 'close_app.dart' show closeApp;
 export 'get_base64.dart' show getBase64;
+export 'get_booking_date_list.dart' show getBookingDateList;
