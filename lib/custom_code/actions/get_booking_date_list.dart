@@ -12,5 +12,22 @@ import 'package:flutter/material.dart';
 
 Future<List<DateTime>> getBookingDateList(DocumentReference roomRef) async {
   // Add your function code here!
-  return [];
+  List<DateTime> dateList = [];
+  var rs = await roomRef
+      .collection("guest_list")
+      .orderBy("start_date", descending: false)
+      .get();
+  for (var i = 0; i < rs.size; i++) {
+    if (!rs.docs[i].data()["is_daily"]) {
+      DateTime newDate = DateTime(
+          rs.docs[i].data()["start_date"].toDate().year,
+          rs.docs[i].data()["start_date"].toDate().month,
+          rs.docs[i].data()["start_date"].toDate().day,
+          1);
+      dateList.add(newDate);
+    } else {
+      dateList.add(rs.docs[i].data()["start_date"].toDate());
+    }
+  }
+  return dateList;
 }
