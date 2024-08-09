@@ -89,11 +89,23 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
     return null;
   }
 
+  // State field(s) for phone widget.
+  FocusNode? phoneFocusNode;
+  TextEditingController? phoneTextController;
+  String? Function(BuildContext, String?)? phoneTextControllerValidator;
+  String? _phoneTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  String? _textController5Validator(BuildContext context, String? val) {
+  TextEditingController? textController6;
+  String? Function(BuildContext, String?)? textController6Validator;
+  String? _textController6Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -118,7 +130,8 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
     firstNameTextControllerValidator = _firstNameTextControllerValidator;
     lastNameTextControllerValidator = _lastNameTextControllerValidator;
     idCardTextControllerValidator = _idCardTextControllerValidator;
-    textController5Validator = _textController5Validator;
+    phoneTextControllerValidator = _phoneTextControllerValidator;
+    textController6Validator = _textController6Validator;
   }
 
   @override
@@ -135,8 +148,11 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
     idCardFocusNode?.dispose();
     idCardTextController?.dispose();
 
+    phoneFocusNode?.dispose();
+    phoneTextController?.dispose();
+
     textFieldFocusNode?.dispose();
-    textController5?.dispose();
+    textController6?.dispose();
 
     detailFocusNode?.dispose();
     detailTextController?.dispose();

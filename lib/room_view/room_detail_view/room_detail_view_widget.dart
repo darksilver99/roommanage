@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/guest_detail_view/guest_detail_view_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/gestures.dart';
@@ -286,76 +287,90 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                FlutterFlowCalendar(
-                                  locale: 'th_TH',
-                                  markerDate: _model.markerDateList,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  iconColor: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  weekFormat: false,
-                                  weekStartsMonday: false,
-                                  rowHeight: 64.0,
-                                  onChange:
-                                      (DateTimeRange? newSelectedDate) async {
-                                    if (_model.calendarSelectedDay ==
-                                        newSelectedDate) {
-                                      return;
-                                    }
-                                    _model.calendarSelectedDay =
-                                        newSelectedDate;
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return WebViewAware(
-                                          child: AlertDialog(
-                                            title: Text(_model
-                                                .calendarSelectedDay!.start
-                                                .toString()),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
+                                Builder(
+                                  builder: (context) => FlutterFlowCalendar(
+                                    locale: 'th_TH',
+                                    markerDate: _model.markerDateList,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    iconColor: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    weekFormat: false,
+                                    weekStartsMonday: false,
+                                    rowHeight: 64.0,
+                                    onChange:
+                                        (DateTimeRange? newSelectedDate) async {
+                                      if (_model.calendarSelectedDay ==
+                                          newSelectedDate) {
+                                        return;
+                                      }
+                                      _model.calendarSelectedDay =
+                                          newSelectedDate;
+                                      _model.guestDocument =
+                                          await actions.getGuestDocument(
+                                        _model.calendarSelectedDay!.start,
+                                        widget!.roomDocument!.reference,
+                                      );
+                                      if (_model.guestDocument != null) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: GuestDetailViewWidget(
+                                                  roomDocument:
+                                                      widget!.roomDocument!,
+                                                  guestDocument:
+                                                      _model.guestDocument!,
+                                                ),
                                               ),
-                                            ],
-                                          ),
+                                            );
+                                          },
                                         );
-                                      },
-                                    );
-                                    setState(() {});
-                                  },
-                                  titleStyle: FlutterFlowTheme.of(context)
-                                      .headlineSmall
-                                      .override(
-                                        fontFamily: 'Kanit',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  dayOfWeekStyle: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Kanit',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  dateStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Kanit',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  selectedDateStyle:
-                                      FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Kanit',
-                                            letterSpacing: 0.0,
-                                          ),
-                                  inactiveDateStyle:
-                                      FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Kanit',
-                                            letterSpacing: 0.0,
-                                          ),
+                                      }
+                                      setState(() {});
+                                    },
+                                    titleStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    dayOfWeekStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    dateStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    selectedDateStyle:
+                                        FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              letterSpacing: 0.0,
+                                            ),
+                                    inactiveDateStyle:
+                                        FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              letterSpacing: 0.0,
+                                            ),
+                                  ),
                                 ),
                               ],
                             ),
