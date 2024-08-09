@@ -242,6 +242,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                             );
                                           },
                                         );
+
+                                        FFAppState().isSkipOCRAlert = true;
                                       }
                                       if (getJsonField(
                                             (_model.apiResult2ve?.jsonBody ??

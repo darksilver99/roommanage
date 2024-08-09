@@ -36,6 +36,11 @@ class _ExpireAlertViewWidgetState extends State<ExpireAlertViewWidget>
     super.initState();
     _model = createModel(context, () => ExpireAlertViewModel());
 
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().isSkipExpireAlert = true;
+    });
+
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
