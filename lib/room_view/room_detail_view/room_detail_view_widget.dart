@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/check_in_view/check_in_view_widget.dart';
 import '/room_view/guest_detail_view/guest_detail_view_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -372,33 +373,64 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                 ),
                               ],
                             ),
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'เช็คอิน',
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 50.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).secondary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Kanit',
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                            Builder(
+                              builder: (context) => FFButtonWidget(
+                                onPressed: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: WebViewAware(
+                                          child: CheckInViewWidget(
+                                            roomDocument: widget!.roomDocument!,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+
+                                  _model.markerList2 =
+                                      await actions.getBookingDateList(
+                                    widget!.roomDocument!.reference,
+                                  );
+                                  _model.markerDateList = _model.markerList2!
+                                      .toList()
+                                      .cast<DateTime>();
+                                  setState(() {});
+
+                                  setState(() {});
+                                },
+                                text: 'เช็คอิน',
+                                options: FFButtonOptions(
+                                  width: double.infinity,
+                                  height: 50.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Kanit',
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ],

@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/check_in_view/check_in_view_widget.dart';
 import '/room_view/guest_detail_view/guest_detail_view_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -35,6 +36,8 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   DateTimeRange? calendarSelectedDay;
   // Stores action output result for [Custom Action - getGuestDocument] action in Calendar widget.
   GuestListRecord? guestDocument;
+  // Stores action output result for [Custom Action - getBookingDateList] action in Button widget.
+  List<DateTime>? markerList2;
 
   @override
   void initState(BuildContext context) {

@@ -26,7 +26,11 @@ Future<List<DateTime>> getBookingDateList(DocumentReference roomRef) async {
           1);
       dateList.add(newDate);
     } else {
-      dateList.add(rs.docs[i].data()["start_date"].toDate());
+      DateTime currentDate = rs.docs[i].data()["start_date"].toDate();
+      while (!currentDate.isAfter(rs.docs[i].data()["end_date"].toDate())) {
+        dateList.add(currentDate);
+        currentDate = currentDate.add(Duration(days: 1));
+      }
     }
   }
   return dateList;
