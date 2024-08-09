@@ -295,6 +295,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                               children: [
                                 FlutterFlowCalendar(
                                   locale: 'th_TH',
+                                  markerDate: [functions.getStartDayTime(getCurrentTimestamp), functions.getStartDayTime(functions.getNextDay(3))],
                                   color: FlutterFlowTheme.of(context).primary,
                                   iconColor: FlutterFlowTheme.of(context)
                                       .secondaryText,

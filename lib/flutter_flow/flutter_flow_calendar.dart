@@ -30,6 +30,7 @@ class FlutterFlowCalendar extends StatefulWidget {
     this.titleStyle,
     this.rowHeight,
     this.locale,
+    this.markerDate,
   }) : super(key: key);
 
   final bool weekFormat;
@@ -46,6 +47,7 @@ class FlutterFlowCalendar extends StatefulWidget {
   final TextStyle? titleStyle;
   final double? rowHeight;
   final String? locale;
+  final List<DateTime>? markerDate;
 
   @override
   State<StatefulWidget> createState() => _FlutterFlowCalendarState();
@@ -187,7 +189,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
             },
             calendarBuilders: CalendarBuilders(
               markerBuilder: (context, day, focusedDay) {
-                return buildMarker(day, Colors.red);
+                return buildMarker(day, widget.markerDate);
               },
             ),
           ),
