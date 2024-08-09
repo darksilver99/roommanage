@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -49,20 +51,20 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
       FFAppState().tmpRoomRef = widget!.roomDocument?.reference;
     });
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.preNameTextController ??= TextEditingController();
+    _model.preNameFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.firstNameTextController ??= TextEditingController();
+    _model.firstNameFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.lastNameTextController ??= TextEditingController();
+    _model.lastNameFocusNode ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.idCardTextController ??= TextEditingController();
+    _model.idCardFocusNode ??= FocusNode();
 
     _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -146,41 +148,234 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
-                            child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'ถ่ายรูปบัตรประชาชน',
-                              icon: Icon(
-                                Icons.photo_camera,
-                                size: 32.0,
-                              ),
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 50.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).warning,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Kanit',
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                          Builder(
+                            builder: (context) => Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 16.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  final selectedMedia =
+                                      await selectMediaWithSourceBottomSheet(
+                                    context: context,
+                                    maxWidth: 600.00,
+                                    allowPhoto: true,
+                                  );
+                                  if (selectedMedia != null &&
+                                      selectedMedia.every((m) =>
+                                          validateFileFormat(
+                                              m.storagePath, context))) {
+                                    setState(
+                                        () => _model.isDataUploading = true);
+                                    var selectedUploadedFiles =
+                                        <FFUploadedFile>[];
+
+                                    try {
+                                      selectedUploadedFiles = selectedMedia
+                                          .map((m) => FFUploadedFile(
+                                                name: m.storagePath
+                                                    .split('/')
+                                                    .last,
+                                                bytes: m.bytes,
+                                                height: m.dimensions?.height,
+                                                width: m.dimensions?.width,
+                                                blurHash: m.blurHash,
+                                              ))
+                                          .toList();
+                                    } finally {
+                                      _model.isDataUploading = false;
+                                    }
+                                    if (selectedUploadedFiles.length ==
+                                        selectedMedia.length) {
+                                      setState(() {
+                                        _model.uploadedLocalFile =
+                                            selectedUploadedFiles.first;
+                                      });
+                                    } else {
+                                      setState(() {});
+                                      return;
+                                    }
+                                  }
+
+                                  if (_model.uploadedLocalFile != null &&
+                                      (_model.uploadedLocalFile.bytes
+                                              ?.isNotEmpty ??
+                                          false)) {
+                                    _model.base64Result =
+                                        await actions.getBase64(
+                                      _model.uploadedLocalFile,
+                                    );
+                                    _model.apiResult2ve =
+                                        await GetORCDataCall.call(
+                                      api: FFAppState().configData.ocrApi,
+                                      base64: _model.base64Result,
+                                    );
+
+                                    if ((_model.apiResult2ve?.succeeded ??
+                                        true)) {
+                                      if (!FFAppState().isSkipOCRAlert) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: InfoCustomViewWidget(
+                                                  title: FFAppState()
+                                                      .configData
+                                                      .ocrAlertText
+                                                      .first,
+                                                  detail: FFAppState()
+                                                      .configData
+                                                      .ocrAlertText
+                                                      .last,
+                                                  status: 'warning',
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                      if (getJsonField(
+                                            (_model.apiResult2ve?.jsonBody ??
+                                                ''),
+                                            r'''$.data.id_card_number''',
+                                          ) !=
+                                          null) {
+                                        setState(() {
+                                          _model.preNameTextController?.text =
+                                              getJsonField(
+                                            (_model.apiResult2ve?.jsonBody ??
+                                                ''),
+                                            r'''$.data.pre_name''',
+                                          ).toString();
+                                          _model.preNameTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .preNameTextController!
+                                                      .text
+                                                      .length);
+                                        });
+                                        setState(() {
+                                          _model.firstNameTextController?.text =
+                                              getJsonField(
+                                            (_model.apiResult2ve?.jsonBody ??
+                                                ''),
+                                            r'''$.data.first_name''',
+                                          ).toString();
+                                          _model.firstNameTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .firstNameTextController!
+                                                      .text
+                                                      .length);
+                                        });
+                                        setState(() {
+                                          _model.lastNameTextController?.text =
+                                              getJsonField(
+                                            (_model.apiResult2ve?.jsonBody ??
+                                                ''),
+                                            r'''$.data.last_name''',
+                                          ).toString();
+                                          _model.lastNameTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .lastNameTextController!
+                                                      .text
+                                                      .length);
+                                        });
+                                        setState(() {
+                                          _model.idCardTextController?.text =
+                                              getJsonField(
+                                            (_model.apiResult2ve?.jsonBody ??
+                                                ''),
+                                            r'''$.data.id_card_number''',
+                                          ).toString();
+                                          _model.idCardTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .idCardTextController!
+                                                      .text
+                                                      .length);
+                                        });
+                                        _model.allCardData = getJsonField(
+                                          (_model.apiResult2ve?.jsonBody ?? ''),
+                                          r'''$.data.all_data''',
+                                        ).toString();
+                                      }
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: InfoCustomViewWidget(
+                                                title: FFAppState()
+                                                    .configData
+                                                    .ocrErrorText
+                                                    .first,
+                                                detail: FFAppState()
+                                                    .configData
+                                                    .ocrErrorText
+                                                    .last,
+                                                status: 'warning',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                  }
+
+                                  setState(() {});
+                                },
+                                text: 'ถ่ายรูปบัตรประชาชน',
+                                icon: Icon(
+                                  Icons.photo_camera,
+                                  size: 32.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                options: FFButtonOptions(
+                                  width: double.infinity,
+                                  height: 50.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).warning,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Kanit',
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
                             ),
                           ),
@@ -190,8 +385,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                             child: Container(
                               width: double.infinity,
                               child: TextFormField(
-                                controller: _model.textController1,
-                                focusNode: _model.textFieldFocusNode1,
+                                controller: _model.preNameTextController,
+                                focusNode: _model.preNameFocusNode,
                                 autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -248,7 +443,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                     ),
-                                validator: _model.textController1Validator
+                                validator: _model.preNameTextControllerValidator
                                     .asValidator(context),
                               ),
                             ),
@@ -257,8 +452,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: TextFormField(
-                              controller: _model.textController2,
-                              focusNode: _model.textFieldFocusNode2,
+                              controller: _model.firstNameTextController,
+                              focusNode: _model.firstNameFocusNode,
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -315,7 +510,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.textController2Validator
+                              validator: _model.firstNameTextControllerValidator
                                   .asValidator(context),
                             ),
                           ),
@@ -323,8 +518,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: TextFormField(
-                              controller: _model.textController3,
-                              focusNode: _model.textFieldFocusNode3,
+                              controller: _model.lastNameTextController,
+                              focusNode: _model.lastNameFocusNode,
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -381,7 +576,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.textController3Validator
+                              validator: _model.lastNameTextControllerValidator
                                   .asValidator(context),
                             ),
                           ),
@@ -389,8 +584,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: TextFormField(
-                              controller: _model.textController4,
-                              focusNode: _model.textFieldFocusNode4,
+                              controller: _model.idCardTextController,
+                              focusNode: _model.idCardFocusNode,
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -447,7 +642,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.textController4Validator
+                              validator: _model.idCardTextControllerValidator
                                   .asValidator(context),
                             ),
                           ),
@@ -456,7 +651,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 0.0, 0.0, 0.0, 8.0),
                             child: TextFormField(
                               controller: _model.textController5,
-                              focusNode: _model.textFieldFocusNode5,
+                              focusNode: _model.textFieldFocusNode,
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -1139,13 +1334,18 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       status: 1,
                                       startDate: _model.startDate,
                                       endDate: _model.endDate,
-                                      preName: _model.textController1.text,
-                                      firstName: _model.textController2.text,
-                                      lastName: _model.textController3.text,
-                                      idCardNumber: _model.textController4.text,
+                                      preName:
+                                          _model.preNameTextController.text,
+                                      firstName:
+                                          _model.firstNameTextController.text,
+                                      lastName:
+                                          _model.lastNameTextController.text,
+                                      idCardNumber:
+                                          _model.idCardTextController.text,
                                       totalGuest: int.tryParse(
                                           _model.textController5.text),
                                       isDaily: _model.isDaily,
+                                      allCardData: _model.allCardData,
                                     ));
                                     _model.insertedGuest =
                                         GuestListRecord.getDocumentFromData(
@@ -1154,17 +1354,18 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                               status: 1,
                                               startDate: _model.startDate,
                                               endDate: _model.endDate,
-                                              preName:
-                                                  _model.textController1.text,
-                                              firstName:
-                                                  _model.textController2.text,
-                                              lastName:
-                                                  _model.textController3.text,
-                                              idCardNumber:
-                                                  _model.textController4.text,
+                                              preName: _model
+                                                  .preNameTextController.text,
+                                              firstName: _model
+                                                  .firstNameTextController.text,
+                                              lastName: _model
+                                                  .lastNameTextController.text,
+                                              idCardNumber: _model
+                                                  .idCardTextController.text,
                                               totalGuest: int.tryParse(
                                                   _model.textController5.text),
                                               isDaily: _model.isDaily,
+                                              allCardData: _model.allCardData,
                                             ),
                                             guestListRecordReference);
                                     _shouldSetState = true;

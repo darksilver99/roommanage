@@ -2,11 +2,13 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
+import '/component/expire_alert_view/expire_alert_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
-import '/component/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/more_view/promotion_view/promotion_view_widget.dart';
+import '/more_view/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/room_view/room_detail_view/room_detail_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
@@ -84,7 +86,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     List<RoomListRecord>? roomListResult;
 
     roomListResult = await queryRoomListRecordOnce(
-      parent: FFAppState().customerReference,
+      parent: FFAppState().customerData.customerRef,
       queryBuilder: (roomListRecord) => roomListRecord
           .where(
             'floor_number',
@@ -137,7 +139,12 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       singleRecord: true,
     ).then((s) => s.firstOrNull);
     if (customerResult?.reference != null) {
-      FFAppState().customerReference = customerResult?.reference;
+      FFAppState().customerData = CustomerDataStruct(
+        customerName: customerResult?.customerName,
+        expireDate: customerResult?.expireDate,
+        customerRef: customerResult?.reference,
+      );
+      await checkExpireDate(context);
       isHasCustomer = true;
       buildingResult = await queryBuildingListRecordOnce(
         parent: customerResult?.reference,
@@ -182,5 +189,75 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     }
 
     isLoading = false;
+  }
+
+  Future checkCuurentDate(BuildContext context) async {
+    if (functions.getStartDayTime(getCurrentTimestamp) !=
+        functions.getStartDayTime(FFAppState().currentDate!)) {
+      FFAppState().currentDate = functions.getStartDayTime(getCurrentTimestamp);
+      FFAppState().isSkipOCRAlert = false;
+      FFAppState().isSkipExpireAlert = false;
+    }
+  }
+
+  Future checkExpireDate(BuildContext context) async {
+    String? isUpdate;
+
+    if (getCurrentTimestamp > FFAppState().customerData.expireDate!) {
+      await showDialog(
+        context: context,
+        builder: (dialogContext) {
+          return Dialog(
+            elevation: 0,
+            insetPadding: EdgeInsets.zero,
+            backgroundColor: Colors.transparent,
+            alignment: AlignmentDirectional(0.0, 0.0)
+                .resolve(Directionality.of(context)),
+            child: WebViewAware(
+              child: PromotionViewWidget(),
+            ),
+          );
+        },
+      );
+    } else {
+      if (getCurrentTimestamp >
+          functions.getBeforeDay(5, FFAppState().customerData.expireDate!)) {
+        if (!FFAppState().isSkipExpireAlert) {
+          await showDialog(
+            context: context,
+            builder: (dialogContext) {
+              return Dialog(
+                elevation: 0,
+                insetPadding: EdgeInsets.zero,
+                backgroundColor: Colors.transparent,
+                alignment: AlignmentDirectional(0.0, 0.0)
+                    .resolve(Directionality.of(context)),
+                child: WebViewAware(
+                  child: ExpireAlertViewWidget(),
+                ),
+              );
+            },
+          ).then((value) => isUpdate = value);
+
+          if ((isUpdate != null && isUpdate != '') && (isUpdate == 'update')) {
+            await showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return Dialog(
+                  elevation: 0,
+                  insetPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.transparent,
+                  alignment: AlignmentDirectional(0.0, 0.0)
+                      .resolve(Directionality.of(context)),
+                  child: WebViewAware(
+                    child: PromotionViewWidget(),
+                  ),
+                );
+              },
+            );
+          }
+        }
+      }
+    }
   }
 }

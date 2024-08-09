@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -36,6 +37,18 @@ class FFAppState extends ChangeNotifier {
       _currentBackgroundNumber = prefs.getInt('ff_currentBackgroundNumber') ??
           _currentBackgroundNumber;
     });
+    _safeInit(() {
+      _isSkipOCRAlert = prefs.getBool('ff_isSkipOCRAlert') ?? _isSkipOCRAlert;
+    });
+    _safeInit(() {
+      _isSkipExpireAlert =
+          prefs.getBool('ff_isSkipExpireAlert') ?? _isSkipExpireAlert;
+    });
+    _safeInit(() {
+      _currentDate = prefs.containsKey('ff_currentDate')
+          ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_currentDate')!)
+          : _currentDate;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -65,12 +78,6 @@ class FFAppState extends ChangeNotifier {
 
   void updateTmpCustomerDataStruct(Function(TmpCustomerDataStruct) updateFn) {
     updateFn(_tmpCustomerData);
-  }
-
-  DocumentReference? _customerReference;
-  DocumentReference? get customerReference => _customerReference;
-  set customerReference(DocumentReference? value) {
-    _customerReference = value;
   }
 
   List<StatusDataStruct> _roomStatusList = [
@@ -248,6 +255,49 @@ class FFAppState extends ChangeNotifier {
   bool get isCreateBuildingFromSetting => _isCreateBuildingFromSetting;
   set isCreateBuildingFromSetting(bool value) {
     _isCreateBuildingFromSetting = value;
+  }
+
+  ConfigDataStruct _configData = ConfigDataStruct();
+  ConfigDataStruct get configData => _configData;
+  set configData(ConfigDataStruct value) {
+    _configData = value;
+  }
+
+  void updateConfigDataStruct(Function(ConfigDataStruct) updateFn) {
+    updateFn(_configData);
+  }
+
+  bool _isSkipOCRAlert = false;
+  bool get isSkipOCRAlert => _isSkipOCRAlert;
+  set isSkipOCRAlert(bool value) {
+    _isSkipOCRAlert = value;
+    prefs.setBool('ff_isSkipOCRAlert', value);
+  }
+
+  bool _isSkipExpireAlert = false;
+  bool get isSkipExpireAlert => _isSkipExpireAlert;
+  set isSkipExpireAlert(bool value) {
+    _isSkipExpireAlert = value;
+    prefs.setBool('ff_isSkipExpireAlert', value);
+  }
+
+  DateTime? _currentDate = DateTime.fromMillisecondsSinceEpoch(-25200000);
+  DateTime? get currentDate => _currentDate;
+  set currentDate(DateTime? value) {
+    _currentDate = value;
+    value != null
+        ? prefs.setInt('ff_currentDate', value.millisecondsSinceEpoch)
+        : prefs.remove('ff_currentDate');
+  }
+
+  CustomerDataStruct _customerData = CustomerDataStruct();
+  CustomerDataStruct get customerData => _customerData;
+  set customerData(CustomerDataStruct value) {
+    _customerData = value;
+  }
+
+  void updateCustomerDataStruct(Function(CustomerDataStruct) updateFn) {
+    updateFn(_customerData);
   }
 }
 

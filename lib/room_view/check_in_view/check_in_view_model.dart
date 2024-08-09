@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'check_in_view_widget.dart' show CheckInViewWidget;
@@ -26,14 +28,60 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
 
   bool isDaily = true;
 
+  String? allCardData;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  String? _textController1Validator(BuildContext context, String? val) {
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  // Stores action output result for [Custom Action - getBase64] action in Button widget.
+  String? base64Result;
+  // Stores action output result for [Backend Call - API (getORCData)] action in Button widget.
+  ApiCallResponse? apiResult2ve;
+  // State field(s) for preName widget.
+  FocusNode? preNameFocusNode;
+  TextEditingController? preNameTextController;
+  String? Function(BuildContext, String?)? preNameTextControllerValidator;
+  String? _preNameTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for firstName widget.
+  FocusNode? firstNameFocusNode;
+  TextEditingController? firstNameTextController;
+  String? Function(BuildContext, String?)? firstNameTextControllerValidator;
+  String? _firstNameTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for lastName widget.
+  FocusNode? lastNameFocusNode;
+  TextEditingController? lastNameTextController;
+  String? Function(BuildContext, String?)? lastNameTextControllerValidator;
+  String? _lastNameTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for idCard widget.
+  FocusNode? idCardFocusNode;
+  TextEditingController? idCardTextController;
+  String? Function(BuildContext, String?)? idCardTextControllerValidator;
+  String? _idCardTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -42,43 +90,7 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
   }
 
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  String? _textController2Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    return null;
-  }
-
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  String? _textController3Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    return null;
-  }
-
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  String? _textController4Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    return null;
-  }
-
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
   String? _textController5Validator(BuildContext context, String? val) {
@@ -98,28 +110,28 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
 
   @override
   void initState(BuildContext context) {
-    textController1Validator = _textController1Validator;
-    textController2Validator = _textController2Validator;
-    textController3Validator = _textController3Validator;
-    textController4Validator = _textController4Validator;
+    preNameTextControllerValidator = _preNameTextControllerValidator;
+    firstNameTextControllerValidator = _firstNameTextControllerValidator;
+    lastNameTextControllerValidator = _lastNameTextControllerValidator;
+    idCardTextControllerValidator = _idCardTextControllerValidator;
     textController5Validator = _textController5Validator;
   }
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    preNameFocusNode?.dispose();
+    preNameTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    firstNameFocusNode?.dispose();
+    firstNameTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    lastNameFocusNode?.dispose();
+    lastNameTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    idCardFocusNode?.dispose();
+    idCardTextController?.dispose();
 
-    textFieldFocusNode5?.dispose();
+    textFieldFocusNode?.dispose();
     textController5?.dispose();
   }
 }

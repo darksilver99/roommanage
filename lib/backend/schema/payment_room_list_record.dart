@@ -8,8 +8,8 @@ import '/backend/schema/util/schema_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class PaymentListRecord extends FirestoreRecord {
-  PaymentListRecord._(
+class PaymentRoomListRecord extends FirestoreRecord {
+  PaymentRoomListRecord._(
     DocumentReference reference,
     Map<String, dynamic> data,
   ) : super(reference, data) {
@@ -80,40 +80,40 @@ class PaymentListRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('payment_list');
+      FirebaseFirestore.instance.collection('payment_room_list');
 
-  static Stream<PaymentListRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map((s) => PaymentListRecord.fromSnapshot(s));
+  static Stream<PaymentRoomListRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => PaymentRoomListRecord.fromSnapshot(s));
 
-  static Future<PaymentListRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then((s) => PaymentListRecord.fromSnapshot(s));
+  static Future<PaymentRoomListRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => PaymentRoomListRecord.fromSnapshot(s));
 
-  static PaymentListRecord fromSnapshot(DocumentSnapshot snapshot) =>
-      PaymentListRecord._(
+  static PaymentRoomListRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      PaymentRoomListRecord._(
         snapshot.reference,
         mapFromFirestore(snapshot.data() as Map<String, dynamic>),
       );
 
-  static PaymentListRecord getDocumentFromData(
+  static PaymentRoomListRecord getDocumentFromData(
     Map<String, dynamic> data,
     DocumentReference reference,
   ) =>
-      PaymentListRecord._(reference, mapFromFirestore(data));
+      PaymentRoomListRecord._(reference, mapFromFirestore(data));
 
   @override
   String toString() =>
-      'PaymentListRecord(reference: ${reference.path}, data: $snapshotData)';
+      'PaymentRoomListRecord(reference: ${reference.path}, data: $snapshotData)';
 
   @override
   int get hashCode => reference.path.hashCode;
 
   @override
   bool operator ==(other) =>
-      other is PaymentListRecord &&
+      other is PaymentRoomListRecord &&
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createPaymentListRecordData({
+Map<String, dynamic> createPaymentRoomListRecordData({
   DateTime? createDate,
   DocumentReference? createBy,
   DateTime? updateDate,
@@ -143,11 +143,12 @@ Map<String, dynamic> createPaymentListRecordData({
   return firestoreData;
 }
 
-class PaymentListRecordDocumentEquality implements Equality<PaymentListRecord> {
-  const PaymentListRecordDocumentEquality();
+class PaymentRoomListRecordDocumentEquality
+    implements Equality<PaymentRoomListRecord> {
+  const PaymentRoomListRecordDocumentEquality();
 
   @override
-  bool equals(PaymentListRecord? e1, PaymentListRecord? e2) {
+  bool equals(PaymentRoomListRecord? e1, PaymentRoomListRecord? e2) {
     return e1?.createDate == e2?.createDate &&
         e1?.createBy == e2?.createBy &&
         e1?.updateDate == e2?.updateDate &&
@@ -161,7 +162,7 @@ class PaymentListRecordDocumentEquality implements Equality<PaymentListRecord> {
   }
 
   @override
-  int hash(PaymentListRecord? e) => const ListEquality().hash([
+  int hash(PaymentRoomListRecord? e) => const ListEquality().hash([
         e?.createDate,
         e?.createBy,
         e?.updateDate,
@@ -175,5 +176,5 @@ class PaymentListRecordDocumentEquality implements Equality<PaymentListRecord> {
       ]);
 
   @override
-  bool isValidKey(Object? o) => o is PaymentListRecord;
+  bool isValidKey(Object? o) => o is PaymentRoomListRecord;
 }
