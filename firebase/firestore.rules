@@ -46,13 +46,6 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /payment_list/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if true;
-    }
-
     match /issue_list/{document} {
       allow create: if true;
       allow read: if true;
@@ -61,6 +54,13 @@ service cloud.firestore {
     }
 
     match /config/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /payment_room_list/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if true;

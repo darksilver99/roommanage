@@ -209,8 +209,9 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                           }
                                           _model.totalRoom =
                                               await queryRoomListRecordCount(
-                                            parent:
-                                                FFAppState().customerReference,
+                                            parent: FFAppState()
+                                                .customerData
+                                                .customerRef,
                                             queryBuilder: (roomListRecord) =>
                                                 roomListRecord
                                                     .where(
@@ -257,7 +258,8 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                           } else {
                                             await RoomListRecord.createDoc(
                                                     FFAppState()
-                                                        .customerReference!)
+                                                        .customerData
+                                                        .customerRef!)
                                                 .set(createRoomListRecordData(
                                               createDate: getCurrentTimestamp,
                                               createBy: currentUserReference,

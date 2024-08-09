@@ -69,3 +69,29 @@ String dateTimeTh(DateTime date) {
   final buddhistYear = date.year + 543;
   return formatter.format(date).replaceFirst('${date.year}', '$buddhistYear');
 }
+
+DateTime getStartDayTime(DateTime currentDate) {
+  DateTime startOfDay =
+      DateTime(currentDate.year, currentDate.month, currentDate.day);
+  return startOfDay;
+}
+
+DateTime getNextDay(int nextDay) {
+  DateTime currentDate = DateTime.now();
+  DateTime futureDate = currentDate.add(Duration(days: nextDay));
+  return futureDate;
+}
+
+DateTime getEndDayTime(DateTime currentDate) {
+  DateTime endOfDay = DateTime(
+      currentDate.year, currentDate.month, currentDate.day, 23, 59, 59);
+  return endOfDay;
+}
+
+DateTime getBeforeDay(
+  int pastDay,
+  DateTime date,
+) {
+  DateTime pastDate = date.subtract(Duration(days: pastDay));
+  return pastDate;
+}

@@ -16,7 +16,7 @@ class PaymentDetailViewWidget extends StatefulWidget {
     required this.paymentDocument,
   });
 
-  final PaymentListRecord? paymentDocument;
+  final PaymentRoomListRecord? paymentDocument;
 
   @override
   State<PaymentDetailViewWidget> createState() =>

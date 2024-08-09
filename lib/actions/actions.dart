@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_manager.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/confirm_custom_view/confirm_custom_view_widget.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -45,9 +47,9 @@ Future<bool?> confirmBlock(
 }
 
 Future clearPref(BuildContext context) async {
-  FFAppState().customerReference = null;
   FFAppState().currentDropdownSelected = CurrentDropdownSelectedDataStruct();
   FFAppState().buildingList = [];
+  FFAppState().customerData = CustomerDataStruct();
 }
 
 Future checkAppVersion(BuildContext context) async {
@@ -57,6 +59,10 @@ Future checkAppVersion(BuildContext context) async {
     singleRecord: true,
   ).then((s) => s.firstOrNull);
   await actions.setAppVersion();
+  await action_blocks.setConfigData(
+    context,
+    configDocument: configResult,
+  );
   if (FFAppState().appBuildVersion < configResult!.storeVersion) {
     await showDialog(
       context: context,
@@ -85,4 +91,20 @@ Future checkAppVersion(BuildContext context) async {
 
     await actions.closeApp();
   }
+}
+
+Future setConfigData(
+  BuildContext context, {
+  required ConfigRecord? configDocument,
+}) async {
+  FFAppState().configData = ConfigDataStruct(
+    ocrApi: configDocument?.ocrApi,
+    policyUrl: configDocument?.policyUrl,
+    ocrAlertText: configDocument?.ocrAlertText,
+    ocrErrorText: configDocument?.ocrErrorText,
+    freeDay: configDocument?.freeDay,
+    paymentAlertText: configDocument?.paymentAlertText,
+    paymentDetailImage: configDocument?.paymentDetailImage,
+    promotionDetailImage: configDocument?.promotionDetailImage,
+  );
 }

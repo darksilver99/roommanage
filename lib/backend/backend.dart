@@ -10,9 +10,9 @@ import 'schema/customer_name_record.dart';
 import 'schema/room_list_record.dart';
 import 'schema/building_list_record.dart';
 import 'schema/guest_list_record.dart';
-import 'schema/payment_list_record.dart';
 import 'schema/issue_list_record.dart';
 import 'schema/config_record.dart';
+import 'schema/payment_room_list_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -26,9 +26,9 @@ export 'schema/customer_name_record.dart';
 export 'schema/room_list_record.dart';
 export 'schema/building_list_record.dart';
 export 'schema/guest_list_record.dart';
-export 'schema/payment_list_record.dart';
 export 'schema/issue_list_record.dart';
 export 'schema/config_record.dart';
+export 'schema/payment_room_list_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -221,43 +221,6 @@ Future<List<GuestListRecord>> queryGuestListRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query PaymentListRecords (as a Stream and as a Future).
-Future<int> queryPaymentListRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      PaymentListRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<PaymentListRecord>> queryPaymentListRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      PaymentListRecord.collection,
-      PaymentListRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<PaymentListRecord>> queryPaymentListRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      PaymentListRecord.collection,
-      PaymentListRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query IssueListRecords (as a Stream and as a Future).
 Future<int> queryIssueListRecordCount({
   Query Function(Query)? queryBuilder,
@@ -327,6 +290,43 @@ Future<List<ConfigRecord>> queryConfigRecordOnce({
     queryCollectionOnce(
       ConfigRecord.collection,
       ConfigRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query PaymentRoomListRecords (as a Stream and as a Future).
+Future<int> queryPaymentRoomListRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      PaymentRoomListRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<PaymentRoomListRecord>> queryPaymentRoomListRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      PaymentRoomListRecord.collection,
+      PaymentRoomListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<PaymentRoomListRecord>> queryPaymentRoomListRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      PaymentRoomListRecord.collection,
+      PaymentRoomListRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

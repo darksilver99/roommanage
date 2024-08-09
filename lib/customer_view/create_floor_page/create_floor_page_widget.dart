@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/app_bar_view/app_bar_view_widget.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
@@ -7,6 +8,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -229,7 +231,8 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                               .isCreateBuildingFromSetting) {
                                             await BuildingListRecord.createDoc(
                                                     FFAppState()
-                                                        .customerReference!)
+                                                        .customerData
+                                                        .customerRef!)
                                                 .set(
                                                     createBuildingListRecordData(
                                               createDate: getCurrentTimestamp,
@@ -251,6 +254,15 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                               createDate: getCurrentTimestamp,
                                               createBy: currentUserReference,
                                               status: 1,
+                                              customerName: FFAppState()
+                                                  .tmpCustomerData
+                                                  .customerName,
+                                              expireDate:
+                                                  functions.getEndDayTime(
+                                                      functions.getNextDay(
+                                                          FFAppState()
+                                                              .configData
+                                                              .freeDay)),
                                             ));
                                             _model.insertCustomer = CustomerNameRecord
                                                 .getDocumentFromData(
@@ -260,11 +272,26 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                       createBy:
                                                           currentUserReference,
                                                       status: 1,
+                                                      customerName: FFAppState()
+                                                          .tmpCustomerData
+                                                          .customerName,
+                                                      expireDate: functions
+                                                          .getEndDayTime(functions
+                                                              .getNextDay(
+                                                                  FFAppState()
+                                                                      .configData
+                                                                      .freeDay)),
                                                     ),
                                                     customerNameRecordReference);
-                                            FFAppState().customerReference =
-                                                _model
-                                                    .insertCustomer?.reference;
+                                            FFAppState().customerData =
+                                                CustomerDataStruct(
+                                              customerName: _model
+                                                  .insertCustomer?.customerName,
+                                              expireDate: _model
+                                                  .insertCustomer?.expireDate,
+                                              customerRef: _model
+                                                  .insertCustomer?.reference,
+                                            );
 
                                             var buildingListRecordReference2 =
                                                 BuildingListRecord.createDoc(

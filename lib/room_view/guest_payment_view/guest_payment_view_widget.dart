@@ -728,14 +728,15 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                           if (_model.tmpImageList.isNotEmpty) {
                                             _model.urlList = await actions
                                                 .uploadImageToFirebase(
-                                              'guest_payment/${FFAppState().customerReference?.id}_customer/${widget!.roomDocument?.reference.id}_room/${widget!.guestDocment?.reference.id}_guest',
+                                              'guest_payment/${FFAppState().customerData.customerRef?.id}_customer/${widget!.roomDocument?.reference.id}_room/${widget!.guestDocment?.reference.id}_guest',
                                               _model.tmpImageList.toList(),
                                             );
 
-                                            await PaymentListRecord.collection
+                                            await PaymentRoomListRecord
+                                                .collection
                                                 .doc()
                                                 .set(
-                                                    createPaymentListRecordData(
+                                                    createPaymentRoomListRecordData(
                                                   createDate:
                                                       getCurrentTimestamp,
                                                   status: 1,

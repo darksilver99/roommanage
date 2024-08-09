@@ -41,12 +41,24 @@ class CustomerNameRecord extends FirestoreRecord {
   int get status => _status ?? 0;
   bool hasStatus() => _status != null;
 
+  // "expire_date" field.
+  DateTime? _expireDate;
+  DateTime? get expireDate => _expireDate;
+  bool hasExpireDate() => _expireDate != null;
+
+  // "customer_name" field.
+  String? _customerName;
+  String get customerName => _customerName ?? '';
+  bool hasCustomerName() => _customerName != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
     _updateDate = snapshotData['update_date'] as DateTime?;
     _updateBy = snapshotData['update_by'] as DocumentReference?;
     _status = castToType<int>(snapshotData['status']);
+    _expireDate = snapshotData['expire_date'] as DateTime?;
+    _customerName = snapshotData['customer_name'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -89,6 +101,8 @@ Map<String, dynamic> createCustomerNameRecordData({
   DateTime? updateDate,
   DocumentReference? updateBy,
   int? status,
+  DateTime? expireDate,
+  String? customerName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -97,6 +111,8 @@ Map<String, dynamic> createCustomerNameRecordData({
       'update_date': updateDate,
       'update_by': updateBy,
       'status': status,
+      'expire_date': expireDate,
+      'customer_name': customerName,
     }.withoutNulls,
   );
 
@@ -113,12 +129,21 @@ class CustomerNameRecordDocumentEquality
         e1?.createBy == e2?.createBy &&
         e1?.updateDate == e2?.updateDate &&
         e1?.updateBy == e2?.updateBy &&
-        e1?.status == e2?.status;
+        e1?.status == e2?.status &&
+        e1?.expireDate == e2?.expireDate &&
+        e1?.customerName == e2?.customerName;
   }
 
   @override
-  int hash(CustomerNameRecord? e) => const ListEquality().hash(
-      [e?.createDate, e?.createBy, e?.updateDate, e?.updateBy, e?.status]);
+  int hash(CustomerNameRecord? e) => const ListEquality().hash([
+        e?.createDate,
+        e?.createBy,
+        e?.updateDate,
+        e?.updateBy,
+        e?.status,
+        e?.expireDate,
+        e?.customerName
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is CustomerNameRecord;

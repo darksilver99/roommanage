@@ -82,10 +82,11 @@ class _GuestPaymentHistoryViewWidgetState
             Expanded(
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                child: StreamBuilder<List<PaymentListRecord>>(
-                  stream: queryPaymentListRecord(
-                    queryBuilder: (paymentListRecord) => paymentListRecord
-                        .orderBy('create_date', descending: true),
+                child: StreamBuilder<List<PaymentRoomListRecord>>(
+                  stream: queryPaymentRoomListRecord(
+                    queryBuilder: (paymentRoomListRecord) =>
+                        paymentRoomListRecord.orderBy('create_date',
+                            descending: true),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -102,9 +103,9 @@ class _GuestPaymentHistoryViewWidgetState
                         ),
                       );
                     }
-                    List<PaymentListRecord> listViewPaymentListRecordList =
-                        snapshot.data!;
-                    if (listViewPaymentListRecordList.isEmpty) {
+                    List<PaymentRoomListRecord>
+                        listViewPaymentRoomListRecordList = snapshot.data!;
+                    if (listViewPaymentRoomListRecordList.isEmpty) {
                       return NoDataViewWidget();
                     }
 
@@ -116,10 +117,10 @@ class _GuestPaymentHistoryViewWidgetState
                         32.0,
                       ),
                       scrollDirection: Axis.vertical,
-                      itemCount: listViewPaymentListRecordList.length,
+                      itemCount: listViewPaymentRoomListRecordList.length,
                       itemBuilder: (context, listViewIndex) {
-                        final listViewPaymentListRecord =
-                            listViewPaymentListRecordList[listViewIndex];
+                        final listViewPaymentRoomListRecord =
+                            listViewPaymentRoomListRecordList[listViewIndex];
                         return Builder(
                           builder: (context) => Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -142,7 +143,7 @@ class _GuestPaymentHistoryViewWidgetState
                                       child: WebViewAware(
                                         child: PaymentDetailViewWidget(
                                           paymentDocument:
-                                              listViewPaymentListRecord,
+                                              listViewPaymentRoomListRecord,
                                         ),
                                       ),
                                     );
@@ -172,7 +173,7 @@ class _GuestPaymentHistoryViewWidgetState
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  listViewPaymentListRecord
+                                                  listViewPaymentRoomListRecord
                                                       .subject,
                                                   maxLines: 2,
                                                   style: FlutterFlowTheme.of(
@@ -188,7 +189,7 @@ class _GuestPaymentHistoryViewWidgetState
                                                 ),
                                                 Text(
                                                   'จำนวน ${formatNumber(
-                                                    listViewPaymentListRecord
+                                                    listViewPaymentRoomListRecord
                                                         .price,
                                                     formatType:
                                                         FormatType.decimal,
@@ -212,7 +213,7 @@ class _GuestPaymentHistoryViewWidgetState
                                                   children: [
                                                     Expanded(
                                                       child: Text(
-                                                        'ชำระเมื่อ ${functions.dateTimeTh(listViewPaymentListRecord.createDate!)}',
+                                                        'ชำระเมื่อ ${functions.dateTimeTh(listViewPaymentRoomListRecord.createDate!)}',
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:
