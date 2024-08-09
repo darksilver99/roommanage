@@ -187,12 +187,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
             },
             calendarBuilders: CalendarBuilders(
               markerBuilder: (context, day, focusedDay) {
-                if (day.day == 10) {
-                  return buildMarker(day, Colors.red);
-                } else if (day.day == 11) {
-                  return buildMarker(day, Colors.blue);
-                }
-                return null;
+                return buildMarker(day, Colors.red);
               },
             ),
           ),
