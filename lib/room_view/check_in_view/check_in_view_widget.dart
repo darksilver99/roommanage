@@ -63,7 +63,10 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
     _model.idCardTextController ??= TextEditingController();
     _model.idCardFocusNode ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
+    _model.phoneTextController ??= TextEditingController();
+    _model.phoneFocusNode ??= FocusNode();
+
+    _model.textController6 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
     _model.detailTextController ??= TextEditingController();
@@ -655,7 +658,73 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: TextFormField(
-                              controller: _model.textController5,
+                              controller: _model.phoneTextController,
+                              focusNode: _model.phoneFocusNode,
+                              autofocus: false,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'เบอร์โทรศัพท์',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Kanit',
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Kanit',
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Kanit',
+                                    fontSize: 20.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              validator: _model.phoneTextControllerValidator
+                                  .asValidator(context),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: TextFormField(
+                              controller: _model.textController6,
                               focusNode: _model.textFieldFocusNode,
                               autofocus: false,
                               obscureText: false,
@@ -714,7 +783,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               keyboardType: TextInputType.number,
-                              validator: _model.textController5Validator
+                              validator: _model.textController6Validator
                                   .asValidator(context),
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
@@ -1418,10 +1487,11 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       idCardNumber:
                                           _model.idCardTextController.text,
                                       totalGuest: int.tryParse(
-                                          _model.textController5.text),
+                                          _model.textController6.text),
                                       isDaily: _model.isDaily,
                                       allCardData: _model.allCardData,
                                       detail: _model.detailTextController.text,
+                                      phone: _model.phoneTextController.text,
                                     ));
                                     _model.insertedGuest =
                                         GuestListRecord.getDocumentFromData(
@@ -1439,11 +1509,13 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                               idCardNumber: _model
                                                   .idCardTextController.text,
                                               totalGuest: int.tryParse(
-                                                  _model.textController5.text),
+                                                  _model.textController6.text),
                                               isDaily: _model.isDaily,
                                               allCardData: _model.allCardData,
                                               detail: _model
                                                   .detailTextController.text,
+                                              phone: _model
+                                                  .phoneTextController.text,
                                             ),
                                             guestListRecordReference);
                                     _shouldSetState = true;
