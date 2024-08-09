@@ -86,6 +86,11 @@ class GuestListRecord extends FirestoreRecord {
   String get allCardData => _allCardData ?? '';
   bool hasAllCardData() => _allCardData != null;
 
+  // "detail" field.
+  String? _detail;
+  String get detail => _detail ?? '';
+  bool hasDetail() => _detail != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -101,6 +106,7 @@ class GuestListRecord extends FirestoreRecord {
     _totalGuest = castToType<int>(snapshotData['total_guest']);
     _isDaily = snapshotData['is_daily'] as bool?;
     _allCardData = snapshotData['all_card_data'] as String?;
+    _detail = snapshotData['detail'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -152,6 +158,7 @@ Map<String, dynamic> createGuestListRecordData({
   int? totalGuest,
   bool? isDaily,
   String? allCardData,
+  String? detail,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -169,6 +176,7 @@ Map<String, dynamic> createGuestListRecordData({
       'total_guest': totalGuest,
       'is_daily': isDaily,
       'all_card_data': allCardData,
+      'detail': detail,
     }.withoutNulls,
   );
 
@@ -193,7 +201,8 @@ class GuestListRecordDocumentEquality implements Equality<GuestListRecord> {
         e1?.idCardNumber == e2?.idCardNumber &&
         e1?.totalGuest == e2?.totalGuest &&
         e1?.isDaily == e2?.isDaily &&
-        e1?.allCardData == e2?.allCardData;
+        e1?.allCardData == e2?.allCardData &&
+        e1?.detail == e2?.detail;
   }
 
   @override
@@ -211,7 +220,8 @@ class GuestListRecordDocumentEquality implements Equality<GuestListRecord> {
         e?.idCardNumber,
         e?.totalGuest,
         e?.isDaily,
-        e?.allCardData
+        e?.allCardData,
+        e?.detail
       ]);
 
   @override

@@ -311,14 +311,47 @@ class _PaymentViewWidgetState extends State<PaymentViewWidget>
                                           height: 80.0,
                                           child: Stack(
                                             children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  _model.tmpImageList!,
-                                                  width: 300.0,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  await Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .fade,
+                                                      child:
+                                                          FlutterFlowExpandedImageView(
+                                                        image: Image.network(
+                                                          _model.tmpImageList!,
+                                                          fit: BoxFit.contain,
+                                                        ),
+                                                        allowRotation: false,
+                                                        tag: _model
+                                                            .tmpImageList!,
+                                                        useHeroAnimation: true,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                child: Hero(
+                                                  tag: _model.tmpImageList!,
+                                                  transitionOnUserGestures:
+                                                      true,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.network(
+                                                      _model.tmpImageList!,
+                                                      width: 300.0,
+                                                      height: 200.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               Align(

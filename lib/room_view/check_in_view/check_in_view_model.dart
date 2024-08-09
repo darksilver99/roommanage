@@ -101,6 +101,10 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
     return null;
   }
 
+  // State field(s) for detail widget.
+  FocusNode? detailFocusNode;
+  TextEditingController? detailTextController;
+  String? Function(BuildContext, String?)? detailTextControllerValidator;
   DateTime? datePicked1;
   DateTime? datePicked2;
   // Stores action output result for [Validate Form] action in Button widget.
@@ -133,5 +137,8 @@ class CheckInViewModel extends FlutterFlowModel<CheckInViewWidget> {
 
     textFieldFocusNode?.dispose();
     textController5?.dispose();
+
+    detailFocusNode?.dispose();
+    detailTextController?.dispose();
   }
 }

@@ -722,6 +722,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Padding(
                                                       padding:
@@ -752,20 +754,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .warning;
                                                           }
                                                         }(),
-                                                        size: 12.0,
+                                                        size: 16.0,
                                                       ),
                                                     ),
                                                     Flexible(
                                                       child: Text(
-                                                        valueOrDefault<String>(
-                                                          functions.getStatusText(
-                                                              roomListViewItem
-                                                                  .status,
-                                                              FFAppState()
-                                                                  .roomStatusList
-                                                                  .toList()),
-                                                          '-',
-                                                        ),
+                                                        'ไม่ว่าง',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -789,31 +783,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
-                                                    children: [
-                                                      if (roomListViewItem
-                                                              .guestRef !=
-                                                          null)
-                                                        Text(
-                                                          roomListViewItem
-                                                                  .isDaily
-                                                              ? 'รายวัน'
-                                                              : 'รายเดือน',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Kanit',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                        ),
-                                                    ],
+                                                    children: [],
                                                   ),
                                                 ),
                                               ],
