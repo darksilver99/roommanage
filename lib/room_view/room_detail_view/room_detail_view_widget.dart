@@ -283,84 +283,82 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                               thickness: 3.0,
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
-                            if (_model.markerDateList.isNotEmpty)
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  FlutterFlowCalendar(
-                                    locale: 'th_TH',
-                                    markerDate: _model.markerDateList,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    iconColor: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    weekFormat: false,
-                                    weekStartsMonday: false,
-                                    rowHeight: 64.0,
-                                    onChange:
-                                        (DateTimeRange? newSelectedDate) async {
-                                      if (_model.calendarSelectedDay ==
-                                          newSelectedDate) {
-                                        return;
-                                      }
-                                      _model.calendarSelectedDay =
-                                          newSelectedDate;
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return WebViewAware(
-                                            child: AlertDialog(
-                                              title: Text(_model
-                                                  .calendarSelectedDay!.start
-                                                  .toString()),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
-                                      setState(() {});
-                                    },
-                                    titleStyle: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    dayOfWeekStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    dateStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    selectedDateStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              letterSpacing: 0.0,
-                                            ),
-                                    inactiveDateStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              letterSpacing: 0.0,
-                                            ),
-                                  ),
-                                ],
-                              ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FlutterFlowCalendar(
+                                  locale: 'th_TH',
+                                  markerDate: _model.markerDateList,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  iconColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  weekFormat: false,
+                                  weekStartsMonday: false,
+                                  rowHeight: 64.0,
+                                  onChange:
+                                      (DateTimeRange? newSelectedDate) async {
+                                    if (_model.calendarSelectedDay ==
+                                        newSelectedDate) {
+                                      return;
+                                    }
+                                    _model.calendarSelectedDay =
+                                        newSelectedDate;
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: Text(_model
+                                                .calendarSelectedDay!.start
+                                                .toString()),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
+                                    setState(() {});
+                                  },
+                                  titleStyle: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .override(
+                                        fontFamily: 'Kanit',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  dayOfWeekStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Kanit',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  dateStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Kanit',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  selectedDateStyle:
+                                      FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            letterSpacing: 0.0,
+                                          ),
+                                  inactiveDateStyle:
+                                      FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            letterSpacing: 0.0,
+                                          ),
+                                ),
+                              ],
+                            ),
                             FFButtonWidget(
                               onPressed: () {
                                 print('Button pressed ...');
