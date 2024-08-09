@@ -15,5 +15,32 @@ Future<GuestListRecord?> getGuestDocument(
   DocumentReference roomRef,
 ) async {
   // Add your function code here!
+  // หาแขกรายวันก่อน
+  var rs = await roomRef
+      .collection("guest_list")
+      .where("start_date", isLessThanOrEqualTo: date)
+      .where("end_date", isGreaterThanOrEqualTo: date)
+      .get();
+
+  if (rs.size != 0) {
+    GuestListRecord guestData =
+        await GuestListRecord.getDocumentOnce(rs.docs[0].reference);
+    return guestData;
+  }
+
+  // หาแขกรายเดือน
+  var rs2 = await roomRef
+      .collection("guest_list")
+      .where("start_date", isLessThanOrEqualTo: date)
+      .where("is_daily", isEqualTo: false)
+      .get();
+  print("aaaaa");
+  print(rs2.size);
+  if (rs2.size != 0) {
+    GuestListRecord guestData =
+        await GuestListRecord.getDocumentOnce(rs2.docs[0].reference);
+    return guestData;
+  }
+
   return null;
 }
