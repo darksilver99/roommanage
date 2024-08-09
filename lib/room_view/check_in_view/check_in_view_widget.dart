@@ -65,6 +65,9 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
 
     _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    _model.detailTextController ??= TextEditingController();
+    _model.detailFocusNode ??= FocusNode();
   }
 
   @override
@@ -722,6 +725,76 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
+                            child: TextFormField(
+                              controller: _model.detailTextController,
+                              focusNode: _model.detailFocusNode,
+                              autofocus: false,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Kanit',
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintText:
+                                    'รายละเอียดเพิ่มเติม เช่น ทะเบียนรถ, อื่นๆ',
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Kanit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Kanit',
+                                    fontSize: 20.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              maxLines: 3,
+                              validator: _model.detailTextControllerValidator
+                                  .asValidator(context),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1348,6 +1421,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                           _model.textController5.text),
                                       isDaily: _model.isDaily,
                                       allCardData: _model.allCardData,
+                                      detail: _model.detailTextController.text,
                                     ));
                                     _model.insertedGuest =
                                         GuestListRecord.getDocumentFromData(
@@ -1368,6 +1442,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                   _model.textController5.text),
                                               isDaily: _model.isDaily,
                                               allCardData: _model.allCardData,
+                                              detail: _model
+                                                  .detailTextController.text,
                                             ),
                                             guestListRecordReference);
                                     _shouldSetState = true;
