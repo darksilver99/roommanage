@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
+import 'package:room_manage/custom_toon.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 DateTime kFirstDay = DateTime(1970, 1, 1);
@@ -184,6 +185,16 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
                 }
               }
             },
+            calendarBuilders: CalendarBuilders(
+              markerBuilder: (context, day, focusedDay) {
+                if (day.day == 10) {
+                  return buildMarker(day, Colors.red);
+                } else if (day.day == 11) {
+                  return buildMarker(day, Colors.blue);
+                }
+                return null;
+              },
+            ),
           ),
         ],
       );

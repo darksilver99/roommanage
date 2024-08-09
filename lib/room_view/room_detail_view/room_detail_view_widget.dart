@@ -294,6 +294,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 FlutterFlowCalendar(
+                                  locale: 'th_TH',
                                   color: FlutterFlowTheme.of(context).primary,
                                   iconColor: FlutterFlowTheme.of(context)
                                       .secondaryText,
