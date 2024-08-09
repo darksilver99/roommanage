@@ -1,4 +1,7 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,12 +9,17 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:math';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'payment_view_model.dart';
 export 'payment_view_model.dart';
 
@@ -258,8 +266,16 @@ class _PaymentViewWidgetState extends State<PaymentViewWidget>
 
                                     if (_model.uploadedFileUrl != null &&
                                         _model.uploadedFileUrl != '') {
+                                      _model.tmpImageList =
+                                          _model.uploadedFileUrl;
                                       setState(() {});
                                     }
+                                    setState(() {
+                                      _model.isDataUploading = false;
+                                      _model.uploadedLocalFile = FFUploadedFile(
+                                          bytes: Uint8List.fromList([]));
+                                      _model.uploadedFileUrl = '';
+                                    });
                                   },
                                   text: 'แนบสลิป',
                                   options: FFButtonOptions(
@@ -288,40 +304,74 @@ class _PaymentViewWidgetState extends State<PaymentViewWidget>
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Container(
-                                        width: 80.0,
-                                        height: 80.0,
-                                        child: Stack(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/269/600',
-                                                width: 300.0,
-                                                height: 200.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  1.0, -1.0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 4.0, 0.0),
-                                                child: Icon(
-                                                  Icons.cancel_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  size: 24.0,
+                                      if (_model.tmpImageList != null &&
+                                          _model.tmpImageList != '')
+                                        Container(
+                                          width: 80.0,
+                                          height: 80.0,
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  _model.tmpImageList!,
+                                                  width: 300.0,
+                                                  height: 200.0,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    1.0, -1.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 4.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      _model.isConfirm =
+                                                          await action_blocks
+                                                              .confirmBlock(
+                                                        context,
+                                                        title:
+                                                            'ต้องการลบรูปนี้?',
+                                                      );
+                                                      if (_model.isConfirm!) {
+                                                        _model.tmpImageList =
+                                                            null;
+                                                        setState(() {});
+                                                        await FirebaseStorage
+                                                            .instance
+                                                            .refFromURL(_model
+                                                                .uploadedFileUrl)
+                                                            .delete();
+                                                      }
+
+                                                      setState(() {});
+                                                    },
+                                                    child: Icon(
+                                                      Icons.cancel_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      size: 24.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -335,35 +385,102 @@ class _PaymentViewWidgetState extends State<PaymentViewWidget>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 8.0),
-                              child: FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
-                                },
-                                text: 'ยืนยันการชำระเงิน',
-                                options: FFButtonOptions(
-                                  height: 50.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Kanit',
-                                        color: Colors.white,
-                                        fontSize: 22.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                            child: Builder(
+                              builder: (context) => Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 8.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (_model.tmpImageList != null &&
+                                        _model.tmpImageList != '') {
+                                      await PaymentListRecord.collection
+                                          .doc()
+                                          .set(createPaymentListRecordData(
+                                            createDate: getCurrentTimestamp,
+                                            createBy: currentUserReference,
+                                            status: 0,
+                                            imageSlip: _model.tmpImageList,
+                                            customerName: FFAppState()
+                                                .customerData
+                                                .customerName,
+                                            customerRef: FFAppState()
+                                                .customerData
+                                                .customerRef,
+                                          ));
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: InfoCustomViewWidget(
+                                                title:
+                                                    'ส่งข้อมูลไปยังระบบเรียบร้อยแล้ว กรุณารอการตรวจสอบ',
+                                                detail:
+                                                    'ระบบใช้เวลาตรวจสอบ 5 - 10 นาที',
+                                                status: 'success',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+
+                                      await actions.pushReplacement(
+                                        context,
+                                      );
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: InfoCustomViewWidget(
+                                                title:
+                                                    'กรุณาแนบหลักฐานการโอนเงิน',
+                                                status: 'error',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                  text: 'ยืนยันการชำระเงิน',
+                                  options: FFButtonOptions(
+                                    height: 50.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          color: Colors.white,
+                                          fontSize: 22.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
                             ),
