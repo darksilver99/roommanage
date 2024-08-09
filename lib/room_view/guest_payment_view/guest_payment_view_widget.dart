@@ -746,7 +746,6 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                       .textController1.text),
                                                   imageSlip:
                                                       _model.urlList?.first,
-                                                  type: '1',
                                                   detail: _model
                                                       .textController2.text,
                                                 ));
