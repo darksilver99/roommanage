@@ -49,6 +49,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().tmpRoomRef = widget!.roomDocument?.reference;
+      _model.startDate = FFAppState().tmpBookingDateSelected;
+      setState(() {});
     });
 
     _model.preNameTextController ??= TextEditingController();
