@@ -60,8 +60,6 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -384,6 +382,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             _model.calendarSelectedDay!.start,
                                             widget!.roomDocument!.reference,
                                           );
+                                          _model.isSelectedDate = true;
                                           if (_model.guestDocument != null) {
                                             FFAppState()
                                                 .tmpBookingDateSelected = null;
@@ -472,11 +471,10 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                       ),
                                     ),
                                   ),
-                                  if (FFAppState().tmpBookingDateSelected !=
-                                      null)
-                                    Builder(
-                                      builder: (context) => FFButtonWidget(
-                                        onPressed: () async {
+                                  Builder(
+                                    builder: (context) => FFButtonWidget(
+                                      onPressed: () async {
+                                        if (_model.isSelectedDate) {
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {
@@ -501,38 +499,37 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
                                           await _model.initData(context);
                                           setState(() {});
-                                        },
-                                        text: 'เช็คอิน',
-                                        options: FFButtonOptions(
-                                          width: double.infinity,
-                                          height: 50.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Kanit',
-                                                    color: Colors.white,
-                                                    fontSize: 20.0,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                        }
+                                      },
+                                      text: 'เช็คอิน',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color: Colors.white,
+                                              fontSize: 20.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
                                         ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
+                                  ),
                                 ],
                               ),
                           ],
