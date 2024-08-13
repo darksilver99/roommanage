@@ -1,13 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/room_view/check_in_view/check_in_view_widget.dart';
 import '/room_view/guest_detail_view/guest_detail_view_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/gestures.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -61,8 +63,6 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -145,7 +145,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 0.0, 0.0),
+                                  8.0, 0.0, 0.0, 8.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,79 +204,148 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                       },
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 8.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        RichText(
-                                          textScaler:
-                                              MediaQuery.of(context).textScaler,
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: 'สถานะ : ',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Kanit',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
+                                  Builder(
+                                    builder: (context) {
+                                      if (widget!.roomDocument?.status == 0) {
+                                        return Builder(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
+                                              _model.isConfirm =
+                                                  await action_blocks
+                                                      .confirmBlock(
+                                                context,
+                                                title:
+                                                    'ต้องการปิดปรับปรุงห้องนี้?',
+                                                detail:
+                                                    'กรุณาตรวจสอบว่ามีผู้เข้าพักตกค้างอยู่หรือไม่',
+                                              );
+                                              if (_model.isConfirm!) {
+                                                await widget!
+                                                    .roomDocument!.reference
+                                                    .update(
+                                                        createRoomListRecordData(
+                                                  status: 3,
+                                                ));
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child:
+                                                            InfoCustomViewWidget(
+                                                          title:
+                                                              'ปิดปรับปรุงห้องพักแล้ว',
+                                                          status: 'success',
                                                         ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+
+                                                Navigator.pop(
+                                                    context, 'update');
+                                              }
+
+                                              setState(() {});
+                                            },
+                                            text: 'ปิดปรับปรุงห้อง',
+                                            options: FFButtonOptions(
+                                              height: 32.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .warning,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        color: Colors.white,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
                                               ),
-                                              TextSpan(
-                                                text: valueOrDefault<String>(
-                                                  functions.getStatusText(
-                                                      widget!
-                                                          .roomDocument!.status,
-                                                      FFAppState()
-                                                          .roomStatusList
-                                                          .toList()),
-                                                  '-',
-                                                ),
-                                                style: TextStyle(
-                                                  color: () {
-                                                    if (widget!.roomDocument
-                                                            ?.status ==
-                                                        0) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondary;
-                                                    } else if (widget!
-                                                            .roomDocument
-                                                            ?.status ==
-                                                        1) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .error;
-                                                    } else {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .warning;
-                                                    }
-                                                  }(),
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 20.0,
-                                                ),
-                                              )
-                                            ],
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Kanit',
-                                                  letterSpacing: 0.0,
-                                                ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                        );
+                                      } else {
+                                        return FFButtonWidget(
+                                          onPressed: () async {
+                                            _model.isConfirm2 =
+                                                await action_blocks
+                                                    .confirmBlock(
+                                              context,
+                                              title:
+                                                  'ต้องการเปิดใช้งานห้องพัก?',
+                                            );
+                                            if (_model.isConfirm2!) {
+                                              await widget!
+                                                  .roomDocument!.reference
+                                                  .update(
+                                                      createRoomListRecordData(
+                                                status: 0,
+                                              ));
+                                              Navigator.pop(context, 'update');
+                                            }
+
+                                            setState(() {});
+                                          },
+                                          text: 'เปิดใช้งานห้อง',
+                                          options: FFButtonOptions(
+                                            height: 32.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .success,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Kanit',
+                                                      color: Colors.white,
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                        );
+                                      }
+                                    },
                                   ),
                                 ],
                               ),
@@ -285,31 +354,104 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                               thickness: 3.0,
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Builder(
-                                  builder: (context) => FlutterFlowCalendar(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    iconColor: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    weekFormat: false,
-                                    weekStartsMonday: false,
-                                    rowHeight: 64.0,
-                                    onChange:
-                                        (DateTimeRange? newSelectedDate) async {
-                                      if (_model.calendarSelectedDay ==
-                                          newSelectedDate) {
-                                        return;
-                                      }
-                                      _model.calendarSelectedDay =
-                                          newSelectedDate;
-                                      _model.guestDocument =
-                                          await actions.getGuestDocument(
-                                        _model.calendarSelectedDay!.start,
-                                        widget!.roomDocument!.reference,
-                                      );
-                                      if (_model.guestDocument != null) {
+                            if (widget!.roomDocument?.status == 0)
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 8.0),
+                                      child: FlutterFlowCalendar(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        iconColor: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        weekFormat: false,
+                                        weekStartsMonday: false,
+                                        rowHeight: 64.0,
+                                        onChange: (DateTimeRange?
+                                            newSelectedDate) async {
+                                          if (_model.calendarSelectedDay ==
+                                              newSelectedDate) {
+                                            return;
+                                          }
+                                          _model.calendarSelectedDay =
+                                              newSelectedDate;
+                                          _model.guestDocument =
+                                              await actions.getGuestDocument(
+                                            _model.calendarSelectedDay!.start,
+                                            widget!.roomDocument!.reference,
+                                          );
+                                          if (_model.guestDocument != null) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child:
+                                                        GuestDetailViewWidget(
+                                                      roomDocument:
+                                                          widget!.roomDocument!,
+                                                      guestDocument:
+                                                          _model.guestDocument!,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          }
+                                          setState(() {});
+                                        },
+                                        titleStyle: FlutterFlowTheme.of(context)
+                                            .headlineSmall
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        dayOfWeekStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .labelLarge
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                        dateStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        selectedDateStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                        inactiveDateStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                      ),
+                                    ),
+                                  ),
+                                  Builder(
+                                    builder: (context) => FFButtonWidget(
+                                      onPressed: () async {
                                         await showDialog(
                                           context: context,
                                           builder: (dialogContext) {
@@ -324,115 +466,58 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                           Directionality.of(
                                                               context)),
                                               child: WebViewAware(
-                                                child: GuestDetailViewWidget(
+                                                child: CheckInViewWidget(
                                                   roomDocument:
                                                       widget!.roomDocument!,
-                                                  guestDocument:
-                                                      _model.guestDocument!,
                                                 ),
                                               ),
                                             );
                                           },
                                         );
-                                      }
-                                      setState(() {});
-                                    },
-                                    titleStyle: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    dayOfWeekStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    dateStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Kanit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    selectedDateStyle:
-                                        FlutterFlowTheme.of(context)
+
+                                        _model.markerList2 =
+                                            await actions.getBookingDateList(
+                                          widget!.roomDocument!.reference,
+                                        );
+                                        _model.markerDateList = _model
+                                            .markerList2!
+                                            .toList()
+                                            .cast<DateTime>();
+                                        setState(() {});
+
+                                        setState(() {});
+                                      },
+                                      text: 'เช็คอิน',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
                                               fontFamily: 'Kanit',
+                                              color: Colors.white,
+                                              fontSize: 20.0,
                                               letterSpacing: 0.0,
                                             ),
-                                    inactiveDateStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              letterSpacing: 0.0,
-                                            ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Builder(
-                              builder: (context) => FFButtonWidget(
-                                onPressed: () async {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: WebViewAware(
-                                          child: CheckInViewWidget(
-                                            roomDocument: widget!.roomDocument!,
-                                          ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
                                         ),
-                                      );
-                                    },
-                                  );
-
-                                  _model.markerList2 =
-                                      await actions.getBookingDateList(
-                                    widget!.roomDocument!.reference,
-                                  );
-                                  _model.markerDateList = _model.markerList2!
-                                      .toList()
-                                      .cast<DateTime>();
-                                  setState(() {});
-
-                                  setState(() {});
-                                },
-                                text: 'เช็คอิน',
-                                options: FFButtonOptions(
-                                  width: double.infinity,
-                                  height: 50.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Kanit',
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                        letterSpacing: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
+                                ],
                               ),
-                            ),
                           ],
                         ),
                       ),

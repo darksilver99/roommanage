@@ -1478,85 +1478,120 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                         return;
                                       }
                                     }
-
-                                    var guestListRecordReference =
-                                        GuestListRecord.collection.doc();
-                                    await guestListRecordReference
-                                        .set(createGuestListRecordData(
-                                      createDate: getCurrentTimestamp,
-                                      status: 1,
-                                      startDate: _model.startDate,
-                                      endDate: _model.endDate,
-                                      preName:
-                                          _model.preNameTextController.text,
-                                      firstName:
-                                          _model.firstNameTextController.text,
-                                      lastName:
-                                          _model.lastNameTextController.text,
-                                      idCardNumber:
-                                          _model.idCardTextController.text,
-                                      totalGuest: int.tryParse(
-                                          _model.textController6.text),
-                                      isDaily: _model.isDaily,
-                                      allCardData: _model.allCardData,
-                                      detail: _model.detailTextController.text,
-                                      phone: _model.phoneTextController.text,
-                                    ));
-                                    _model.insertedGuest =
-                                        GuestListRecord.getDocumentFromData(
-                                            createGuestListRecordData(
-                                              createDate: getCurrentTimestamp,
-                                              status: 1,
-                                              startDate: _model.startDate,
-                                              endDate: _model.endDate,
-                                              preName: _model
-                                                  .preNameTextController.text,
-                                              firstName: _model
-                                                  .firstNameTextController.text,
-                                              lastName: _model
-                                                  .lastNameTextController.text,
-                                              idCardNumber: _model
-                                                  .idCardTextController.text,
-                                              totalGuest: int.tryParse(
-                                                  _model.textController6.text),
-                                              isDaily: _model.isDaily,
-                                              allCardData: _model.allCardData,
-                                              detail: _model
-                                                  .detailTextController.text,
-                                              phone: _model
-                                                  .phoneTextController.text,
-                                            ),
-                                            guestListRecordReference);
-                                    _shouldSetState = true;
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: InfoCustomViewWidget(
-                                              title: 'เช็คอินเรียบร้อยแล้ว',
-                                              status: 'success',
-                                            ),
-                                          ),
-                                        );
-                                      },
+                                    _model.isHasBooking =
+                                        await actions.checkIsHasBooking(
+                                      widget!.roomDocument!.reference,
+                                      _model.datePicked1,
+                                      _model.datePicked2,
                                     );
+                                    _shouldSetState = true;
+                                    if (_model.isHasBooking!) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: InfoCustomViewWidget(
+                                                title:
+                                                    'ไม่สามารถเลือกวันนี้ได้',
+                                                detail:
+                                                    'เนื่องจากมีการเช็คอินวันนี้แล้วกรุณาตรวจสอบอีกครั้ง',
+                                                status: 'warning',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      var guestListRecordReference =
+                                          GuestListRecord.collection.doc();
+                                      await guestListRecordReference
+                                          .set(createGuestListRecordData(
+                                        createDate: getCurrentTimestamp,
+                                        status: 1,
+                                        startDate: _model.startDate,
+                                        endDate: _model.endDate,
+                                        preName:
+                                            _model.preNameTextController.text,
+                                        firstName:
+                                            _model.firstNameTextController.text,
+                                        lastName:
+                                            _model.lastNameTextController.text,
+                                        idCardNumber:
+                                            _model.idCardTextController.text,
+                                        totalGuest: int.tryParse(
+                                            _model.textController6.text),
+                                        isDaily: _model.isDaily,
+                                        allCardData: _model.allCardData,
+                                        detail:
+                                            _model.detailTextController.text,
+                                        phone: _model.phoneTextController.text,
+                                      ));
+                                      _model.insertedGuest =
+                                          GuestListRecord.getDocumentFromData(
+                                              createGuestListRecordData(
+                                                createDate: getCurrentTimestamp,
+                                                status: 1,
+                                                startDate: _model.startDate,
+                                                endDate: _model.endDate,
+                                                preName: _model
+                                                    .preNameTextController.text,
+                                                firstName: _model
+                                                    .firstNameTextController
+                                                    .text,
+                                                lastName: _model
+                                                    .lastNameTextController
+                                                    .text,
+                                                idCardNumber: _model
+                                                    .idCardTextController.text,
+                                                totalGuest: int.tryParse(_model
+                                                    .textController6.text),
+                                                isDaily: _model.isDaily,
+                                                allCardData: _model.allCardData,
+                                                detail: _model
+                                                    .detailTextController.text,
+                                                phone: _model
+                                                    .phoneTextController.text,
+                                              ),
+                                              guestListRecordReference);
+                                      _shouldSetState = true;
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: InfoCustomViewWidget(
+                                                title: 'เช็คอินเรียบร้อยแล้ว',
+                                                status: 'success',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
 
-                                    Navigator.pop(
-                                        context,
-                                        CheckInDataStruct(
-                                          isUpdate: 'update',
-                                          endDate: _model.endDate,
-                                          guestRef:
-                                              _model.insertedGuest?.reference,
-                                        ));
+                                      Navigator.pop(
+                                          context,
+                                          CheckInDataStruct(
+                                            isUpdate: 'update',
+                                            endDate: _model.endDate,
+                                            guestRef:
+                                                _model.insertedGuest?.reference,
+                                          ));
+                                    }
                                   } else {
                                     await showDialog(
                                       context: context,

@@ -64,6 +64,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   bool? checkboxValue3;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? isSearch;
+  // Stores action output result for [Bottom Sheet - RoomDetailView] action in Container widget.
+  String? isUpdate;
 
   @override
   void initState(BuildContext context) {

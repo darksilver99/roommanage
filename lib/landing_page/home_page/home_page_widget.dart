@@ -627,7 +627,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       );
                                     },
-                                  ).then((value) => safeSetState(() {}));
+                                  ).then((value) => safeSetState(
+                                      () => _model.isUpdate = value));
 
                                   await _model.resetSelectedBlock(context);
                                   setState(() {
@@ -655,6 +656,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         .currentDropdownSelected
                                         .floorNumber),
                                   );
+
+                                  setState(() {});
 
                                   setState(() {});
                                 },
