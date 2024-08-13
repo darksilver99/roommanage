@@ -587,7 +587,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                           return RefreshIndicator(
                             onRefresh: () async {
+                              await action_blocks.checkAppVersion(context);
+                              await _model.checkCuurentDate(context);
                               await _model.initData(context);
+                              setState(() {});
                             },
                             child: GridView.builder(
                               padding: EdgeInsets.fromLTRB(
