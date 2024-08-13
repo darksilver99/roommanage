@@ -41,6 +41,7 @@ class _TotalDayFreeViewWidgetState extends State<TotalDayFreeViewWidget> {
         widget!.roomRef,
       );
       _model.totalDay = _model.totalDayResult!;
+      _model.isLoading = false;
       setState(() {});
     });
   }
