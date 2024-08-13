@@ -58,6 +58,8 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
   late DateTime selectedDay;
   late DateTimeRange selectedRange;
 
+  DateTime today = DateTime.now();
+
   @override
   void initState() {
     super.initState();
@@ -192,6 +194,9 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
                 return buildMarker(day, widget.markerDate);
               },
             ),
+            enabledDayPredicate: (day){
+              return day.isAfter(DateTime(today.year, today.month, today.day, 0, 0, 0));
+            },
           ),
         ],
       );
