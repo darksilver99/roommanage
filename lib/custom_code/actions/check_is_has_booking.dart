@@ -16,6 +16,19 @@ Future<bool> checkIsHasBooking(
   DateTime? endDate,
 ) async {
   // Add your function code here!
+  // ถ้าสมัครรายเดือนมา ให้เช็คว่าหลังจากนั้นมัน คนจองมั้ยถ้ามีก็ไม่ได้เลย
+  if (endDate == null) {
+    var rs0 = await roomRef
+        .collection("guest_list")
+        .where("start_date", isGreaterThanOrEqualTo: startDate)
+        .where("status", isEqualTo: 1)
+        .get();
+    if (rs0.size != 0) {
+      print("มีคนพัก/จอง 0");
+      return true;
+    }
+  }
+
   // หาแขกรายวันก่อน
   var rs = await roomRef
       .collection("guest_list")
@@ -74,5 +87,5 @@ Future<bool> checkIsHasBooking(
     }
   }
 
-  return false;
+  return true;
 }
