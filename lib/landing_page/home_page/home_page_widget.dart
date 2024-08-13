@@ -611,6 +611,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   FFAppState().tmpBookingDateSelected = null;
+                                  FFAppState().update(() {});
                                   await _model.checkExpireDate(context);
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
