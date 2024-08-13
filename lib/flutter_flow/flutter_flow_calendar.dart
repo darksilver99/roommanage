@@ -59,6 +59,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
   late DateTimeRange selectedRange;
 
   DateTime today = DateTime.now();
+  DateTime midnightToday = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
 
   @override
   void initState() {
@@ -193,10 +194,20 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
               markerBuilder: (context, day, focusedDay) {
                 return buildMarker(day, widget.markerDate);
               },
+              defaultBuilder:  (context, day, focusedDay) {
+                if (day.isBefore(midnightToday)) {
+                  return Center(
+                    child: Text(
+                      '${day.day}',
+                      style: TextStyle(color: Colors.grey), // Gray color for past dates
+                    ),
+                  );
+                }
+              }
             ),
-            enabledDayPredicate: (day){
+            /*enabledDayPredicate: (day){
               return day.isAfter(DateTime(today.year, today.month, today.day, 0, 0, 0));
-            },
+            },*/
           ),
         ],
       );
