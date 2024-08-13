@@ -72,7 +72,7 @@ class _TotalDayFreeViewWidgetState extends State<TotalDayFreeViewWidget> {
             );
           } else {
             return Text(
-              'ไม่มีห้องว่างแล้ว',
+              'ไม่มีห้องว่างแล้วเดือนนี้',
               textAlign: TextAlign.center,
               maxLines: 2,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
