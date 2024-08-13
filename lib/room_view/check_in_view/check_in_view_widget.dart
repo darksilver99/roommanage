@@ -1482,8 +1482,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     _model.isHasBooking =
                                         await actions.checkIsHasBooking(
                                       widget!.roomDocument!.reference,
-                                      _model.datePicked1,
-                                      _model.datePicked2,
+                                      _model.startDate,
+                                      _model.endDate,
                                     );
                                     _shouldSetState = true;
                                     if (_model.isHasBooking!) {
