@@ -8,3 +8,4 @@ export 'close_app.dart' show closeApp;
 export 'get_base64.dart' show getBase64;
 export 'get_booking_date_list.dart' show getBookingDateList;
 export 'get_guest_document.dart' show getGuestDocument;
+export 'check_is_has_booking.dart' show checkIsHasBooking;
