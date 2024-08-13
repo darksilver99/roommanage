@@ -2,9 +2,11 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'guest_detail_view_model.dart';
 export 'guest_detail_view_model.dart';
 
@@ -160,18 +162,62 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Expanded(
-                                            child: Text(
-                                              'เบอร์โทรศัพท์ ${widget!.guestDocument?.phone}',
+                                          RichText(
+                                            textScaler: MediaQuery.of(context)
+                                                .textScaler,
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: 'เบอร์โทรศัพท์ ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                                TextSpan(
+                                                  text: valueOrDefault<String>(
+                                                    widget!
+                                                        .guestDocument?.phone,
+                                                    '-',
+                                                  ),
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    fontSize: 20.0,
+                                                    decoration: TextDecoration
+                                                        .underline,
+                                                  ),
+                                                  mouseCursor:
+                                                      SystemMouseCursors.click,
+                                                  recognizer:
+                                                      TapGestureRecognizer()
+                                                        ..onTap = () async {
+                                                          await launchUrl(Uri(
+                                                            scheme: 'tel',
+                                                            path: widget!
+                                                                .guestDocument!
+                                                                .phone,
+                                                          ));
+                                                        },
+                                                )
+                                              ],
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Kanit',
-                                                        fontSize: 20.0,
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
                                                       ),
                                             ),
                                           ),
