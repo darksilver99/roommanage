@@ -694,7 +694,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                         text: 'สมัครสมาชิก',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 40.0,
+                          height: 50.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -704,6 +704,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Kanit',
                                     color: Colors.white,
+                                    fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
@@ -719,7 +720,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                 ),
               ),
             ),
-          ],
+          ].addToEnd(SizedBox(height: 32.0)),
         ),
       ),
     );

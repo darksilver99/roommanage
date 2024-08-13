@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
+import '/component/o_c_r_alert_view/o_c_r_alert_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -233,7 +234,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                           Directionality.of(
                                                               context)),
                                               child: WebViewAware(
-                                                child: InfoCustomViewWidget(
+                                                child: OCRAlertViewWidget(
                                                   title: FFAppState()
                                                       .configData
                                                       .ocrAlertText
@@ -248,8 +249,6 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                             );
                                           },
                                         );
-
-                                        FFAppState().isSkipOCRAlert = true;
                                       }
                                       if (getJsonField(
                                             (_model.apiResult2ve?.jsonBody ??
@@ -650,8 +649,13 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
+                              keyboardType: TextInputType.number,
                               validator: _model.idCardTextControllerValidator
                                   .asValidator(context),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp('[0-9]'))
+                              ],
                             ),
                           ),
                           Padding(
@@ -716,8 +720,13 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
+                              keyboardType: TextInputType.phone,
                               validator: _model.phoneTextControllerValidator
                                   .asValidator(context),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp('[0-9]'))
+                              ],
                             ),
                           ),
                           Padding(
