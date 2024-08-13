@@ -60,6 +60,8 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -380,8 +382,8 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             _model.calendarSelectedDay!.start,
                                             widget!.roomDocument!.reference,
                                           );
-                                          _model.isSelectedDate = true;
                                           if (_model.guestDocument != null) {
+                                            _model.showBookingButton = false;
                                             FFAppState()
                                                 .tmpBookingDateSelected = null;
                                             setState(() {});
@@ -418,11 +420,13 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             if (_model
                                                     .calendarSelectedDay!.end <
                                                 getCurrentTimestamp) {
+                                              _model.showBookingButton = false;
                                               FFAppState()
                                                       .tmpBookingDateSelected =
                                                   null;
                                               setState(() {});
                                             } else {
+                                              _model.showBookingButton = true;
                                               FFAppState()
                                                       .tmpBookingDateSelected =
                                                   _model.calendarSelectedDay
@@ -469,87 +473,96 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                       ),
                                     ),
                                   ),
-                                  Builder(
-                                    builder: (context) => FFButtonWidget(
-                                      onPressed: () async {
-                                        if (_model.isSelectedDate) {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: CheckInViewWidget(
-                                                    roomDocument:
-                                                        widget!.roomDocument!,
+                                  if (_model.showBookingButton)
+                                    Builder(
+                                      builder: (context) => FFButtonWidget(
+                                        onPressed: () async {
+                                          if (FFAppState()
+                                                  .tmpBookingDateSelected !=
+                                              null) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: CheckInViewWidget(
+                                                      roomDocument:
+                                                          widget!.roomDocument!,
+                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            },
-                                          );
+                                                );
+                                              },
+                                            );
 
-                                          await _model.initData(context);
-                                          setState(() {});
-                                        } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: InfoCustomViewWidget(
-                                                    title: 'กรุณาเลือกวันที่',
-                                                    status: 'error',
+                                            await _model.initData(context);
+                                            setState(() {});
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: InfoCustomViewWidget(
+                                                      title: 'กรุณาเลือกวันที่',
+                                                      status: 'error',
+                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        }
-                                      },
-                                      text: 'เช็คอิน',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 50.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              color: Colors.white,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                                );
+                                              },
+                                            );
+                                          }
+                                        },
+                                        text: 'เช็คอิน',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Kanit',
+                                                    color: Colors.white,
+                                                    fontSize: 20.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
-                                  ),
                                 ],
                               ),
                           ],

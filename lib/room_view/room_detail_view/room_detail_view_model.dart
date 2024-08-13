@@ -30,7 +30,7 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   void updateMarkerDateListAtIndex(int index, Function(DateTime) updateFn) =>
       markerDateList[index] = updateFn(markerDateList[index]);
 
-  bool isSelectedDate = false;
+  bool showBookingButton = true;
 
   ///  State fields for stateful widgets in this component.
 
