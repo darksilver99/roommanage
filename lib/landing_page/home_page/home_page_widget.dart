@@ -585,247 +585,254 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             return NoRoomViewWidget();
                           }
 
-                          return GridView.builder(
-                            padding: EdgeInsets.fromLTRB(
-                              0,
-                              0,
-                              0,
-                              128.0,
-                            ),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 8.0,
-                              mainAxisSpacing: 8.0,
-                              childAspectRatio: 0.8,
-                            ),
-                            scrollDirection: Axis.vertical,
-                            itemCount: roomListView.length,
-                            itemBuilder: (context, roomListViewIndex) {
-                              final roomListViewItem =
-                                  roomListView[roomListViewIndex];
-                              return InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  FFAppState().tmpBookingDateSelected = null;
-                                  FFAppState().update(() {});
-                                  await _model.checkExpireDate(context);
-                                  await showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    enableDrag: false,
-                                    useSafeArea: true,
-                                    context: context,
-                                    builder: (context) {
-                                      return WebViewAware(
-                                        child: Padding(
-                                          padding:
-                                              MediaQuery.viewInsetsOf(context),
-                                          child: RoomDetailViewWidget(
-                                            roomDocument: roomListViewItem,
+                          return RefreshIndicator(
+                            onRefresh: () async {
+                              await _model.initData(context);
+                            },
+                            child: GridView.builder(
+                              padding: EdgeInsets.fromLTRB(
+                                0,
+                                0,
+                                0,
+                                128.0,
+                              ),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 8.0,
+                                mainAxisSpacing: 8.0,
+                                childAspectRatio: 0.8,
+                              ),
+                              scrollDirection: Axis.vertical,
+                              itemCount: roomListView.length,
+                              itemBuilder: (context, roomListViewIndex) {
+                                final roomListViewItem =
+                                    roomListView[roomListViewIndex];
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    FFAppState().tmpBookingDateSelected = null;
+                                    FFAppState().update(() {});
+                                    await _model.checkExpireDate(context);
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      enableDrag: false,
+                                      useSafeArea: true,
+                                      context: context,
+                                      builder: (context) {
+                                        return WebViewAware(
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: RoomDetailViewWidget(
+                                              roomDocument: roomListViewItem,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => safeSetState(
-                                      () => _model.isUpdate = value));
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(
+                                        () => _model.isUpdate = value));
 
-                                  await _model.resetSelectedBlock(context);
-                                  setState(() {
-                                    _model.checkboxValue1 = true;
-                                  });
-                                  setState(() {
-                                    _model.checkboxValue2 = true;
-                                  });
-                                  setState(() {
-                                    _model.checkboxValue3 = true;
-                                  });
-                                  await _model.getRoomListBlock(
-                                    context,
-                                    buildingRef: FFAppState()
-                                        .buildingList
-                                        .where((e) =>
-                                            e.buildDoc ==
-                                            FFAppState()
-                                                .currentDropdownSelected
-                                                .buildingDoc)
-                                        .toList()
-                                        .first
-                                        .buildingRef,
-                                    floor: functions.stringToInt(FFAppState()
-                                        .currentDropdownSelected
-                                        .floorNumber),
-                                  );
+                                    await _model.resetSelectedBlock(context);
+                                    setState(() {
+                                      _model.checkboxValue1 = true;
+                                    });
+                                    setState(() {
+                                      _model.checkboxValue2 = true;
+                                    });
+                                    setState(() {
+                                      _model.checkboxValue3 = true;
+                                    });
+                                    await _model.getRoomListBlock(
+                                      context,
+                                      buildingRef: FFAppState()
+                                          .buildingList
+                                          .where((e) =>
+                                              e.buildDoc ==
+                                              FFAppState()
+                                                  .currentDropdownSelected
+                                                  .buildingDoc)
+                                          .toList()
+                                          .first
+                                          .buildingRef,
+                                      floor: functions.stringToInt(FFAppState()
+                                          .currentDropdownSelected
+                                          .floorNumber),
+                                    );
 
-                                  setState(() {});
+                                    setState(() {});
 
-                                  setState(() {});
-                                },
-                                child: Material(
-                                  color: Colors.transparent,
-                                  elevation: 3.0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFF1F1F1),
+                                    setState(() {});
+                                  },
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    elevation: 3.0,
+                                    shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Column(
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFF1F1F1),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'ห้อง ${roomListViewItem.subject}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Kanit',
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 2,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  if (roomListViewItem.status ==
+                                                      3)
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0),
+                                                          child: Icon(
+                                                            Icons
+                                                                .circle_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .warning,
+                                                            size: 16.0,
+                                                          ),
+                                                        ),
+                                                        Flexible(
+                                                          child: Text(
+                                                            'ปิดปรับปรุง',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Kanit',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child:
+                                                                  TotalDayFreeViewWidget(
+                                                                key: Key(
+                                                                    'Keymra_${roomListViewIndex}_of_${roomListView.length}'),
+                                                                roomRef:
+                                                                    roomListViewItem
+                                                                        .reference,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  'ห้อง ${roomListViewItem.subject}',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Kanit',
-                                                        fontSize: 16.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                if (roomListViewItem.status ==
-                                                    3)
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0),
-                                                        child: Icon(
-                                                          Icons.circle_rounded,
+                                                Expanded(
+                                                  child: Text(
+                                                    'ดูรายละเอียด',
+                                                    textAlign: TextAlign.end,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Kanit',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .warning,
-                                                          size: 16.0,
+                                                              .tertiary,
+                                                          fontSize: 10.0,
+                                                          letterSpacing: 0.0,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
                                                         ),
-                                                      ),
-                                                      Flexible(
-                                                        child: Text(
-                                                          'ปิดปรับปรุง',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Kanit',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Expanded(
-                                                            child:
-                                                                TotalDayFreeViewWidget(
-                                                              key: Key(
-                                                                  'Keymra_${roomListViewIndex}_of_${roomListView.length}'),
-                                                              roomRef:
-                                                                  roomListViewItem
-                                                                      .reference,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  'ดูรายละเอียด',
-                                                  textAlign: TextAlign.end,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Kanit',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiary,
-                                                        fontSize: 10.0,
-                                                        letterSpacing: 0.0,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .underline,
-                                                      ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           );
                         },
                       ),
