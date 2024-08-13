@@ -1,5 +1,4 @@
 import '/backend/schema/structs/index.dart';
-import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -15,7 +14,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class SelectBuildingAndFloorViewModel
     extends FlutterFlowModel<SelectBuildingAndFloorViewWidget> {
