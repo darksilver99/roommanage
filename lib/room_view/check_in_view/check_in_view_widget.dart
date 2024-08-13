@@ -1104,8 +1104,10 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     final _datePicked1Date =
                                         await showDatePicker(
                                       context: context,
-                                      initialDate: getCurrentTimestamp,
-                                      firstDate: getCurrentTimestamp,
+                                      initialDate:
+                                          (_model.startDate ?? DateTime.now()),
+                                      firstDate:
+                                          (_model.startDate ?? DateTime.now()),
                                       lastDate: DateTime(2050),
                                       builder: (context, child) {
                                         return wrapInMaterialDatePickerTheme(
@@ -1268,8 +1270,11 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                           final _datePicked2Date =
                                               await showDatePicker(
                                             context: context,
-                                            initialDate: (_model.startDate ??
-                                                DateTime.now()),
+                                            initialDate:
+                                                ((_model.endDate != null
+                                                        ? _model.endDate
+                                                        : _model.startDate) ??
+                                                    DateTime.now()),
                                             firstDate: (_model.startDate ??
                                                 DateTime(1900)),
                                             lastDate: DateTime(2050),

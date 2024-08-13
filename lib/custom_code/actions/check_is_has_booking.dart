@@ -16,5 +16,63 @@ Future<bool> checkIsHasBooking(
   DateTime? endDate,
 ) async {
   // Add your function code here!
-  return true;
+  // หาแขกรายวันก่อน
+  var rs = await roomRef
+      .collection("guest_list")
+      .where("start_date", isLessThanOrEqualTo: startDate)
+      .where("end_date", isGreaterThanOrEqualTo: startDate)
+      .where("status", isNotEqualTo: 3)
+      .get();
+
+  if (rs.size != 0) {
+    print("มีคนพัก/จอง 1");
+    return true;
+  }
+
+  // หาแขกรายวันก่อน
+  if (endDate != null) {
+    var rs2 = await roomRef
+        .collection("guest_list")
+        .where("start_date", isLessThanOrEqualTo: endDate)
+        .where("end_date", isGreaterThanOrEqualTo: endDate)
+        .where("status", isNotEqualTo: 3)
+        .get();
+    if (rs2.size != 0) {
+      print("มีคนพัก/จอง 2");
+      return true;
+    }
+  }
+
+  // หาแขกรายเดือน
+  var rs3 = await roomRef
+      .collection("guest_list")
+      .where("start_date", isLessThanOrEqualTo: startDate)
+      .where("is_daily", isEqualTo: false)
+      .where("status", isNotEqualTo: 3)
+      .orderBy("start_date", descending: true)
+      .get();
+  if (rs3.size != 0) {
+    if (rs3.docs[0].data()["status"] == 1) {
+      print("มีคนพัก/จอง 3");
+      return true;
+    }
+  }
+
+  if (endDate != null) {
+    var rs4 = await roomRef
+        .collection("guest_list")
+        .where("start_date", isLessThanOrEqualTo: endDate)
+        .where("is_daily", isEqualTo: false)
+        .where("status", isNotEqualTo: 3)
+        .orderBy("start_date", descending: true)
+        .get();
+    if (rs4.size != 0) {
+      if (rs4.docs[0].data()["status"] == 1) {
+        print("มีคนพัก/จอง 4");
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
