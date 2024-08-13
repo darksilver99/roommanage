@@ -349,14 +349,15 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                 ],
                               ),
                             ),
-                            Divider(
-                              thickness: 3.0,
-                              color: FlutterFlowTheme.of(context).alternate,
-                            ),
                             if (widget!.roomDocument?.status == 0)
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
+                                  Divider(
+                                    thickness: 3.0,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
                                   Builder(
                                     builder: (context) => Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
