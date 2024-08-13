@@ -1,12 +1,19 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/component/info_custom_view/info_custom_view_widget.dart';
+import '/component/remark_view/remark_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'guest_detail_view_model.dart';
 export 'guest_detail_view_model.dart';
 
@@ -108,6 +115,114 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) => InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.isConfirm =
+                                              await action_blocks.confirmBlock(
+                                            context,
+                                            title: 'ยกเลิกรายการนี้',
+                                          );
+                                          if (_model.isConfirm!) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: RemarkViewWidget(
+                                                      title: 'หมายเหตุ',
+                                                      detail:
+                                                          'ระบุหมายเหตุ เช่น ลูกค้ายกเลิก, ห้องมีปัญหา',
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => safeSetState(
+                                                () => _model.remark = value));
+
+                                            if (_model.remark != null &&
+                                                _model.remark != '') {
+                                              await widget!
+                                                  .guestDocument!.reference
+                                                  .update(
+                                                      createGuestListRecordData(
+                                                status: 3,
+                                                updateDate: getCurrentTimestamp,
+                                                remark: _model.remark,
+                                              ));
+                                              await showDialog(
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: WebViewAware(
+                                                      child:
+                                                          InfoCustomViewWidget(
+                                                        title:
+                                                            'ยกเลิกรายการเรียบร้อยแล้ว',
+                                                        status: 'success',
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+
+                                              Navigator.pop(context);
+                                            }
+                                          }
+
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          'ยกเลิกรายการ X',
+                                          textAlign: TextAlign.end,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Kanit',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 20.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -454,6 +569,97 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                               ],
                                             ),
                                           ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Builder(
+                                              builder: (context) =>
+                                                  FFButtonWidget(
+                                                onPressed: () async {
+                                                  _model.isConfirm2 =
+                                                      await action_blocks
+                                                          .confirmBlock(
+                                                    context,
+                                                    title: 'ยืนยันการเช็คเอาท์',
+                                                  );
+                                                  if (_model.isConfirm2!) {
+                                                    await widget!.guestDocument!
+                                                        .reference
+                                                        .update(
+                                                            createGuestListRecordData(
+                                                      updateDate:
+                                                          getCurrentTimestamp,
+                                                      status: 4,
+                                                    ));
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child: WebViewAware(
+                                                            child:
+                                                                InfoCustomViewWidget(
+                                                              title:
+                                                                  'เช็คเอาท์เรียบร้อยแล้ว',
+                                                              status: 'success',
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+
+                                                    Navigator.pop(context);
+                                                  }
+
+                                                  setState(() {});
+                                                },
+                                                text: 'เช็คเอาท์',
+                                                options: FFButtonOptions(
+                                                  width: double.infinity,
+                                                  height: 50.0,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          24.0, 0.0, 24.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .override(
+                                                            fontFamily: 'Kanit',
+                                                            color: Colors.white,
+                                                            fontSize: 22.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                  elevation: 3.0,
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ),

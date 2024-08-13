@@ -46,10 +46,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.markerList = await actions.getBookingDateList(
-        widget!.roomDocument!.reference,
-      );
-      _model.markerDateList = _model.markerList!.toList().cast<DateTime>();
+      await _model.initData(context);
       setState(() {});
     });
   }
@@ -410,6 +407,9 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                 );
                                               },
                                             );
+
+                                            await _model.initData(context);
+                                            setState(() {});
                                           }
                                           setState(() {});
                                         },
@@ -475,16 +475,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                           },
                                         );
 
-                                        _model.markerList2 =
-                                            await actions.getBookingDateList(
-                                          widget!.roomDocument!.reference,
-                                        );
-                                        _model.markerDateList = _model
-                                            .markerList2!
-                                            .toList()
-                                            .cast<DateTime>();
-                                        setState(() {});
-
+                                        await _model.initData(context);
                                         setState(() {});
                                       },
                                       text: 'เช็คอิน',
