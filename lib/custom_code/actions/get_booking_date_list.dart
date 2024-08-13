@@ -20,12 +20,20 @@ Future<List<DateTime>> getBookingDateList(DocumentReference roomRef) async {
       .get();
   for (var i = 0; i < rs.size; i++) {
     if (!rs.docs[i].data()["is_daily"]) {
-      DateTime newDate = DateTime(
-          rs.docs[i].data()["start_date"].toDate().year,
-          rs.docs[i].data()["start_date"].toDate().month,
-          rs.docs[i].data()["start_date"].toDate().day,
-          1);
-      dateList.add(newDate);
+      if (rs.docs[i].data()["end_date"] != null) {
+        DateTime currentDate = rs.docs[i].data()["start_date"].toDate();
+        while (!currentDate.isAfter(rs.docs[i].data()["end_date"].toDate())) {
+          dateList.add(currentDate);
+          currentDate = currentDate.add(Duration(days: 1));
+        }
+      } else {
+        DateTime newDate = DateTime(
+            rs.docs[i].data()["start_date"].toDate().year,
+            rs.docs[i].data()["start_date"].toDate().month,
+            rs.docs[i].data()["start_date"].toDate().day,
+            1);
+        dateList.add(newDate);
+      }
     } else {
       DateTime currentDate = rs.docs[i].data()["start_date"].toDate();
       while (!currentDate.isAfter(rs.docs[i].data()["end_date"].toDate())) {
