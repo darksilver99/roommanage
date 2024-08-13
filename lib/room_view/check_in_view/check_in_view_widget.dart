@@ -1528,6 +1528,27 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                             ),
                                             guestListRecordReference);
                                     _shouldSetState = true;
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: InfoCustomViewWidget(
+                                              title: 'เช็คอินเรียบร้อยแล้ว',
+                                              status: 'success',
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+
                                     Navigator.pop(
                                         context,
                                         CheckInDataStruct(
