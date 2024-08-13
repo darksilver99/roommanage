@@ -80,42 +80,6 @@ class FFAppState extends ChangeNotifier {
     updateFn(_tmpCustomerData);
   }
 
-  List<StatusDataStruct> _roomStatusList = [
-    StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"0\",\"subject\":\"ว่าง\"}')),
-    StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"1\",\"subject\":\"ไม่ว่าง\"}')),
-    StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"3\",\"subject\":\"ปิดปรับปรุง\"}'))
-  ];
-  List<StatusDataStruct> get roomStatusList => _roomStatusList;
-  set roomStatusList(List<StatusDataStruct> value) {
-    _roomStatusList = value;
-  }
-
-  void addToRoomStatusList(StatusDataStruct value) {
-    roomStatusList.add(value);
-  }
-
-  void removeFromRoomStatusList(StatusDataStruct value) {
-    roomStatusList.remove(value);
-  }
-
-  void removeAtIndexFromRoomStatusList(int index) {
-    roomStatusList.removeAt(index);
-  }
-
-  void updateRoomStatusListAtIndex(
-    int index,
-    StatusDataStruct Function(StatusDataStruct) updateFn,
-  ) {
-    roomStatusList[index] = updateFn(_roomStatusList[index]);
-  }
-
-  void insertAtIndexInRoomStatusList(int index, StatusDataStruct value) {
-    roomStatusList.insert(index, value);
-  }
-
   List<BuildingDataStruct> _buildingList = [];
   List<BuildingDataStruct> get buildingList => _buildingList;
   set buildingList(List<BuildingDataStruct> value) {
@@ -298,6 +262,42 @@ class FFAppState extends ChangeNotifier {
 
   void updateCustomerDataStruct(Function(CustomerDataStruct) updateFn) {
     updateFn(_customerData);
+  }
+
+  List<StatusDataStruct> _guestStatusList = [
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"1\",\"subject\":\"เข้าพัก, จอง\"}')),
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"3\",\"subject\":\"ยกเลิก\"}')),
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"4\",\"subject\":\"เช็คเอาท์แล้ว\"}'))
+  ];
+  List<StatusDataStruct> get guestStatusList => _guestStatusList;
+  set guestStatusList(List<StatusDataStruct> value) {
+    _guestStatusList = value;
+  }
+
+  void addToGuestStatusList(StatusDataStruct value) {
+    guestStatusList.add(value);
+  }
+
+  void removeFromGuestStatusList(StatusDataStruct value) {
+    guestStatusList.remove(value);
+  }
+
+  void removeAtIndexFromGuestStatusList(int index) {
+    guestStatusList.removeAt(index);
+  }
+
+  void updateGuestStatusListAtIndex(
+    int index,
+    StatusDataStruct Function(StatusDataStruct) updateFn,
+  ) {
+    guestStatusList[index] = updateFn(_guestStatusList[index]);
+  }
+
+  void insertAtIndexInGuestStatusList(int index, StatusDataStruct value) {
+    guestStatusList.insert(index, value);
   }
 }
 

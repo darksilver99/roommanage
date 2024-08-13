@@ -32,8 +32,6 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  // Stores action output result for [Custom Action - getBookingDateList] action in RoomDetailView widget.
-  List<DateTime>? markerList;
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm;
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
@@ -42,8 +40,6 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   DateTimeRange? calendarSelectedDay;
   // Stores action output result for [Custom Action - getGuestDocument] action in Calendar widget.
   GuestListRecord? guestDocument;
-  // Stores action output result for [Custom Action - getBookingDateList] action in Button widget.
-  List<DateTime>? markerList2;
 
   @override
   void initState(BuildContext context) {
@@ -55,4 +51,14 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
 
   @override
   void dispose() {}
+
+  /// Action blocks.
+  Future initData(BuildContext context) async {
+    List<DateTime>? markerList;
+
+    markerList = await actions.getBookingDateList(
+      widget!.roomDocument!.reference,
+    );
+    markerDateList = markerList!.toList().cast<DateTime>();
+  }
 }
