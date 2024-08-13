@@ -767,12 +767,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
                                                     children: [
-                                                      TotalDayFreeViewWidget(
-                                                        key: Key(
-                                                            'Keymra_${roomListViewIndex}_of_${roomListView.length}'),
-                                                        roomRef:
-                                                            roomListViewItem
-                                                                .reference,
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Expanded(
+                                                            child:
+                                                                TotalDayFreeViewWidget(
+                                                              key: Key(
+                                                                  'Keymra_${roomListViewIndex}_of_${roomListView.length}'),
+                                                              roomRef:
+                                                                  roomListViewItem
+                                                                      .reference,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ],
                                                   ),
