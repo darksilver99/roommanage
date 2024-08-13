@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/expire_alert_view/expire_alert_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
+import '/component/total_day_free_view/total_day_free_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
