@@ -56,13 +56,28 @@ class _TotalDayFreeViewWidgetState extends State<TotalDayFreeViewWidget> {
   Widget build(BuildContext context) {
     return Visibility(
       visible: !_model.isLoading,
-      child: Text(
-        '${_model.totalDay.toString()} วันที่ว่างเดือนนี้',
-        maxLines: 2,
-        style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Kanit',
-              letterSpacing: 0.0,
-            ),
+      child: Builder(
+        builder: (context) {
+          if (_model.totalDay > 0) {
+            return Text(
+              '${_model.totalDay.toString()} วันที่ว่างเดือนนี้',
+              maxLines: 2,
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Kanit',
+                    letterSpacing: 0.0,
+                  ),
+            );
+          } else {
+            return Text(
+              'ไม่มีห้องว่างแล้ว',
+              maxLines: 2,
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Kanit',
+                    letterSpacing: 0.0,
+                  ),
+            );
+          }
+        },
       ),
     );
   }
