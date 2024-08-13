@@ -713,66 +713,52 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0),
-                                                      child: Icon(
-                                                        Icons.circle_rounded,
-                                                        color: () {
-                                                          if (roomListViewItem
-                                                                  .status ==
-                                                              0) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondary;
-                                                          } else if (roomListViewItem
-                                                                  .status ==
-                                                              1) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error;
-                                                          } else {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .warning;
-                                                          }
-                                                        }(),
-                                                        size: 16.0,
+                                                if (roomListViewItem.status ==
+                                                    3)
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0),
+                                                        child: Icon(
+                                                          Icons.circle_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .warning,
+                                                          size: 16.0,
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Flexible(
-                                                      child: Text(
-                                                        'ไม่ว่าง',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Kanit',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                ),
+                                                      Flexible(
+                                                        child: Text(
+                                                          'ปิดปรับปรุง',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Kanit',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                    ],
+                                                  ),
                                                 Expanded(
                                                   child: Column(
                                                     mainAxisSize:
