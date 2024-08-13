@@ -87,5 +87,5 @@ Future<bool> checkIsHasBooking(
     }
   }
 
-  return true;
+  return false;
 }
