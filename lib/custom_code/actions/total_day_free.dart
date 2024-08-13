@@ -12,5 +12,46 @@ import 'package:flutter/material.dart';
 
 Future<int> totalDayFree(DocumentReference? roomRef) async {
   // Add your function code here!
-  return 12;
+  DateTime now = DateTime.now();
+  DateTime firstDayOfNextMonth = DateTime(now.year, now.month + 1, 1);
+  DateTime lastDayOfMonth = firstDayOfNextMonth.subtract(Duration(days: 1));
+  List<DateTime> datesInMonth = [];
+  for (int i = now.day; i <= lastDayOfMonth.day; i++) {
+    datesInMonth.add(DateTime(now.year, now.month, i));
+  }
+
+  List<DateTime> dateList = [];
+  var rs = await roomRef!
+      .collection("guest_list")
+      .where("status", isNotEqualTo: 3)
+      .orderBy("start_date", descending: false)
+      .get();
+
+  for (var i = 0; i < rs.size; i++) {
+    if (!rs.docs[i].data()["is_daily"]) {
+      if (rs.docs[i].data()["end_date"] != null) {
+        DateTime currentDate = rs.docs[i].data()["start_date"].toDate();
+        while (!currentDate.isAfter(rs.docs[i].data()["end_date"].toDate())) {
+          dateList.add(currentDate);
+          currentDate = currentDate.add(Duration(days: 1));
+        }
+      } else {
+        DateTime currentDate = rs.docs[i].data()["start_date"].toDate();
+        while (!currentDate.isAfter(lastDayOfMonth)) {
+          dateList.add(currentDate);
+          currentDate = currentDate.add(Duration(days: 1));
+        }
+      }
+    } else {
+      DateTime currentDate = rs.docs[i].data()["start_date"].toDate();
+      while (!currentDate.isAfter(rs.docs[i].data()["end_date"].toDate())) {
+        dateList.add(currentDate);
+        currentDate = currentDate.add(Duration(days: 1));
+      }
+    }
+  }
+  List<DateTime> difference =
+      datesInMonth.where((date) => !dateList.contains(date)).toList();
+
+  return difference.length;
 }
