@@ -62,18 +62,22 @@ class _TotalDayFreeViewWidgetState extends State<TotalDayFreeViewWidget> {
           if (_model.totalDay > 0) {
             return Text(
               '${_model.totalDay.toString()} วันที่ว่างเดือนนี้',
+              textAlign: TextAlign.center,
               maxLines: 2,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Kanit',
+                    color: FlutterFlowTheme.of(context).success,
                     letterSpacing: 0.0,
                   ),
             );
           } else {
             return Text(
               'ไม่มีห้องว่างแล้ว',
+              textAlign: TextAlign.center,
               maxLines: 2,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Kanit',
+                    color: FlutterFlowTheme.of(context).error,
                     letterSpacing: 0.0,
                   ),
             );
