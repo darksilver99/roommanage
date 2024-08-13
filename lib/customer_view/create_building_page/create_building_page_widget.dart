@@ -119,6 +119,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Kanit',
+                                            fontSize: 20.0,
                                             letterSpacing: 0.0,
                                           ),
                                       hintText: 'ชื่อตึก,อาคาร เช่น อาคาร A',
@@ -126,6 +127,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Kanit',
+                                            fontSize: 20.0,
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
@@ -169,6 +171,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Kanit',
+                                          fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
                                     validator: _model.textControllerValidator
@@ -229,7 +232,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                       ),
                                       options: FFButtonOptions(
                                         width: double.infinity,
-                                        height: 40.0,
+                                        height: 50.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
@@ -242,6 +245,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                             .override(
                                               fontFamily: 'Kanit',
                                               color: Colors.white,
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
