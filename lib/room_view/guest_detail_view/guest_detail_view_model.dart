@@ -9,6 +9,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'guest_detail_view_widget.dart' show GuestDetailViewWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,6 +38,7 @@ class GuestDetailViewModel extends FlutterFlowModel<GuestDetailViewWidget> {
   String? remark;
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm2;
+  DateTime? datePicked;
 
   @override
   void initState(BuildContext context) {}

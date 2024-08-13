@@ -15,6 +15,7 @@ Future<List<DateTime>> getBookingDateList(DocumentReference roomRef) async {
   List<DateTime> dateList = [];
   var rs = await roomRef
       .collection("guest_list")
+      .where("status", isNotEqualTo: 3)
       .orderBy("start_date", descending: false)
       .get();
   for (var i = 0; i < rs.size; i++) {

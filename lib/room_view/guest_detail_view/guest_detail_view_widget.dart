@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -576,21 +577,153 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                               builder: (context) =>
                                                   FFButtonWidget(
                                                 onPressed: () async {
+                                                  var _shouldSetState = false;
                                                   _model.isConfirm2 =
                                                       await action_blocks
                                                           .confirmBlock(
                                                     context,
                                                     title: 'ยืนยันการเช็คเอาท์',
                                                   );
+                                                  _shouldSetState = true;
                                                   if (_model.isConfirm2!) {
-                                                    await widget!.guestDocument!
-                                                        .reference
-                                                        .update(
-                                                            createGuestListRecordData(
-                                                      updateDate:
-                                                          getCurrentTimestamp,
-                                                      status: 4,
-                                                    ));
+                                                    if (widget!.guestDocument!
+                                                        .isDaily) {
+                                                      await widget!
+                                                          .guestDocument!
+                                                          .reference
+                                                          .update(
+                                                              createGuestListRecordData(
+                                                        updateDate:
+                                                            getCurrentTimestamp,
+                                                        status: 4,
+                                                      ));
+                                                    } else {
+                                                      final _datePickedDate =
+                                                          await showDatePicker(
+                                                        context: context,
+                                                        initialDate:
+                                                            getCurrentTimestamp,
+                                                        firstDate:
+                                                            getCurrentTimestamp,
+                                                        lastDate:
+                                                            DateTime(2050),
+                                                        builder:
+                                                            (context, child) {
+                                                          return wrapInMaterialDatePickerTheme(
+                                                            context,
+                                                            child!,
+                                                            headerBackgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            headerForegroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
+                                                            headerTextStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Kanit',
+                                                                      fontSize:
+                                                                          32.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                            pickerBackgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            pickerForegroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                            selectedDateTimeBackgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            selectedDateTimeForegroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
+                                                            actionButtonForegroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                            iconSize: 24.0,
+                                                          );
+                                                        },
+                                                      );
+
+                                                      if (_datePickedDate !=
+                                                          null) {
+                                                        safeSetState(() {
+                                                          _model.datePicked =
+                                                              DateTime(
+                                                            _datePickedDate
+                                                                .year,
+                                                            _datePickedDate
+                                                                .month,
+                                                            _datePickedDate.day,
+                                                          );
+                                                        });
+                                                      }
+                                                      if (_model.datePicked !=
+                                                          null) {
+                                                        await widget!
+                                                            .guestDocument!
+                                                            .reference
+                                                            .update(
+                                                                createGuestListRecordData(
+                                                          updateDate:
+                                                              getCurrentTimestamp,
+                                                          status: 4,
+                                                          endDate:
+                                                              _model.datePicked,
+                                                        ));
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (dialogContext) {
+                                                            return Dialog(
+                                                              elevation: 0,
+                                                              insetPadding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              alignment: AlignmentDirectional(
+                                                                      0.0, 0.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
+                                                              child:
+                                                                  WebViewAware(
+                                                                child:
+                                                                    InfoCustomViewWidget(
+                                                                  title:
+                                                                      'กรุณาเลือกวันที่ออก',
+                                                                  status:
+                                                                      'error',
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+
+                                                        if (_shouldSetState)
+                                                          setState(() {});
+                                                        return;
+                                                      }
+                                                    }
+
                                                     await showDialog(
                                                       context: context,
                                                       builder: (dialogContext) {
@@ -620,8 +753,8 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
 
                                                     Navigator.pop(context);
                                                   }
-
-                                                  setState(() {});
+                                                  if (_shouldSetState)
+                                                    setState(() {});
                                                 },
                                                 text: 'เช็คเอาท์',
                                                 options: FFButtonOptions(
