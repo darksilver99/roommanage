@@ -385,7 +385,6 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             widget!.roomDocument!.reference,
                                           );
                                           if (_model.guestDocument != null) {
-                                            _model.showBookingButton = false;
                                             FFAppState()
                                                 .tmpBookingDateSelected = null;
                                             setState(() {});
@@ -422,13 +421,11 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             if (_model
                                                     .calendarSelectedDay!.end <
                                                 getCurrentTimestamp) {
-                                              _model.showBookingButton = false;
                                               FFAppState()
                                                       .tmpBookingDateSelected =
                                                   null;
                                               setState(() {});
                                             } else {
-                                              _model.showBookingButton = true;
                                               FFAppState()
                                                       .tmpBookingDateSelected =
                                                   _model.calendarSelectedDay
@@ -475,7 +472,8 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                       ),
                                     ),
                                   ),
-                                  if (_model.showBookingButton)
+                                  if (FFAppState().tmpBookingDateSelected !=
+                                      null)
                                     Builder(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
