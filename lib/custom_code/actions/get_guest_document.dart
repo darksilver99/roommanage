@@ -20,9 +20,11 @@ Future<GuestListRecord?> getGuestDocument(
       .collection("guest_list")
       .where("start_date", isLessThanOrEqualTo: date)
       .where("end_date", isGreaterThanOrEqualTo: date)
+      .where("status", isNotEqualTo: 3)
       .get();
 
   if (rs.size != 0) {
+    print(">>>aaa");
     GuestListRecord guestData =
         await GuestListRecord.getDocumentOnce(rs.docs[0].reference);
     return guestData;
@@ -33,13 +35,15 @@ Future<GuestListRecord?> getGuestDocument(
       .collection("guest_list")
       .where("start_date", isLessThanOrEqualTo: date)
       .where("is_daily", isEqualTo: false)
+      .where("status", isNotEqualTo: 3)
       .get();
-  print("aaaaa");
-  print(rs2.size);
   if (rs2.size != 0) {
-    GuestListRecord guestData =
-        await GuestListRecord.getDocumentOnce(rs2.docs[0].reference);
-    return guestData;
+    print(">>>bbb");
+    if (rs2.docs[0].data()["status"] == 1) {
+      GuestListRecord guestData =
+          await GuestListRecord.getDocumentOnce(rs2.docs[0].reference);
+      return guestData;
+    }
   }
 
   return null;
