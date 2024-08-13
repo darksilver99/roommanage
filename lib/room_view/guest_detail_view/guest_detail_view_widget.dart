@@ -56,6 +56,8 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Container(
@@ -570,6 +572,84 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                               ],
                                             ),
                                           ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: RichText(
+                                                  textScaler:
+                                                      MediaQuery.of(context)
+                                                          .textScaler,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text: 'สถานะ ',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Kanit',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                      ),
+                                                      TextSpan(
+                                                        text: valueOrDefault<
+                                                            String>(
+                                                          functions.getStatusText(
+                                                              widget!
+                                                                  .guestDocument!
+                                                                  .status,
+                                                              FFAppState()
+                                                                  .guestStatusList
+                                                                  .toList()),
+                                                          '-',
+                                                        ),
+                                                        style: TextStyle(
+                                                          color: widget!
+                                                                      .guestDocument
+                                                                      ?.status ==
+                                                                  1
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .success
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 20.0,
+                                                        ),
+                                                      )
+                                                    ],
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Kanit',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         if (widget!.guestDocument?.status == 1)
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
