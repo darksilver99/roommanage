@@ -65,7 +65,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
   void initState() {
     super.initState();
     focusedDay = widget.initialDate ?? DateTime.now();
-    selectedDay = widget.initialDate ?? DateTime.now();
+    selectedDay = widget.initialDate ?? DateTime(1970, 1, 1);
     selectedRange = DateTimeRange(
       start: selectedDay.startOfDay,
       end: selectedDay.endOfDay,
