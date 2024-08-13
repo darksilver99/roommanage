@@ -716,10 +716,14 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                                         final _datePickedDate =
                                                             await showDatePicker(
                                                           context: context,
-                                                          initialDate:
-                                                              getCurrentTimestamp,
-                                                          firstDate:
-                                                              getCurrentTimestamp,
+                                                          initialDate: (widget!
+                                                                  .guestDocument
+                                                                  ?.startDate ??
+                                                              DateTime.now()),
+                                                          firstDate: (widget!
+                                                                  .guestDocument
+                                                                  ?.startDate ??
+                                                              DateTime(1900)),
                                                           lastDate:
                                                               DateTime(2050),
                                                           builder:
