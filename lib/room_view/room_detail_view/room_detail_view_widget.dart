@@ -60,6 +60,8 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -383,6 +385,9 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             widget!.roomDocument!.reference,
                                           );
                                           if (_model.guestDocument != null) {
+                                            FFAppState()
+                                                .tmpBookingDateSelected = null;
+                                            setState(() {});
                                             await showDialog(
                                               context: context,
                                               builder: (dialogContext) {
@@ -412,7 +417,14 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
                                             await _model.initData(context);
                                             setState(() {});
+                                          } else {
+                                            FFAppState()
+                                                    .tmpBookingDateSelected =
+                                                _model
+                                                    .calendarSelectedDay?.start;
+                                            setState(() {});
                                           }
+
                                           setState(() {});
                                         },
                                         titleStyle: FlutterFlowTheme.of(context)
@@ -451,64 +463,67 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                       ),
                                     ),
                                   ),
-                                  Builder(
-                                    builder: (context) => FFButtonWidget(
-                                      onPressed: () async {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: WebViewAware(
-                                                child: CheckInViewWidget(
-                                                  roomDocument:
-                                                      widget!.roomDocument!,
+                                  if (FFAppState().tmpBookingDateSelected !=
+                                      null)
+                                    Builder(
+                                      builder: (context) => FFButtonWidget(
+                                        onPressed: () async {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: CheckInViewWidget(
+                                                    roomDocument:
+                                                        widget!.roomDocument!,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        );
+                                              );
+                                            },
+                                          );
 
-                                        await _model.initData(context);
-                                        setState(() {});
-                                      },
-                                      text: 'เช็คอิน',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 50.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              color: Colors.white,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          await _model.initData(context);
+                                          setState(() {});
+                                        },
+                                        text: 'เช็คอิน',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Kanit',
+                                                    color: Colors.white,
+                                                    fontSize: 20.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
-                                  ),
                                 ],
                               ),
                           ],

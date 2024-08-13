@@ -299,6 +299,12 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInGuestStatusList(int index, StatusDataStruct value) {
     guestStatusList.insert(index, value);
   }
+
+  DateTime? _tmpBookingDateSelected;
+  DateTime? get tmpBookingDateSelected => _tmpBookingDateSelected;
+  set tmpBookingDateSelected(DateTime? value) {
+    _tmpBookingDateSelected = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
