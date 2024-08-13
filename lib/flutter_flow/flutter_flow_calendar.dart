@@ -205,9 +205,6 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
                 }
               }
             ),
-            /*enabledDayPredicate: (day){
-              return day.isAfter(DateTime(today.year, today.month, today.day, 0, 0, 0));
-            },*/
           ),
         ],
       );
