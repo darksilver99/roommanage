@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/more_view/select_building_and_floor_view/select_building_and_floor_view_widget.dart';
 import '/room_view/room_detail_view/room_detail_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -587,10 +588,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                           return RefreshIndicator(
                             onRefresh: () async {
-                              await action_blocks.checkAppVersion(context);
-                              await _model.checkCuurentDate(context);
-                              await _model.initData(context);
-                              setState(() {});
+                              await actions.pushReplacement(
+                                context,
+                              );
                             },
                             child: GridView.builder(
                               padding: EdgeInsets.fromLTRB(
