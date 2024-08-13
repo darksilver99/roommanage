@@ -418,8 +418,8 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             await _model.initData(context);
                                             setState(() {});
                                           } else {
-                                            if (_model.calendarSelectedDay!
-                                                    .start <
+                                            if (_model
+                                                    .calendarSelectedDay!.end <
                                                 getCurrentTimestamp) {
                                               FFAppState()
                                                       .tmpBookingDateSelected =
