@@ -122,6 +122,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                             .labelMedium
                                             .override(
                                               fontFamily: 'Kanit',
+                                              fontSize: 20.0,
                                               letterSpacing: 0.0,
                                             ),
                                         hintText: 'ชื่อที่พัก',
@@ -129,6 +130,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                             .labelMedium
                                             .override(
                                               fontFamily: 'Kanit',
+                                              fontSize: 20.0,
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
@@ -172,6 +174,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Kanit',
+                                            fontSize: 20.0,
                                             letterSpacing: 0.0,
                                           ),
                                       validator: _model.textControllerValidator
@@ -277,7 +280,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                       ),
                                       options: FFButtonOptions(
                                         width: double.infinity,
-                                        height: 40.0,
+                                        height: 50.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
@@ -290,6 +293,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                             .override(
                                               fontFamily: 'Kanit',
                                               color: Colors.white,
+                                              fontSize: 22.0,
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
