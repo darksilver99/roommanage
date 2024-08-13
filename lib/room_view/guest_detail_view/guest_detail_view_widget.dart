@@ -118,59 +118,25 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: Builder(
-                                      builder: (context) => InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          _model.isConfirm =
-                                              await action_blocks.confirmBlock(
-                                            context,
-                                            title: 'ยกเลิกรายการนี้',
-                                          );
-                                          if (_model.isConfirm!) {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child: WebViewAware(
-                                                    child: RemarkViewWidget(
-                                                      title: 'หมายเหตุ',
-                                                      detail:
-                                                          'ระบุหมายเหตุ เช่น ลูกค้ายกเลิก, ห้องมีปัญหา',
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ).then((value) => safeSetState(
-                                                () => _model.remark = value));
-
-                                            if (_model.remark != null &&
-                                                _model.remark != '') {
-                                              await widget!
-                                                  .guestDocument!.reference
-                                                  .update(
-                                                      createGuestListRecordData(
-                                                status: 3,
-                                                updateDate: getCurrentTimestamp,
-                                                remark: _model.remark,
-                                              ));
+                              if (widget!.guestDocument?.status == 1)
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Builder(
+                                        builder: (context) => InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            _model.isConfirm =
+                                                await action_blocks
+                                                    .confirmBlock(
+                                              context,
+                                              title: 'ยกเลิกรายการนี้',
+                                            );
+                                            if (_model.isConfirm!) {
                                               await showDialog(
                                                 context: context,
                                                 builder: (dialogContext) {
@@ -187,45 +153,83 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                                                 Directionality.of(
                                                                     context)),
                                                     child: WebViewAware(
-                                                      child:
-                                                          InfoCustomViewWidget(
-                                                        title:
-                                                            'ยกเลิกรายการเรียบร้อยแล้ว',
-                                                        status: 'success',
+                                                      child: RemarkViewWidget(
+                                                        title: 'หมายเหตุ',
+                                                        detail:
+                                                            'ระบุหมายเหตุ เช่น ลูกค้ายกเลิก, ห้องมีปัญหา',
                                                       ),
                                                     ),
                                                   );
                                                 },
-                                              );
+                                              ).then((value) => safeSetState(
+                                                  () => _model.remark = value));
 
-                                              Navigator.pop(context);
+                                              if (_model.remark != null &&
+                                                  _model.remark != '') {
+                                                await widget!
+                                                    .guestDocument!.reference
+                                                    .update(
+                                                        createGuestListRecordData(
+                                                  status: 3,
+                                                  updateDate:
+                                                      getCurrentTimestamp,
+                                                  remark: _model.remark,
+                                                ));
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child:
+                                                            InfoCustomViewWidget(
+                                                          title:
+                                                              'ยกเลิกรายการเรียบร้อยแล้ว',
+                                                          status: 'success',
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+
+                                                Navigator.pop(context);
+                                              }
                                             }
-                                          }
 
-                                          setState(() {});
-                                        },
-                                        child: Text(
-                                          'ยกเลิกรายการ X',
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Kanit',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                              ),
+                                            setState(() {});
+                                          },
+                                          child: Text(
+                                            'ยกเลิกรายการ X',
+                                            textAlign: TextAlign.end,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  fontSize: 20.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
+                                  ],
+                                ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -547,6 +551,35 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                         ),
                                         if (widget!.guestDocument?.isDaily ??
                                             true)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    'พักถึงวันที่ ${functions.dateTh(widget!.guestDocument?.endDate)}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Kanit',
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        if ((widget!.guestDocument?.isDaily ==
+                                                false) &&
+                                            (widget!.guestDocument?.endDate !=
+                                                null))
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
