@@ -1508,7 +1508,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                 title:
                                                     'ไม่สามารถเลือกวันนี้ได้',
                                                 detail:
-                                                    'เนื่องจากมีการเช็คอินวันนี้แล้วกรุณาตรวจสอบอีกครั้ง',
+                                                    'เนื่องจากมีการจองในช่วงวันที่เลือกแล้ว กรุณาตรวจสอบอีกครั้ง',
                                                 status: 'warning',
                                               ),
                                             ),
