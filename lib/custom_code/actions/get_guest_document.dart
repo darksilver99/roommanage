@@ -36,6 +36,7 @@ Future<GuestListRecord?> getGuestDocument(
       .where("start_date", isLessThanOrEqualTo: date)
       .where("is_daily", isEqualTo: false)
       .where("status", isNotEqualTo: 3)
+      .orderBy("start_date", descending: true)
       .get();
   if (rs2.size != 0) {
     print(">>>bbb");
