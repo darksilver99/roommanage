@@ -1106,8 +1106,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       context: context,
                                       initialDate:
                                           (_model.startDate ?? DateTime.now()),
-                                      firstDate:
-                                          (_model.startDate ?? DateTime.now()),
+                                      firstDate: (getCurrentTimestamp ??
+                                          DateTime(1900)),
                                       lastDate: DateTime(2050),
                                       builder: (context, child) {
                                         return wrapInMaterialDatePickerTheme(
