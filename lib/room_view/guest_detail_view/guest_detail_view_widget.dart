@@ -13,6 +13,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,6 +48,11 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => GuestDetailViewModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().tmpGuestRef = widget!.guestDocument?.reference;
+    });
   }
 
   @override
@@ -256,8 +262,6 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          FFAppState().tmpGuestRef =
-                                              widget!.guestDocument?.reference;
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {
