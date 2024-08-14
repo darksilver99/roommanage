@@ -288,8 +288,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
                 .resolve(Directionality.of(context)),
             child: WebViewAware(
               child: InfoCustomViewWidget(
-                title: 'เข้าใช้งานครั้งแรก พิเศษสำหรับคุณฟรี 1 เดือน',
-                status: 'success',
+                title:
+                    'เข้าใช้งานครั้งแรก พิเศษสำหรับคุณใช้งานฟรี ${FFAppState().configData.freeDay.toString()} วัน',
+                status: 'warning',
               ),
             ),
           );
