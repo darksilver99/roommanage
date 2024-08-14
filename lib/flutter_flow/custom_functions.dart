@@ -95,3 +95,11 @@ DateTime getBeforeDay(
   DateTime pastDate = date.subtract(Duration(days: pastDay));
   return pastDate;
 }
+
+List<String> floorToList(int totalFloor) {
+  return List<String>.generate(totalFloor, (index) => (index + 1).toString());
+}
+
+String intToString(int val) {
+  return val.toString();
+}
