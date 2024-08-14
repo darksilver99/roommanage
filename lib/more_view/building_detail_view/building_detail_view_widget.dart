@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/more_view/edit_building_and_total_floor_view/edit_building_and_total_floor_view_widget.dart';
 import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'building_detail_view_model.dart';
 export 'building_detail_view_model.dart';
 
@@ -137,13 +139,49 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                           ),
                     ),
                   ),
-                  Text(
-                    'แก้ไขชื่อ/ชั้น',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Kanit',
-                          letterSpacing: 0.0,
-                          decoration: TextDecoration.underline,
-                        ),
+                  Builder(
+                    builder: (context) => InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              child: WebViewAware(
+                                child: EditBuildingAndTotalFloorViewWidget(
+                                  buildingDocument: widget!.buildingDocument!,
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) =>
+                            safeSetState(() => _model.isUpdate = value));
+
+                        if ((_model.isUpdate != null &&
+                                _model.isUpdate != '') &&
+                            (_model.isUpdate == 'update')) {
+                          await _model.initFloorList(context);
+                        }
+
+                        setState(() {});
+                      },
+                      child: Text(
+                        'แก้ไขชื่อ/ชั้น',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Kanit',
+                              letterSpacing: 0.0,
+                              decoration: TextDecoration.underline,
+                            ),
+                      ),
+                    ),
                   ),
                 ],
               ),
