@@ -5,8 +5,10 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/more_view/edit_building_and_total_floor_view/edit_building_and_total_floor_view_widget.dart';
+import '/more_view/edit_room_view/edit_room_view_widget.dart';
 import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'building_detail_view_widget.dart' show BuildingDetailViewWidget;
@@ -45,13 +47,13 @@ class BuildingDetailViewModel
 
   ///  State fields for stateful widgets in this component.
 
-  // Stores action output result for [Alert Dialog - Custom Dialog] action in Text widget.
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? isUpdate;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  // Stores action output result for [Firestore Query - Query a collection] action in DropDown widget.
-  List<RoomListRecord>? roomListResult;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Container widget.
+  String? isUpdate2;
 
   @override
   void initState(BuildContext context) {}
@@ -76,5 +78,20 @@ class BuildingDetailViewModel
     buildingDocumentResult =
         await BuildingListRecord.getDocumentOnce(documentRef!);
     buildingDocument = buildingDocumentResult;
+  }
+
+  Future initRoom(BuildContext context) async {
+    List<RoomListRecord>? roomListResult;
+
+    roomListResult = await queryRoomListRecordOnce(
+      parent: FFAppState().customerData.customerRef,
+      queryBuilder: (roomListRecord) => roomListRecord
+          .where(
+            'floor_number',
+            isEqualTo: functions.stringToInt(dropDownValue!),
+          )
+          .orderBy('subject'),
+    );
+    roomList = roomListResult!.toList().cast<RoomListRecord>();
   }
 }
