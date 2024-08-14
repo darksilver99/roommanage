@@ -266,145 +266,141 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                   ],
                 ),
               ),
-              if (_model.roomList.isNotEmpty)
-                Expanded(
-                  child: Builder(
-                    builder: (context) {
-                      final roomListView = _model.roomList.toList();
-                      if (roomListView.isEmpty) {
-                        return NoDataViewWidget();
-                      }
+              Expanded(
+                child: Builder(
+                  builder: (context) {
+                    final roomListView = _model.roomList.toList();
+                    if (roomListView.isEmpty) {
+                      return NoDataViewWidget();
+                    }
 
-                      return ListView.separated(
-                        padding: EdgeInsets.fromLTRB(
-                          0,
-                          16.0,
-                          0,
-                          32.0,
-                        ),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: roomListView.length,
-                        separatorBuilder: (_, __) => SizedBox(height: 8.0),
-                        itemBuilder: (context, roomListViewIndex) {
-                          final roomListViewItem =
-                              roomListView[roomListViewIndex];
-                          return Builder(
-                            builder: (context) => Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: WebViewAware(
-                                          child: EditRoomViewWidget(
-                                            roomDocument: roomListViewItem,
-                                          ),
+                    return ListView.separated(
+                      padding: EdgeInsets.fromLTRB(
+                        0,
+                        16.0,
+                        0,
+                        32.0,
+                      ),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: roomListView.length,
+                      separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                      itemBuilder: (context, roomListViewIndex) {
+                        final roomListViewItem =
+                            roomListView[roomListViewIndex];
+                        return Builder(
+                          builder: (context) => Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: WebViewAware(
+                                        child: EditRoomViewWidget(
+                                          roomDocument: roomListViewItem,
                                         ),
-                                      );
-                                    },
-                                  ).then((value) => safeSetState(
-                                      () => _model.isUpdate2 = value));
-
-                                  if ((_model.isUpdate2 != null &&
-                                          _model.isUpdate2 != '') &&
-                                      (_model.isUpdate2 == 'update')) {
-                                    await _model.initRoom(
-                                      context,
-                                      buildingRef:
-                                          _model.buildingDocument?.reference,
+                                      ),
                                     );
-                                    setState(() {});
-                                  }
+                                  },
+                                ).then((value) => safeSetState(
+                                    () => _model.isUpdate2 = value));
 
+                                if ((_model.isUpdate2 != null &&
+                                        _model.isUpdate2 != '') &&
+                                    (_model.isUpdate2 == 'update')) {
+                                  await _model.initRoom(
+                                    context,
+                                    buildingRef:
+                                        _model.buildingDocument?.reference,
+                                  );
                                   setState(() {});
-                                },
-                                child: Material(
-                                  color: Colors.transparent,
-                                  elevation: 3.0,
-                                  shape: RoundedRectangleBorder(
+                                }
+
+                                setState(() {});
+                              },
+                              child: Material(
+                                color: Colors.transparent,
+                                elevation: 3.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 100.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 8.0, 16.0, 8.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              roomListViewItem.subject,
-                                              maxLines: 2,
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 8.0, 16.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            roomListViewItem.subject,
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  fontSize: 20.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.edit_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              size: 24.0,
+                                            ),
+                                            Text(
+                                              'แก้ไขห้อง',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Kanit',
-                                                        fontSize: 20.0,
+                                                        fontSize: 11.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
-                                          ),
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.edit_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                size: 24.0,
-                                              ),
-                                              Text(
-                                                'แก้ไขห้อง',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Kanit',
-                                                          fontSize: 11.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      );
-                    },
-                  ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
+              ),
             ],
           ),
         ),
