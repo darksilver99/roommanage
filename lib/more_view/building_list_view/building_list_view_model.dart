@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/more_view/building_detail_view/building_detail_view_widget.dart';
 import 'dart:math';
 import 'building_list_view_widget.dart' show BuildingListViewWidget;

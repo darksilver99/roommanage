@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
+import '/actions/actions.dart' as action_blocks;
 import 'edit_building_and_total_floor_view_widget.dart'
     show EditBuildingAndTotalFloorViewWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,6 +47,8 @@ class EditBuildingAndTotalFloorViewModel
     return null;
   }
 
+  // Stores action output result for [Action Block - confirmBlock] action in Text widget.
+  bool? isConfirm;
   // Stores action output result for [Validate Form] action in Button widget.
   bool? isValid;
 
