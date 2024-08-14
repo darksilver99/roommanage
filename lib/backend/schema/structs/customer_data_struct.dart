@@ -13,10 +13,12 @@ class CustomerDataStruct extends FFFirebaseStruct {
     String? customerName,
     DateTime? expireDate,
     DocumentReference? customerRef,
+    bool? isFirstTime,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _customerName = customerName,
         _expireDate = expireDate,
         _customerRef = customerRef,
+        _isFirstTime = isFirstTime,
         super(firestoreUtilData);
 
   // "customer_name" field.
@@ -40,11 +42,19 @@ class CustomerDataStruct extends FFFirebaseStruct {
 
   bool hasCustomerRef() => _customerRef != null;
 
+  // "is_first_time" field.
+  bool? _isFirstTime;
+  bool get isFirstTime => _isFirstTime ?? false;
+  set isFirstTime(bool? val) => _isFirstTime = val;
+
+  bool hasIsFirstTime() => _isFirstTime != null;
+
   static CustomerDataStruct fromMap(Map<String, dynamic> data) =>
       CustomerDataStruct(
         customerName: data['customer_name'] as String?,
         expireDate: data['expire_date'] as DateTime?,
         customerRef: data['customer_ref'] as DocumentReference?,
+        isFirstTime: data['is_first_time'] as bool?,
       );
 
   static CustomerDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -55,6 +65,7 @@ class CustomerDataStruct extends FFFirebaseStruct {
         'customer_name': _customerName,
         'expire_date': _expireDate,
         'customer_ref': _customerRef,
+        'is_first_time': _isFirstTime,
       }.withoutNulls;
 
   @override
@@ -70,6 +81,10 @@ class CustomerDataStruct extends FFFirebaseStruct {
         'customer_ref': serializeParam(
           _customerRef,
           ParamType.DocumentReference,
+        ),
+        'is_first_time': serializeParam(
+          _isFirstTime,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -91,6 +106,11 @@ class CustomerDataStruct extends FFFirebaseStruct {
           false,
           collectionNamePath: ['customer_name'],
         ),
+        isFirstTime: deserializeParam(
+          data['is_first_time'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -101,18 +121,20 @@ class CustomerDataStruct extends FFFirebaseStruct {
     return other is CustomerDataStruct &&
         customerName == other.customerName &&
         expireDate == other.expireDate &&
-        customerRef == other.customerRef;
+        customerRef == other.customerRef &&
+        isFirstTime == other.isFirstTime;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([customerName, expireDate, customerRef]);
+  int get hashCode => const ListEquality()
+      .hash([customerName, expireDate, customerRef, isFirstTime]);
 }
 
 CustomerDataStruct createCustomerDataStruct({
   String? customerName,
   DateTime? expireDate,
   DocumentReference? customerRef,
+  bool? isFirstTime,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -122,6 +144,7 @@ CustomerDataStruct createCustomerDataStruct({
       customerName: customerName,
       expireDate: expireDate,
       customerRef: customerRef,
+      isFirstTime: isFirstTime,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

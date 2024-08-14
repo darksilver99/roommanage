@@ -51,6 +51,11 @@ class CustomerNameRecord extends FirestoreRecord {
   String get customerName => _customerName ?? '';
   bool hasCustomerName() => _customerName != null;
 
+  // "is_first_time" field.
+  bool? _isFirstTime;
+  bool get isFirstTime => _isFirstTime ?? false;
+  bool hasIsFirstTime() => _isFirstTime != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -59,6 +64,7 @@ class CustomerNameRecord extends FirestoreRecord {
     _status = castToType<int>(snapshotData['status']);
     _expireDate = snapshotData['expire_date'] as DateTime?;
     _customerName = snapshotData['customer_name'] as String?;
+    _isFirstTime = snapshotData['is_first_time'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -103,6 +109,7 @@ Map<String, dynamic> createCustomerNameRecordData({
   int? status,
   DateTime? expireDate,
   String? customerName,
+  bool? isFirstTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -113,6 +120,7 @@ Map<String, dynamic> createCustomerNameRecordData({
       'status': status,
       'expire_date': expireDate,
       'customer_name': customerName,
+      'is_first_time': isFirstTime,
     }.withoutNulls,
   );
 
@@ -131,7 +139,8 @@ class CustomerNameRecordDocumentEquality
         e1?.updateBy == e2?.updateBy &&
         e1?.status == e2?.status &&
         e1?.expireDate == e2?.expireDate &&
-        e1?.customerName == e2?.customerName;
+        e1?.customerName == e2?.customerName &&
+        e1?.isFirstTime == e2?.isFirstTime;
   }
 
   @override
@@ -142,7 +151,8 @@ class CustomerNameRecordDocumentEquality
         e?.updateBy,
         e?.status,
         e?.expireDate,
-        e?.customerName
+        e?.customerName,
+        e?.isFirstTime
       ]);
 
   @override

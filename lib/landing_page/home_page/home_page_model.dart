@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/component/expire_alert_view/expire_alert_view_widget.dart';
+import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/component/no_room_view/no_room_view_widget.dart';
 import '/component/total_day_free_view/total_day_free_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -146,6 +147,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
         customerName: customerResult?.customerName,
         expireDate: customerResult?.expireDate,
         customerRef: customerResult?.reference,
+        isFirstTime: customerResult?.isFirstTime,
       );
       await checkExpireDate(context);
       isHasCustomer = true;
@@ -264,6 +266,33 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
         }
       }
       return false;
+    }
+  }
+
+  Future checkIsFirstTime(BuildContext context) async {
+    if (FFAppState().customerData.isFirstTime) {
+      await showDialog(
+        context: context,
+        builder: (dialogContext) {
+          return Dialog(
+            elevation: 0,
+            insetPadding: EdgeInsets.zero,
+            backgroundColor: Colors.transparent,
+            alignment: AlignmentDirectional(0.0, 0.0)
+                .resolve(Directionality.of(context)),
+            child: WebViewAware(
+              child: InfoCustomViewWidget(),
+            ),
+          );
+        },
+      );
+
+      await FFAppState()
+          .customerData
+          .customerRef!
+          .update(createCustomerNameRecordData(
+            isFirstTime: false,
+          ));
     }
   }
 }
