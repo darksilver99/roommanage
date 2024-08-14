@@ -220,6 +220,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           );
         },
       );
+
+      return;
     } else {
       if (getCurrentTimestamp >
           functions.getBeforeDay(5, FFAppState().customerData.expireDate!)) {
