@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
+import '/actions/actions.dart' as action_blocks;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -207,6 +208,74 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
                               validator: _model.textControllerValidator
                                   .asValidator(context),
                             ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Builder(
+                                  builder: (context) => InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      _model.isConfirm =
+                                          await action_blocks.confirmBlock(
+                                        context,
+                                        title: 'ต้องการลบห้องนี้?',
+                                        detail:
+                                            'ท่านจะไม่สามารถเรียกคือข้อมูลคืนได้ รวมถึงข้อมูลผู้ที่เคยพักห้องนี้ก็จะถูกลบด้วยเช่นกัน',
+                                      );
+                                      if (_model.isConfirm!) {
+                                        await widget!.roomDocument!.reference
+                                            .delete();
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: InfoCustomViewWidget(
+                                                  title:
+                                                      'ลบข้อมูลห้องเรียบร้อยแล้ว',
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+
+                                        Navigator.pop(context, 'update');
+                                      }
+
+                                      setState(() {});
+                                    },
+                                    child: Text(
+                                      'ลบห้องนี้?',
+                                      textAlign: TextAlign.end,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Kanit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            letterSpacing: 0.0,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           Builder(
                             builder: (context) => Padding(
