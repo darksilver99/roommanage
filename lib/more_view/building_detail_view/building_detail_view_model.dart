@@ -41,6 +41,8 @@ class BuildingDetailViewModel
   void updateRoomListAtIndex(int index, Function(RoomListRecord) updateFn) =>
       roomList[index] = updateFn(roomList[index]);
 
+  BuildingListRecord? buildingDocument;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Text widget.
@@ -58,10 +60,21 @@ class BuildingDetailViewModel
   void dispose() {}
 
   /// Action blocks.
-  Future initFloorList(BuildContext context) async {
-    floorList = functions
-        .floorToList(widget!.buildingDocument!.totalFloor)
-        .toList()
-        .cast<String>();
+  Future initFloorList(
+    BuildContext context, {
+    required int? totalFloor,
+  }) async {
+    floorList = functions.floorToList(totalFloor!).toList().cast<String>();
+  }
+
+  Future initBuidingData(
+    BuildContext context, {
+    required DocumentReference? documentRef,
+  }) async {
+    BuildingListRecord? buildingDocumentResult;
+
+    buildingDocumentResult =
+        await BuildingListRecord.getDocumentOnce(documentRef!);
+    buildingDocument = buildingDocumentResult;
   }
 }

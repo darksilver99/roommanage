@@ -54,7 +54,14 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.initFloorList(context);
+      await _model.initBuidingData(
+        context,
+        documentRef: widget!.buildingDocument?.reference,
+      );
+      await _model.initFloorList(
+        context,
+        totalFloor: _model.buildingDocument?.totalFloor,
+      );
       setState(() {});
     });
 
@@ -94,251 +101,263 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
           color: FlutterFlowTheme.of(context).secondaryBackground,
           borderRadius: BorderRadius.circular(16.0),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.close_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 32.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget!.title,
-                        '-',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Kanit',
-                            fontSize: 22.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ),
-                  Builder(
-                    builder: (context) => InkWell(
+        child: Visibility(
+          visible: _model.buildingDocument?.createDate != null,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        await showDialog(
-                          context: context,
-                          builder: (dialogContext) {
-                            return Dialog(
-                              elevation: 0,
-                              insetPadding: EdgeInsets.zero,
-                              backgroundColor: Colors.transparent,
-                              alignment: AlignmentDirectional(0.0, 0.0)
-                                  .resolve(Directionality.of(context)),
-                              child: WebViewAware(
-                                child: EditBuildingAndTotalFloorViewWidget(
-                                  buildingDocument: widget!.buildingDocument!,
-                                ),
-                              ),
-                            );
-                          },
-                        ).then((value) =>
-                            safeSetState(() => _model.isUpdate = value));
-
-                        if ((_model.isUpdate != null &&
-                                _model.isUpdate != '') &&
-                            (_model.isUpdate == 'update')) {
-                          await _model.initFloorList(context);
-                        }
-
-                        setState(() {});
+                        Navigator.pop(context);
                       },
+                      child: Icon(
+                        Icons.close_rounded,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 32.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
                       child: Text(
-                        'แก้ไขชื่อ/ชั้น',
+                        valueOrDefault<String>(
+                          _model.buildingDocument?.subject,
+                          '-',
+                        ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Kanit',
+                              fontSize: 22.0,
                               letterSpacing: 0.0,
-                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.bold,
                             ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController ??=
-                          FormFieldController<String>(null),
-                      options: _model.floorList,
-                      onChanged: (val) async {
-                        setState(() => _model.dropDownValue = val);
-                        _model.roomListResult = await queryRoomListRecordOnce(
-                          parent: FFAppState().customerData.customerRef,
-                          queryBuilder: (roomListRecord) => roomListRecord
-                              .where(
-                                'floor_number',
-                                isEqualTo: functions
-                                    .stringToInt(_model.dropDownValue!),
-                              )
-                              .orderBy('subject'),
-                        );
-                        _model.roomList = _model.roomListResult!
-                            .toList()
-                            .cast<RoomListRecord>();
-                        setState(() {});
+                    Builder(
+                      builder: (context) => InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: WebViewAware(
+                                  child: EditBuildingAndTotalFloorViewWidget(
+                                    buildingDocument: widget!.buildingDocument!,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) =>
+                              safeSetState(() => _model.isUpdate = value));
 
-                        setState(() {});
-                      },
-                      width: 300.0,
-                      height: 56.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Kanit',
-                                letterSpacing: 0.0,
-                              ),
-                      hintText: 'เลือกชั้น',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
+                          if ((_model.isUpdate != null &&
+                                  _model.isUpdate != '') &&
+                              (_model.isUpdate == 'update')) {
+                            await _model.initBuidingData(
+                              context,
+                              documentRef: widget!.buildingDocument?.reference,
+                            );
+                            await _model.initFloorList(
+                              context,
+                              totalFloor: _model.buildingDocument?.totalFloor,
+                            );
+                            setState(() {});
+                          }
+
+                          setState(() {});
+                        },
+                        child: Text(
+                          'แก้ไขชื่อ/ชั้น',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Kanit',
+                                    letterSpacing: 0.0,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                        ),
                       ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 2.0,
-                      borderColor: FlutterFlowTheme.of(context).alternate,
-                      borderWidth: 2.0,
-                      borderRadius: 8.0,
-                      margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                      hidesUnderline: true,
-                      isOverButton: true,
-                      isSearchable: false,
-                      isMultiSelect: false,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            if (_model.roomList.isNotEmpty)
-              Expanded(
-                child: Builder(
-                  builder: (context) {
-                    final roomListView = _model.roomList.toList();
-                    if (roomListView.isEmpty) {
-                      return NoDataViewWidget();
-                    }
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: FlutterFlowDropDown<String>(
+                        controller: _model.dropDownValueController ??=
+                            FormFieldController<String>(null),
+                        options: _model.floorList,
+                        onChanged: (val) async {
+                          setState(() => _model.dropDownValue = val);
+                          _model.roomListResult = await queryRoomListRecordOnce(
+                            parent: FFAppState().customerData.customerRef,
+                            queryBuilder: (roomListRecord) => roomListRecord
+                                .where(
+                                  'floor_number',
+                                  isEqualTo: functions
+                                      .stringToInt(_model.dropDownValue!),
+                                )
+                                .orderBy('subject'),
+                          );
+                          _model.roomList = _model.roomListResult!
+                              .toList()
+                              .cast<RoomListRecord>();
+                          setState(() {});
 
-                    return ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
-                        0,
-                        16.0,
-                        0,
-                        32.0,
+                          setState(() {});
+                        },
+                        width: 300.0,
+                        height: 56.0,
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Kanit',
+                                  letterSpacing: 0.0,
+                                ),
+                        hintText: 'เลือกชั้น',
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 2.0,
+                        borderColor: FlutterFlowTheme.of(context).alternate,
+                        borderWidth: 2.0,
+                        borderRadius: 8.0,
+                        margin: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 4.0, 16.0, 4.0),
+                        hidesUnderline: true,
+                        isOverButton: true,
+                        isSearchable: false,
+                        isMultiSelect: false,
                       ),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: roomListView.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 8.0),
-                      itemBuilder: (context, roomListViewIndex) {
-                        final roomListViewItem =
-                            roomListView[roomListViewIndex];
-                        return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: Material(
-                            color: Colors.transparent,
-                            elevation: 3.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Container(
-                              width: double.infinity,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                    ),
+                  ],
+                ),
+              ),
+              if (_model.roomList.isNotEmpty)
+                Expanded(
+                  child: Builder(
+                    builder: (context) {
+                      final roomListView = _model.roomList.toList();
+                      if (roomListView.isEmpty) {
+                        return NoDataViewWidget();
+                      }
+
+                      return ListView.separated(
+                        padding: EdgeInsets.fromLTRB(
+                          0,
+                          16.0,
+                          0,
+                          32.0,
+                        ),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: roomListView.length,
+                        separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                        itemBuilder: (context, roomListViewIndex) {
+                          final roomListViewItem =
+                              roomListView[roomListViewIndex];
+                          return Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: Material(
+                              color: Colors.transparent,
+                              elevation: 3.0,
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        roomListViewItem.subject,
-                                        maxLines: 2,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.edit_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          size: 24.0,
-                                        ),
-                                        Text(
-                                          'แก้ไขห้อง',
+                              child: Container(
+                                width: double.infinity,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 8.0, 16.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          roomListViewItem.subject,
+                                          maxLines: 2,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Kanit',
-                                                fontSize: 11.0,
+                                                fontSize: 20.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ],
-                                    ),
-                                  ],
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.edit_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            size: 24.0,
+                                          ),
+                                          Text(
+                                            'แก้ไขห้อง',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  fontSize: 11.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
     );
