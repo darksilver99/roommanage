@@ -42,6 +42,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       await action_blocks.checkAppVersion(context);
       await _model.checkCuurentDate(context);
       await _model.initData(context);
+      await _model.checkIsFirstTime(context);
       setState(() {});
     });
   }

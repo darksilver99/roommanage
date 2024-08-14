@@ -266,6 +266,7 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                           FFAppState()
                                                               .configData
                                                               .freeDay)),
+                                              isFirstTime: true,
                                             ));
                                             _model.insertCustomer = CustomerNameRecord
                                                 .getDocumentFromData(
@@ -284,6 +285,7 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                                   FFAppState()
                                                                       .configData
                                                                       .freeDay)),
+                                                      isFirstTime: true,
                                                     ),
                                                     customerNameRecordReference);
                                             FFAppState().customerData =
