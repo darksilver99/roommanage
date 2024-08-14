@@ -289,7 +289,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
             child: WebViewAware(
               child: InfoCustomViewWidget(
                 title:
-                    'เข้าใช้งานครั้งแรก พิเศษสำหรับคุณใช้งานฟรี ${FFAppState().configData.freeDay.toString()} วัน',
+                    'เข้าใช้งานครั้งแรก พิเศษสำหรับคุณ ทำลองใช้งานฟรี ${FFAppState().configData.freeDay.toString()} วัน',
                 status: 'warning',
               ),
             ),
