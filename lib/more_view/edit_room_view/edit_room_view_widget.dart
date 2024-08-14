@@ -214,6 +214,7 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
                                   0.0, 8.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  var _shouldSetState = false;
                                   _model.isValid = true;
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
@@ -221,84 +222,93 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
                                     setState(() => _model.isValid = false);
                                     return;
                                   }
+                                  _shouldSetState = true;
                                   if (_model.isValid!) {
                                     _model.totalRoom =
                                         await queryRoomListRecordCount(
                                       parent:
                                           FFAppState().customerData.customerRef,
                                       queryBuilder: (roomListRecord) =>
-                                          roomListRecord.where(Filter.or(
-                                        Filter(
-                                          'building_ref',
-                                          isEqualTo:
-                                              widget!.roomDocument?.buildingRef,
-                                        ),
-                                        Filter(
-                                          'floor_number',
-                                          isEqualTo:
-                                              widget!.roomDocument?.floorNumber,
-                                        ),
-                                        Filter(
-                                          'subject',
-                                          isEqualTo: _model.textController.text,
-                                        ),
-                                      )),
+                                          roomListRecord
+                                              .where(
+                                                'building_ref',
+                                                isEqualTo: widget!
+                                                    .roomDocument?.buildingRef,
+                                              )
+                                              .where(
+                                                'floor_number',
+                                                isEqualTo: widget!
+                                                    .roomDocument?.floorNumber,
+                                              )
+                                              .where(
+                                                'subject',
+                                                isEqualTo:
+                                                    _model.textController.text,
+                                              ),
                                     );
+                                    _shouldSetState = true;
                                     if (_model.totalRoom! > 0) {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: WebViewAware(
-                                              child: InfoCustomViewWidget(
-                                                title: 'เลขที่ห้องซ้ำ',
-                                                detail:
-                                                    'กรุณาตรวจสอบเลขที่ห้อง เนื่องจากอาคารนี้มีเลขที่ห้องนี้อยู่แล้ว',
-                                                status: 'error',
+                                      if (widget!.roomDocument?.subject !=
+                                          _model.textController.text) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: InfoCustomViewWidget(
+                                                  title: 'เลขที่ห้องซ้ำ',
+                                                  detail:
+                                                      'กรุณาตรวจสอบเลขที่ห้อง เนื่องจากอาคารนี้มีเลขที่ห้องนี้อยู่แล้ว',
+                                                  status: 'error',
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    } else {
-                                      await widget!.roomDocument!.reference
-                                          .update(createRoomListRecordData(
-                                        updateDate: getCurrentTimestamp,
-                                        subject: _model.textController.text,
-                                      ));
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: WebViewAware(
-                                              child: InfoCustomViewWidget(
-                                                title: 'บันทึกข้อมูลสำเร็จ',
-                                                status: 'success',
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
+                                            );
+                                          },
+                                        );
 
-                                      Navigator.pop(context, 'update');
+                                        if (_shouldSetState) setState(() {});
+                                        return;
+                                      }
                                     }
-                                  }
 
-                                  setState(() {});
+                                    await widget!.roomDocument!.reference
+                                        .update(createRoomListRecordData(
+                                      updateDate: getCurrentTimestamp,
+                                      subject: _model.textController.text,
+                                    ));
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: InfoCustomViewWidget(
+                                              title: 'บันทึกข้อมูลสำเร็จ',
+                                              status: 'success',
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+
+                                    Navigator.pop(context, 'update');
+                                  }
+                                  if (_shouldSetState) setState(() {});
                                 },
                                 text: 'บันทึก',
                                 options: FFButtonOptions(
