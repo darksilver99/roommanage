@@ -619,55 +619,59 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   onTap: () async {
                                     FFAppState().tmpBookingDateSelected = null;
                                     FFAppState().update(() {});
-                                    await _model.checkExpireDate(context);
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      enableDrag: false,
-                                      useSafeArea: true,
-                                      context: context,
-                                      builder: (context) {
-                                        return WebViewAware(
-                                          child: Padding(
-                                            padding: MediaQuery.viewInsetsOf(
-                                                context),
-                                            child: RoomDetailViewWidget(
-                                              roomDocument: roomListViewItem,
+                                    _model.isExpire =
+                                        await _model.checkExpireDate(context);
+                                    if (!_model.isExpire!) {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        enableDrag: false,
+                                        useSafeArea: true,
+                                        context: context,
+                                        builder: (context) {
+                                          return WebViewAware(
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: RoomDetailViewWidget(
+                                                roomDocument: roomListViewItem,
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => safeSetState(
-                                        () => _model.isUpdate = value));
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(
+                                          () => _model.isUpdate = value));
 
-                                    await _model.resetSelectedBlock(context);
-                                    setState(() {
-                                      _model.checkboxValue1 = true;
-                                    });
-                                    setState(() {
-                                      _model.checkboxValue2 = true;
-                                    });
-                                    setState(() {
-                                      _model.checkboxValue3 = true;
-                                    });
-                                    await _model.getRoomListBlock(
-                                      context,
-                                      buildingRef: FFAppState()
-                                          .buildingList
-                                          .where((e) =>
-                                              e.buildDoc ==
-                                              FFAppState()
-                                                  .currentDropdownSelected
-                                                  .buildingDoc)
-                                          .toList()
-                                          .first
-                                          .buildingRef,
-                                      floor: functions.stringToInt(FFAppState()
-                                          .currentDropdownSelected
-                                          .floorNumber),
-                                    );
+                                      await _model.resetSelectedBlock(context);
+                                      setState(() {
+                                        _model.checkboxValue1 = true;
+                                      });
+                                      setState(() {
+                                        _model.checkboxValue2 = true;
+                                      });
+                                      setState(() {
+                                        _model.checkboxValue3 = true;
+                                      });
+                                      await _model.getRoomListBlock(
+                                        context,
+                                        buildingRef: FFAppState()
+                                            .buildingList
+                                            .where((e) =>
+                                                e.buildDoc ==
+                                                FFAppState()
+                                                    .currentDropdownSelected
+                                                    .buildingDoc)
+                                            .toList()
+                                            .first
+                                            .buildingRef,
+                                        floor: functions.stringToInt(
+                                            FFAppState()
+                                                .currentDropdownSelected
+                                                .floorNumber),
+                                      );
 
-                                    setState(() {});
+                                      setState(() {});
+                                    }
 
                                     setState(() {});
                                   },
