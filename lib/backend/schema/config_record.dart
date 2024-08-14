@@ -71,6 +71,11 @@ class ConfigRecord extends FirestoreRecord {
   String get promotionDetailImage => _promotionDetailImage ?? '';
   bool hasPromotionDetailImage() => _promotionDetailImage != null;
 
+  // "contact" field.
+  List<String>? _contact;
+  List<String> get contact => _contact ?? const [];
+  bool hasContact() => _contact != null;
+
   void _initializeFields() {
     _storeVersion = castToType<int>(snapshotData['store_version']);
     _storeIosLink = snapshotData['store_ios_link'] as String?;
@@ -83,6 +88,7 @@ class ConfigRecord extends FirestoreRecord {
     _paymentAlertText = getDataList(snapshotData['payment_alert_text']);
     _paymentDetailImage = snapshotData['payment_detail_image'] as String?;
     _promotionDetailImage = snapshotData['promotion_detail_image'] as String?;
+    _contact = getDataList(snapshotData['contact']);
   }
 
   static CollectionReference get collection =>
@@ -160,7 +166,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e1?.freeDay == e2?.freeDay &&
         listEquality.equals(e1?.paymentAlertText, e2?.paymentAlertText) &&
         e1?.paymentDetailImage == e2?.paymentDetailImage &&
-        e1?.promotionDetailImage == e2?.promotionDetailImage;
+        e1?.promotionDetailImage == e2?.promotionDetailImage &&
+        listEquality.equals(e1?.contact, e2?.contact);
   }
 
   @override
@@ -175,7 +182,8 @@ class ConfigRecordDocumentEquality implements Equality<ConfigRecord> {
         e?.freeDay,
         e?.paymentAlertText,
         e?.paymentDetailImage,
-        e?.promotionDetailImage
+        e?.promotionDetailImage,
+        e?.contact
       ]);
 
   @override
