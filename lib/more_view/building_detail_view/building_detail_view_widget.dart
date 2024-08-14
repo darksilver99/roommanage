@@ -166,7 +166,7 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                                     .resolve(Directionality.of(context)),
                                 child: WebViewAware(
                                   child: EditBuildingAndTotalFloorViewWidget(
-                                    buildingDocument: widget!.buildingDocument!,
+                                    buildingDocument: _model.buildingDocument!,
                                   ),
                                 ),
                               );
