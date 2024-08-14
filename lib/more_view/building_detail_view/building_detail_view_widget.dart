@@ -230,7 +230,10 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                         options: _model.floorList,
                         onChanged: (val) async {
                           setState(() => _model.dropDownValue = val);
-                          await _model.initRoom(context);
+                          await _model.initRoom(
+                            context,
+                            buildingRef: _model.buildingDocument?.reference,
+                          );
                           setState(() {});
                         },
                         width: 300.0,
@@ -320,7 +323,11 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                                   if ((_model.isUpdate2 != null &&
                                           _model.isUpdate2 != '') &&
                                       (_model.isUpdate2 == 'update')) {
-                                    await _model.initRoom(context);
+                                    await _model.initRoom(
+                                      context,
+                                      buildingRef:
+                                          _model.buildingDocument?.reference,
+                                    );
                                     setState(() {});
                                   }
 
