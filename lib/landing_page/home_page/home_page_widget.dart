@@ -643,35 +643,44 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ).then((value) => safeSetState(
                                           () => _model.isUpdate = value));
 
-                                      await _model.resetSelectedBlock(context);
-                                      setState(() {
-                                        _model.checkboxValue1 = true;
-                                      });
-                                      setState(() {
-                                        _model.checkboxValue2 = true;
-                                      });
-                                      setState(() {
-                                        _model.checkboxValue3 = true;
-                                      });
-                                      await _model.getRoomListBlock(
-                                        context,
-                                        buildingRef: FFAppState()
-                                            .buildingList
-                                            .where((e) =>
-                                                e.buildDoc ==
-                                                FFAppState()
-                                                    .currentDropdownSelected
-                                                    .buildingDoc)
-                                            .toList()
-                                            .first
-                                            .buildingRef,
-                                        floor: functions.stringToInt(
-                                            FFAppState()
-                                                .currentDropdownSelected
-                                                .floorNumber),
-                                      );
+                                      if ((_model.isUpdate != null &&
+                                              _model.isUpdate != '') &&
+                                          (_model.isUpdate == 'update')) {
+                                        await actions.pushReplacement(
+                                          context,
+                                        );
+                                      } else {
+                                        await _model
+                                            .resetSelectedBlock(context);
+                                        setState(() {
+                                          _model.checkboxValue1 = true;
+                                        });
+                                        setState(() {
+                                          _model.checkboxValue2 = true;
+                                        });
+                                        setState(() {
+                                          _model.checkboxValue3 = true;
+                                        });
+                                        await _model.getRoomListBlock(
+                                          context,
+                                          buildingRef: FFAppState()
+                                              .buildingList
+                                              .where((e) =>
+                                                  e.buildDoc ==
+                                                  FFAppState()
+                                                      .currentDropdownSelected
+                                                      .buildingDoc)
+                                              .toList()
+                                              .first
+                                              .buildingRef,
+                                          floor: functions.stringToInt(
+                                              FFAppState()
+                                                  .currentDropdownSelected
+                                                  .floorNumber),
+                                        );
 
-                                      setState(() {});
+                                        setState(() {});
+                                      }
                                     }
 
                                     setState(() {});

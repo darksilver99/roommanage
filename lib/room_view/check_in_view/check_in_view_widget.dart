@@ -355,7 +355,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
 
                                   setState(() {});
                                 },
-                                text: 'ถ่ายรูปบัตรประชาชน',
+                                text: 'ถ่ายรูปบัตรประชาชน/ใบขับขี่',
                                 icon: Icon(
                                   Icons.photo_camera,
                                   size: 32.0,
@@ -1589,7 +1589,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                         },
                                       );
 
-                                      Navigator.pop(context);
+                                      Navigator.pop(context, 'update');
                                     }
                                   } else {
                                     await showDialog(

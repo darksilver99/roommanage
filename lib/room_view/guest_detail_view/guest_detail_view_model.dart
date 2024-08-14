@@ -5,6 +5,8 @@ import '/component/remark_view/remark_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/room_view/guest_payment_history_view/guest_payment_history_view_widget.dart';
+import '/room_view/guest_payment_view/guest_payment_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'guest_detail_view_widget.dart' show GuestDetailViewWidget;
