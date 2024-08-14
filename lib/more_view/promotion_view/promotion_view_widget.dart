@@ -9,9 +9,11 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'promotion_view_model.dart';
 export 'promotion_view_model.dart';
@@ -232,6 +234,95 @@ class _PromotionViewWidgetState extends State<PromotionViewWidget>
                                         ),
                                   ),
                                 ),
+                              ],
+                            ),
+                            Wrap(
+                              spacing: 8.0,
+                              runSpacing: 8.0,
+                              alignment: WrapAlignment.start,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              direction: Axis.horizontal,
+                              runAlignment: WrapAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              clipBehavior: Clip.none,
+                              children: [
+                                if (FFAppState().configData.contact[0] !=
+                                        null &&
+                                    FFAppState().configData.contact[0] != '')
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await launchUrl(Uri(
+                                        scheme: 'tel',
+                                        path:
+                                            FFAppState().configData.contact[0],
+                                      ));
+                                    },
+                                    child: FaIcon(
+                                      FontAwesomeIcons.phoneSquare,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 32.0,
+                                    ),
+                                  ),
+                                if (FFAppState().configData.contact[1] !=
+                                        null &&
+                                    FFAppState().configData.contact[1] != '')
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await launchURL(
+                                          FFAppState().configData.contact[1]);
+                                    },
+                                    child: FaIcon(
+                                      FontAwesomeIcons.line,
+                                      color:
+                                          FlutterFlowTheme.of(context).success,
+                                      size: 32.0,
+                                    ),
+                                  ),
+                                if (FFAppState().configData.contact[2] !=
+                                        null &&
+                                    FFAppState().configData.contact[2] != '')
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await launchURL(
+                                          FFAppState().configData.contact[2]);
+                                    },
+                                    child: FaIcon(
+                                      FontAwesomeIcons.facebookSquare,
+                                      color: Color(0xFF446EC4),
+                                      size: 32.0,
+                                    ),
+                                  ),
+                                if (FFAppState().configData.contact[3] !=
+                                        null &&
+                                    FFAppState().configData.contact[3] != '')
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await launchURL(
+                                          FFAppState().configData.contact[3]);
+                                    },
+                                    child: FaIcon(
+                                      FontAwesomeIcons.instagramSquare,
+                                      color: Color(0xFFC72A91),
+                                      size: 32.0,
+                                    ),
+                                  ),
                               ],
                             ),
                           ],
