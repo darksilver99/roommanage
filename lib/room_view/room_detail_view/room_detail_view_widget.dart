@@ -501,10 +501,14 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                   ),
                                                 );
                                               },
-                                            );
+                                            ).then((value) => safeSetState(
+                                                () => _model.isUpdate = value));
 
-                                            await _model.initData(context);
-                                            setState(() {});
+                                            if ((_model.isUpdate != null &&
+                                                    _model.isUpdate != '') &&
+                                                (_model.isUpdate == 'update')) {
+                                              Navigator.pop(context, 'update');
+                                            }
                                           } else {
                                             await showDialog(
                                               context: context,
@@ -530,6 +534,8 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                               },
                                             );
                                           }
+
+                                          setState(() {});
                                         },
                                         text: 'เช็คอิน',
                                         options: FFButtonOptions(

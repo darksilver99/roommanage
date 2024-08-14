@@ -40,6 +40,8 @@ class RoomDetailViewModel extends FlutterFlowModel<RoomDetailViewWidget> {
   DateTimeRange? calendarSelectedDay;
   // Stores action output result for [Custom Action - getGuestDocument] action in Calendar widget.
   GuestListRecord? guestDocument;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  String? isUpdate;
 
   @override
   void initState(BuildContext context) {
