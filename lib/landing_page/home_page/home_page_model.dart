@@ -287,7 +287,10 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
             alignment: AlignmentDirectional(0.0, 0.0)
                 .resolve(Directionality.of(context)),
             child: WebViewAware(
-              child: InfoCustomViewWidget(),
+              child: InfoCustomViewWidget(
+                title: 'เข้าใช้งานครั้งแรก พิเศษสำหรับคุณฟรี 1 เดือน',
+                status: 'success',
+              ),
             ),
           );
         },
