@@ -65,6 +65,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   bool? checkboxValue3;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   String? isSearch;
+  // Stores action output result for [Action Block - checkExpireDate] action in Container widget.
+  bool? isExpire;
   // Stores action output result for [Bottom Sheet - RoomDetailView] action in Container widget.
   String? isUpdate;
 
@@ -201,7 +203,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     }
   }
 
-  Future checkExpireDate(BuildContext context) async {
+  Future<bool?> checkExpireDate(BuildContext context) async {
     String? isUpdate;
 
     if (getCurrentTimestamp > FFAppState().customerData.expireDate!) {
@@ -221,7 +223,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
         },
       );
 
-      return;
+      return true;
     } else {
       if (getCurrentTimestamp >
           functions.getBeforeDay(5, FFAppState().customerData.expireDate!)) {
@@ -261,6 +263,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           }
         }
       }
+      return false;
     }
   }
 }
