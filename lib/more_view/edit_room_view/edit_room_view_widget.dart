@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -74,6 +75,8 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -219,33 +222,80 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
                                     return;
                                   }
                                   if (_model.isValid!) {
-                                    await widget!.roomDocument!.reference
-                                        .update(createRoomListRecordData(
-                                      updateDate: getCurrentTimestamp,
-                                      subject: _model.textController.text,
-                                    ));
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: InfoCustomViewWidget(
-                                              title: 'บันทึกข้อมูลสำเร็จ',
-                                              status: 'success',
-                                            ),
-                                          ),
-                                        );
-                                      },
+                                    _model.totalRoom =
+                                        await queryRoomListRecordCount(
+                                      parent:
+                                          FFAppState().customerData.customerRef,
+                                      queryBuilder: (roomListRecord) =>
+                                          roomListRecord.where(Filter.or(
+                                        Filter(
+                                          'building_ref',
+                                          isEqualTo:
+                                              widget!.roomDocument?.buildingRef,
+                                        ),
+                                        Filter(
+                                          'floor_number',
+                                          isEqualTo:
+                                              widget!.roomDocument?.floorNumber,
+                                        ),
+                                        Filter(
+                                          'subject',
+                                          isEqualTo: _model.textController.text,
+                                        ),
+                                      )),
                                     );
+                                    if (_model.totalRoom! > 0) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: InfoCustomViewWidget(
+                                                title: 'เลขที่ห้องซ้ำ',
+                                                detail:
+                                                    'กรุณาตรวจสอบเลขที่ห้อง เนื่องจากอาคารนี้มีเลขที่ห้องนี้อยู่แล้ว',
+                                                status: 'error',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      await widget!.roomDocument!.reference
+                                          .update(createRoomListRecordData(
+                                        updateDate: getCurrentTimestamp,
+                                        subject: _model.textController.text,
+                                      ));
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: InfoCustomViewWidget(
+                                                title: 'บันทึกข้อมูลสำเร็จ',
+                                                status: 'success',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
 
-                                    Navigator.pop(context, 'update');
+                                      Navigator.pop(context, 'update');
+                                    }
                                   }
 
                                   setState(() {});
