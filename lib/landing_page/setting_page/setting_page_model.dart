@@ -3,6 +3,7 @@ import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/more_view/building_list_view/building_list_view_widget.dart';
 import '/more_view/general_setting_view/general_setting_view_widget.dart';
 import '/more_view/issue_view/issue_view_widget.dart';
 import '/more_view/promotion_view/promotion_view_widget.dart';

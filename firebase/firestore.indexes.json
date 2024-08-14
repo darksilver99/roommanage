@@ -9,6 +9,20 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "subject",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "room_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "floor_number",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "building_ref",
           "order": "ASCENDING"
         },
