@@ -271,6 +271,12 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   Future checkIsFirstTime(BuildContext context) async {
     if (FFAppState().customerData.isFirstTime) {
+      await FFAppState()
+          .customerData
+          .customerRef!
+          .update(createCustomerNameRecordData(
+            isFirstTime: false,
+          ));
       await showDialog(
         context: context,
         builder: (dialogContext) {
@@ -286,13 +292,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           );
         },
       );
-
-      await FFAppState()
-          .customerData
-          .customerRef!
-          .update(createCustomerNameRecordData(
-            isFirstTime: false,
-          ));
     }
   }
 }
