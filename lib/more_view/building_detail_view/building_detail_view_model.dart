@@ -80,7 +80,10 @@ class BuildingDetailViewModel
     buildingDocument = buildingDocumentResult;
   }
 
-  Future initRoom(BuildContext context) async {
+  Future initRoom(
+    BuildContext context, {
+    required DocumentReference? buildingRef,
+  }) async {
     List<RoomListRecord>? roomListResult;
 
     roomListResult = await queryRoomListRecordOnce(
@@ -89,6 +92,10 @@ class BuildingDetailViewModel
           .where(
             'floor_number',
             isEqualTo: functions.stringToInt(dropDownValue!),
+          )
+          .where(
+            'building_ref',
+            isEqualTo: buildingRef,
           )
           .orderBy('subject'),
     );
