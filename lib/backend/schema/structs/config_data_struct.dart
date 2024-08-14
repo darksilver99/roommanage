@@ -18,6 +18,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
     List<String>? paymentAlertText,
     String? paymentDetailImage,
     String? promotionDetailImage,
+    List<String>? contact,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _policyUrl = policyUrl,
@@ -27,6 +28,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _paymentAlertText = paymentAlertText,
         _paymentDetailImage = paymentDetailImage,
         _promotionDetailImage = promotionDetailImage,
+        _contact = contact,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -99,6 +101,17 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasPromotionDetailImage() => _promotionDetailImage != null;
 
+  // "contact" field.
+  List<String>? _contact;
+  List<String> get contact => _contact ?? const [];
+  set contact(List<String>? val) => _contact = val;
+
+  void updateContact(Function(List<String>) updateFn) {
+    updateFn(_contact ??= []);
+  }
+
+  bool hasContact() => _contact != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -109,6 +122,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         paymentAlertText: getDataList(data['payment_alert_text']),
         paymentDetailImage: data['payment_detail_image'] as String?,
         promotionDetailImage: data['promotion_detail_image'] as String?,
+        contact: getDataList(data['contact']),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -124,6 +138,7 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'payment_alert_text': _paymentAlertText,
         'payment_detail_image': _paymentDetailImage,
         'promotion_detail_image': _promotionDetailImage,
+        'contact': _contact,
       }.withoutNulls;
 
   @override
@@ -162,6 +177,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'promotion_detail_image': serializeParam(
           _promotionDetailImage,
           ParamType.String,
+        ),
+        'contact': serializeParam(
+          _contact,
+          ParamType.String,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -207,6 +227,11 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        contact: deserializeParam<String>(
+          data['contact'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -223,7 +248,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         freeDay == other.freeDay &&
         listEquality.equals(paymentAlertText, other.paymentAlertText) &&
         paymentDetailImage == other.paymentDetailImage &&
-        promotionDetailImage == other.promotionDetailImage;
+        promotionDetailImage == other.promotionDetailImage &&
+        listEquality.equals(contact, other.contact);
   }
 
   @override
@@ -235,7 +261,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         freeDay,
         paymentAlertText,
         paymentDetailImage,
-        promotionDetailImage
+        promotionDetailImage,
+        contact
       ]);
 }
 

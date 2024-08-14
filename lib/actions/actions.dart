@@ -106,5 +106,6 @@ Future setConfigData(
     paymentAlertText: configDocument?.paymentAlertText,
     paymentDetailImage: configDocument?.paymentDetailImage,
     promotionDetailImage: configDocument?.promotionDetailImage,
+    contact: configDocument?.contact,
   );
 }
