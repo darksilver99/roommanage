@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/component/info_custom_view/info_custom_view_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -306,6 +307,9 @@ class _EditBuildingAndTotalFloorViewWidgetState
                                         await widget!
                                             .buildingDocument!.reference
                                             .delete();
+                                        FFAppState().buildingList = [];
+                                        FFAppState().currentDropdownSelected =
+                                            CurrentDropdownSelectedDataStruct();
                                         await showDialog(
                                           context: context,
                                           builder: (dialogContext) {
