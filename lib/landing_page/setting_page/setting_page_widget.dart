@@ -159,7 +159,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                       ),
                                       singleRecord: true,
                                     ).then((s) => s.firstOrNull);
-                                    if (customerResult?.reference != null) {
+                                    if (_model.customerResult?.reference !=
+                                        null) {
                                       await showDialog(
                                         context: context,
                                         builder: (dialogContext) {
