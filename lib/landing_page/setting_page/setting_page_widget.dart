@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,8 @@ import '/more_view/general_setting_view/general_setting_view_widget.dart';
 import '/more_view/issue_view/issue_view_widget.dart';
 import '/more_view/promotion_view/promotion_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -147,23 +150,38 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: BuildingListViewWidget(),
-                                          ),
-                                        );
-                                      },
-                                    );
+                                    _model.customerResult =
+                                        await queryCustomerNameRecordOnce(
+                                      queryBuilder: (customerNameRecord) =>
+                                          customerNameRecord.where(
+                                        'create_by',
+                                        isEqualTo: currentUserReference,
+                                      ),
+                                      singleRecord: true,
+                                    ).then((s) => s.firstOrNull);
+                                    if (customerResult?.reference != null) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: WebViewAware(
+                                              child: BuildingListViewWidget(),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      context.pushNamed('CreateCustomerPage');
+                                    }
+
+                                    setState(() {});
                                   },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,

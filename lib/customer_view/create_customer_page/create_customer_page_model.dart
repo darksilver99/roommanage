@@ -1,5 +1,4 @@
 import '/backend/schema/structs/index.dart';
-import '/component/app_bar_view/app_bar_view_widget.dart';
 import '/component/background_view/background_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -17,8 +16,6 @@ class CreateCustomerPageModel
   final formKey = GlobalKey<FormState>();
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
-  // Model for AppBarView component.
-  late AppBarViewModel appBarViewModel;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -37,14 +34,12 @@ class CreateCustomerPageModel
   @override
   void initState(BuildContext context) {
     backgroundViewModel = createModel(context, () => BackgroundViewModel());
-    appBarViewModel = createModel(context, () => AppBarViewModel());
     textControllerValidator = _textControllerValidator;
   }
 
   @override
   void dispose() {
     backgroundViewModel.dispose();
-    appBarViewModel.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }
