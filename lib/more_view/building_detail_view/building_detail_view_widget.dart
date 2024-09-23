@@ -60,7 +60,7 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
         context,
         totalFloor: _model.buildingDocument?.totalFloor,
       );
-      setState(() {});
+      safeSetState(() {});
     });
 
     animationsMap.addAll({
@@ -178,13 +178,13 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                                 context,
                                 totalFloor: _model.buildingDocument?.totalFloor,
                               );
-                              setState(() {});
+                              safeSetState(() {});
                             } else {
                               Navigator.pop(context);
                             }
                           }
 
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         text: 'แก้ไขชื่อ/ชั้น',
                         icon: Icon(
@@ -229,12 +229,12 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                             FormFieldController<String>(null),
                         options: _model.floorList,
                         onChanged: (val) async {
-                          setState(() => _model.dropDownValue = val);
+                          safeSetState(() => _model.dropDownValue = val);
                           await _model.initRoom(
                             context,
                             buildingRef: _model.buildingDocument?.reference,
                           );
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         width: 300.0,
                         height: 56.0,
@@ -325,10 +325,10 @@ class _BuildingDetailViewWidgetState extends State<BuildingDetailViewWidget>
                                     buildingRef:
                                         _model.buildingDocument?.reference,
                                   );
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
 
-                                setState(() {});
+                                safeSetState(() {});
                               },
                               child: Material(
                                 color: Colors.transparent,

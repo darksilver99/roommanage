@@ -50,7 +50,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().tmpRoomRef = widget!.roomDocument?.reference;
       _model.startDate = FFAppState().tmpBookingDateSelected;
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.preNameTextController ??= TextEditingController();
@@ -172,7 +172,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       selectedMedia.every((m) =>
                                           validateFileFormat(
                                               m.storagePath, context))) {
-                                    setState(
+                                    safeSetState(
                                         () => _model.isDataUploading = true);
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
@@ -194,12 +194,12 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     }
                                     if (selectedUploadedFiles.length ==
                                         selectedMedia.length) {
-                                      setState(() {
+                                      safeSetState(() {
                                         _model.uploadedLocalFile =
                                             selectedUploadedFiles.first;
                                       });
                                     } else {
-                                      setState(() {});
+                                      safeSetState(() {});
                                       return;
                                     }
                                   }
@@ -257,7 +257,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                             r'''$.data.id_card_number''',
                                           ) !=
                                           null) {
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.preNameTextController?.text =
                                               getJsonField(
                                             (_model.apiResult2ve?.jsonBody ??
@@ -272,7 +272,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       .text
                                                       .length);
                                         });
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.firstNameTextController?.text =
                                               getJsonField(
                                             (_model.apiResult2ve?.jsonBody ??
@@ -287,7 +287,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       .text
                                                       .length);
                                         });
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.lastNameTextController?.text =
                                               getJsonField(
                                             (_model.apiResult2ve?.jsonBody ??
@@ -302,7 +302,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                       .text
                                                       .length);
                                         });
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.idCardTextController?.text =
                                               getJsonField(
                                             (_model.apiResult2ve?.jsonBody ??
@@ -353,7 +353,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     }
                                   }
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: 'ถ่ายรูปบัตรประชาชน/ใบขับขี่',
                                 icon: Icon(
@@ -887,7 +887,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       if (!_model.isDaily) {
                                         _model.isDaily = true;
                                         _model.endDate = null;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       }
                                     },
                                     child: Row(
@@ -983,7 +983,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       if (_model.isDaily) {
                                         _model.isDaily = false;
                                         _model.endDate = null;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       }
                                     },
                                     child: Row(
@@ -1158,7 +1158,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     if (_model.datePicked1 != null) {
                                       _model.startDate = _model.datePicked1;
                                       _model.endDate = null;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     }
                                   },
                                   child: Container(
@@ -1329,7 +1329,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                           }
                                           if (_model.datePicked2 != null) {
                                             _model.endDate = _model.datePicked2;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           }
                                         } else {
                                           await showDialog(
@@ -1449,7 +1449,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                 _model.isValid = true;
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
-                                  setState(() => _model.isValid = false);
+                                  safeSetState(() => _model.isValid = false);
                                   return;
                                 }
                                 _shouldSetState = true;
@@ -1480,7 +1480,8 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                           },
                                         );
 
-                                        if (_shouldSetState) setState(() {});
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
                                         return;
                                       }
                                     }
@@ -1614,7 +1615,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     );
                                   }
                                 }
-                                if (_shouldSetState) setState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                               text: 'ยืนยัน',
                               options: FFButtonOptions(

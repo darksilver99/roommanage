@@ -43,7 +43,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       await _model.checkCuurentDate(context);
       await _model.initData(context);
       await _model.checkIsFirstTime(context);
-      setState(() {});
+      safeSetState(() {});
     });
   }
 
@@ -113,7 +113,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         children: [
           wrapWithModel(
             model: _model.backgroundViewModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: BackgroundViewWidget(),
           ),
           if (!_model.isLoading)
@@ -241,7 +241,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           .statusSelectedList[0]
                                                           .isSelected,
                                                   onChanged: (newValue) async {
-                                                    setState(() =>
+                                                    safeSetState(() =>
                                                         _model.checkboxValue1 =
                                                             newValue!);
                                                     if (newValue!) {
@@ -255,7 +255,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await _model
                                                           .updateRoomListBlock(
                                                               context);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     } else {
                                                       FFAppState()
                                                           .updateStatusSelectedListAtIndex(
@@ -267,7 +267,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await _model
                                                           .updateRoomListBlock(
                                                               context);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   side: BorderSide(
@@ -332,7 +332,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           .statusSelectedList[1]
                                                           .isSelected,
                                                   onChanged: (newValue) async {
-                                                    setState(() =>
+                                                    safeSetState(() =>
                                                         _model.checkboxValue2 =
                                                             newValue!);
                                                     if (newValue!) {
@@ -346,7 +346,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await _model
                                                           .updateRoomListBlock(
                                                               context);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     } else {
                                                       FFAppState()
                                                           .updateStatusSelectedListAtIndex(
@@ -358,7 +358,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await _model
                                                           .updateRoomListBlock(
                                                               context);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   side: BorderSide(
@@ -423,7 +423,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           .statusSelectedList[2]
                                                           .isSelected,
                                                   onChanged: (newValue) async {
-                                                    setState(() =>
+                                                    safeSetState(() =>
                                                         _model.checkboxValue3 =
                                                             newValue!);
                                                     if (newValue!) {
@@ -437,7 +437,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await _model
                                                           .updateRoomListBlock(
                                                               context);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     } else {
                                                       FFAppState()
                                                           .updateStatusSelectedListAtIndex(
@@ -449,7 +449,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await _model
                                                           .updateRoomListBlock(
                                                               context);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   side: BorderSide(
@@ -517,13 +517,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       _model.isSearch != '') &&
                                   (_model.isSearch == 'search')) {
                                 await _model.resetSelectedBlock(context);
-                                setState(() {
+                                safeSetState(() {
                                   _model.checkboxValue1 = true;
                                 });
-                                setState(() {
+                                safeSetState(() {
                                   _model.checkboxValue2 = true;
                                 });
-                                setState(() {
+                                safeSetState(() {
                                   _model.checkboxValue3 = true;
                                 });
                                 await _model.getRoomListBlock(
@@ -543,10 +543,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       .floorNumber),
                                 );
 
-                                setState(() {});
+                                safeSetState(() {});
                               }
 
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             text: 'เลือกอาคาร/ชั้น',
                             options: FFButtonOptions(
@@ -652,13 +652,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       } else {
                                         await _model
                                             .resetSelectedBlock(context);
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.checkboxValue1 = true;
                                         });
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.checkboxValue2 = true;
                                         });
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.checkboxValue3 = true;
                                         });
                                         await _model.getRoomListBlock(
@@ -679,11 +679,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   .floorNumber),
                                         );
 
-                                        setState(() {});
+                                        safeSetState(() {});
                                       }
                                     }
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   child: Material(
                                     color: Colors.transparent,

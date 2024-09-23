@@ -203,7 +203,7 @@ class _ForgetPasswordViewWidgetState extends State<ForgetPasswordViewWidget>
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
-                                    setState(() => _model.isValid = false);
+                                    safeSetState(() => _model.isValid = false);
                                     return;
                                   }
                                   if (_model.isValid!) {
@@ -249,7 +249,7 @@ class _ForgetPasswordViewWidgetState extends State<ForgetPasswordViewWidget>
                                     Navigator.pop(context);
                                   }
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: 'ส่งข้อมูล',
                                 options: FFButtonOptions(

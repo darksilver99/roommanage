@@ -159,7 +159,7 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                             .paymentGuestTypeList
                                             .map((label) => ChipData(label))
                                             .toList(),
-                                        onChanged: (val) => setState(() =>
+                                        onChanged: (val) => safeSetState(() =>
                                             _model.choiceChipsValue =
                                                 val?.firstOrNull),
                                         selectedChipStyle: ChipStyle(
@@ -580,10 +580,12 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                                   .isConfirm!) {
                                                                 _model.tmpImageList =
                                                                     [];
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
 
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             child: Icon(
                                                               Icons
@@ -614,7 +616,7 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                         validateFileFormat(
                                                             m.storagePath,
                                                             context))) {
-                                                  setState(() => _model
+                                                  safeSetState(() => _model
                                                       .isDataUploading = true);
                                                   var selectedUploadedFiles =
                                                       <FFUploadedFile>[];
@@ -648,13 +650,13 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                   if (selectedUploadedFiles
                                                           .length ==
                                                       selectedMedia.length) {
-                                                    setState(() {
+                                                    safeSetState(() {
                                                       _model.uploadedLocalFile =
                                                           selectedUploadedFiles
                                                               .first;
                                                     });
                                                   } else {
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                     return;
                                                   }
                                                 }
@@ -669,7 +671,7 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                   _model.tmpImageList = [];
                                                   _model.addToTmpImageList(
                                                       _model.uploadedLocalFile);
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 }
                                               },
                                               text: 'แนบรูป',
@@ -719,7 +721,8 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                       if (_model.formKey.currentState == null ||
                                           !_model.formKey.currentState!
                                               .validate()) {
-                                        setState(() => _model.isValid = false);
+                                        safeSetState(
+                                            () => _model.isValid = false);
                                         return;
                                       }
                                       if (_model.isValid!) {
@@ -827,7 +830,7 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                         }
                                       }
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     text: 'บันทึกข้อมูล',
                                     options: FFButtonOptions(

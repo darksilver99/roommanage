@@ -256,7 +256,7 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
                                         Navigator.pop(context, 'update');
                                       }
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     child: Text(
                                       'ลบห้องนี้?',
@@ -288,7 +288,7 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
-                                    setState(() => _model.isValid = false);
+                                    safeSetState(() => _model.isValid = false);
                                     return;
                                   }
                                   _shouldSetState = true;
@@ -344,7 +344,8 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
                                           },
                                         );
 
-                                        if (_shouldSetState) setState(() {});
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
                                         return;
                                       }
                                     }
@@ -377,7 +378,7 @@ class _EditRoomViewWidgetState extends State<EditRoomViewWidget>
 
                                     Navigator.pop(context, 'update');
                                   }
-                                  if (_shouldSetState) setState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                 },
                                 text: 'บันทึก',
                                 options: FFButtonOptions(

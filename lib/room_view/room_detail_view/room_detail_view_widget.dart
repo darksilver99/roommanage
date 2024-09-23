@@ -47,7 +47,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.initData(context);
-      setState(() {});
+      safeSetState(() {});
     });
   }
 
@@ -256,7 +256,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                     context, 'update');
                                               }
 
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             text: 'ปิดปรับปรุงห้อง',
                                             options: FFButtonOptions(
@@ -310,7 +310,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                               Navigator.pop(context, 'update');
                                             }
 
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           text: 'เปิดใช้งานห้อง',
                                           options: FFButtonOptions(
@@ -386,7 +386,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                           if (_model.guestDocument != null) {
                                             FFAppState()
                                                 .tmpBookingDateSelected = null;
-                                            setState(() {});
+                                            safeSetState(() {});
                                             await showDialog(
                                               context: context,
                                               builder: (dialogContext) {
@@ -415,7 +415,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             );
 
                                             await _model.initData(context);
-                                            setState(() {});
+                                            safeSetState(() {});
                                           } else {
                                             if (_model
                                                     .calendarSelectedDay!.end <
@@ -423,17 +423,17 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                               FFAppState()
                                                       .tmpBookingDateSelected =
                                                   null;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             } else {
                                               FFAppState()
                                                       .tmpBookingDateSelected =
                                                   _model.calendarSelectedDay
                                                       ?.start;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             }
                                           }
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         titleStyle: FlutterFlowTheme.of(context)
                                             .headlineSmall
@@ -535,7 +535,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                             );
                                           }
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         text: 'เช็คอิน',
                                         options: FFButtonOptions(

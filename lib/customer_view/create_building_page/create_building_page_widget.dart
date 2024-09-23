@@ -49,7 +49,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
         children: [
           wrapWithModel(
             model: _model.backgroundViewModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: BackgroundViewWidget(),
           ),
           Column(
@@ -58,7 +58,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
             children: [
               wrapWithModel(
                 model: _model.appBarViewModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: AppBarViewWidget(),
               ),
               Expanded(
@@ -221,7 +221,7 @@ class _CreateBuildingPageWidgetState extends State<CreateBuildingPageWidget> {
                                             ..buildingName =
                                                 _model.textController.text,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
 
                                         context.pushNamed('CreateFloorPage');
                                       },

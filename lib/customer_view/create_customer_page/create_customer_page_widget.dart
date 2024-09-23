@@ -50,7 +50,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
           children: [
             wrapWithModel(
               model: _model.backgroundViewModel,
-              updateCallback: () => setState(() {}),
+              updateCallback: () => safeSetState(() {}),
               child: BackgroundViewWidget(),
             ),
             Column(
@@ -219,7 +219,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                                 value: _model.checkboxValue ??=
                                                     true,
                                                 onChanged: (newValue) async {
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.checkboxValue =
                                                           newValue!);
                                                 },
@@ -269,7 +269,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                                 customerName:
                                                     _model.textController.text,
                                               );
-                                              setState(() {});
+                                              safeSetState(() {});
 
                                               context.pushNamed(
                                                   'CreateBuildingPage');
@@ -281,7 +281,7 @@ class _CreateCustomerPageWidgetState extends State<CreateCustomerPageWidget> {
                                                 buildingName:
                                                     _model.textController.text,
                                               );
-                                              setState(() {});
+                                              safeSetState(() {});
 
                                               context
                                                   .pushNamed('CreateFloorPage');

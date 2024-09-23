@@ -264,7 +264,8 @@ class _OCRAlertViewWidgetState extends State<OCRAlertViewWidget>
                         child: Checkbox(
                           value: _model.checkboxValue ??= true,
                           onChanged: (newValue) async {
-                            setState(() => _model.checkboxValue = newValue!);
+                            safeSetState(
+                                () => _model.checkboxValue = newValue!);
                           },
                           side: BorderSide(
                             width: 2,
