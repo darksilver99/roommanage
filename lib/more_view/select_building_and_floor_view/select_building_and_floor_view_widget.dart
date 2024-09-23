@@ -151,8 +151,8 @@ class _SelectBuildingAndFloorViewWidgetState
                                 .map((e) => e.subject)
                                 .toList(),
                             onChanged: (val) async {
-                              setState(() => _model.dropDownValue1 = val);
-                              setState(() {
+                              safeSetState(() => _model.dropDownValue1 = val);
+                              safeSetState(() {
                                 _model.dropDownValueController2?.reset();
                               });
                               _model.floorList = functions
@@ -165,7 +165,7 @@ class _SelectBuildingAndFloorViewWidgetState
                                       .totalFloor)
                                   .toList()
                                   .cast<String>();
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             width: double.infinity,
                             height: 60.0,
@@ -204,7 +204,7 @@ class _SelectBuildingAndFloorViewWidgetState
                                 FormFieldController<String>(null),
                             options: _model.floorList,
                             onChanged: (val) =>
-                                setState(() => _model.dropDownValue2 = val),
+                                safeSetState(() => _model.dropDownValue2 = val),
                             width: double.infinity,
                             height: 60.0,
                             textStyle: FlutterFlowTheme.of(context)

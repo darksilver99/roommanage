@@ -409,7 +409,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           suffixIcon: InkWell(
-                            onTap: () => setState(
+                            onTap: () => safeSetState(
                               () => _model.paswordVisibility =
                                   !_model.paswordVisibility,
                             ),
@@ -479,7 +479,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           suffixIcon: InkWell(
-                            onTap: () => setState(
+                            onTap: () => safeSetState(
                               () => _model.password2Visibility =
                                   !_model.password2Visibility,
                             ),
@@ -523,7 +523,7 @@ class _RegisterViewWidgetState extends State<RegisterViewWidget> {
                             child: Checkbox(
                               value: _model.checkboxValue ??= true,
                               onChanged: (newValue) async {
-                                setState(
+                                safeSetState(
                                     () => _model.checkboxValue = newValue!);
                               },
                               side: BorderSide(

@@ -213,7 +213,7 @@ class _RemarkViewWidgetState extends State<RemarkViewWidget>
                                 _model.isValid = true;
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
-                                  setState(() => _model.isValid = false);
+                                  safeSetState(() => _model.isValid = false);
                                   return;
                                 }
                                 if (_model.isValid!) {
@@ -221,7 +221,7 @@ class _RemarkViewWidgetState extends State<RemarkViewWidget>
                                       context, _model.textController.text);
                                 }
 
-                                setState(() {});
+                                safeSetState(() {});
                               },
                               text: 'บันทึก',
                               options: FFButtonOptions(

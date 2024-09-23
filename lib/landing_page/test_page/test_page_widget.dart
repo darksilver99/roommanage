@@ -45,7 +45,7 @@ class _TestPageWidgetState extends State<TestPageWidget> {
         children: [
           wrapWithModel(
             model: _model.backgroundViewModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: BackgroundViewWidget(),
           ),
           Column(
@@ -53,7 +53,7 @@ class _TestPageWidgetState extends State<TestPageWidget> {
             children: [
               wrapWithModel(
                 model: _model.appBarViewModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: AppBarViewWidget(
                   title: 'testtest',
                 ),
@@ -67,7 +67,7 @@ class _TestPageWidgetState extends State<TestPageWidget> {
                   if (selectedMedia != null &&
                       selectedMedia.every(
                           (m) => validateFileFormat(m.storagePath, context))) {
-                    setState(() => _model.isDataUploading = true);
+                    safeSetState(() => _model.isDataUploading = true);
                     var selectedUploadedFiles = <FFUploadedFile>[];
 
                     var downloadUrls = <String>[];
@@ -95,12 +95,12 @@ class _TestPageWidgetState extends State<TestPageWidget> {
                     }
                     if (selectedUploadedFiles.length == selectedMedia.length &&
                         downloadUrls.length == selectedMedia.length) {
-                      setState(() {
+                      safeSetState(() {
                         _model.uploadedLocalFile = selectedUploadedFiles.first;
                         _model.uploadedFileUrl = downloadUrls.first;
                       });
                     } else {
-                      setState(() {});
+                      safeSetState(() {});
                       return;
                     }
                   }

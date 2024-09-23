@@ -214,7 +214,7 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                               }
                                             }
 
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           child: Text(
                                             'ยกเลิกรายการ X',
@@ -988,7 +988,7 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                                           );
 
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           return;
                                                         }
                                                       }
@@ -1025,7 +1025,7 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                                       Navigator.pop(context);
                                                     }
                                                     if (_shouldSetState)
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                   },
                                                   text: 'เช็คเอาท์',
                                                   options: FFButtonOptions(

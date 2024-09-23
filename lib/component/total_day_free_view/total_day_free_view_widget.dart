@@ -42,7 +42,7 @@ class _TotalDayFreeViewWidgetState extends State<TotalDayFreeViewWidget> {
       );
       _model.totalDay = _model.totalDayResult!;
       _model.isLoading = false;
-      setState(() {});
+      safeSetState(() {});
     });
   }
 

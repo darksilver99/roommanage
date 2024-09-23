@@ -336,7 +336,7 @@ class _EditBuildingAndTotalFloorViewWidgetState
                                         Navigator.pop(context, 'update2');
                                       }
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     child: Text(
                                       'ลบอาคารนี้?',
@@ -367,7 +367,7 @@ class _EditBuildingAndTotalFloorViewWidgetState
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
-                                    setState(() => _model.isValid = false);
+                                    safeSetState(() => _model.isValid = false);
                                     return;
                                   }
                                   if (_model.isValid!) {
@@ -402,7 +402,7 @@ class _EditBuildingAndTotalFloorViewWidgetState
                                     Navigator.pop(context, 'update');
                                   }
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: 'บันทึก',
                                 options: FFButtonOptions(

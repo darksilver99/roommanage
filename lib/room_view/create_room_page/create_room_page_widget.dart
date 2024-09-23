@@ -63,7 +63,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
         children: [
           wrapWithModel(
             model: _model.backgroundViewModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: BackgroundViewWidget(),
           ),
           Column(
@@ -72,7 +72,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
             children: [
               wrapWithModel(
                 model: _model.appBarViewModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: AppBarViewWidget(),
               ),
               Expanded(
@@ -299,7 +299,7 @@ class _CreateRoomPageWidgetState extends State<CreateRoomPageWidget> {
                                             );
                                           }
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         text: 'ยืนยัน',
                                         icon: FaIcon(

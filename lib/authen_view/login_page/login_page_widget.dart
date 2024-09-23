@@ -60,7 +60,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         children: [
           wrapWithModel(
             model: _model.backgroundViewModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: BackgroundViewWidget(),
           ),
           Padding(
@@ -215,7 +215,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     suffixIcon: InkWell(
-                                      onTap: () => setState(
+                                      onTap: () => safeSetState(
                                         () => _model.passwordVisibility =
                                             !_model.passwordVisibility,
                                       ),

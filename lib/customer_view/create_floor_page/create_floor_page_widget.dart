@@ -58,7 +58,7 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
         children: [
           wrapWithModel(
             model: _model.backgroundViewModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: BackgroundViewWidget(),
           ),
           Column(
@@ -67,7 +67,7 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
             children: [
               wrapWithModel(
                 model: _model.appBarViewModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: AppBarViewWidget(),
               ),
               Expanded(
@@ -359,7 +359,7 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                             context,
                                           );
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         text: 'ต่อไป',
                                         icon: FaIcon(
