@@ -331,7 +331,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   ),
                                 ),
                               ),
-                              if (currentUserEmail != 'test@test.com')
+                              if ((currentUserEmail != 'test@test.com') &&
+                                  !FFAppState().configData.isReview)
                                 Builder(
                                   builder: (context) => InkWell(
                                     splashColor: Colors.transparent,
