@@ -85,7 +85,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               );
             },
             backgroundColor: FlutterFlowTheme.of(context).secondary,
-            elevation: 1.0,
+            elevation: 3.0,
             label: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
