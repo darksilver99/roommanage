@@ -247,30 +247,6 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                               totalFloor: int.tryParse(
                                                   _model.textController.text),
                                             ));
-                                            await showDialog(
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child: WebViewAware(
-                                                    child: InfoCustomViewWidget(
-                                                      title:
-                                                          'สร้างข้อมูลที่พักสำเร็จแล้ว',
-                                                      status: 'success',
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            );
                                           } else {
                                             var customerNameRecordReference =
                                                 CustomerNameRecord.collection
@@ -354,68 +330,30 @@ class _CreateFloorPageWidgetState extends State<CreateFloorPageWidget> {
                                                               .text),
                                                     ),
                                                     buildingListRecordReference2);
-                                            if ((currentUserEmail !=
-                                                    'test@test.com') &&
-                                                !FFAppState()
-                                                    .configData
-                                                    .isReview) {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child:
-                                                          InfoCustomViewWidget(
-                                                        title:
-                                                            'สร้างข้อมูลที่พักสำเร็จแล้ว',
-                                                        status: 'success',
-                                                        detail:
-                                                            'พิเศษสำหรับสมาชิกใหม่ทดลองใช้งานฟรี ${FFAppState().configData.freeDay.toString()} วัน',
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            } else {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child:
-                                                          InfoCustomViewWidget(
-                                                        title:
-                                                            'สร้างข้อมูลที่พักสำเร็จแล้ว',
-                                                        status: 'success',
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            }
                                           }
+
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: InfoCustomViewWidget(
+                                                    title:
+                                                        'สร้างข้อมูลที่พักสำเร็จแล้ว',
+                                                    status: 'success',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
 
                                           await actions.pushReplacement(
                                             context,

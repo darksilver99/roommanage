@@ -189,6 +189,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       }
     } else {
       isHasCustomer = false;
+      FFAppState().isCreateBuildingFromSetting = false;
 
       context.pushNamed('CreateCustomerPage');
     }
