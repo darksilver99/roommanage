@@ -278,25 +278,27 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           .update(createCustomerNameRecordData(
             isFirstTime: false,
           ));
-      await showDialog(
-        context: context,
-        builder: (dialogContext) {
-          return Dialog(
-            elevation: 0,
-            insetPadding: EdgeInsets.zero,
-            backgroundColor: Colors.transparent,
-            alignment: AlignmentDirectional(0.0, 0.0)
-                .resolve(Directionality.of(context)),
-            child: WebViewAware(
-              child: InfoCustomViewWidget(
-                title:
-                    'เข้าใช้งานครั้งแรก พิเศษสำหรับคุณ ทดลองใช้งานฟรี ${FFAppState().configData.freeDay.toString()} วัน',
-                status: 'warning',
+      if (!FFAppState().configData.isReview) {
+        await showDialog(
+          context: context,
+          builder: (dialogContext) {
+            return Dialog(
+              elevation: 0,
+              insetPadding: EdgeInsets.zero,
+              backgroundColor: Colors.transparent,
+              alignment: AlignmentDirectional(0.0, 0.0)
+                  .resolve(Directionality.of(context)),
+              child: WebViewAware(
+                child: InfoCustomViewWidget(
+                  title:
+                      'เข้าใช้งานครั้งแรก พิเศษสำหรับคุณ ทดลองใช้งานฟรี ${FFAppState().configData.freeDay.toString()} วัน',
+                  status: 'warning',
+                ),
               ),
-            ),
-          );
-        },
-      );
+            );
+          },
+        );
+      }
     }
   }
 }
