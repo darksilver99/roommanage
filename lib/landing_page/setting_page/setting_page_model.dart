@@ -24,6 +24,8 @@ class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
 
   // Model for BackgroundView component.
   late BackgroundViewModel backgroundViewModel;
+  // Stores action output result for [Action Block - confirmBlock] action in Text widget.
+  bool? isConfirm2;
   // Stores action output result for [Firestore Query - Query a collection] action in Column widget.
   CustomerNameRecord? customerResult;
   // Stores action output result for [Action Block - confirmBlock] action in Column widget.
