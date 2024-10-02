@@ -186,306 +186,333 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   }
                                 },
                               ),
-                              if (FFAppState()
-                                          .currentDropdownSelected
-                                          .buildingDoc !=
-                                      null &&
-                                  FFAppState()
-                                          .currentDropdownSelected
-                                          .buildingDoc !=
-                                      '')
-                                Row(
+                              if (false)
+                                Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Expanded(
-                                      child: Wrap(
-                                        spacing: 4.0,
-                                        runSpacing: 0.0,
-                                        alignment: WrapAlignment.start,
-                                        crossAxisAlignment:
-                                            WrapCrossAlignment.start,
-                                        direction: Axis.horizontal,
-                                        runAlignment: WrapAlignment.start,
-                                        verticalDirection:
-                                            VerticalDirection.down,
-                                        clipBehavior: Clip.none,
+                                    if (FFAppState()
+                                                .currentDropdownSelected
+                                                .buildingDoc !=
+                                            null &&
+                                        FFAppState()
+                                                .currentDropdownSelected
+                                                .buildingDoc !=
+                                            '')
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Theme(
-                                                data: ThemeData(
-                                                  checkboxTheme:
-                                                      CheckboxThemeData(
-                                                    visualDensity:
-                                                        VisualDensity.compact,
-                                                    materialTapTargetSize:
-                                                        MaterialTapTargetSize
-                                                            .shrinkWrap,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4.0),
-                                                    ),
-                                                  ),
-                                                  unselectedWidgetColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                ),
-                                                child: Checkbox(
-                                                  value: _model
-                                                          .checkboxValue1 ??=
-                                                      FFAppState()
-                                                          .statusSelectedList[0]
-                                                          .isSelected,
-                                                  onChanged: (newValue) async {
-                                                    safeSetState(() =>
-                                                        _model.checkboxValue1 =
-                                                            newValue!);
-                                                    if (newValue!) {
-                                                      FFAppState()
-                                                          .updateStatusSelectedListAtIndex(
-                                                        0,
-                                                        (e) => e
-                                                          ..isSelected = _model
-                                                              .checkboxValue1,
-                                                      );
-                                                      await _model
-                                                          .updateRoomListBlock(
-                                                              context);
-                                                      safeSetState(() {});
-                                                    } else {
-                                                      FFAppState()
-                                                          .updateStatusSelectedListAtIndex(
-                                                        0,
-                                                        (e) => e
-                                                          ..isSelected = _model
-                                                              .checkboxValue1,
-                                                      );
-                                                      await _model
-                                                          .updateRoomListBlock(
-                                                              context);
-                                                      safeSetState(() {});
-                                                    }
-                                                  },
-                                                  side: BorderSide(
-                                                    width: 2,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .info,
-                                                  ),
-                                                  activeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  checkColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                ),
-                                              ),
-                                              Text(
-                                                'ว่าง(${_model.tmpRoomList.where((e) => e.status == 0).toList().length.toString()})',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Kanit',
+                                          Expanded(
+                                            child: Wrap(
+                                              spacing: 4.0,
+                                              runSpacing: 0.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Theme(
+                                                      data: ThemeData(
+                                                        checkboxTheme:
+                                                            CheckboxThemeData(
+                                                          visualDensity:
+                                                              VisualDensity
+                                                                  .compact,
+                                                          materialTapTargetSize:
+                                                              MaterialTapTargetSize
+                                                                  .shrinkWrap,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4.0),
+                                                          ),
+                                                        ),
+                                                        unselectedWidgetColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                      ),
+                                                      child: Checkbox(
+                                                        value: _model
+                                                                .checkboxValue1 ??=
+                                                            FFAppState()
+                                                                .statusSelectedList[
+                                                                    0]
+                                                                .isSelected,
+                                                        onChanged:
+                                                            (newValue) async {
+                                                          safeSetState(() =>
+                                                              _model.checkboxValue1 =
+                                                                  newValue!);
+                                                          if (newValue!) {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              0,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue1,
+                                                            );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            safeSetState(() {});
+                                                          } else {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              0,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue1,
+                                                            );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            safeSetState(() {});
+                                                          }
+                                                        },
+                                                        side: BorderSide(
+                                                          width: 2,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .info,
-                                                          letterSpacing: 0.0,
                                                         ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Theme(
-                                                data: ThemeData(
-                                                  checkboxTheme:
-                                                      CheckboxThemeData(
-                                                    visualDensity:
-                                                        VisualDensity.compact,
-                                                    materialTapTargetSize:
-                                                        MaterialTapTargetSize
-                                                            .shrinkWrap,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4.0),
+                                                        activeColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        checkColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  unselectedWidgetColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
+                                                    Text(
+                                                      'ว่าง(${_model.tmpRoomList.where((e) => e.status == 0).toList().length.toString()})',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Kanit',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .info,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                child: Checkbox(
-                                                  value: _model
-                                                          .checkboxValue2 ??=
-                                                      FFAppState()
-                                                          .statusSelectedList[1]
-                                                          .isSelected,
-                                                  onChanged: (newValue) async {
-                                                    safeSetState(() =>
-                                                        _model.checkboxValue2 =
-                                                            newValue!);
-                                                    if (newValue!) {
-                                                      FFAppState()
-                                                          .updateStatusSelectedListAtIndex(
-                                                        1,
-                                                        (e) => e
-                                                          ..isSelected = _model
-                                                              .checkboxValue2,
-                                                      );
-                                                      await _model
-                                                          .updateRoomListBlock(
-                                                              context);
-                                                      safeSetState(() {});
-                                                    } else {
-                                                      FFAppState()
-                                                          .updateStatusSelectedListAtIndex(
-                                                        1,
-                                                        (e) => e
-                                                          ..isSelected = _model
-                                                              .checkboxValue2,
-                                                      );
-                                                      await _model
-                                                          .updateRoomListBlock(
-                                                              context);
-                                                      safeSetState(() {});
-                                                    }
-                                                  },
-                                                  side: BorderSide(
-                                                    width: 2,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .info,
-                                                  ),
-                                                  activeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  checkColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                ),
-                                              ),
-                                              Text(
-                                                'ไม่ว่าง(${_model.tmpRoomList.where((e) => e.status == 1).toList().length.toString()})',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Kanit',
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Theme(
+                                                      data: ThemeData(
+                                                        checkboxTheme:
+                                                            CheckboxThemeData(
+                                                          visualDensity:
+                                                              VisualDensity
+                                                                  .compact,
+                                                          materialTapTargetSize:
+                                                              MaterialTapTargetSize
+                                                                  .shrinkWrap,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4.0),
+                                                          ),
+                                                        ),
+                                                        unselectedWidgetColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                      ),
+                                                      child: Checkbox(
+                                                        value: _model
+                                                                .checkboxValue2 ??=
+                                                            FFAppState()
+                                                                .statusSelectedList[
+                                                                    1]
+                                                                .isSelected,
+                                                        onChanged:
+                                                            (newValue) async {
+                                                          safeSetState(() =>
+                                                              _model.checkboxValue2 =
+                                                                  newValue!);
+                                                          if (newValue!) {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              1,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue2,
+                                                            );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            safeSetState(() {});
+                                                          } else {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              1,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue2,
+                                                            );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            safeSetState(() {});
+                                                          }
+                                                        },
+                                                        side: BorderSide(
+                                                          width: 2,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .info,
-                                                          letterSpacing: 0.0,
                                                         ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Theme(
-                                                data: ThemeData(
-                                                  checkboxTheme:
-                                                      CheckboxThemeData(
-                                                    visualDensity:
-                                                        VisualDensity.compact,
-                                                    materialTapTargetSize:
-                                                        MaterialTapTargetSize
-                                                            .shrinkWrap,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4.0),
+                                                        activeColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        checkColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  unselectedWidgetColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
+                                                    Text(
+                                                      'ไม่ว่าง(${_model.tmpRoomList.where((e) => e.status == 1).toList().length.toString()})',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Kanit',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .info,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                child: Checkbox(
-                                                  value: _model
-                                                          .checkboxValue3 ??=
-                                                      FFAppState()
-                                                          .statusSelectedList[2]
-                                                          .isSelected,
-                                                  onChanged: (newValue) async {
-                                                    safeSetState(() =>
-                                                        _model.checkboxValue3 =
-                                                            newValue!);
-                                                    if (newValue!) {
-                                                      FFAppState()
-                                                          .updateStatusSelectedListAtIndex(
-                                                        2,
-                                                        (e) => e
-                                                          ..isSelected = _model
-                                                              .checkboxValue3,
-                                                      );
-                                                      await _model
-                                                          .updateRoomListBlock(
-                                                              context);
-                                                      safeSetState(() {});
-                                                    } else {
-                                                      FFAppState()
-                                                          .updateStatusSelectedListAtIndex(
-                                                        2,
-                                                        (e) => e
-                                                          ..isSelected = _model
-                                                              .checkboxValue3,
-                                                      );
-                                                      await _model
-                                                          .updateRoomListBlock(
-                                                              context);
-                                                      safeSetState(() {});
-                                                    }
-                                                  },
-                                                  side: BorderSide(
-                                                    width: 2,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .info,
-                                                  ),
-                                                  activeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  checkColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                ),
-                                              ),
-                                              Text(
-                                                'ปรับปรุง(${_model.tmpRoomList.where((e) => e.status == 3).toList().length.toString()})',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Kanit',
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Theme(
+                                                      data: ThemeData(
+                                                        checkboxTheme:
+                                                            CheckboxThemeData(
+                                                          visualDensity:
+                                                              VisualDensity
+                                                                  .compact,
+                                                          materialTapTargetSize:
+                                                              MaterialTapTargetSize
+                                                                  .shrinkWrap,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4.0),
+                                                          ),
+                                                        ),
+                                                        unselectedWidgetColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                      ),
+                                                      child: Checkbox(
+                                                        value: _model
+                                                                .checkboxValue3 ??=
+                                                            FFAppState()
+                                                                .statusSelectedList[
+                                                                    2]
+                                                                .isSelected,
+                                                        onChanged:
+                                                            (newValue) async {
+                                                          safeSetState(() =>
+                                                              _model.checkboxValue3 =
+                                                                  newValue!);
+                                                          if (newValue!) {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              2,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue3,
+                                                            );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            safeSetState(() {});
+                                                          } else {
+                                                            FFAppState()
+                                                                .updateStatusSelectedListAtIndex(
+                                                              2,
+                                                              (e) => e
+                                                                ..isSelected =
+                                                                    _model
+                                                                        .checkboxValue3,
+                                                            );
+                                                            await _model
+                                                                .updateRoomListBlock(
+                                                                    context);
+                                                            safeSetState(() {});
+                                                          }
+                                                        },
+                                                        side: BorderSide(
+                                                          width: 2,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .info,
-                                                          letterSpacing: 0.0,
                                                         ),
-                                              ),
-                                            ],
+                                                        activeColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        checkColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'ปรับปรุง(${_model.tmpRoomList.where((e) => e.status == 3).toList().length.toString()})',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Kanit',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .info,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    ),
                                   ],
                                 ),
                             ],
