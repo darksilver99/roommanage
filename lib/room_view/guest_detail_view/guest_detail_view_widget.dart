@@ -865,6 +865,7 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                                         final _datePickedDate =
                                                             await showDatePicker(
                                                           context: context,
+                                                          locale: Locale('th'),
                                                           initialDate: (widget!
                                                                   .guestDocument
                                                                   ?.startDate ??

@@ -1104,6 +1104,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                     final _datePicked1Date =
                                         await showDatePicker(
                                       context: context,
+                                      locale: Locale('th'),
                                       initialDate:
                                           (_model.startDate ?? DateTime.now()),
                                       firstDate: (getCurrentTimestamp ??
@@ -1270,6 +1271,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                           final _datePicked2Date =
                                               await showDatePicker(
                                             context: context,
+                                            locale: Locale('th'),
                                             initialDate:
                                                 ((_model.endDate != null
                                                         ? _model.endDate
