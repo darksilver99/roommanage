@@ -287,6 +287,64 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   ),
                                 ),
                               ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 16.0, 0.0, 16.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 8.0, 0.0),
+                                          child: Icon(
+                                            Icons.business,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 32.0,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'รายงานสรุปการจอง',
+                                              maxLines: 1,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    height: 1.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
+                                  ),
+                                ],
+                              ),
                               Builder(
                                 builder: (context) => InkWell(
                                   splashColor: Colors.transparent,
@@ -840,7 +898,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                       ),
                     ),
                   ),
-                ].addToEnd(SizedBox(height: 16.0)),
+                ].addToEnd(SizedBox(height: 180.0)),
               ),
             ),
           ),
