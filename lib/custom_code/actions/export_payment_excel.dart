@@ -141,6 +141,11 @@ Future<String> exportPaymentExcel(
             ..value =
                 TextCellValue(functions.dateTh(rs.docs[i][field].toDate())!)
             ..cellStyle = CellStyle(horizontalAlign: HorizontalAlign.Center);
+        } else if (field == "image_slip") {
+          cell
+            ..value =
+                FormulaCellValue('HYPERLINK("${rs.docs[i][field]}", "ดูสลิป")')
+            ..cellStyle = CellStyle(horizontalAlign: HorizontalAlign.Center);
         } else {
           String val = (rs.docs[i][field] == null || rs.docs[i][field] == "")
               ? "-"
