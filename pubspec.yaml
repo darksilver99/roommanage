@@ -137,6 +137,9 @@ dependencies:
   #custom
   device_info_plus: ^10.1.0
   package_info_plus: ^3.0.3
+  excel: ^4.0.0
+  permission_handler: 10.0.0
+  share_extend: ^2.0.0
 
 dependency_overrides:
   http: 1.2.2
