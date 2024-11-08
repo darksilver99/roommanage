@@ -67,6 +67,8 @@ class GuestPaymentViewModel extends FlutterFlowModel<GuestPaymentViewWidget> {
   bool? isValid;
   // Stores action output result for [Custom Action - uploadImageToFirebase] action in Button widget.
   List<String>? urlList;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  PaymentRoomListRecord? insertedPayment;
 
   @override
   void initState(BuildContext context) {

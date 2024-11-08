@@ -14,6 +14,7 @@ import 'schema/issue_list_record.dart';
 import 'schema/config_record.dart';
 import 'schema/payment_room_list_record.dart';
 import 'schema/payment_list_record.dart';
+import 'schema/tmp_payment_room_list_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -31,6 +32,7 @@ export 'schema/issue_list_record.dart';
 export 'schema/config_record.dart';
 export 'schema/payment_room_list_record.dart';
 export 'schema/payment_list_record.dart';
+export 'schema/tmp_payment_room_list_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -366,6 +368,43 @@ Future<List<PaymentListRecord>> queryPaymentListRecordOnce({
     queryCollectionOnce(
       PaymentListRecord.collection,
       PaymentListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query TmpPaymentRoomListRecords (as a Stream and as a Future).
+Future<int> queryTmpPaymentRoomListRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      TmpPaymentRoomListRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<TmpPaymentRoomListRecord>> queryTmpPaymentRoomListRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      TmpPaymentRoomListRecord.collection,
+      TmpPaymentRoomListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<TmpPaymentRoomListRecord>> queryTmpPaymentRoomListRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      TmpPaymentRoomListRecord.collection,
+      TmpPaymentRoomListRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
