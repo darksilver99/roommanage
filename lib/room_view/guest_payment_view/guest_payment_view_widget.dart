@@ -791,6 +791,14 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                   .insertedPayment?.detail,
                                               paymentRoomRef: _model
                                                   .insertedPayment?.reference,
+                                              fullName:
+                                                  '${widget!.guestDocment?.preName}${widget!.guestDocment?.firstName} ${widget!.guestDocment?.lastName}',
+                                              idCardNumber: widget!
+                                                  .guestDocment?.idCardNumber,
+                                              phone:
+                                                  widget!.guestDocment?.phone,
+                                              roomSubject:
+                                                  widget!.roomDocument?.subject,
                                             ));
                                             await showDialog(
                                               context: context,

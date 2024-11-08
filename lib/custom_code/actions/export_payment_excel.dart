@@ -47,35 +47,17 @@ Future<String> exportPaymentExcel(
   }
 
   //getData
-  List<Map<String, dynamic>> rs = [];
-  QuerySnapshot<Map<String, dynamic>> rsRoom = await FirebaseFirestore.instance
-      .collection('${FFAppState().customerData.customerRef!.path}/room_list')
+  QuerySnapshot<Map<String, dynamic>> rs = await FirebaseFirestore.instance
+      .collection(
+          '${FFAppState().customerData.customerRef!.path}/tmp_payment_room_list')
+      .where('create_date', isGreaterThanOrEqualTo: startDate)
+      .where('create_date', isLessThanOrEqualTo: endDate)
+      .orderBy("create_date", descending: false)
       .get();
-  for (var roomDoc in rsRoom.docs) {
-    String pathRoom =
-        '${FFAppState().customerData.customerRef!.path}/room_list/${roomDoc.id}/guest_list';
-    final guestListSnapshot = await FirebaseFirestore.instance
-        .collection(pathRoom)
-        .where('start_date', isGreaterThanOrEqualTo: startDate)
-        .where('start_date', isLessThanOrEqualTo: endDate)
-        .get();
 
-    for (var guestDoc in guestListSnapshot.docs) {
-      Map<String, dynamic> guestData = guestDoc.data();
-      guestData['room_subject'] = roomDoc.data()["subject"];
-      rs.add(guestData);
-    }
-  }
-
-  if (rs.length == 0) {
+  if (rs.size == 0) {
     return "No Data";
   }
-
-  rs.sort((a, b) {
-    DateTime dateA = a['start_date'].toDate();
-    DateTime dateB = b['start_date'].toDate();
-    return dateA.compareTo(dateB);
-  });
 
   var excel = Excel.createExcel();
   Sheet sheetObject = excel['Sheet1'];
@@ -114,36 +96,28 @@ Future<String> exportPaymentExcel(
       "field": "phone",
     },
     {
-      "text": "จำนวนผู้เข้าพัก",
-      "field": "total_guest",
-    },
-    {
-      "text": "รายละเอียดเพิ่มเติม",
-      "field": "detail",
-    },
-    {
       "text": "ห้อง",
       "field": "room_subject",
     },
     {
-      "text": "ประเภท",
-      "field": "is_daily",
+      "text": "ประเภทการจ่าย",
+      "field": "subject",
     },
     {
-      "text": "สถานะ",
-      "field": "status",
+      "text": "จำนวนเงิน",
+      "field": "price",
+    },
+    {
+      "text": "หลักฐานการโอนเงิน",
+      "field": "image_slip",
     },
     {
       "text": "หมายเหตุ",
-      "field": "remark",
+      "field": "detail",
     },
     {
-      "text": "วันที่เข้า",
-      "field": "start_date",
-    },
-    {
-      "text": "วันที่ออก",
-      "field": "end_date",
+      "text": "วันที่บันทึกข้อมูล",
+      "field": "create_date",
     }
   ];
 
@@ -156,35 +130,21 @@ Future<String> exportPaymentExcel(
   }
 
   // Add body
-  for (int i = 0; i < rs.length; i++) {
+  for (int i = 0; i < rs.size; i++) {
     for (int j = 0; j < header.length; j++) {
       var field = header[j]["field"];
       var cell = sheetObject
           .cell(CellIndex.indexByColumnRow(columnIndex: j, rowIndex: i + 2));
       try {
-        if (field == "start_date" || field == "end_date") {
+        if (field == "create_date") {
           cell
-            ..value = TextCellValue(functions.dateTh(rs[i][field].toDate())!)
-            ..cellStyle = CellStyle(horizontalAlign: HorizontalAlign.Center);
-        } else if (field == "full_name") {
-          cell
-            ..value = TextCellValue(
-                '${rs[i]["pre_name"].toString()}${rs[i]["first_name"].toString()} ${rs[i]["last_name"].toString()}')
-            ..cellStyle = CellStyle(horizontalAlign: HorizontalAlign.Center);
-        } else if (field == "status") {
-          cell
-            ..value = TextCellValue(
-                '${functions.getStatusText(rs[i]["status"], FFAppState().guestStatusList.toList())}')
-            ..cellStyle = CellStyle(horizontalAlign: HorizontalAlign.Center);
-        } else if (field == "is_daily") {
-          String type = rs[i][field] ? "รายวัน" : "รายเดือน";
-          cell
-            ..value = TextCellValue(type)
+            ..value =
+                TextCellValue(functions.dateTh(rs.docs[i][field].toDate())!)
             ..cellStyle = CellStyle(horizontalAlign: HorizontalAlign.Center);
         } else {
-          String val = (rs[i][field] == null || rs[i][field] == "")
+          String val = (rs.docs[i][field] == null || rs.docs[i][field] == "")
               ? "-"
-              : rs[i][field].toString();
+              : rs.docs[i][field].toString();
           cell
             ..value = TextCellValue(val)
             ..cellStyle = CellStyle(horizontalAlign: HorizontalAlign.Center);
