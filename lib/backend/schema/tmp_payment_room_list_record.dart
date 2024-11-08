@@ -66,6 +66,26 @@ class TmpPaymentRoomListRecord extends FirestoreRecord {
   DocumentReference? get paymentRoomRef => _paymentRoomRef;
   bool hasPaymentRoomRef() => _paymentRoomRef != null;
 
+  // "full_name" field.
+  String? _fullName;
+  String get fullName => _fullName ?? '';
+  bool hasFullName() => _fullName != null;
+
+  // "id_card_number" field.
+  String? _idCardNumber;
+  String get idCardNumber => _idCardNumber ?? '';
+  bool hasIdCardNumber() => _idCardNumber != null;
+
+  // "phone" field.
+  String? _phone;
+  String get phone => _phone ?? '';
+  bool hasPhone() => _phone != null;
+
+  // "room_subject" field.
+  String? _roomSubject;
+  String get roomSubject => _roomSubject ?? '';
+  bool hasRoomSubject() => _roomSubject != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -79,6 +99,10 @@ class TmpPaymentRoomListRecord extends FirestoreRecord {
     _imageSlip = snapshotData['image_slip'] as String?;
     _detail = snapshotData['detail'] as String?;
     _paymentRoomRef = snapshotData['payment_room_ref'] as DocumentReference?;
+    _fullName = snapshotData['full_name'] as String?;
+    _idCardNumber = snapshotData['id_card_number'] as String?;
+    _phone = snapshotData['phone'] as String?;
+    _roomSubject = snapshotData['room_subject'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -132,6 +156,10 @@ Map<String, dynamic> createTmpPaymentRoomListRecordData({
   String? imageSlip,
   String? detail,
   DocumentReference? paymentRoomRef,
+  String? fullName,
+  String? idCardNumber,
+  String? phone,
+  String? roomSubject,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -145,6 +173,10 @@ Map<String, dynamic> createTmpPaymentRoomListRecordData({
       'image_slip': imageSlip,
       'detail': detail,
       'payment_room_ref': paymentRoomRef,
+      'full_name': fullName,
+      'id_card_number': idCardNumber,
+      'phone': phone,
+      'room_subject': roomSubject,
     }.withoutNulls,
   );
 
@@ -166,7 +198,11 @@ class TmpPaymentRoomListRecordDocumentEquality
         e1?.price == e2?.price &&
         e1?.imageSlip == e2?.imageSlip &&
         e1?.detail == e2?.detail &&
-        e1?.paymentRoomRef == e2?.paymentRoomRef;
+        e1?.paymentRoomRef == e2?.paymentRoomRef &&
+        e1?.fullName == e2?.fullName &&
+        e1?.idCardNumber == e2?.idCardNumber &&
+        e1?.phone == e2?.phone &&
+        e1?.roomSubject == e2?.roomSubject;
   }
 
   @override
@@ -180,7 +216,11 @@ class TmpPaymentRoomListRecordDocumentEquality
         e?.price,
         e?.imageSlip,
         e?.detail,
-        e?.paymentRoomRef
+        e?.paymentRoomRef,
+        e?.fullName,
+        e?.idCardNumber,
+        e?.phone,
+        e?.roomSubject
       ]);
 
   @override
