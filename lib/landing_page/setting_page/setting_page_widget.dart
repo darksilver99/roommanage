@@ -308,7 +308,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                   Directionality.of(context)),
                                           child: WebViewAware(
                                             child:
-                                                SelectMonthAndYearToExportViewWidget(),
+                                                SelectMonthAndYearToExportViewWidget(
+                                              type: 'guest',
+                                            ),
                                           ),
                                         );
                                       },
@@ -327,7 +329,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 8.0, 0.0),
                                               child: Icon(
-                                                Icons.file_copy_outlined,
+                                                Icons.file_copy_rounded,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
@@ -341,6 +343,95 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                         0.0, 0.0, 4.0, 0.0),
                                                 child: Text(
                                                   'รายงานผู้เข้าพัก',
+                                                  maxLines: 1,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Kanit',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.navigate_next_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24.0,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        height: 1.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Builder(
+                                builder: (context) => InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child:
+                                                SelectMonthAndYearToExportViewWidget(
+                                              type: 'payment',
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 16.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                              child: Icon(
+                                                Icons.file_copy,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 32.0,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 4.0, 0.0),
+                                                child: Text(
+                                                  'รายงานการชำระเงิน',
                                                   maxLines: 1,
                                                   style: FlutterFlowTheme.of(
                                                           context)

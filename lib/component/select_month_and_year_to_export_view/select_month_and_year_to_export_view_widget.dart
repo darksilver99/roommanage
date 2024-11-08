@@ -18,7 +18,12 @@ import 'select_month_and_year_to_export_view_model.dart';
 export 'select_month_and_year_to_export_view_model.dart';
 
 class SelectMonthAndYearToExportViewWidget extends StatefulWidget {
-  const SelectMonthAndYearToExportViewWidget({super.key});
+  const SelectMonthAndYearToExportViewWidget({
+    super.key,
+    this.type,
+  });
+
+  final String? type;
 
   @override
   State<SelectMonthAndYearToExportViewWidget> createState() =>
@@ -257,38 +262,73 @@ class _SelectMonthAndYearToExportViewWidgetState
                                 child: Builder(
                                   builder: (context) => FFButtonWidget(
                                     onPressed: () async {
-                                      _model.path = await actions.exportExcel(
-                                        _model.startDate!,
-                                        _model.endDate!,
-                                      );
-                                      if (_model.path == 'No Data') {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: WebViewAware(
-                                                child: InfoCustomViewWidget(
-                                                  title:
-                                                      'ไม่มีข้อมูลในเดือนนี้',
-                                                  status: 'info',
+                                      if (widget!.type == 'guest') {
+                                        _model.path = await actions.exportExcel(
+                                          _model.startDate!,
+                                          _model.endDate!,
+                                        );
+                                        if (_model.path == 'No Data') {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: InfoCustomViewWidget(
+                                                    title:
+                                                        'ไม่มีข้อมูลในเดือนนี้',
+                                                    status: 'info',
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        );
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          await actions.shareFile(
+                                            _model.path,
+                                          );
+                                        }
                                       } else {
-                                        await actions.shareFile(
-                                          _model.path,
+                                        _model.path2 =
+                                            await actions.exportPaymentExcel(
+                                          _model.startDate!,
+                                          _model.endDate!,
                                         );
+                                        if (_model.path2 == 'No Data') {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: InfoCustomViewWidget(
+                                                    title:
+                                                        'ไม่มีข้อมูลในเดือนนี้',
+                                                    status: 'info',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          await actions.shareFile(
+                                            _model.path2,
+                                          );
+                                        }
                                       }
 
                                       safeSetState(() {});
