@@ -10,3 +10,5 @@ export 'get_booking_date_list.dart' show getBookingDateList;
 export 'get_guest_document.dart' show getGuestDocument;
 export 'check_is_has_booking.dart' show checkIsHasBooking;
 export 'total_day_free.dart' show totalDayFree;
+export 'export_excel.dart' show exportExcel;
+export 'share_file.dart' show shareFile;
