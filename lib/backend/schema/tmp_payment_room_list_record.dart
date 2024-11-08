@@ -66,6 +66,8 @@ class TmpPaymentRoomListRecord extends FirestoreRecord {
   DocumentReference? get paymentRoomRef => _paymentRoomRef;
   bool hasPaymentRoomRef() => _paymentRoomRef != null;
 
+  DocumentReference get parentReference => reference.parent.parent!;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -79,8 +81,13 @@ class TmpPaymentRoomListRecord extends FirestoreRecord {
     _paymentRoomRef = snapshotData['payment_room_ref'] as DocumentReference?;
   }
 
-  static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('tmp_payment_room_list');
+  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
+      parent != null
+          ? parent.collection('tmp_payment_room_list')
+          : FirebaseFirestore.instance.collectionGroup('tmp_payment_room_list');
+
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('tmp_payment_room_list').doc(id);
 
   static Stream<TmpPaymentRoomListRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => TmpPaymentRoomListRecord.fromSnapshot(s));
