@@ -18,7 +18,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 
-Future<String> exportExcel(
+Future<String> exportPaymentExcel(
   DateTime startDate,
   DateTime endDate,
 ) async {
