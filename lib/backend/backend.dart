@@ -375,22 +375,24 @@ Future<List<PaymentListRecord>> queryPaymentListRecordOnce({
 
 /// Functions to query TmpPaymentRoomListRecords (as a Stream and as a Future).
 Future<int> queryTmpPaymentRoomListRecordCount({
+  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      TmpPaymentRoomListRecord.collection,
+      TmpPaymentRoomListRecord.collection(parent),
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
 Stream<List<TmpPaymentRoomListRecord>> queryTmpPaymentRoomListRecord({
+  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      TmpPaymentRoomListRecord.collection,
+      TmpPaymentRoomListRecord.collection(parent),
       TmpPaymentRoomListRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
@@ -398,12 +400,13 @@ Stream<List<TmpPaymentRoomListRecord>> queryTmpPaymentRoomListRecord({
     );
 
 Future<List<TmpPaymentRoomListRecord>> queryTmpPaymentRoomListRecordOnce({
+  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      TmpPaymentRoomListRecord.collection,
+      TmpPaymentRoomListRecord.collection(parent),
       TmpPaymentRoomListRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,

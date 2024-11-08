@@ -772,28 +772,26 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                                         paymentRoomListRecordReference);
 
                                             await TmpPaymentRoomListRecord
-                                                .collection
-                                                .doc()
+                                                    .createDoc(FFAppState()
+                                                        .customerData
+                                                        .customerRef!)
                                                 .set(
                                                     createTmpPaymentRoomListRecordData(
-                                                  createDate: _model
-                                                      .insertedPayment
-                                                      ?.createDate,
-                                                  status: _model
-                                                      .insertedPayment?.status,
-                                                  subject: _model
-                                                      .insertedPayment?.subject,
-                                                  price: _model
-                                                      .insertedPayment?.price,
-                                                  imageSlip: _model
-                                                      .insertedPayment
-                                                      ?.imageSlip,
-                                                  detail: _model
-                                                      .insertedPayment?.detail,
-                                                  paymentRoomRef: _model
-                                                      .insertedPayment
-                                                      ?.reference,
-                                                ));
+                                              createDate: _model
+                                                  .insertedPayment?.createDate,
+                                              status: _model
+                                                  .insertedPayment?.status,
+                                              subject: _model
+                                                  .insertedPayment?.subject,
+                                              price:
+                                                  _model.insertedPayment?.price,
+                                              imageSlip: _model
+                                                  .insertedPayment?.imageSlip,
+                                              detail: _model
+                                                  .insertedPayment?.detail,
+                                              paymentRoomRef: _model
+                                                  .insertedPayment?.reference,
+                                            ));
                                             await showDialog(
                                               context: context,
                                               builder: (dialogContext) {
