@@ -103,3 +103,32 @@ List<String> floorToList(int totalFloor) {
 String intToString(int val) {
   return val.toString();
 }
+
+DateTime getFirstDayOfMonth(DateTime date) {
+  DateTime firstDayOfCurrentMonth = DateTime(date.year, date.month, 1);
+  return firstDayOfCurrentMonth;
+}
+
+DateTime getLastDayOfMonth(DateTime date) {
+  DateTime firstDayOfNextMonth = DateTime(date.year, date.month + 1, 1);
+  DateTime lastDayOfCurrentMonth =
+      firstDayOfNextMonth.subtract(Duration(seconds: 1));
+  return lastDayOfCurrentMonth;
+}
+
+List<String> getYearFromCurrent(int len) {
+  List<String> yearList = [];
+  int currentYear = DateTime.now().year + 543;
+  for (var i = currentYear - len; i <= currentYear; i++) {
+    yearList.add(i.toString());
+  }
+  return yearList;
+}
+
+DateTime getDateByMonthAndYear(
+  String month,
+  String year,
+) {
+  DateTime currentDate = DateTime.now();
+  return DateTime((int.parse(year) - 543), int.parse(month), currentDate.day);
+}

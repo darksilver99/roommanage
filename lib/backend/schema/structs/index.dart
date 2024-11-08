@@ -5,6 +5,7 @@ export 'check_in_data_struct.dart';
 export 'config_data_struct.dart';
 export 'current_dropdown_selected_data_struct.dart';
 export 'customer_data_struct.dart';
+export 'month_data_struct.dart';
 export 'status_data_struct.dart';
 export 'status_selected_data_struct.dart';
 export 'tmp_customer_data_struct.dart';
