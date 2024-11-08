@@ -95,7 +95,7 @@ Future<String> exportPaymentExcel(
       sheetObject.cell(CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: 0));
 
   String title =
-      'รายงานผู้เข้าพัก ประจำวันที่ ${functions.dateTh(startDate)} ถึง ${functions.dateTh(endDate)} *สำหรับผู้เข้าพักรายเดือนจะแสดงรายการในเดือนแรกที่เข้าพักเท่านั้น';
+      'รายงานการชำระเงิน ประจำวันที่ ${functions.dateTh(startDate)} ถึง ${functions.dateTh(endDate)}';
   cell.value = TextCellValue(title);
   cell.cellStyle = CellStyle(fontSize: 22, bold: true);
 
@@ -208,7 +208,7 @@ Future<String> exportPaymentExcel(
   Directory dir = await getApplicationDocumentsDirectory();
   //Directory dir = Directory('/storage/emulated/0/Download');
   List<int>? fileBytes = excel.save();
-  var path = File('${dir.path}/รายงานผู้เข้าพัก.xlsx')
+  var path = File('${dir.path}/รายงานการชำระเงิน.xlsx')
     ..createSync(recursive: true)
     ..writeAsBytesSync(fileBytes!);
 

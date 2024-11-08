@@ -735,22 +735,64 @@ class _GuestPaymentViewWidgetState extends State<GuestPaymentViewWidget> {
                                               _model.tmpImageList.toList(),
                                             );
 
-                                            await PaymentRoomListRecord
+                                            var paymentRoomListRecordReference =
+                                                PaymentRoomListRecord.collection
+                                                    .doc();
+                                            await paymentRoomListRecordReference
+                                                .set(
+                                                    createPaymentRoomListRecordData(
+                                              createDate: getCurrentTimestamp,
+                                              status: 1,
+                                              subject: _model.choiceChipsValue,
+                                              price: double.tryParse(
+                                                  _model.textController1.text),
+                                              imageSlip: _model.urlList?.first,
+                                              detail:
+                                                  _model.textController2.text,
+                                            ));
+                                            _model.insertedPayment =
+                                                PaymentRoomListRecord
+                                                    .getDocumentFromData(
+                                                        createPaymentRoomListRecordData(
+                                                          createDate:
+                                                              getCurrentTimestamp,
+                                                          status: 1,
+                                                          subject: _model
+                                                              .choiceChipsValue,
+                                                          price: double
+                                                              .tryParse(_model
+                                                                  .textController1
+                                                                  .text),
+                                                          imageSlip: _model
+                                                              .urlList?.first,
+                                                          detail: _model
+                                                              .textController2
+                                                              .text,
+                                                        ),
+                                                        paymentRoomListRecordReference);
+
+                                            await TmpPaymentRoomListRecord
                                                 .collection
                                                 .doc()
                                                 .set(
-                                                    createPaymentRoomListRecordData(
-                                                  createDate:
-                                                      getCurrentTimestamp,
-                                                  status: 1,
-                                                  subject:
-                                                      _model.choiceChipsValue,
-                                                  price: double.tryParse(_model
-                                                      .textController1.text),
-                                                  imageSlip:
-                                                      _model.urlList?.first,
+                                                    createTmpPaymentRoomListRecordData(
+                                                  createDate: _model
+                                                      .insertedPayment
+                                                      ?.createDate,
+                                                  status: _model
+                                                      .insertedPayment?.status,
+                                                  subject: _model
+                                                      .insertedPayment?.subject,
+                                                  price: _model
+                                                      .insertedPayment?.price,
+                                                  imageSlip: _model
+                                                      .insertedPayment
+                                                      ?.imageSlip,
                                                   detail: _model
-                                                      .textController2.text,
+                                                      .insertedPayment?.detail,
+                                                  paymentRoomRef: _model
+                                                      .insertedPayment
+                                                      ?.reference,
                                                 ));
                                             await showDialog(
                                               context: context,
