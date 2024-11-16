@@ -129,7 +129,8 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if (widget!.guestDocument?.status == 1)
+                              if ((widget!.guestDocument?.status == 1) ||
+                                  (widget!.guestDocument?.status == 5))
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
