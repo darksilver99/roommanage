@@ -21,8 +21,7 @@ Future<bool> checkIsHasBooking(
     var rs0 = await roomRef
         .collection("guest_list")
         .where("start_date", isGreaterThanOrEqualTo: startDate)
-        .where("status", isEqualTo: 1)
-        .get();
+        .where("status", arrayContainsAny: [1, 5]).get();
     if (rs0.size != 0) {
       print("มีคนพัก/จอง 0");
       return true;
@@ -65,7 +64,8 @@ Future<bool> checkIsHasBooking(
       .orderBy("start_date", descending: true)
       .get();
   if (rs3.size != 0) {
-    if (rs3.docs[0].data()["status"] == 1) {
+    if (rs3.docs[0].data()["status"] == 1 ||
+        rs3.docs[0].data()["status"] == 5) {
       print("มีคนพัก/จอง 3");
       return true;
     }
@@ -80,7 +80,8 @@ Future<bool> checkIsHasBooking(
         .orderBy("start_date", descending: true)
         .get();
     if (rs4.size != 0) {
-      if (rs4.docs[0].data()["status"] == 1) {
+      if (rs4.docs[0].data()["status"] == 1 ||
+          rs3.docs[0].data()["status"] == 5) {
         print("มีคนพัก/จอง 4");
         return true;
       }
