@@ -1608,7 +1608,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                     Directionality.of(context)),
                                             child: WebViewAware(
                                               child: InfoCustomViewWidget(
-                                                title: 'เช็คอินเรียบร้อยแล้ว',
+                                                title: 'จองห้องเรียบร้อยแล้ว',
                                                 status: 'success',
                                               ),
                                             ),
