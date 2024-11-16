@@ -21,7 +21,9 @@ Future<bool> checkIsHasBooking(
     var rs0 = await roomRef
         .collection("guest_list")
         .where("start_date", isGreaterThanOrEqualTo: startDate)
-        .where("status", whereIn: [1, 5]).get();
+        .where("status", whereIn: [1, 5])
+        .limit(1)
+        .get();
     if (rs0.size != 0) {
       print("มีคนพัก/จอง 0");
       return true;
@@ -34,6 +36,7 @@ Future<bool> checkIsHasBooking(
       .where("start_date", isLessThanOrEqualTo: startDate)
       .where("end_date", isGreaterThanOrEqualTo: startDate)
       .where("status", isNotEqualTo: 3)
+      .limit(1)
       .get();
 
   if (rs.size != 0) {
@@ -48,6 +51,7 @@ Future<bool> checkIsHasBooking(
         .where("start_date", isLessThanOrEqualTo: endDate)
         .where("end_date", isGreaterThanOrEqualTo: endDate)
         .where("status", isNotEqualTo: 3)
+        .limit(1)
         .get();
     if (rs2.size != 0) {
       print("มีคนพัก/จอง 2");
@@ -62,6 +66,7 @@ Future<bool> checkIsHasBooking(
       .where("is_daily", isEqualTo: false)
       .where("status", isNotEqualTo: 3)
       .orderBy("start_date", descending: true)
+      .limit(1)
       .get();
   if (rs3.size != 0) {
     if (rs3.docs[0].data()["status"] == 1 ||
@@ -78,6 +83,7 @@ Future<bool> checkIsHasBooking(
         .where("is_daily", isEqualTo: false)
         .where("status", isNotEqualTo: 3)
         .orderBy("start_date", descending: true)
+        .limit(1)
         .get();
     if (rs4.size != 0) {
       if (rs4.docs[0].data()["status"] == 1 ||
