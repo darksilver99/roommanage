@@ -40,7 +40,8 @@ Future<GuestListRecord?> getGuestDocument(
       .get();
   if (rs2.size != 0) {
     print(">>>bbb");
-    if (rs2.docs[0].data()["status"] == 1) {
+    if (rs2.docs[0].data()["status"] == 1 ||
+        rs2.docs[0].data()["status"] == 5) {
       GuestListRecord guestData =
           await GuestListRecord.getDocumentOnce(rs2.docs[0].reference);
       return guestData;
