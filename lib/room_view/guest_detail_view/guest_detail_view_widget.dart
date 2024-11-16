@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/room_view/guest_payment_history_view/guest_payment_history_view_widget.dart';
 import '/room_view/guest_payment_view/guest_payment_view_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -711,17 +712,27 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                                           '-',
                                                         ),
                                                         style: TextStyle(
-                                                          color: widget!
-                                                                      .guestDocument
-                                                                      ?.status ==
-                                                                  1
-                                                              ? FlutterFlowTheme
-                                                                      .of(
-                                                                          context)
-                                                                  .success
-                                                              : FlutterFlowTheme
+                                                          color: () {
+                                                            if (widget!
+                                                                    .guestDocument
+                                                                    ?.status ==
+                                                                1) {
+                                                              return FlutterFlowTheme
                                                                       .of(context)
-                                                                  .error,
+                                                                  .success;
+                                                            } else if (widget!
+                                                                    .guestDocument
+                                                                    ?.status ==
+                                                                5) {
+                                                              return FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .tertiary;
+                                                            } else {
+                                                              return FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error;
+                                                            }
+                                                          }(),
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize: 20.0,
@@ -741,7 +752,10 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                             ],
                                           ),
                                         ),
-                                        if (widget!.guestDocument?.status == 1)
+                                        if ((widget!.guestDocument?.status ==
+                                                1) ||
+                                            (widget!.guestDocument?.status ==
+                                                5))
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -1091,60 +1105,97 @@ class _GuestDetailViewWidgetState extends State<GuestDetailViewWidget> {
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  _model.isConfirm3 =
-                                                      await action_blocks
-                                                          .confirmBlock(
-                                                    context,
-                                                    title:
-                                                        'ยืนยันการเช็คอิน (เข้าพัก)',
-                                                  );
-                                                  if (_model.isConfirm3!) {
-                                                    await widget!.guestDocument!
-                                                        .reference
-                                                        .update(
-                                                            createGuestListRecordData(
-                                                      updateDate:
-                                                          getCurrentTimestamp,
-                                                      status: 1,
-                                                    ));
-                                                  }
+                                              Builder(
+                                                builder: (context) =>
+                                                    FFButtonWidget(
+                                                  onPressed: () async {
+                                                    _model.isConfirm3 =
+                                                        await action_blocks
+                                                            .confirmBlock(
+                                                      context,
+                                                      title:
+                                                          'ยืนยันการเช็คอิน (เข้าพัก)',
+                                                    );
+                                                    if (_model.isConfirm3!) {
+                                                      await widget!
+                                                          .guestDocument!
+                                                          .reference
+                                                          .update(
+                                                              createGuestListRecordData(
+                                                        updateDate:
+                                                            getCurrentTimestamp,
+                                                        status: 1,
+                                                      ));
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Dialog(
+                                                            elevation: 0,
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            alignment: AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  InfoCustomViewWidget(
+                                                                title:
+                                                                    'เช็คอินเรียบร้อยแล้ว',
+                                                                status:
+                                                                    'success',
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
 
-                                                  safeSetState(() {});
-                                                },
-                                                text: 'เช็คอิน',
-                                                options: FFButtonOptions(
-                                                  width: double.infinity,
-                                                  height: 50.0,
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
-                                                  iconPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .success,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily: 'Kanit',
-                                                            color: Colors.white,
-                                                            fontSize: 22.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  elevation: 3.0,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
+                                                      await actions
+                                                          .pushReplacement(
+                                                        context,
+                                                      );
+                                                    }
+
+                                                    safeSetState(() {});
+                                                  },
+                                                  text: 'เช็คอิน',
+                                                  options: FFButtonOptions(
+                                                    width: double.infinity,
+                                                    height: 50.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .success,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Kanit',
+                                                          color: Colors.white,
+                                                          fontSize: 22.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    elevation: 3.0,
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
                                                 ),
                                               ),
                                             ],
