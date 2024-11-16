@@ -410,6 +410,9 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                                           widget!.roomDocument!,
                                                       guestDocument:
                                                           _model.guestDocument!,
+                                                      selectedDate: _model
+                                                          .calendarSelectedDay
+                                                          ?.start,
                                                     ),
                                                   ),
                                                 );
@@ -539,7 +542,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
 
                                           safeSetState(() {});
                                         },
-                                        text: 'เช็คอิน',
+                                        text: 'จอง',
                                         options: FFButtonOptions(
                                           width: double.infinity,
                                           height: 50.0,

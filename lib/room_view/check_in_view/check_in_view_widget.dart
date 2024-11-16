@@ -264,13 +264,19 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                 ''),
                                             r'''$.data.pre_name''',
                                           ).toString();
-                                          _model.preNameTextController
-                                                  ?.selection =
-                                              TextSelection.collapsed(
-                                                  offset: _model
-                                                      .preNameTextController!
-                                                      .text
-                                                      .length);
+                                          _model.preNameFocusNode
+                                              ?.requestFocus();
+                                          WidgetsBinding.instance
+                                              .addPostFrameCallback((_) {
+                                            _model.preNameTextController
+                                                    ?.selection =
+                                                TextSelection.collapsed(
+                                              offset: _model
+                                                  .preNameTextController!
+                                                  .text
+                                                  .length,
+                                            );
+                                          });
                                         });
                                         safeSetState(() {
                                           _model.firstNameTextController?.text =
@@ -279,13 +285,19 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                 ''),
                                             r'''$.data.first_name''',
                                           ).toString();
-                                          _model.firstNameTextController
-                                                  ?.selection =
-                                              TextSelection.collapsed(
-                                                  offset: _model
-                                                      .firstNameTextController!
-                                                      .text
-                                                      .length);
+                                          _model.firstNameFocusNode
+                                              ?.requestFocus();
+                                          WidgetsBinding.instance
+                                              .addPostFrameCallback((_) {
+                                            _model.firstNameTextController
+                                                    ?.selection =
+                                                TextSelection.collapsed(
+                                              offset: _model
+                                                  .firstNameTextController!
+                                                  .text
+                                                  .length,
+                                            );
+                                          });
                                         });
                                         safeSetState(() {
                                           _model.lastNameTextController?.text =
@@ -294,13 +306,19 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                 ''),
                                             r'''$.data.last_name''',
                                           ).toString();
-                                          _model.lastNameTextController
-                                                  ?.selection =
-                                              TextSelection.collapsed(
-                                                  offset: _model
-                                                      .lastNameTextController!
-                                                      .text
-                                                      .length);
+                                          _model.lastNameFocusNode
+                                              ?.requestFocus();
+                                          WidgetsBinding.instance
+                                              .addPostFrameCallback((_) {
+                                            _model.lastNameTextController
+                                                    ?.selection =
+                                                TextSelection.collapsed(
+                                              offset: _model
+                                                  .lastNameTextController!
+                                                  .text
+                                                  .length,
+                                            );
+                                          });
                                         });
                                         safeSetState(() {
                                           _model.idCardTextController?.text =
@@ -309,13 +327,19 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                                 ''),
                                             r'''$.data.id_card_number''',
                                           ).toString();
-                                          _model.idCardTextController
-                                                  ?.selection =
-                                              TextSelection.collapsed(
-                                                  offset: _model
-                                                      .idCardTextController!
-                                                      .text
-                                                      .length);
+                                          _model.idCardFocusNode
+                                              ?.requestFocus();
+                                          WidgetsBinding.instance
+                                              .addPostFrameCallback((_) {
+                                            _model.idCardTextController
+                                                    ?.selection =
+                                                TextSelection.collapsed(
+                                              offset: _model
+                                                  .idCardTextController!
+                                                  .text
+                                                  .length,
+                                            );
+                                          });
                                         });
                                         _model.allCardData = getJsonField(
                                           (_model.apiResult2ve?.jsonBody ?? ''),
@@ -1524,7 +1548,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                       await guestListRecordReference
                                           .set(createGuestListRecordData(
                                         createDate: getCurrentTimestamp,
-                                        status: 1,
+                                        status: 5,
                                         startDate: _model.startDate,
                                         endDate: _model.endDate,
                                         preName:
@@ -1547,7 +1571,7 @@ class _CheckInViewWidgetState extends State<CheckInViewWidget> {
                                           GuestListRecord.getDocumentFromData(
                                               createGuestListRecordData(
                                                 createDate: getCurrentTimestamp,
-                                                status: 1,
+                                                status: 5,
                                                 startDate: _model.startDate,
                                                 endDate: _model.endDate,
                                                 preName: _model

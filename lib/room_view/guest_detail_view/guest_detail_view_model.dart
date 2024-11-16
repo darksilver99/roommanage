@@ -42,6 +42,8 @@ class GuestDetailViewModel extends FlutterFlowModel<GuestDetailViewWidget> {
   // Stores action output result for [Action Block - confirmBlock] action in Button widget.
   bool? isConfirm2;
   DateTime? datePicked;
+  // Stores action output result for [Action Block - confirmBlock] action in Button widget.
+  bool? isConfirm3;
 
   @override
   void initState(BuildContext context) {}
