@@ -266,11 +266,13 @@ class FFAppState extends ChangeNotifier {
 
   List<StatusDataStruct> _guestStatusList = [
     StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"1\",\"subject\":\"เข้าพัก, จอง\"}')),
+        jsonDecode('{\"status\":\"1\",\"subject\":\"เช็คอิน(กำลังเข้าพัก)\"}')),
     StatusDataStruct.fromSerializableMap(
         jsonDecode('{\"status\":\"3\",\"subject\":\"ยกเลิก\"}')),
     StatusDataStruct.fromSerializableMap(
-        jsonDecode('{\"status\":\"4\",\"subject\":\"เช็คเอาท์แล้ว\"}'))
+        jsonDecode('{\"status\":\"4\",\"subject\":\"เช็คเอาท์แล้ว\"}')),
+    StatusDataStruct.fromSerializableMap(
+        jsonDecode('{\"status\":\"5\",\"subject\":\"จอง\"}'))
   ];
   List<StatusDataStruct> get guestStatusList => _guestStatusList;
   set guestStatusList(List<StatusDataStruct> value) {
