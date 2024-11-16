@@ -553,7 +553,7 @@ class _RoomDetailViewWidgetState extends State<RoomDetailViewWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .primary,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
