@@ -1,5 +1,6 @@
 export '/backend/schema/util/schema_util.dart';
 
+export 'app_suggest_data_struct.dart';
 export 'building_data_struct.dart';
 export 'check_in_data_struct.dart';
 export 'config_data_struct.dart';

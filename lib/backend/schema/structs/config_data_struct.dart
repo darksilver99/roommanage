@@ -20,6 +20,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
     String? promotionDetailImage,
     List<String>? contact,
     bool? isReview,
+    List<AppSuggestDataStruct>? appSuggestList,
+    List<AppSuggestDataStruct>? appOtherList,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ocrApi = ocrApi,
         _policyUrl = policyUrl,
@@ -31,6 +33,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         _promotionDetailImage = promotionDetailImage,
         _contact = contact,
         _isReview = isReview,
+        _appSuggestList = appSuggestList,
+        _appOtherList = appOtherList,
         super(firestoreUtilData);
 
   // "ocr_api" field.
@@ -121,6 +125,28 @@ class ConfigDataStruct extends FFFirebaseStruct {
 
   bool hasIsReview() => _isReview != null;
 
+  // "app_suggest_list" field.
+  List<AppSuggestDataStruct>? _appSuggestList;
+  List<AppSuggestDataStruct> get appSuggestList => _appSuggestList ?? const [];
+  set appSuggestList(List<AppSuggestDataStruct>? val) => _appSuggestList = val;
+
+  void updateAppSuggestList(Function(List<AppSuggestDataStruct>) updateFn) {
+    updateFn(_appSuggestList ??= []);
+  }
+
+  bool hasAppSuggestList() => _appSuggestList != null;
+
+  // "app_other_list" field.
+  List<AppSuggestDataStruct>? _appOtherList;
+  List<AppSuggestDataStruct> get appOtherList => _appOtherList ?? const [];
+  set appOtherList(List<AppSuggestDataStruct>? val) => _appOtherList = val;
+
+  void updateAppOtherList(Function(List<AppSuggestDataStruct>) updateFn) {
+    updateFn(_appOtherList ??= []);
+  }
+
+  bool hasAppOtherList() => _appOtherList != null;
+
   static ConfigDataStruct fromMap(Map<String, dynamic> data) =>
       ConfigDataStruct(
         ocrApi: data['ocr_api'] as String?,
@@ -133,6 +159,14 @@ class ConfigDataStruct extends FFFirebaseStruct {
         promotionDetailImage: data['promotion_detail_image'] as String?,
         contact: getDataList(data['contact']),
         isReview: data['isReview'] as bool?,
+        appSuggestList: getStructList(
+          data['app_suggest_list'],
+          AppSuggestDataStruct.fromMap,
+        ),
+        appOtherList: getStructList(
+          data['app_other_list'],
+          AppSuggestDataStruct.fromMap,
+        ),
       );
 
   static ConfigDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -150,6 +184,8 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'promotion_detail_image': _promotionDetailImage,
         'contact': _contact,
         'isReview': _isReview,
+        'app_suggest_list': _appSuggestList?.map((e) => e.toMap()).toList(),
+        'app_other_list': _appOtherList?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -197,6 +233,16 @@ class ConfigDataStruct extends FFFirebaseStruct {
         'isReview': serializeParam(
           _isReview,
           ParamType.bool,
+        ),
+        'app_suggest_list': serializeParam(
+          _appSuggestList,
+          ParamType.DataStruct,
+          isList: true,
+        ),
+        'app_other_list': serializeParam(
+          _appOtherList,
+          ParamType.DataStruct,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -252,6 +298,18 @@ class ConfigDataStruct extends FFFirebaseStruct {
           ParamType.bool,
           false,
         ),
+        appSuggestList: deserializeStructParam<AppSuggestDataStruct>(
+          data['app_suggest_list'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: AppSuggestDataStruct.fromSerializableMap,
+        ),
+        appOtherList: deserializeStructParam<AppSuggestDataStruct>(
+          data['app_other_list'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: AppSuggestDataStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -270,7 +328,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         paymentDetailImage == other.paymentDetailImage &&
         promotionDetailImage == other.promotionDetailImage &&
         listEquality.equals(contact, other.contact) &&
-        isReview == other.isReview;
+        isReview == other.isReview &&
+        listEquality.equals(appSuggestList, other.appSuggestList) &&
+        listEquality.equals(appOtherList, other.appOtherList);
   }
 
   @override
@@ -284,7 +344,9 @@ class ConfigDataStruct extends FFFirebaseStruct {
         paymentDetailImage,
         promotionDetailImage,
         contact,
-        isReview
+        isReview,
+        appSuggestList,
+        appOtherList
       ]);
 }
 
