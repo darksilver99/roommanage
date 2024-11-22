@@ -288,11 +288,11 @@ class _AppSuggestViewWidgetState extends State<AppSuggestViewWidget> {
                                                                     if (MediaQuery.sizeOf(context)
                                                                             .width <
                                                                         kBreakpointSmall) {
-                                                                      return 14.0;
+                                                                      return 12.0;
                                                                     } else if (MediaQuery.sizeOf(context)
                                                                             .width <
                                                                         kBreakpointMedium) {
-                                                                      return 18.0;
+                                                                      return 12.0;
                                                                     } else if (MediaQuery.sizeOf(context)
                                                                             .width <
                                                                         kBreakpointLarge) {
@@ -494,11 +494,11 @@ class _AppSuggestViewWidgetState extends State<AppSuggestViewWidget> {
                                                                     if (MediaQuery.sizeOf(context)
                                                                             .width <
                                                                         kBreakpointSmall) {
-                                                                      return 14.0;
+                                                                      return 12.0;
                                                                     } else if (MediaQuery.sizeOf(context)
                                                                             .width <
                                                                         kBreakpointMedium) {
-                                                                      return 18.0;
+                                                                      return 12.0;
                                                                     } else if (MediaQuery.sizeOf(context)
                                                                             .width <
                                                                         kBreakpointLarge) {
