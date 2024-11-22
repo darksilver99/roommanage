@@ -108,5 +108,7 @@ Future setConfigData(
     promotionDetailImage: configDocument?.promotionDetailImage,
     contact: configDocument?.contact,
     isReview: configDocument?.isReview,
+    appSuggestList: configDocument?.appSuggestList,
+    appOtherList: configDocument?.appOtherList,
   );
 }
